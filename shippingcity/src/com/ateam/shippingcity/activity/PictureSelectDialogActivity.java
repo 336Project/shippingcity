@@ -3,41 +3,42 @@ package com.ateam.shippingcity.activity;
 import com.ateam.shippingcity.R;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.view.WindowManager;
 /**
  * 
  * @author 李晓伟
- * 2015-3-27 下午1:52:57
- * @TODO 个人中心
+ * 2015-3-27 下午5:57:14
+ * @TODO 图片选择弹窗
  */
-public class PersonalCenterActivity extends Activity implements OnClickListener{
+public class PictureSelectDialogActivity extends Activity implements OnClickListener{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.item_pop_personl_center);
+		setContentView(R.layout.activity_picture_select_dialog);
 		getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-		getWindow().setGravity(Gravity.TOP);
-		
-		init();
-	}
-
-	private void init() {
-		findViewById(R.id.layout_personal_info).setOnClickListener(this);
+		getWindow().setGravity(Gravity.BOTTOM);
+		findViewById(R.id.txt_select_picture).setOnClickListener(this);
+		findViewById(R.id.txt_take_piuture).setOnClickListener(this);
+		findViewById(R.id.txt_cancel).setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.layout_personal_info:
-			startActivity(new Intent(this, PersonalInfoActivity.class));
+		case R.id.txt_take_piuture://拍照
+			
+			break;
+		case R.id.txt_select_picture://选择照片
+			
+			break;
+		case R.id.txt_cancel://取消
+			setResult(RESULT_CANCELED);
+			finish();
 			break;
 
 		default:

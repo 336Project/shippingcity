@@ -29,7 +29,16 @@
         <activity android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"></activity>
         <activity android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"
             android:theme="@style/ActivityDialogTheme"
-            ></activity>
+            >
+        </activity>
+        <activity android:name="com.ateam.shippingcity.activity.PictureSelectDialogActivity"
+            android:theme="@style/ActivityDialogTheme"
+            >
+        </activity>
+        <activity android:name="com.ateam.shippingcity.activity.PersonalInfoActivity"></activity>
+        <activity android:name="com.ateam.shippingcity.activity.PersonalModifyNameActivity"></activity>
+        <activity android:name="com.ateam.shippingcity.activity.PersonalModifyMobileActivity"></activity>
+        <activity android:name="com.ateam.shippingcity.activity.PersonalModifyPasswordActivity"></activity>
         <service android:name=".service.APKDownloadService"></service>
     </application>
 
