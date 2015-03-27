@@ -180,7 +180,7 @@ public abstract class HBaseXListViewFragment<T> extends Fragment implements IXLi
 	 * @Version 
 	 * @TODO XListView item点击事件
 	 */
-	protected interface OnXListItemClickListener{
+	public interface OnXListItemClickListener{
 		public void onItemClick(AdapterView<?> parent, View view,int position, long id);
 	}
 
