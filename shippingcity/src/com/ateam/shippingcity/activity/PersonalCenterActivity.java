@@ -22,7 +22,7 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.item_pop_personl_center);
+		setContentView(R.layout.activity_personl_center_dialog);
 		getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 		getWindow().setGravity(Gravity.TOP);
 		
@@ -31,6 +31,7 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 
 	private void init() {
 		findViewById(R.id.layout_personal_info).setOnClickListener(this);
+		findViewById(R.id.txt_setting).setOnClickListener(this);
 	}
 
 	@Override
@@ -39,9 +40,12 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 		case R.id.layout_personal_info:
 			startActivity(new Intent(this, PersonalInfoActivity.class));
 			break;
-
+		case R.id.txt_setting:
+			startActivity(new Intent(this, PersonalSettingActivity.class));
+			break;
 		default:
 			break;
 		}
+		finish();
 	}
 }

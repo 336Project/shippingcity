@@ -22,7 +22,7 @@ public class PersonalModifyPasswordActivity extends HBaseActivity implements OnC
 		setActionBarTitle("密码修改");
 		getRightIcon().setVisibility(View.VISIBLE);
 		getRightIcon().setOnClickListener(this);
-		setBaseContentView(R.layout.activity_modify_password);
+		setBaseContentView(R.layout.activity_personal_modify_password);
 		
 		mEditOldPassword=(HAutoCompleteTextView) findViewById(R.id.et_old_password);
 		mEditNewPassword=(HAutoCompleteTextView) findViewById(R.id.et_new_password);

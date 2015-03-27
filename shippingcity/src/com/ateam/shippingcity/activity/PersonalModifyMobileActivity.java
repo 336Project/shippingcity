@@ -27,7 +27,7 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setActionBarTitle("手机号修改");
-		setBaseContentView(R.layout.activity_modify_mobile);
+		setBaseContentView(R.layout.activity_personal_modify_mobile);
 		
 		mEditMobile=(HAutoCompleteTextView) findViewById(R.id.et_mobile);
 		mEditMobile.setText(getIntent().getExtras().get("mobile").toString());

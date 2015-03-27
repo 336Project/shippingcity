@@ -18,7 +18,7 @@ public class PersonalModifyNameActivity extends HBaseActivity {
 		super.onCreate(savedInstanceState);
 		setActionBarTitle("名字");
 		getRightIcon().setVisibility(View.VISIBLE);
-		setBaseContentView(R.layout.activity_modify_name);
+		setBaseContentView(R.layout.activity_personal_modify_name);
 		
 		mEditName=(HAutoCompleteTextView) findViewById(R.id.et_name);
 		mEditName.setText(getIntent().getExtras().get("name").toString());

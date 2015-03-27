@@ -20,28 +20,56 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.ateam.shippingcity.HomeActivity"
-            android:launchMode="singleTask"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"></activity>
-        <activity android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"
-            android:theme="@style/ActivityDialogTheme"
-            >
+        <activity android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity" >
         </activity>
-        <activity android:name="com.ateam.shippingcity.activity.PictureSelectDialogActivity"
-            android:theme="@style/ActivityDialogTheme"
-            >
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"
+            android:theme="@style/ActivityDialogTheme" >
         </activity>
-        <activity android:name="com.ateam.shippingcity.activity.PersonalInfoActivity"></activity>
-        <activity android:name="com.ateam.shippingcity.activity.PersonalModifyNameActivity"></activity>
-        <activity android:name="com.ateam.shippingcity.activity.PersonalModifyMobileActivity"></activity>
-        <activity android:name="com.ateam.shippingcity.activity.PersonalModifyPasswordActivity"></activity>
-        <service android:name=".service.APKDownloadService"></service>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PictureSelectDialogActivity"
+            android:theme="@style/ActivityDialogTheme" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalInfoActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalModifyNameActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalModifyMobileActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalModifyPasswordActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalSettingActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+		<activity 
+		    android:name="com.ateam.shippingcity.activity.PersonalFeedbackActivity" 
+		    android:screenOrientation="portrait">
+		</activity>
+		<activity 
+		    android:name="com.ateam.shippingcity.activity.PersonalGuideActivity" 
+		    android:screenOrientation="portrait">
+		</activity>
+		
+		
+        <service android:name=".service.APKDownloadService" >
+        </service>
     </application>
 
 </manifest>
