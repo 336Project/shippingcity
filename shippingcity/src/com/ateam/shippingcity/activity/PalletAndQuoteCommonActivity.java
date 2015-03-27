@@ -1,22 +1,17 @@
-package com.ateam.shippingcity;
+package com.ateam.shippingcity.activity;
 
 
-import com.ateam.shippingcity.activity.HBaseActivity;
-import com.ateam.shippingcity.fragment.HomeFragment;
+import com.ateam.shippingcity.HomeActivity;
+import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.fragment.MyQuoteFragment;
 import com.ateam.shippingcity.fragment.PalletDistrictFragment;
-import com.ateam.shippingcity.utils.AppManager;
 
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 /**
  * 
  * @author 李晓伟
@@ -24,16 +19,16 @@ import android.widget.PopupWindow;
  * @Version 
  * @TODO
  */
-public class MainActivity extends HBaseActivity implements OnClickListener{
-	private long currTime=0;
-	private HomeFragment mHomeFragment;
+public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnClickListener{
+	public static final String KEY_TYPE="type";
+	public static final int TYPE_PALLET=1;//货盘区
+	public static final int TYPE_QUOTE=2;//我的报价
 	private MyQuoteFragment mQuoteFragment;
 	private PalletDistrictFragment mDistrictFragment;
 	private Fragment mCurrFragment;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setActionBarTitle("航运城");
 		getRightIcon().setVisibility(View.INVISIBLE);
 		getLeftIcon().setOnClickListener(this);
 		setBaseContentView(R.layout.activity_main);
@@ -45,11 +40,21 @@ public class MainActivity extends HBaseActivity implements OnClickListener{
 		findViewById(R.id.txt_home).setOnClickListener(this);
 		findViewById(R.id.txt_my_quote).setOnClickListener(this);
 		findViewById(R.id.txt_pallet_district).setOnClickListener(this);
-		mHomeFragment=new HomeFragment();
+		int type=getIntent().getIntExtra(KEY_TYPE, TYPE_PALLET);
 		FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.layout_main_content, mHomeFragment);
-		transaction.commit();
-		mCurrFragment=mHomeFragment;
+		if(type==TYPE_PALLET){
+			setActionBarTitle("货盘区");
+			mDistrictFragment=new PalletDistrictFragment();
+			transaction.add(R.id.layout_main_content, mDistrictFragment);
+			transaction.commit();
+			mCurrFragment=mDistrictFragment;
+		}else{
+			setActionBarTitle("我的报价");
+			mQuoteFragment=new MyQuoteFragment();
+			transaction.add(R.id.layout_main_content, mQuoteFragment);
+			transaction.commit();
+			mCurrFragment=mQuoteFragment;
+		}
 	}
 
 	private void switchContent(Fragment to){
@@ -64,26 +69,12 @@ public class MainActivity extends HBaseActivity implements OnClickListener{
 		}
 	}
 
-	@Override
-	public void onBackPressed() {
-		if(System.currentTimeMillis()-currTime>2000){
-			currTime=System.currentTimeMillis();
-			showMsg(MainActivity.this, "再按一次退出程序");
-		}else{
-			AppManager.getInstance().ExitApp();
-		}
-	}
-
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.txt_home://首页
-			if(mHomeFragment==null){
-				mHomeFragment=new HomeFragment();
-			}
-			setActionBarTitle("航运城");
-			switchContent(mHomeFragment);
+			startActivity(new Intent(this, HomeActivity.class));
 			break;
 		case R.id.txt_my_quote://我的报价
 			if(mQuoteFragment==null){
@@ -100,13 +91,7 @@ public class MainActivity extends HBaseActivity implements OnClickListener{
 			switchContent(mDistrictFragment);
 			break;
 		case R.id.iv_left_icon:
-			PopupWindow pop=new PopupWindow(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
-			pop.setContentView(LayoutInflater.from(this).inflate(R.layout.item_pop_personl_center, null));
-			pop.setBackgroundDrawable(new ColorDrawable());
-			pop.setOutsideTouchable(true);
-			pop.setTouchable(true);
-			pop.setFocusable(true);
-			pop.showAtLocation(getWindow().getDecorView(), Gravity.NO_GRAVITY, 0, 0);
+			startActivity(new Intent(this, PersonalCenterActivity.class));
 			break;
 		default:
 			break;
