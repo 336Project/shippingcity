@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.ateam.shippingcity.MainActivity;
+import com.ateam.shippingcity.HomeActivity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.utils.FileUtil;
 
@@ -97,7 +97,7 @@ public class APKDownloadService extends Service{
 	private void initNotification() {
 		mNotice = new Notification(R.drawable.ic_launcher, getText(R.string.app_name), System.currentTimeMillis());
 		mNotice.flags = Notification.FLAG_ONGOING_EVENT;
-		Intent intent=new Intent(this, MainActivity.class);
+		Intent intent=new Intent(this, HomeActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		PendingIntent contentIntent=PendingIntent.getActivity(this, 0, intent, 0);
 		

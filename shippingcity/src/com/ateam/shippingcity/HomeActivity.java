@@ -1,20 +1,29 @@
 package com.ateam.shippingcity;
 
-
+import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.activity.HBaseActivity;
+import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
+import com.ateam.shippingcity.activity.PersonalCenterActivity;
 import com.ateam.shippingcity.utils.AppManager;
 import com.ateam.shippingcity.widget.banner.AutoScrollViewPager;
 import com.ateam.shippingcity.widget.viewpagerindicator.CirclePageIndicator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-public class MainActivity extends HBaseActivity {
+/**
+ * 
+ * @author 李晓伟
+ * 2015-3-27 下午1:59:21
+ * @TODO 首页
+ */
+public class HomeActivity extends HBaseActivity implements OnClickListener{
 	private long currTime=0;
 	private CirclePageIndicator mIndicator;
 	private AutoScrollViewPager mViewPager;
@@ -23,9 +32,11 @@ public class MainActivity extends HBaseActivity {
 		super.onCreate(savedInstanceState);
 		setActionBarTitle("航运城");
 		getRightIcon().setVisibility(View.INVISIBLE);
-		setBaseContentView(R.layout.activity_main);
+		getLeftIcon().setOnClickListener(this);
+		setBaseContentView(R.layout.activity_home);
 		initView();
 	}
+	
 	/**
 	 * 初始化
 	 */
@@ -36,8 +47,27 @@ public class MainActivity extends HBaseActivity {
 		mIndicator.setSnap(true);
 		mIndicator.setViewPager(mViewPager);
 		mViewPager.startAutoScroll(3000);
+		
+		findViewById(R.id.layout_quote).setOnClickListener(this);
+		findViewById(R.id.layout_pallet).setOnClickListener(this);
 	}
 	
+	@Override
+	public void onBackPressed() {
+		if(System.currentTimeMillis()-currTime>2000){
+			currTime=System.currentTimeMillis();
+			showMsg(HomeActivity.this, "再按一次退出程序");
+		}else{
+			AppManager.getInstance().ExitApp();
+		}
+	}
+	/**
+	 * 
+	 * @author 李晓伟
+	 * @Create_date 2015-3-27 上午9:28:37
+	 * @Version 
+	 * @TODO
+	 */
 	class BannerPageAdapter extends PagerAdapter{
 		
 		@Override
@@ -56,7 +86,7 @@ public class MainActivity extends HBaseActivity {
 		}
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
-			ImageView view=new ImageView(MainActivity.this);
+			ImageView view=new ImageView(HomeActivity.this);
 			view.setBackgroundResource(R.drawable.ic_launcher);
 			LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
 			container.addView(view,params);
@@ -64,13 +94,27 @@ public class MainActivity extends HBaseActivity {
 		}
 	}
 	@Override
-	public void onBackPressed() {
-		if(System.currentTimeMillis()-currTime>2000){
-			currTime=System.currentTimeMillis();
-			showMsg(MainActivity.this, "再按一次退出程序");
-		}else{
-			AppManager.getInstance().ExitApp();
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.layout_quote://我的报价
+			Intent intent=new Intent(this, PalletAndQuoteCommonActivity.class);
+			intent.putExtra(PalletAndQuoteCommonActivity.KEY_TYPE, PalletAndQuoteCommonActivity.TYPE_QUOTE);
+			startActivity(intent);
+			break;
+		case R.id.layout_pallet://货盘区
+			intent=new Intent(this, PalletAndQuoteCommonActivity.class);
+			intent.putExtra(PalletAndQuoteCommonActivity.KEY_TYPE, PalletAndQuoteCommonActivity.TYPE_PALLET);
+			startActivity(intent);
+			break;
+		case R.id.layout_call://一键客服
+			
+			break;
+		case R.id.iv_left_icon:
+			startActivity(new Intent(this, PersonalCenterActivity.class));
+			break;
+
+		default:
+			break;
 		}
 	}
-	
 }

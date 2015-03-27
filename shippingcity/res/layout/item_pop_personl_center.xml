@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.ateam.shippingcity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/layout_personal_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#292C35"
+        android:minHeight="150dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+	<com.ateam.shippingcity.widget.imageview.CircleImageView
+	    android:layout_marginTop="10dp"
+	    android:layout_width="96dp"
+	    android:layout_height="96dp"
+	    android:src="@drawable/ic_launcher"
+        app:border_color="#54565D"
+        app:border_width="2dp"
+	    />
+	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="10dp"
+	    android:text="AWE DSP"
+	    android:textColor="@color/white"
+	    />
+	</LinearLayout>
+	<TextView 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:drawableLeft="@drawable/ic_launcher"
+	    android:background="#23252D"
+	    android:minHeight="50dp"
+	    android:gravity="center_vertical"
+	    android:drawablePadding="10dp"
+	    android:text="我的积分"
+	    android:textColor="@color/white"
+	    />
+	<TextView 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:drawableLeft="@drawable/ic_launcher"
+	    android:background="#23252D"
+	    android:minHeight="50dp"
+	    android:gravity="center_vertical"
+	    android:drawablePadding="10dp"
+	    android:text="我关注的货盘"
+	    android:textColor="@color/white"
+	    />
+	<TextView 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:drawableLeft="@drawable/ic_launcher"
+	    android:background="#23252D"
+	    android:minHeight="50dp"
+	    android:gravity="center_vertical"
+	    android:drawablePadding="10dp"
+	    android:text="邀请好友"
+	    android:textColor="@color/white"
+	    />
+	<TextView 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:drawableLeft="@drawable/ic_launcher"
+	    android:background="#23252D"
+	    android:minHeight="50dp"
+	    android:gravity="center_vertical"
+	    android:drawablePadding="10dp"
+	    android:text="设置"
+	    android:textColor="@color/white"
+	    />
+</LinearLayout>

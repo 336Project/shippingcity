@@ -19,7 +19,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.ateam.shippingcity.MainActivity"
+            android:name="com.ateam.shippingcity.HomeActivity"
+            android:launchMode="singleTask"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,14 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name="com.ateam.shippingcity.service.APKDownloadService" >
-        </service>
-
-        <activity
-            android:name="com.ateam.shippingcity.TextActivity"
-            android:label="@string/title_activity_text" >
+        <activity android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"></activity>
+        <activity android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"
+            android:theme="@style/ActivityDialogTheme">
         </activity>
+        <service android:name=".service.APKDownloadService"></service>
     </application>
 
 </manifest>
