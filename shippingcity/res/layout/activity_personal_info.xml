@@ -79,7 +79,7 @@
                 android:background="#F3F5F6" />
 
             <LinearLayout
-                android:id="@+id/layout_portrait"
+                android:id="@+id/layout_pick_portrait"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -111,6 +111,7 @@
                 android:background="#F3F5F6" />
 
             <LinearLayout
+                android:id="@+id/layout_pick_IDCard"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -144,6 +145,7 @@
                 android:background="#F3F5F6" />
 
             <LinearLayout
+                android:id="@+id/layout_pick_work_card"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -212,6 +214,7 @@
                 android:background="#F3F5F6" />
 
             <LinearLayout
+                android:id="@+id/layout_pick_business_licence"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -229,8 +232,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:text="认证失败，请重新提交"
+                    android:textSize="15sp"
                     android:textColor="#FF6D43" />
 
                 <ImageView
