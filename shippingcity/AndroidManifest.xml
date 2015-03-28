@@ -35,9 +35,14 @@
             android:theme="@style/ActivityDialogTheme" >
         </activity>
         <activity
+            android:name="com.ateam.shippingcity.activity.PersonalLoginActivity"
+            android:theme="@style/ActivityDialogTheme" >
+        </activity>
+        <activity
             android:name="com.ateam.shippingcity.activity.PictureSelectDialogActivity"
             android:theme="@style/ActivityDialogTheme" >
         </activity>
+        
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalInfoActivity"
             android:screenOrientation="portrait" >
