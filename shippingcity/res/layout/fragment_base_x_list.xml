@@ -6,12 +6,12 @@
     android:background="#f0f0f0"
     android:orientation="vertical" >
     
-	<com.mtaiyi.eloan.widget.xlist.XListView
+	<com.ateam.shippingcity.widget.xlist.XListView
 	    android:id="@+id/xListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
         android:listSelector="@android:color/transparent"
         android:scrollbars="none"
-	    ></com.mtaiyi.eloan.widget.xlist.XListView>
+	    ></com.ateam.shippingcity.widget.xlist.XListView>
 </LinearLayout>

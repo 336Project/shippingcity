@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -69,4 +69,5 @@
         <item name="android:backgroundDimAmount">0.3</item>
        <item name="android:windowAnimationStyle">@null</item>
     </style>
+    
 </resources>

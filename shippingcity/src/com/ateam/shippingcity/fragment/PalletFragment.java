@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 public class PalletFragment extends Fragment {
 
 	private View view;
-	public static final String[] TAB_TITLE={"申请中","投标中","还款中","已完成"};
+	public static final String[] TAB_TITLE={"全部","海运","空运","陆运"};
 	
 	public PalletFragment() {
 		// Required empty public constructor
@@ -31,8 +31,8 @@ public class PalletFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		initTab();
 		view=inflater.inflate(R.layout.fragment_pallet, container, false);
+		initTab();
 		return view;
 	}
 	
@@ -41,9 +41,10 @@ public class PalletFragment extends Fragment {
 	 */
 	private void initTab() {
 		List<Fragment> fragments=new ArrayList<Fragment>();
-		fragments.add(new PalletSeaTransportFragment());
-		fragments.add(new PalletSeaTransportFragment());
-		fragments.add(new PalletSeaTransportFragment());
+		fragments.add(new PalletSeaTransportFragment("全部"));
+		fragments.add(new PalletSeaTransportFragment("海运"));
+		fragments.add(new PalletSeaTransportFragment("空运"));
+		fragments.add(new PalletSeaTransportFragment("陆运"));
 		TabFtagmentAdapter adapter=new TabFtagmentAdapter(getChildFragmentManager(),TAB_TITLE,null,fragments);
 		ViewPager tabPager=(ViewPager) view.findViewById(R.id.tab_pager);
 		tabPager.setAdapter(adapter);

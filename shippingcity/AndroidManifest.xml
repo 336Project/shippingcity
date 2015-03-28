@@ -20,19 +20,26 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.ateam.shippingcity.HomeActivity"
-            android:launchMode="singleTask"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"></activity>
-        <activity android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"
-            android:theme="@style/ActivityDialogTheme">
+        <activity
+            android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/StyledIndicators" >
         </activity>
-        <service android:name=".service.APKDownloadService"></service>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"
+            android:theme="@style/ActivityDialogTheme" >
+        </activity>
+
+        <service android:name=".service.APKDownloadService" >
+        </service>
     </application>
 
 </manifest>
