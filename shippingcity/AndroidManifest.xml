@@ -89,6 +89,14 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.ateam.shippingcity.activity.PersonalMyIntegralActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalIntegralRuleActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.ateam.shippingcity.activity.PersonalSettingActivity"
             android:screenOrientation="portrait" >
         </activity>
