@@ -4,7 +4,7 @@ package com.ateam.shippingcity.activity;
 import com.ateam.shippingcity.HomeActivity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.fragment.MyQuoteFragment;
-import com.ateam.shippingcity.fragment.PalletDistrictFragment;
+import com.ateam.shippingcity.fragment.PalletFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 	public static final int TYPE_PALLET=1;//货盘区
 	public static final int TYPE_QUOTE=2;//我的报价
 	private MyQuoteFragment mQuoteFragment;
-	private PalletDistrictFragment mDistrictFragment;
+	private PalletFragment mDistrictFragment;
 	private Fragment mCurrFragment;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 		FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
 		if(type==TYPE_PALLET){
 			setActionBarTitle("货盘区");
-			mDistrictFragment=new PalletDistrictFragment();
+			mDistrictFragment=new PalletFragment();
 			transaction.add(R.id.layout_main_content, mDistrictFragment);
 			transaction.commit();
 			mCurrFragment=mDistrictFragment;
@@ -80,13 +80,15 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 			if(mQuoteFragment==null){
 				mQuoteFragment=new MyQuoteFragment();
 			}
+			getRightIcon().setVisibility(View.VISIBLE);
 			setActionBarTitle("我的报价");
 			switchContent(mQuoteFragment);
 			break;
 		case R.id.txt_pallet_district://货盘区
 			if(mDistrictFragment==null){
-				mDistrictFragment=new PalletDistrictFragment();
+				mDistrictFragment=new PalletFragment();
 			}
+			getRightIcon().setVisibility(View.INVISIBLE);
 			setActionBarTitle("货盘区");
 			switchContent(mDistrictFragment);
 			break;

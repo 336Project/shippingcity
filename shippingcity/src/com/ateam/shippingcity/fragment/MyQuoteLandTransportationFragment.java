@@ -8,11 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class PalletDistrictFragment extends Fragment {
-	
+/**
+ * 我的进价-陆运片段
+ * @author Administrator
+ *
+ */
+public class MyQuoteLandTransportationFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_pallet_district, null);
+		View inflate = inflater.inflate(R.layout.fragment_my_quote_land_transport, null);
+		return inflate;
 	}
 }

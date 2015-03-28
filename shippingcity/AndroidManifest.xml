@@ -28,7 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity" >
+        <activity android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/StyledIndicators"  >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"

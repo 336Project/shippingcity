@@ -1,8 +1,14 @@
 package com.ateam.shippingcity.fragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.ateam.shippingcity.adapter.PalletSeaTransportAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
+import com.ateam.shippingcity.model.PalletSeaTransport;
+import com.ateam.shippingcity.utils.MyToast;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +19,20 @@ import android.widget.BaseAdapter;
 /**
  * 海运列表片段
  */
+@SuppressLint("ValidFragment")
 public class PalletSeaTransportFragment extends HBaseXListViewFragment implements OnXListItemClickListener {
 	
+	private PalletSeaTransportAdapter mAdapter;//海运list适配器
+	private ArrayList<PalletSeaTransport> dataList=new ArrayList<PalletSeaTransport>();//要显示的数据
+	
+	private String type;
 
-	public PalletSeaTransportFragment() {
+	public PalletSeaTransportFragment(){
+		
+	}
+	public PalletSeaTransportFragment(String type) {
 		// Required empty public constructor
+		this.type=type;
 	}
 
 	@Override
@@ -31,7 +46,7 @@ public class PalletSeaTransportFragment extends HBaseXListViewFragment implement
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		// TODO Auto-generated method stub
-		
+		MyToast.showShort(getActivity(), "你点击了该item！");
 	}
 
 	@Override
@@ -43,24 +58,25 @@ public class PalletSeaTransportFragment extends HBaseXListViewFragment implement
 	@Override
 	public BaseAdapter getAdapter() {
 		// TODO Auto-generated method stub
-		return null;
+		return mAdapter;
 	}
 
 	@Override
 	public List getDataSource() {
 		// TODO Auto-generated method stub
-		return null;
+		return dataList;
 	}
 
 	@Override
 	public void initData() {
 		// TODO Auto-generated method stub
-		
+		mAdapter=new PalletSeaTransportAdapter(getActivity(), dataList);
+		setOnXListItemClickListener(this);
+		initRequest();
 	}
 	
 	/**
 	 * 
-	 * @author 李晓伟
 	 * 2015-3-11 下午5:08:44
 	 * @TODO 初始化请求
 	 */
@@ -86,13 +102,16 @@ public class PalletSeaTransportFragment extends HBaseXListViewFragment implement
 //		};
 //		mAccess=new ELOAN_ProjectsAccess(getActivity(), requestCallback);
 		for (int i = 0; i < 11; i++) {	
-//			ELOAN_Project mproject=new ELOAN_Project();
-//			mproject.setTitle("测试"+i);
-//			mproject.setMortgageProfit(20+""+i);
-//			mproject.setMortgageDuring(i+"月");
-//			mproject.setMortgageTotal("200"+i);
-//			mproject.setRepayment_modal(mType);
-//			projects.add(mproject);
+			PalletSeaTransport seaTransport=new PalletSeaTransport();
+			seaTransport.setBoxType("整箱");
+			seaTransport.setPalletDescribe("真是一群不容易的人啊 。，宅搜的金发来看；萨卡发发；了");
+			seaTransport.setPlaceBegin("XIAMEN"+i);
+			seaTransport.setPlaceEnd("fuzhou"+i);
+			seaTransport.setRemainTime("一个月");
+			seaTransport.setTransportTimeBegin(""+i);
+			seaTransport.setTransportTimeEnd(""+i+i);
+			seaTransport.setTransportType(type);
+			dataList.add(seaTransport);
 		}
 	}
 	@Override

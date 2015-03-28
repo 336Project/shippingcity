@@ -3,5 +3,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- XList -->
+    <dimen name="xlist_top">15dp</dimen><!-- item 间间隔 -->
+    <dimen name="xlist_marginl">10dp</dimen><!-- item 内部离左边距离 -->
+    <dimen name="xlist_marginr">10dp</dimen><!-- item 内部离右边距离 -->
+    <dimen name="xlist_pallet_title_text">18sp</dimen><!-- 小标题字体大小 -->
 
 </resources>
