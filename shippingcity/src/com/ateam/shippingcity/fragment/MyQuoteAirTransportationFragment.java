@@ -9,15 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * 我的进价-全部片段
+ * 我的进价-空运片段
  * @author Administrator
  *
  */
-public class MyQuoteAllFragment extends Fragment{
+public class MyQuoteAirTransportationFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View inflate = inflater.inflate(R.layout.fragment_my_quote_all, null);
+		View inflate = inflater.inflate(R.layout.fragment_my_quote_air_transport, null);
 		return inflate;
 	}
 }

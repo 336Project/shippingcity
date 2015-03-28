@@ -80,6 +80,7 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 			if(mQuoteFragment==null){
 				mQuoteFragment=new MyQuoteFragment();
 			}
+			getRightIcon().setVisibility(View.VISIBLE);
 			setActionBarTitle("我的报价");
 			switchContent(mQuoteFragment);
 			break;
@@ -87,6 +88,7 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 			if(mDistrictFragment==null){
 				mDistrictFragment=new PalletFragment();
 			}
+			getRightIcon().setVisibility(View.INVISIBLE);
 			setActionBarTitle("货盘区");
 			switchContent(mDistrictFragment);
 			break;
