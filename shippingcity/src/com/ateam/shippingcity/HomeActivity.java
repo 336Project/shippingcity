@@ -4,6 +4,7 @@ import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.activity.HBaseActivity;
 import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
 import com.ateam.shippingcity.activity.PersonalCenterActivity;
+import com.ateam.shippingcity.activity.PersonalLoginActivity;
 import com.ateam.shippingcity.utils.AppManager;
 import com.ateam.shippingcity.widget.banner.AutoScrollViewPager;
 import com.ateam.shippingcity.widget.viewpagerindicator.CirclePageIndicator;
@@ -109,8 +110,9 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 		case R.id.layout_call://一键客服
 			
 			break;
-		case R.id.iv_left_icon:
-			startActivity(new Intent(this, PersonalCenterActivity.class));
+		case R.id.iv_left_icon://个人中心
+			//startActivity(new Intent(this, PersonalCenterActivity.class));
+			jump(this, PersonalLoginActivity.class);
 			break;
 
 		default:
