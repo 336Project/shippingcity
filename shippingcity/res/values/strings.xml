@@ -93,11 +93,19 @@
 \n\n13.2 如本《协议》中的任何条款无论因何种原因完全或部分无效或不具有执行力，本《协议》的其余条款仍应有效并且有约束力。
 \n\n13.3 本《协议》的所有标题仅仅是为了醒目及阅读方便，本身并无实际涵义，不能作为本《协议》涵义解释之依据。\n
     </string>
+    <string name="note">备注:</string>
+    <string name="quotation_deadline">报价截止时间:</string>
     <!-- 货盘区-海运 -->
     <string name="transport_type">运输方式:</string>
     <string name="transport_time">走货日期:</string>
     <string name="pallet_describe">货盘描述:</string>
     
+	<!-- 我的报价 -->
+	<string name="my_offer">我的报价</string>
+	<string name="my_quote_transport_time">走货日期</string>
+	<string name="my_quote_horizontal_line">-</string>
+	
+
     <!-- XListView -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
@@ -107,5 +115,6 @@
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     <string name="title_activity_text">TextActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_my_quote_to_confirm">MyQuoteToConfirmActivity</string>
 
 </resources>

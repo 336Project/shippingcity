@@ -28,9 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"
+        <activity
+            android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/StyledIndicators"  >
+            android:theme="@style/StyledIndicators" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"
@@ -91,18 +92,22 @@
             android:name="com.ateam.shippingcity.activity.PersonalSettingActivity"
             android:screenOrientation="portrait" >
         </activity>
-		<activity 
-		    android:name="com.ateam.shippingcity.activity.PersonalFeedbackActivity" 
-		    android:screenOrientation="portrait">
-		</activity>
-		<activity 
-		    android:name="com.ateam.shippingcity.activity.PersonalGuideActivity" 
-		    android:screenOrientation="portrait">
-		</activity>
-		
-		
-        <service android:name=".service.APKDownloadService" >
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalFeedbackActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalGuideActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <service android:name="com.ateam.shippingcity.service.APKDownloadService" >
         </service>
+
+        <activity
+            android:name="com.ateam.shippingcity.activity.MyQuoteToConfirmActivity"
+            android:label="@string/title_activity_my_quote_to_confirm" >
+        </activity>
     </application>
 
 </manifest>
