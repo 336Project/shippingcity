@@ -34,17 +34,39 @@
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"
-            android:theme="@style/ActivityDialogTheme" >
-        </activity>
-        <activity
-            android:name="com.ateam.shippingcity.activity.PersonalLoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ActivityDialogTheme" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PictureSelectDialogActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/ActivityDialogTheme" >
         </activity>
-        
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalLoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityDialogTheme" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalForgetPasswordActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalRegistActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalRegistProtocolActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalPerfectInfoActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalInfoActivity"
             android:screenOrientation="portrait" >
@@ -55,6 +77,10 @@
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalModifyMobileActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalModifyAddressActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity

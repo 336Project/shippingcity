@@ -37,10 +37,10 @@ public class PersonalLoginActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.txt_goto_regist://注册
-			startActivity(new Intent(this, PersonalInfoActivity.class));
+			startActivity(new Intent(this, PersonalRegistActivity.class));
 			break;
 		case R.id.txt_forget_password://忘记密码
-			startActivity(new Intent(this, PersonalSettingActivity.class));
+			startActivity(new Intent(this, PersonalForgetPasswordActivity.class));
 			break;
 		default:
 			break;

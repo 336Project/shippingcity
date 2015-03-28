@@ -111,8 +111,8 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 			
 			break;
 		case R.id.iv_left_icon://个人中心
-			//startActivity(new Intent(this, PersonalCenterActivity.class));
-			jump(this, PersonalLoginActivity.class);
+			startActivity(new Intent(this, PersonalCenterActivity.class));
+//			jump(this, PersonalLoginActivity.class);
 			break;
 
 		default:
