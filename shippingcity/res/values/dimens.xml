@@ -8,5 +8,8 @@
     <dimen name="xlist_marginl">10dp</dimen><!-- item 内部离左边距离 -->
     <dimen name="xlist_marginr">10dp</dimen><!-- item 内部离右边距离 -->
     <dimen name="xlist_pallet_title_text">18sp</dimen><!-- 小标题字体大小 -->
+    <!-- 货盘区 其他 activity -->
+    <dimen name="pallet_padding">10dp</dimen> <!-- 页面边距  -->
+    <dimen name="pallet_detail_item_magin">5dp</dimen> <!-- 每行间的距离  -->
 
 </resources>
