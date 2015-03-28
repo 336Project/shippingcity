@@ -3,6 +3,7 @@ package com.ateam.shippingcity.activity;
 import com.ateam.shippingcity.R;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -21,7 +22,7 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.item_pop_personl_center);
+		setContentView(R.layout.activity_personl_center_dialog);
 		getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
 		getWindow().setGravity(Gravity.TOP);
 		
@@ -30,17 +31,21 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 
 	private void init() {
 		findViewById(R.id.layout_personal_info).setOnClickListener(this);
+		findViewById(R.id.txt_setting).setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.layout_personal_info:
-			
+			startActivity(new Intent(this, PersonalInfoActivity.class));
 			break;
-
+		case R.id.txt_setting:
+			startActivity(new Intent(this, PersonalSettingActivity.class));
+			break;
 		default:
 			break;
 		}
+		finish();
 	}
 }

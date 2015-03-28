@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/layout_modify"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:orientation="vertical" >
+
+        <com.ateam.shippingcity.widget.HAutoCompleteTextView
+            android:id="@+id/et_mobile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:inputType="phone"
+            android:minHeight="50dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textCursorDrawable="@color/text_cursor" >
+        </com.ateam.shippingcity.widget.HAutoCompleteTextView>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#F6F8F9" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="50dp"
+            android:orientation="horizontal" >
+
+            <com.ateam.shippingcity.widget.HAutoCompleteTextView
+                android:id="@+id/et_code"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:hint="请输入验证码"
+                android:inputType="number"
+                android:minHeight="50dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textCursorDrawable="@color/text_cursor" >
+            </com.ateam.shippingcity.widget.HAutoCompleteTextView>
+
+            <TextView
+                android:id="@+id/txt_get_code"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:minWidth="120dp"
+                android:paddingRight="10dp"
+                android:text="获取验证码"
+                android:textColor="#7FB4FF" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#F6F8F9" />
+
+        <Button
+            android:id="@+id/btn_modify_mobile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="50dp"
+            android:background="#FF9900"
+            android:text="修改并绑定"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_modify_success"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical" >
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_launcher"
+            android:text="您新的手机号186-6313-1310\n已绑定成功!"
+            android:gravity="center"
+            android:textColor="#A4A4A4"
+            />
+    </LinearLayout>
+
+</LinearLayout>

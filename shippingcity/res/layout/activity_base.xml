@@ -36,6 +36,7 @@
             android:layout_width="30dp"
             android:layout_height="fill_parent"
             android:src="@drawable/ic_launcher"
+            android:visibility="invisible"
             android:contentDescription="@string/app_name" />
     </LinearLayout>
 	<ViewStub 

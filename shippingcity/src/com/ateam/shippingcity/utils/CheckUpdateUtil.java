@@ -3,26 +3,25 @@ package com.ateam.shippingcity.utils;
 
 
 
-import com.ateam.shippingcity.access.UpdateAccess;
-import com.ateam.shippingcity.access.I.HRequestCallback;
+import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.model.UpdateInfo;
 import com.ateam.shippingcity.service.APKDownloadService;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Toast;
 /**
  * 
  * @author 李晓伟
@@ -54,7 +53,8 @@ public class CheckUpdateUtil {
 	 * @TODO 
 	 */
 	public void check(final boolean isShow) {
-		HRequestCallback<UpdateInfo> requestCallback=new HRequestCallback<UpdateInfo>() {
+		showDownloadDialog(1, null);
+		/*HRequestCallback<UpdateInfo> requestCallback=new HRequestCallback<UpdateInfo>() {
 			@Override
 			public UpdateInfo parseJson(String jsonStr) {
 				
@@ -91,7 +91,7 @@ public class CheckUpdateUtil {
 		};
 		UpdateAccess access=new UpdateAccess(mContext, requestCallback);
 		access.setIsShow(isShow);
-		access.execute(getVersionName(mContext));
+		access.execute(getVersionName());*/
 	}
 	/**
 	 * 
@@ -101,10 +101,10 @@ public class CheckUpdateUtil {
 	 * @return
 	 * @TODO 获取版本号
 	 */
-	public String getVersionName(final Context c){
+	public String getVersionName(){
 		try {
-			PackageManager packageManager = c.getPackageManager();
-	        PackageInfo packInfo = packageManager.getPackageInfo(c.getPackageName(),0);
+			PackageManager packageManager = mContext.getPackageManager();
+	        PackageInfo packInfo = packageManager.getPackageInfo(mContext.getPackageName(),0);
 			String version = packInfo.versionName;
 			return version;
 		} catch (NameNotFoundException e) {
@@ -137,7 +137,7 @@ public class CheckUpdateUtil {
 	 * @TODO 提示更新窗口
 	 */
 	public void showDownloadDialog(int type, final UpdateInfo updateInfo){
-		if(updateInfo==null||updateInfo.isEmpty()){
+		/*if(updateInfo==null||updateInfo.isEmpty()){
 			Toast.makeText(mContext, "抱歉，更新发生异常！", Toast.LENGTH_SHORT).show();
 			return;
 		}
@@ -195,8 +195,47 @@ public class CheckUpdateUtil {
 		builder.show();
 		DisplayMetrics dm = new DisplayMetrics();
 		((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(dm);
-		int width = (int) (dm.heightPixels*(0.8));  // 获取屏幕的4/5大小
-		dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, width);
+		int height = (int) (dm.heightPixels*(0.8));  // 获取屏幕的4/5大小
+		dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, height);
+		*/
+		final AlertDialog dialog=new AlertDialog.Builder(mContext).create();
+		/*View view=LayoutInflater.from(mContext).inflate(R.layout.item_update_dialog, null);
+		view.findViewById(R.id.txt_cancel).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		view.findViewById(R.id.txt_download).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+				//开始下载
+				Intent downloadIntent = new Intent(mContext,APKDownloadService.class);
+				downloadIntent.putExtra(APKDownloadService.KEY_DOWNLOAD_URL, updateInfo.getDownloadUrl());
+				downloadIntent.putExtra(APKDownloadService.KEY_VERSION, updateInfo.getVersion());
+				mContext.startService(downloadIntent);
+				if(updateInfo.getForce_flag().equals("是")){
+					AppManager.getInstance().ExitApp();
+					System.exit(0);
+				}
+			}
+		});*/
+		
+		View view=LayoutInflater.from(mContext).inflate(R.layout.item_no_update_dialog, null);
+		view.findViewById(R.id.txt_sure).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.setView(view);
+		dialog.show();
+		dialog.getWindow().setGravity(Gravity.CENTER);
 	}
 	
 	public interface UpdateCallback{

@@ -8,6 +8,7 @@
     <!-- 货盘区列表内容字体颜色 -->
 	<color name="pallet_item_content_text_color">#c0c0c0</color>
 	
+    <color name="text_cursor">#54BAF4</color>
     <color name="expand_bg">#f1f1f1</color>
     <color name="input_bg">#f4fcf8</color>
     <color name="status_complete">#3eba6c</color>

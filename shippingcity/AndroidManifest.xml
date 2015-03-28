@@ -28,16 +28,48 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"
+        <activity android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/StyledIndicators" >
+            android:theme="@style/StyledIndicators"  >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalCenterActivity"
             android:theme="@style/ActivityDialogTheme" >
         </activity>
-
+        <activity
+            android:name="com.ateam.shippingcity.activity.PictureSelectDialogActivity"
+            android:theme="@style/ActivityDialogTheme" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalInfoActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalModifyNameActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalModifyMobileActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalModifyPasswordActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PersonalSettingActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+		<activity 
+		    android:name="com.ateam.shippingcity.activity.PersonalFeedbackActivity" 
+		    android:screenOrientation="portrait">
+		</activity>
+		<activity 
+		    android:name="com.ateam.shippingcity.activity.PersonalGuideActivity" 
+		    android:screenOrientation="portrait">
+		</activity>
+		
+		
         <service android:name=".service.APKDownloadService" >
         </service>
     </application>

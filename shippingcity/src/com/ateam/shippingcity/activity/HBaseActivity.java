@@ -20,6 +20,7 @@ import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.ateam.shippingcity.HomeActivity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.application.HBaseApp;
 import com.ateam.shippingcity.utils.AppManager;
@@ -165,7 +166,7 @@ public class HBaseActivity extends FragmentActivity{
 			case R.id.iv_right_icon:
 				Intent intent=new Intent();
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				intent.setClass(HBaseActivity.this, PalletAndQuoteCommonActivity.class);
+				intent.setClass(HBaseActivity.this, HomeActivity.class);
 				startActivity(intent);
 				break;
 			case R.id.layout_error:
