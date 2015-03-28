@@ -141,5 +141,8 @@
     <color name="mudColor">#462d1d</color>
     <color name="siennaColor">#a0522d</color>
     <color name="dustColor">#ecd6c5</color>
+    
+    <drawable name="my_offer">#FF9900</drawable>
+    <drawable name="lineColor">#F0F3F5</drawable>
 
 </resources>

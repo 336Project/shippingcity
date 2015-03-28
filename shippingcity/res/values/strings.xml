@@ -6,12 +6,20 @@
     <string name="hello_world">Hello world!</string>
     <string name="error">轻触屏幕重新加载</string>
     <string name="empty_data">暂无相关数据</string>
-    
+    <string name="note">备注:</string>
+    <string name="quotation_deadline">报价截止时间:</string>
+
     <!-- 货盘区-海运 -->
     <string name="transport_type">运输方式:</string>
     <string name="transport_time">走货日期:</string>
     <string name="pallet_describe">货盘描述:</string>
     
+	<!-- 我的报价 -->
+	<string name="my_offer">我的报价</string>
+	<string name="my_quote_transport_time">走货日期</string>
+	<string name="my_quote_horizontal_line">-</string>
+	
+
     <!-- XListView -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
@@ -21,5 +29,6 @@
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     <string name="title_activity_text">TextActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_my_quote_to_confirm">MyQuoteToConfirmActivity</string>
 
 </resources>
