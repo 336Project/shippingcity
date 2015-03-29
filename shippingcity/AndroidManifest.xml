@@ -104,23 +104,19 @@
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalForgetPasswordActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalRegistActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalRegistProtocolActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalPerfectInfoActivity"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PersonalInfoActivity"
@@ -171,8 +167,28 @@
         </service>
 
         <activity
-            android:name="com.ateam.shippingcity.activity.MyQuoteToConfirmActivity"
-            android:label="@string/title_activity_my_quote_to_confirm" >
+            android:name="com.ateam.shippingcity.activity.MyQuoteSeaTransportFCLActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.MyQuoteSeaTransportLCLActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.MyQuoteSeaTransportBCActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.MyQuoteLandTransportFCLActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.MyQuoteLandTransportBCActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.MyQuoteAirTransportActivity"
+           	android:screenOrientation="portrait">
         </activity>
     </application>
 
