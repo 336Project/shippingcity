@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".MyQuoteToConfirmActivity" >
+    tools:context=".MyQuoteSeaTransportLCLActivity" >
 
     <com.ateam.shippingcity.widget.ElasticScrollView
         android:id="@+id/elasticScrollView1"
@@ -186,6 +186,32 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/myQuote_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/xlist_marginl"
+                    android:text="@string/pictures_of_goods" />
+
+                <ImageView
+                    android:layout_width="@dimen/myQuote_iv_width"
+                    android:layout_height="@dimen/myQuote_iv_height"
+                    android:layout_marginLeft="@dimen/xlist_marginl"
+                    android:src="@drawable/ic_launcher" />
+
+                <ImageView
+                    android:layout_width="@dimen/myQuote_iv_width"
+                    android:layout_height="@dimen/myQuote_iv_height"
+                    android:layout_marginLeft="@dimen/photo_spacing"
+                    android:src="@drawable/ic_launcher" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/myQuote_bottom"
                 android:layout_marginTop="@dimen/myQuote_top"
@@ -194,10 +220,9 @@
                 <TextView
                     android:layout_width="@dimen/myQuote_iv_width"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:text="@string/note" 
                     android:layout_gravity="top"
-                    />
+                    android:layout_marginLeft="@dimen/xlist_marginl"
+                    android:text="@string/note" />
 
                 <TextView
                     android:layout_width="wrap_content"

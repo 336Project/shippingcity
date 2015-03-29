@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
-import com.ateam.shippingcity.activity.MyQuoteToConfirmActivity;
+import com.ateam.shippingcity.activity.MyQuoteSeaTransportFCLActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToConfirmAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
 import com.ateam.shippingcity.model.MyQuoteToConfirm;
@@ -34,7 +34,7 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		getActivity().startActivity(new Intent(getActivity(), MyQuoteToConfirmActivity.class));
+		getActivity().startActivity(new Intent(getActivity(), MyQuoteSeaTransportFCLActivity.class));
 	}
 	
 	@Override
@@ -67,7 +67,12 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements 
 			myQuoteToConfirm.setPlaceEnd("ALEXANDRIA"+i);
 			myQuoteToConfirm.setTransportTimeBegin(""+i);
 			myQuoteToConfirm.setTransportTimeEnd(""+i+i);
-			myQuoteToConfirm.setTransportType("海运");
+			if(type==null){
+				myQuoteToConfirm.setTransportType("全部");
+			}
+			else{
+				myQuoteToConfirm.setTransportType(type);
+			}
 			dataList.add(myQuoteToConfirm);
 		}
 	}

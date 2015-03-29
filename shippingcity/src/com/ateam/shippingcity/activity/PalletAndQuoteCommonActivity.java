@@ -50,6 +50,7 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 			mCurrFragment=mDistrictFragment;
 		}else{
 			setActionBarTitle("我的报价");
+			getRightTxt().setVisibility(View.VISIBLE);
 			mQuoteFragment=new MyQuoteFragment();
 			transaction.add(R.id.layout_main_content, mQuoteFragment);
 			transaction.commit();
@@ -81,6 +82,7 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 				mQuoteFragment=new MyQuoteFragment();
 			}
 			getRightIcon().setVisibility(View.VISIBLE);
+			getRightTxt().setVisibility(View.VISIBLE);
 			setActionBarTitle("我的报价");
 			switchContent(mQuoteFragment);
 			break;
@@ -89,6 +91,7 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 				mDistrictFragment=new PalletFragment();
 			}
 			getRightIcon().setVisibility(View.INVISIBLE);
+			getRightTxt().setVisibility(View.GONE);
 			setActionBarTitle("货盘区");
 			switchContent(mDistrictFragment);
 			break;
