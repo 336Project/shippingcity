@@ -16,7 +16,7 @@
 	<dimen name="my_offer_width">140dp</dimen>
 	
 <!-- 	myQuote -->
-	<dimen name="myQuote_line_left_iv">60dp</dimen>
+	<dimen name="myQuote_line_left_iv">70dp</dimen>
 	<dimen name="myQuote_item_height">50dp</dimen>
 	<dimen name="myQuote_iv_height">50dp</dimen>
 	<dimen name="myQuote_iv_width">50dp</dimen>
