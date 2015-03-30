@@ -40,6 +40,7 @@ public class HBaseActivity extends FragmentActivity{
 	private LinearLayout mLayoutCustomView;
 	private ImageView mLeftIcon;
 	private ImageView mRightIcon;
+	private TextView mRightTxt;
 	
 	private TextView mTitleView;
 	private TextView mErrorView;
@@ -62,6 +63,7 @@ public class HBaseActivity extends FragmentActivity{
 		mLeftIcon.setOnClickListener(listener);
 		mRightIcon=(ImageView) findViewById(R.id.iv_right_icon);
 		mRightIcon.setOnClickListener(listener);
+		mRightTxt=(TextView) findViewById(R.id.txt_right);
 		setCustomView(mLayoutCustomView);
 	}
 	
@@ -254,5 +256,8 @@ public class HBaseActivity extends FragmentActivity{
 
 	public RelativeLayout getLayoutError() {
 		return mLayoutError;
+	}
+	public TextView getRightTxt() {
+		return mRightTxt;
 	}
 }

@@ -22,6 +22,7 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 	
 	private TextView mTxtUserName;
 	private TextView mTxtMobile;
+	private TextView mTxtAddress;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,8 +38,10 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 		findViewById(R.id.layout_pick_business_licence).setOnClickListener(this);
 		findViewById(R.id.layout_pick_IDCard).setOnClickListener(this);
 		findViewById(R.id.layout_pick_work_card).setOnClickListener(this);
+		findViewById(R.id.layout_modify_address).setOnClickListener(this);
 		mTxtUserName=(TextView) findViewById(R.id.txt_username);
 		mTxtMobile=(TextView) findViewById(R.id.txt_mobile);
+		mTxtAddress=(TextView) findViewById(R.id.txt_address);
 		findViewById(R.id.txt_modify_password).setOnClickListener(this);
 	}
 
@@ -69,6 +72,11 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			break;
 		case R.id.txt_modify_password://修改密码
 			jump(this, PersonalModifyPasswordActivity.class);
+			break;
+		case R.id.layout_modify_address://修改公司地址
+			b=new Bundle();
+			b.putString("address", mTxtAddress.getText().toString());
+			jump(this, PersonalModifyAddressActivity.class,b);
 			break;
 		default:
 			break;

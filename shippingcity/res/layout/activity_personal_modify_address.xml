@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5EAED"
+    android:orientation="vertical" >
+    
+	<com.ateam.shippingcity.widget.HAutoCompleteTextView
+	    android:id="@+id/et_address"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:minHeight="50dp"
+	    android:paddingLeft="10dp"
+	    android:paddingRight="10dp"
+	    android:hint="输入你的公司地址"
+	    android:textCursorDrawable="@color/text_cursor"
+	    >
+	</com.ateam.shippingcity.widget.HAutoCompleteTextView>
+</LinearLayout>

@@ -248,6 +248,7 @@
                 android:background="#F3F5F6" />
 
             <LinearLayout
+                android:id="@+id/layout_modify_address"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -263,6 +264,7 @@
                     android:textColor="#797979" />
 
                 <TextView
+                    android:id="@+id/txt_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_launcher"

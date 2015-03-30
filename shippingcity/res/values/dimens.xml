@@ -27,4 +27,8 @@
 	<dimen name="myQuote_iv_width">50dp</dimen>
 	<dimen name="myQuote_top">10dp</dimen>
 	<dimen name="myQuote_bottom">10dp</dimen>
+	<dimen name="photo_spacing">5dp</dimen>
+	<dimen name="line_width">2dp</dimen>
+	<dimen name="line_height">2dp</dimen>
+	<dimen name="myQuote_quote_width">200dp</dimen>
 </resources>

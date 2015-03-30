@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
 import com.ateam.shippingcity.adapter.TabFtagmentAdapter;
 import com.ateam.shippingcity.widget.viewpagerindicator.TabPageIndicator;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,12 +24,18 @@ import android.view.ViewGroup;
 public class MyQuoteAllFragment extends Fragment{
 	public static final String[] TAB_TITLE={"待确认报价","历史报价"};
 	private View inflate;
+	private PalletAndQuoteCommonActivity activity;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		inflate = inflater.inflate(R.layout.fragment_my_quote_all, container, false);
 		initTab();
+		init();
 		return inflate;
+	}
+	private void init() {
+		activity = (PalletAndQuoteCommonActivity) getActivity();
+		activity.getRightTxt().setText("全部");
 	}
 	/**
 	 * 添加tab中的内容
