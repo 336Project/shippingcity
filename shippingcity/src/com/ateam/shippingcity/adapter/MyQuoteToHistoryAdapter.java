@@ -3,35 +3,33 @@ package com.ateam.shippingcity.adapter;
 import java.util.List;
 
 import android.content.Context;
-import android.content.Intent;
-import android.sax.StartElementListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.activity.PalletSeaWholeOfferActivity;
+import com.ateam.shippingcity.model.MyQuoteToConfirm;
+import com.ateam.shippingcity.model.MyQuoteToHistory;
 import com.ateam.shippingcity.model.PalletSeaTransport;
 import com.ateam.shippingcity.utils.MyToast;
 
 /**
- * 海运列表适配器
+ * 我的报价-待正确报价适配器
  * @version 
- * @create_date 2015-3-28上午9:52:09
+ * @create_date 2015年3月28日12:11:39
  */
-public class PalletSeaTransportAdapter extends HBaseAdapter<PalletSeaTransport>{
+public class MyQuoteToHistoryAdapter extends HBaseAdapter<MyQuoteToHistory>{
 
 	private Context c;
-	public PalletSeaTransportAdapter(Context c, List<PalletSeaTransport> datas) {
+	public MyQuoteToHistoryAdapter(Context c, List<MyQuoteToHistory> datas) {
 		super(c, datas);
 		this.c=c;
 	}
 
 	@Override
-	public void convert(ViewHolder holder, PalletSeaTransport bean) {
+	public void convert(ViewHolder holder, MyQuoteToHistory bean) {
 		// TODO Auto-generated method stub
-		((TextView)holder.getView(R.id.tv_remainTime)).setText(bean.getRemainTime().toString());
 		((TextView)holder.getView(R.id.tv_boxType)).setText(bean.getBoxType().toString());
 		((TextView)holder.getView(R.id.tv_placeBegin)).setText(bean.getPlaceBegin().toString());
 		((TextView)holder.getView(R.id.tv_placeEnd)).setText(bean.getPlaceEnd().toString());
@@ -39,22 +37,12 @@ public class PalletSeaTransportAdapter extends HBaseAdapter<PalletSeaTransport>{
 		((TextView)holder.getView(R.id.tv_transportTimeBegin)).setText(bean.getTransportTimeBegin().toString());
 		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.getTransportTimeEnd().toString());
 		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(bean.getPalletDescribe().toString());
-		((ImageView)holder.getView(R.id.iv_offer)).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent intent=new Intent(c,PalletSeaWholeOfferActivity.class);
-				c.startActivity(intent);
-				MyToast.showShort(c, "您已点击报价");
-			}
-		});
+		((ImageView)holder.getView(R.id.iv_winType)).setImageResource(R.drawable.ic_launcher);
 	}
 
 	@Override
 	public int getResId() {
-		// TODO Auto-generated method stub
-		return R.layout.item_pallet_sea_transport;
+		return R.layout.item_my_quote_to_history;
 	}
 
 }

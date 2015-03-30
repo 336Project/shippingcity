@@ -6,12 +6,46 @@
     <string name="hello_world">Hello world!</string>
     <string name="error">轻触屏幕重新加载</string>
     <string name="empty_data">暂无相关数据</string>
+    <string name="note">备注:</string>
+    <string name="quotation_deadline">报价截止时间:</string>
 
     <!-- 货盘区-海运 -->
     <string name="transport_type">运输方式:</string>
     <string name="transport_time">走货日期:</string>
     <string name="pallet_describe">货盘描述:</string>
     <string name="transport_time_no_point">走货日期</string>
+    <string name="focus">关注</string>
+    <string name="immediately_offer">立即报价</string>
+    <string name="pallet_photo">货物照片:</string>
+
+    <!-- 报价 -->
+    <string name="ship_company">船公司</string>
+    <string name="input_ship_company_name">输入船公司名</string>
+    <string name="offer_company">报价单位: $</string>
+    <string name="T_GP">20\'GP</string>
+    <string name="F_GP">40\'GP</string>
+    <string name="F_HP">40\'HQ</string>
+    <string name="add_inform">附加信息,点这里输入吧</string>
+    <string name="commit">提交</string>
+    <string name="select_offer_weight">请选择报价重量/体积</string>
+    <string name="heavy_cargo">重货</string>
+    <string name="light_cargo">轻货</string>
+    <string name="input_price">请输入价格</string>
+    <string name="S_RT">$/RT</string>
+    <string name="input_offer_context">请输入报价内容</string>
+    <string name="money_kgs">￥/KGS</string>
+    <string name="c_money">￥</string>
+    <string name="offer_company_Lord">报价单位: ￥</string>
+    <string name="fail_one">网络不给力,您的报价提交失败,</string>
+    <string name="fail_two">请重新提交!</string>
+    <string name="success_one">您的报价已提交成功,</string>
+    <string name="success_two">请耐心等待货主消息哦!</string>
+    <string name="re_commit">重新提交</string>
+
+    <!-- 我的报价 -->
+    <string name="my_offer">我的报价</string>
+    <string name="my_quote_transport_time">走货日期</string>
+    <string name="my_quote_horizontal_line">-</string>
 
     <!-- XListView -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
@@ -20,5 +54,7 @@
     <string name="xlistview_header_last_time">上次更新时间：</string>
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_my_quote_to_confirm">MyQuoteToConfirmActivity</string>
 
 </resources>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black75PercentColor"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/xlist_top"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/xlist_marginl"
+            android:layout_marginRight="@dimen/xlist_marginr"
+            android:layout_marginTop="@dimen/xlist_marginl"
+            android:layout_marginBottom="@dimen/xlist_top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_boxType"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shap_oval_blue"
+                android:gravity="center"
+                android:text="整箱"
+                android:textColor="@color/white"
+                android:textSize="@dimen/xlist_pallet_title_text" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_placeBegin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="XIAMEN"
+                        android:textSize="@dimen/xlist_pallet_title_text" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/iv_arrow" />
+
+                    <TextView
+                        android:id="@+id/tv_placeEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FUZHOU"
+                        android:textSize="@dimen/xlist_pallet_title_text" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transport_type"
+                        android:textColor="@color/pallet_item_content_text_color" />
+
+                    <TextView
+                        android:id="@+id/tv_transportType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="海运"
+                        android:textColor="@color/pallet_item_content_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transport_time"
+                        android:textColor="@color/pallet_item_content_text_color" />
+
+                    <TextView
+                        android:id="@+id/tv_transportTimeBegin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2015/03/06"
+                        android:textColor="@color/pallet_item_content_text_color" />
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/pallet_item_content_text_color" />
+
+                    <TextView
+                        android:id="@+id/tv_transportTimeEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2015/04/09"
+                        android:textColor="@color/pallet_item_content_text_color" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pallet_describe"
+                        android:textColor="@color/pallet_item_content_text_color" />
+
+                    <TextView
+                        android:id="@+id/tv_palletDescribe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="而儿等等的零件还有很多的乱七八糟的事情你真的知道吗"
+                        android:textColor="@color/pallet_item_content_text_color" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

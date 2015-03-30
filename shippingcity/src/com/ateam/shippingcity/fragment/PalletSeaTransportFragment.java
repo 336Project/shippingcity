@@ -3,12 +3,14 @@ package com.ateam.shippingcity.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ateam.shippingcity.activity.PalletDetailActivity;
 import com.ateam.shippingcity.adapter.PalletSeaTransportAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
 import com.ateam.shippingcity.model.PalletSeaTransport;
 import com.ateam.shippingcity.utils.MyToast;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +49,8 @@ public class PalletSeaTransportFragment extends HBaseXListViewFragment implement
 			long id) {
 		// TODO Auto-generated method stub
 		MyToast.showShort(getActivity(), "你点击了该item！");
+		Intent intent=new Intent(getActivity(),PalletDetailActivity.class);
+		getActivity().startActivity(intent);
 	}
 
 	@Override

@@ -38,6 +38,10 @@
             android:theme="@style/ActivityDialogTheme" >
         </activity>
         <activity
+            android:name="com.ateam.shippingcity.activity.PersonalLoginActivity"
+            android:theme="@style/ActivityDialogTheme" >
+        </activity>
+        <activity
             android:name="com.ateam.shippingcity.activity.PictureSelectDialogActivity"
             android:theme="@style/ActivityDialogTheme" >
         </activity>
@@ -71,7 +75,35 @@
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PalletDetailActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.MyQuoteToConfirmActivity"
+            android:label="@string/title_activity_my_quote_to_confirm" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PalletSeaWholeOfferActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PalletSeaSpellOfferActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PalletSeaDiffOfferActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PalletAirOfferActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PalletLordOfferActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.ateam.shippingcity.activity.PalletOfferResultActivity"
+            android:screenOrientation="portrait" >
         </activity>
 
         <service android:name="com.ateam.shippingcity.service.APKDownloadService" >
