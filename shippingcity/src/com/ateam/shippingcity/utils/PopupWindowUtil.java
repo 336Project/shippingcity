@@ -1,8 +1,8 @@
 package com.ateam.shippingcity.utils;
 
 import com.ateam.shippingcity.R;
+import com.nineoldandroids.animation.ObjectAnimator;
 
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;

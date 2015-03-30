@@ -34,7 +34,7 @@ public class MyQuoteSeaTransportationFragment extends Fragment{
 	}
 	private void init() {
 		activity = (PalletAndQuoteCommonActivity) getActivity();
-		activity.getRightTxt().setText("全部");
+		activity.getRightTxt().setText("海运");
 	}
 	/**
 	 * 添加tab中的内容
