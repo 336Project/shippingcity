@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <corners android:radius="@dimen/pallet_edittext"/>
+    <solid android:color="@drawable/lineColor"/>
+    
+    <solid android:color="@color/white" />
+	<!-- 线的宽度，颜色灰色 -->
+    <stroke
+        android:width="1dp"
+        android:color="@drawable/lineColor" />
+
+    <size
+        android:height="40dp"
+        android:width="40dp" />
+
+</shape>

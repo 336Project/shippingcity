@@ -8,6 +8,7 @@ import java.text.NumberFormat;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.telephony.TelephonyManager;
 
 
 public class SysUtil {
@@ -95,5 +96,11 @@ public class SysUtil {
 			return true;
 		}
 		return false;
+	}
+	/**
+	 * 获取设备IMEI
+	 */
+	public static String getIMEI(Context context){
+		return ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
 	}
 }

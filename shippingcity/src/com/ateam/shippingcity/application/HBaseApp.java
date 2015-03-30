@@ -15,7 +15,7 @@ import android.app.Application;
 import android.os.Environment;
 
 public class HBaseApp extends Application {
-	
+	private String userssid;//登录令牌
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -36,5 +36,13 @@ public class HBaseApp extends Application {
 				.build();
 		L.writeLogs(false);
 		ImageLoader.getInstance().init(config);
+	}
+
+	public String getUserssid() {
+		return userssid;
+	}
+
+	public void setUserssid(String userssid) {
+		this.userssid = userssid;
 	}
 }

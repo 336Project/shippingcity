@@ -12,6 +12,7 @@ import com.ateam.shippingcity.widget.viewpagerindicator.CirclePageIndicator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -111,8 +112,11 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 			
 			break;
 		case R.id.iv_left_icon://个人中心
-			startActivity(new Intent(this, PersonalCenterActivity.class));
-//			jump(this, PersonalLoginActivity.class);
+			if(TextUtils.isEmpty(mBaseApp.getUserssid())){
+				jump(this, PersonalLoginActivity.class);
+			}else{
+				jump(this, PersonalCenterActivity.class);
+			}
 			break;
 
 		default:

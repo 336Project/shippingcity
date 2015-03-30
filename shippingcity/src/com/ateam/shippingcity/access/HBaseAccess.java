@@ -50,7 +50,7 @@ public class HBaseAccess<T> implements HURL{
 	public HBaseAccess(final Context c,final HRequestCallback<T> requestCallback){
 		this.callback=requestCallback;
 		this.mContext=c;
-		dialog=new CustomProgressDialog(mContext, "努力加载中...");
+		dialog=new CustomProgressDialog(c, "努力加载中...");
 		initHandler();
 	}
 	private void initHandler(){
@@ -140,9 +140,9 @@ public class HBaseAccess<T> implements HURL{
 				}else{
 					String result=_post(url, nvps);
 					//测试数据
-					result="{\"updateContent\": \"xxxx\",\"downloadUrl\":" +
+					/*result="{\"updateContent\": \"xxxx\",\"downloadUrl\":" +
 							" \"http://10.1.1.230:8080/hczd-sys/upload_files/app_sys_file/2015-03/1425977626618.apk\"," +
-							"\"force_flag\": \"否\",\"size\": \"0.91MB\",\"version\": \"2.2\"}";
+							"\"force_flag\": \"否\",\"size\": \"0.91MB\",\"version\": \"2.2\"}";*/
 					if(!TextUtils.isEmpty(result)){
 						if(callback!=null){
 							T t=callback.parseJson(result);

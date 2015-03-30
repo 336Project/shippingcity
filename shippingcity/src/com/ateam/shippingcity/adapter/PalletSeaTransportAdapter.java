@@ -3,12 +3,15 @@ package com.ateam.shippingcity.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
+import android.sax.StartElementListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.activity.PalletSeaWholeOfferActivity;
 import com.ateam.shippingcity.model.PalletSeaTransport;
 import com.ateam.shippingcity.utils.MyToast;
 
@@ -41,6 +44,8 @@ public class PalletSeaTransportAdapter extends HBaseAdapter<PalletSeaTransport>{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				Intent intent=new Intent(c,PalletSeaWholeOfferActivity.class);
+				c.startActivity(intent);
 				MyToast.showShort(c, "您已点击报价");
 			}
 		});

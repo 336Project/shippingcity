@@ -10,10 +10,15 @@
     <dimen name="xlist_marginr">10dp</dimen><!-- item 内部离右边距离 -->
     <dimen name="xlist_pallet_title_text">18sp</dimen><!-- 小标题字体大小 -->
     
+    <!-- 货盘区 其他 activity -->
+    <dimen name="pallet_padding">10dp</dimen> <!-- 页面边距  -->
+    <dimen name="pallet_detail_item_magin">5dp</dimen> <!-- 每行间的距离  -->
+
 <!--     shape -->
 	<dimen name="my_offer_radius">5dp</dimen>
 	<dimen name="my_offer_height">40dp</dimen>
 	<dimen name="my_offer_width">140dp</dimen>
+	<dimen name="pallet_edittext">1dp</dimen>
 	
 <!-- 	myQuote -->
 	<dimen name="myQuote_line_left_iv">70dp</dimen>

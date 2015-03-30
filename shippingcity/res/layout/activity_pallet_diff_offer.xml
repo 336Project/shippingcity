@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".PalletSeaDiffOfferActivity" >
+
+    <EditText 
+        android:id="@+id/et_offerContent"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/input_offer_context"
+        android:gravity="left|top"
+        android:inputType="textMultiLine"
+        android:padding="5dp"
+        android:minLines="5"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        />
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/lineColor" />
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+    
+    <Button 
+        android:id="@+id/btn_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:background="@drawable/my_offer_shape"
+        android:text="@string/commit"/>
+
+</LinearLayout>

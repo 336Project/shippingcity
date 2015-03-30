@@ -81,8 +81,8 @@ public class TextViewPair extends LinearLayout {
 		return mNameText;
 	}
 
-	public void setNameText(String mNameText) {
-		this.mNameText = mNameText;
+	public void setNameText(CharSequence mNameText) {
+		this.mNameText = mNameText.toString();
 		mNameView.setText(mNameText);
 	}
 

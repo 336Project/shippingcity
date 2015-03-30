@@ -7,6 +7,8 @@
     -->
     <!-- 货盘区列表内容字体颜色 -->
 	<color name="pallet_item_content_text_color">#c0c0c0</color>
+	<color name="pallet_line_color">#c0c0c0</color>
+	<color name="pallet_text_red">#f08080</color>
 	
     <color name="text_cursor">#54BAF4</color>
     <color name="expand_bg">#f1f1f1</color>
