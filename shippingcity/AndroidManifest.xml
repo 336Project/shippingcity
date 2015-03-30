@@ -192,22 +192,27 @@
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PalletSeaWholeOfferActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PalletSeaSpellOfferActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PalletSeaDiffOfferActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PalletAirOfferActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.ateam.shippingcity.activity.PalletLordOfferActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" >
         </activity>
         <activity

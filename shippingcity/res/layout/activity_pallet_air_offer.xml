@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/white"
+    tools:context=".PalletAirOfferActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/myQuote_item_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+
+        <EditText 
+            android:id="@+id/et_money"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:hint="@string/input_price"
+            android:layout_marginLeft="@dimen/xlist_marginl"/>
+        <TextView 
+            android:id="@+id/tv_moneyLable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/xlist_pallet_title_text"
+            android:textColor="@color/pallet_text_red"
+            android:text="@string/money_kgs"/>
+    </LinearLayout>
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/lineColor" />
+    
+    <EditText 
+        android:id="@+id/et_addInform"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="30dp"
+        android:hint="@string/add_inform"
+        android:gravity="left|top"
+        android:inputType="textMultiLine"
+        android:padding="5dp"
+        android:minLines="5"
+        android:background="@drawable/shape_rectangle_edittext"
+        />
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+    
+    <Button 
+        android:id="@+id/btn_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@drawable/my_offer_shape"
+        android:text="@string/commit"/>
+
+</LinearLayout>

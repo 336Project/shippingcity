@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -28,6 +29,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	private TextView mTvBoxType;//装箱类型
 	private TextView mTvNotice;//备注
 	private TextView mTvOfferEndTime;//报价结束时间
+	private LinearLayout mLinearAddPhoto;//添加显示图片布局
 	private FrameLayout mLayoutAddPhoto;//添加显示图片布局
 	private Button mBtnFocus;//关注按钮
 	private Button mBtnMyOffer;//我的报价按钮
@@ -53,7 +55,8 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		mTvGoEndTime=(TextView)findViewById(R.id.tv_goEndTime);
 		mTvBoxType=(TextView)findViewById(R.id.tv_boxType);
 		mLineAddPhoto=(View)findViewById(R.id.view_addPhoto);
-		mLayoutAddPhoto=(FrameLayout)findViewById(R.id.layout_addPhoto);
+		mLinearAddPhoto=(LinearLayout)findViewById(R.id.layout_addPhoto);
+		mLayoutAddPhoto=(FrameLayout)findViewById(R.id.frame_addPhoto);
 		mTvNotice=(TextView)findViewById(R.id.tv_notice);
 		mTvOfferEndTime=(TextView)findViewById(R.id.tv_offerEndTime);
 		mBtnFocus=(Button)findViewById(R.id.btn_focus);

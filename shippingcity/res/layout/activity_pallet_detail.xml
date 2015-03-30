@@ -204,7 +204,7 @@
                     android:layout_weight="1" >
 
                     <FrameLayout
-                        android:id="@+id/layout_addPhoto"
+                        android:id="@+id/frame_addPhoto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
                     </FrameLayout>
