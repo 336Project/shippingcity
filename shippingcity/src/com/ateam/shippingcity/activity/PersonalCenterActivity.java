@@ -10,6 +10,7 @@ import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.model.User;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.widget.imageview.CircleImageView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -50,6 +51,7 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 		mUsername=(TextView) findViewById(R.id.txt_username);
 		User user=((HBaseApp)getApplication()).getUser();
 		if(user!=null){
+			ImageLoader.getInstance().displayImage(user.getAvatar(), mPortrait);
 			mUsername.setText(user.getTruename());
 		}else{
 			request();
@@ -70,6 +72,7 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 			public void onSuccess(Respond<User> result) {
 				if(result.getDatas()!=null){
 					((HBaseApp)getApplication()).setUser(result.getDatas());
+					ImageLoader.getInstance().displayImage(result.getDatas().getAvatar(), mPortrait);
 					mUsername.setText(result.getDatas().getTruename());
 				}
 			}

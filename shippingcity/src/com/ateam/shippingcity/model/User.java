@@ -21,7 +21,7 @@ public class User implements Serializable{
 	private String company;
 	private String mobile;
 	private String credit;
-	private String avatar;
+	private String avatar;//头像
 	private String com_address;
 	private String vtruename;
 	private String vcompany;

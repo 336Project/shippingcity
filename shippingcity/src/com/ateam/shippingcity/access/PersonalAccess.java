@@ -56,15 +56,81 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 	}
 	/**
 	 * 
-	 * 2015-3-31 下午5:28:27
+	 * 2015-3-31 下午9:45:32
 	 * @param mobile
 	 * @TODO 获取手机验证码
 	 */
 	public void getMobileCode(String mobile){
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile", mobile));
 		nvps.add(new BasicNameValuePair("step", "getMobileCode"));
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("action", "register"));
+		execute(URL_PERSONAL_CENTER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-3-31 下午9:45:40
+	 * @param mobile
+	 * @param code
+	 * @TODO 验证手机验证码
+	 */
+	public void checkMobileCode(String mobile,String mobile_code){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile", mobile));
+		nvps.add(new BasicNameValuePair("mobile_code", mobile_code));
+		nvps.add(new BasicNameValuePair("step", "checkMobileCode"));
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "register"));
+		execute(URL_PERSONAL_CENTER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-3-31 下午9:45:47
+	 * @param mobile
+	 * @param password
+	 * @param cpassword
+	 * @param truename
+	 * @param company
+	 * @param invitermobile
+	 * @TODO 注册
+	 */
+	public void register(String mobile,String password,String cpassword,String truename,String company,String invitermobile){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("step", "submitReginfo"));
+		nvps.add(new BasicNameValuePair("action", "register"));
+		nvps.add(new BasicNameValuePair("mobile", mobile));
+		nvps.add(new BasicNameValuePair("post[password]", password));
+		nvps.add(new BasicNameValuePair("post[cpassword]", cpassword));
+		nvps.add(new BasicNameValuePair("post[truename]", truename));
+		nvps.add(new BasicNameValuePair("post[company]", company));
+		nvps.add(new BasicNameValuePair("post[invitermobile]", invitermobile));
+		execute(URL_PERSONAL_CENTER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-3-31 下午9:46:00
+	 * @param userssid
+	 * @TODO 获取积分记录
+	 */
+	public void getIntegralRecords(String userssid){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		execute(URL_PERSONAL_CENTER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-3-31 下午11:11:18
+	 * @param userssid
+	 * @TODO 获取积分规则
+	 */
+	public void getCreditRule(String userssid){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		nvps.add(new BasicNameValuePair("action", "getcreditrule"));
 		execute(URL_PERSONAL_CENTER, nvps);
 	}
 }
