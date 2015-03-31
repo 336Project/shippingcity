@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
+import com.ateam.shippingcity.activity.MyQuoteHistoryActivity;
+import com.ateam.shippingcity.activity.MyQuoteSeaTransportFCLActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToHistoryAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
 import com.ateam.shippingcity.model.MyQuoteToHistory;
@@ -33,6 +36,7 @@ public class MyQuoteToHistoryFragment extends HBaseXListViewFragment implements 
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		MyToast.showShort(getActivity(), "你点击了该item！");
+		getActivity().startActivity(new Intent(getActivity(), MyQuoteHistoryActivity.class));
 	}
 	
 	@Override

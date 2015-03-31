@@ -160,5 +160,6 @@
     <string name="title_activity_my_quote_air_transport_fcl">MyQuoteAirTransportFCLActivity</string>
     <string name="title_activity_my_quote_air_transport_bc">MyQuoteAirTransportBCActivity</string>
     <string name="title_activity_my_quote_air_transport">MyQuoteAirTransportActivity</string>
+    <string name="title_activity_my_quote_history">MyQuoteHistoryActivity</string>
 
 </resources>

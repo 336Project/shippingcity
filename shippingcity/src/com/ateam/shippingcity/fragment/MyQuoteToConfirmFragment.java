@@ -43,7 +43,6 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements 
 	}
 	@Override
 	public BaseAdapter getAdapter() {
-		// TODO Auto-generated method stub
 		return mAdapter;
 	}
 

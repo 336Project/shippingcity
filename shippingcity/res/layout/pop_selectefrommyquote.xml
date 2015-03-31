@@ -2,9 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="100dp"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
     android:background="@color/white"
-    >
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/tv_all"
@@ -13,7 +12,8 @@
         android:layout_marginBottom="@dimen/myQuote_bottom"
         android:layout_marginTop="@dimen/myQuote_top"
         android:gravity="center"
-        android:text="@string/all" />
+        android:text="@string/all"
+        android:textColor="@color/tv_my_quote_select_selector" />
 
     <View
         android:layout_width="match_parent"
@@ -27,7 +27,8 @@
         android:layout_marginBottom="@dimen/myQuote_bottom"
         android:layout_marginTop="@dimen/myQuote_top"
         android:gravity="center"
-        android:text="@string/sea_transport" />
+        android:text="@string/sea_transport"
+        android:textColor="@color/tv_my_quote_select_selector" />
 
     <View
         android:layout_width="match_parent"
@@ -41,7 +42,8 @@
         android:layout_marginBottom="@dimen/myQuote_bottom"
         android:layout_marginTop="@dimen/myQuote_top"
         android:gravity="center"
-        android:text="@string/air_transport" />
+        android:text="@string/air_transport"
+        android:textColor="@color/tv_my_quote_select_selector" />
 
     <View
         android:layout_width="match_parent"
@@ -55,6 +57,7 @@
         android:layout_marginBottom="@dimen/myQuote_bottom"
         android:layout_marginTop="@dimen/myQuote_top"
         android:gravity="center"
-        android:text="@string/land_transport" />
+        android:text="@string/land_transport"
+        android:textColor="@color/tv_my_quote_select_selector" />
 
 </LinearLayout>
