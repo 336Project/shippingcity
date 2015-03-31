@@ -142,6 +142,9 @@
     <string name="GP120">1*20GP,</string>
     <string name="GP240">2*40GP,</string>
     <string name="HQ340">3*40HQ,</string>
+    
+    <!-- 图片显示dialog -->
+    <string name="viewpager_indicator">%1$d/%2$d</string>
 
     <!-- XListView -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
