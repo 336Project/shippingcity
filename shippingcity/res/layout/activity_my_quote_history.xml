@@ -193,31 +193,58 @@
                     android:layout_marginRight="@dimen/xlist_marginr"
                     android:background="@drawable/lineColor" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/myQuote_item_height"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal" >
+            <LinearLayout
+                android:id="@+id/layout_addPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/myQuote_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible" >
 
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/xlist_marginl"
+                    android:text="@string/pallet_photo" />
+
+                <!--
+                    <LinearLayout
+                        android:id="@+id/frame_addPhoto"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:text="@string/pictures_of_goods" />
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                -->
 
-                    <ImageView
-                        android:layout_width="@dimen/myQuote_iv_width"
-                        android:layout_height="@dimen/myQuote_iv_height"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:src="@drawable/ic_launcher" />
+                <HorizontalScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scrollbars="none" >
 
-                    <ImageView
-                        android:layout_width="@dimen/myQuote_iv_width"
-                        android:layout_height="@dimen/myQuote_iv_height"
-                        android:layout_marginLeft="@dimen/photo_spacing"
-                        android:src="@drawable/ic_launcher" />
-                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
+		                    android:id="@+id/gv_addPhoto"
+		                    android:layout_width="fill_parent"
+		                    android:layout_height="wrap_content"
+		                    android:horizontalSpacing="1dp"
+		                    android:numColumns="5"
+		                    android:stretchMode="columnWidth"
+		                    android:verticalSpacing="1dp"
+		                    android:visibility="visible" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_launcher" />
+            </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
