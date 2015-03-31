@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
+    <LinearLayout
+        android:id="@+id/layout_action_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#292C35"
+        android:gravity="center"
+        android:minHeight="60dp"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp" >
+
+        <ImageView
+            android:id="@+id/iv_left_icon"
+            android:layout_width="30dp"
+            android:layout_height="fill_parent"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+		       android:id="@+id/indicator"
+		       android:layout_width="match_parent"
+		       android:layout_height="50dp"
+		       android:background="#292C35"
+		       android:textColor="@color/white"
+		       android:gravity="center"
+		       android:text="%1$d/%2$d"
+		       android:textSize="18sp" />
+
+    </LinearLayout>
+    
     <com.ateam.shippingcity.widget.weinxinImageShow.HackyViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black" />
 
-    <TextView
-        android:id="@+id/indicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        android:text="%1$d/%2$d"
-        android:background="@android:color/transparent" />
-
-</FrameLayout>
+</LinearLayout>
