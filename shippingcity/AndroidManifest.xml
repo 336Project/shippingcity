@@ -219,6 +219,10 @@
             android:name="com.ateam.shippingcity.activity.PalletOfferResultActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <service android:name="com.ateam.shippingcity.service.APKDownloadService" >
         </service>
