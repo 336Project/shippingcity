@@ -1,10 +1,9 @@
 package com.ateam.shippingcity.activity;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.access.LoginAndRegistAccess;
+import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.application.HBaseApp;
 import com.ateam.shippingcity.model.Respond;
@@ -87,19 +86,12 @@ public class PersonalLoginActivity extends Activity implements OnClickListener{
 					((HBaseApp)getApplication()).setUserssid(result.getDatas().getUserssid());
 					finish();
 				}else{
-					String message="";
-					try {
-						message=new String(result.getMessage().getBytes(), "UTF-8");
-					} catch (UnsupportedEncodingException e) {
-						e.printStackTrace();
-						message="操作失败，请稍后再试";
-					}
-					MyToast.showShort(PersonalLoginActivity.this, message);
+					MyToast.showShort(PersonalLoginActivity.this, result.getMessage());
 				}
 				
 			}
 		};
-		LoginAndRegistAccess access=new LoginAndRegistAccess(PersonalLoginActivity.this, requestCallback);
+		PersonalAccess<User> access=new PersonalAccess<User>(PersonalLoginActivity.this, requestCallback);
 		access.login(mEditUsername.getText().toString(), mEditPassword.getText().toString());
 	}
 }

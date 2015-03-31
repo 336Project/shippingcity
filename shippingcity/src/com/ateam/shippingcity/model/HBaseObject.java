@@ -10,6 +10,9 @@ public class HBaseObject{
 		this.statusCode = statusCode;
 	}
 	public String getMessage() {
+		if(message!=null){
+			message=new String(message.getBytes());
+		}
 		return message;
 	}
 	public void setMessage(String message) {

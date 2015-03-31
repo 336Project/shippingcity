@@ -3,6 +3,7 @@ package com.ateam.shippingcity.application;
 import java.io.File;
 
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.model.User;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -16,6 +17,7 @@ import android.os.Environment;
 
 public class HBaseApp extends Application {
 	private String userssid;//登录令牌
+	private User user;
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -44,5 +46,13 @@ public class HBaseApp extends Application {
 
 	public void setUserssid(String userssid) {
 		this.userssid = userssid;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
