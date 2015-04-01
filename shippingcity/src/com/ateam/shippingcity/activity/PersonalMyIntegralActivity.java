@@ -10,10 +10,14 @@ import java.util.Locale;
 import java.util.Map;
 
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.access.PersonalAccess;
+import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.adapter.PersonalMyIntegralAdapter;
+import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.widget.xlist.XListView;
 import com.ateam.shippingcity.widget.xlist.XListView.IXListViewListener;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +36,7 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 	protected int current_page=1;
 	private List<Map<String, String>> mDataSource;
 	private PersonalMyIntegralAdapter mAdapter;
+	private PersonalAccess access;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -72,6 +77,29 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 			
 		});
 		mListView.setAdapter(mAdapter);
+		
+		HRequestCallback<Respond> requestCallback=new HRequestCallback<Respond>() {
+			
+			@Override
+			public void onFail(Context c, String errorMsg) {
+				super.onFail(c, errorMsg);
+				onLoadComplete(mDataSource.size(), null);
+			}
+			@Override
+			public Respond parseJson(String jsonStr) {
+				System.out.println(jsonStr);
+				return null;
+			}
+			
+			@Override
+			public void onSuccess(Respond result) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
+		access=new PersonalAccess(this, requestCallback);
+		access.getIntegralRecords(mBaseApp.getUserssid());
 	}
 
 	@Override
@@ -88,7 +116,7 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 	}
 	
 	private void request() {
-		
+		access.getIntegralRecords(mBaseApp.getUserssid());
 	}
 	/**
 	 * 

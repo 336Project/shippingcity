@@ -9,7 +9,7 @@ package com.ateam.shippingcity.access.I;
 public interface HURL {
 	public static final String IP="118.193.146.184";
 	/**
-	 * 登录及注册
+	 * 个人中心
 	 */
-	public static final String URL_LOGIN_AND_REGIST="http://"+IP+"/mobile/index.php?route=member";
+	public static final String URL_PERSONAL_CENTER="http://"+IP+"/mobile/index.php?route=member";
 }

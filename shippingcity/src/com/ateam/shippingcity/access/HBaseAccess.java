@@ -139,10 +139,6 @@ public class HBaseAccess<T> implements HURL{
 					msg.what=HRequestCallback.RESULT_NETWORK_EXCEPTION;
 				}else{
 					String result=_post(url, nvps);
-					//测试数据
-					/*result="{\"updateContent\": \"xxxx\",\"downloadUrl\":" +
-							" \"http://10.1.1.230:8080/hczd-sys/upload_files/app_sys_file/2015-03/1425977626618.apk\"," +
-							"\"force_flag\": \"否\",\"size\": \"0.91MB\",\"version\": \"2.2\"}";*/
 					if(!TextUtils.isEmpty(result)){
 						if(callback!=null){
 							T t=callback.parseJson(result);
@@ -208,7 +204,9 @@ public class HBaseAccess<T> implements HURL{
 			request.setConfig(requestConfig);
 			if(nvps!=null){
 				Log.i("NameValuePair", nvps.toString());
-				request.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
+				HttpEntity httpEntity=new UrlEncodedFormEntity(nvps, HTTP.UTF_8);
+				Log.i("url",url+"&"+EntityUtilsHC4.toString(httpEntity));
+				request.setEntity(httpEntity);
 			}
 			request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
 			request.setHeader("Connection", "Keep-Alive");

@@ -16,7 +16,8 @@ public class PersonalFeedbackActivity extends HBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setActionBarTitle("意见反馈");
-		getRightIcon().setVisibility(View.VISIBLE);
+		getRightTxt().setVisibility(View.VISIBLE);
+		getRightTxt().setText("提交");
 		setBaseContentView(R.layout.activity_personal_feedback);
 	}
 }

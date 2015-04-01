@@ -183,7 +183,64 @@
                 android:layout_marginLeft="@dimen/xlist_marginl"
                 android:layout_marginRight="@dimen/xlist_marginr"
                 android:background="@drawable/lineColor" />
+            <LinearLayout
+                android:id="@+id/layout_addPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/myQuote_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible" >
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/xlist_marginl"
+                    android:text="@string/pallet_photo" />
+
+                <!--
+                    <LinearLayout
+                        android:id="@+id/frame_addPhoto"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal" >
+                    </LinearLayout>
+                -->
+
+                <HorizontalScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scrollbars="none" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
+
+                        <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
+		                    android:id="@+id/gv_addPhoto"
+		                    android:layout_width="fill_parent"
+		                    android:layout_height="wrap_content"
+		                    android:horizontalSpacing="1dp"
+		                    android:numColumns="5"
+		                    android:stretchMode="columnWidth"
+		                    android:verticalSpacing="1dp"
+		                    android:visibility="visible" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_launcher" />
+            </LinearLayout>
+<View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/xlist_marginl"
+                android:layout_marginRight="@dimen/xlist_marginr"
+                android:background="@drawable/lineColor" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
