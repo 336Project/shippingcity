@@ -30,6 +30,7 @@ public class HBaseApp extends Application {
 		.showImageForEmptyUri(R.drawable.ic_launcher)//url为空的时候显示的图片
 		.showImageOnLoading(R.drawable.ic_launcher)//图片加载过程中显示的图片
 		.cacheOnDisk(true)//开启硬盘缓存
+		.cacheInMemory(true)//内存缓存
 		.build();
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
 				this).threadPriority(Thread.NORM_PRIORITY)

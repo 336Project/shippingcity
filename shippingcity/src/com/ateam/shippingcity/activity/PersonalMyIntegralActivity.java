@@ -36,7 +36,7 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 	protected int current_page=1;
 	private List<Map<String, String>> mDataSource;
 	private PersonalMyIntegralAdapter mAdapter;
-	private PersonalAccess access;
+	private PersonalAccess<Map<String, String>> access;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,7 +78,7 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 		});
 		mListView.setAdapter(mAdapter);
 		
-		HRequestCallback<Respond> requestCallback=new HRequestCallback<Respond>() {
+		HRequestCallback<Respond<Map<String, String>>> requestCallback=new HRequestCallback<Respond<Map<String, String>>>() {
 			
 			@Override
 			public void onFail(Context c, String errorMsg) {
@@ -86,19 +86,19 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 				onLoadComplete(mDataSource.size(), null);
 			}
 			@Override
-			public Respond parseJson(String jsonStr) {
+			public Respond<Map<String, String>> parseJson(String jsonStr) {
 				System.out.println(jsonStr);
 				return null;
 			}
 			
 			@Override
-			public void onSuccess(Respond result) {
+			public void onSuccess(Respond<Map<String, String>> result) {
 				// TODO Auto-generated method stub
 				
 			}
 		};
 		
-		access=new PersonalAccess(this, requestCallback);
+		access=new PersonalAccess<Map<String, String>>(this, requestCallback);
 		access.getIntegralRecords(mBaseApp.getUserssid());
 	}
 

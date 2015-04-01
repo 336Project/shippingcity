@@ -1,6 +1,8 @@
 package com.ateam.shippingcity.model;
 
 import java.io.Serializable;
+
+import android.text.TextUtils;
 /**
  * 
  * @author 李晓伟
@@ -93,6 +95,9 @@ public class User implements Serializable{
 		this.credit = credit;
 	}
 	public String getAvatar() {
+		if(!TextUtils.isEmpty(avatar)){
+			avatar=avatar.split("&")[0];
+		}
 		return avatar;
 	}
 	public void setAvatar(String avatar) {

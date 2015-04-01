@@ -5,6 +5,7 @@
           颜色对照表:
     https://github.com/MatthewYork/Colours 
     -->
+    <color name="txt_sumbit_color">#78A9EB</color>
     <!-- 货盘区列表内容字体颜色 -->
 	<color name="pallet_item_content_text_color">#c0c0c0</color>
 	<color name="pallet_line_color">#c0c0c0</color>

@@ -118,6 +118,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("userssid", userssid));
+		nvps.add(new BasicNameValuePair("action", "get"));
 		execute(URL_PERSONAL_CENTER, nvps);
 	}
 	/**
@@ -131,6 +132,23 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("userssid", userssid));
 		nvps.add(new BasicNameValuePair("action", "getcreditrule"));
+		execute(URL_PERSONAL_CENTER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-4-1 下午5:21:20
+	 * @param userssid
+	 * @param content
+	 * @TODO 意见反馈
+	 */
+	public void feedback(String userssid,String content){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		nvps.add(new BasicNameValuePair("my", "0"));
+		nvps.add(new BasicNameValuePair("post[hidden]", "1"));
+		nvps.add(new BasicNameValuePair("post[content]", content));
+		nvps.add(new BasicNameValuePair("Msubmit", "提交"));
 		execute(URL_PERSONAL_CENTER, nvps);
 	}
 }
