@@ -4,8 +4,12 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import com.ateam.shippingcity.constant.MyConstant;
+import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
+
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
@@ -102,5 +106,19 @@ public class SysUtil {
 	 */
 	public static String getIMEI(Context context){
 		return ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+	}
+	
+	/**
+	 * 跳转到图片展示界面
+	 * @param context
+	 * @param position 从第几张开始展示图片
+	 * @param urls 图片所在的地址
+	 */
+	public static void showImage(Context context,int position,String[] urls){
+		Intent intent = new Intent(context, ImagePagerActivity.class);
+		// 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
+		intent.putExtra(MyConstant.EXTRA_IMAGE_URLS, urls);
+		intent.putExtra(MyConstant.EXTRA_IMAGE_INDEX, position);
+		context.startActivity(intent);
 	}
 }

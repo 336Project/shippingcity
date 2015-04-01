@@ -3,6 +3,7 @@ package com.ateam.shippingcity.activity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.R.layout;
 import com.ateam.shippingcity.constant.MyConstant;
+import com.ateam.shippingcity.utils.SysUtil;
 import com.ateam.shippingcity.widget.imageview.PictureDialogActivity;
 import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
 import com.ateam.shippingcity.widget.weinxinImageShow.MyGridAdapter;
@@ -98,7 +99,6 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		DisplayMetrics dm = new DisplayMetrics();  
         getWindowManager().getDefaultDisplay().getMetrics(dm);  
         float density = dm.density;  
-        int allWidth = (int) (55 * size * density);  
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(  
         		(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42*size, getResources().getDisplayMetrics()), 
                 LinearLayout.LayoutParams.FILL_PARENT);  
@@ -120,22 +120,9 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				imageBrower(position,urls);
+				SysUtil.showImage(PalletDetailActivity.this,position,urls);
 			}
 		});
-	}
-	
-	/**
-	 * 点击后跳转显示大图
-	 * @param position
-	 * @param urls
-	 */
-	private void imageBrower(int position, String[] urls) {
-		Intent intent = new Intent(this, ImagePagerActivity.class);
-		// 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
-		intent.putExtra(MyConstant.EXTRA_IMAGE_URLS, urls);
-		intent.putExtra(MyConstant.EXTRA_IMAGE_INDEX, position);
-		startActivity(intent);
 	}
 	
 	/**

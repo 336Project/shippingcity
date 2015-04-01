@@ -50,7 +50,7 @@ public class ImagePagerActivity extends FragmentActivity {
 		CharSequence text = getString(R.string.viewpager_indicator, 1, mPager
 				.getAdapter().getCount());
 		indicator.setText(text);
-		// 更新下标
+		// 更新上标
 		mPager.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
