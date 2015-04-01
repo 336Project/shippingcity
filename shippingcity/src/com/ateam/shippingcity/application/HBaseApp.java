@@ -29,7 +29,7 @@ public class HBaseApp extends Application {
 		.showImageOnFail(R.drawable.ic_launcher) // 加载图片出现问题，会显示该图片
 		.showImageForEmptyUri(R.drawable.ic_launcher)//url为空的时候显示的图片
 		.showImageOnLoading(R.drawable.ic_launcher)//图片加载过程中显示的图片
-		.cacheOnDisk(true)//开启硬盘缓存
+//		.cacheOnDisk(true)//开启硬盘缓存
 		.cacheInMemory(true)//内存缓存
 		.build();
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
@@ -39,7 +39,7 @@ public class HBaseApp extends Application {
 				.diskCacheFileCount(100)
 				.diskCacheSize(10*1024*1024)//缓存容量
 				.diskCacheFileNameGenerator(new Md5FileNameGenerator())
-				.diskCache(new UnlimitedDiscCache(new File(Environment.getExternalStorageDirectory() + "/ShipPingCity/images/")))
+				.diskCache(new UnlimitedDiscCache(new File(Environment.getExternalStorageDirectory() + "/ShipPingCity/cache/")))
 				.tasksProcessingOrder(QueueProcessingType.LIFO)
 				.build();
 		L.writeLogs(false);

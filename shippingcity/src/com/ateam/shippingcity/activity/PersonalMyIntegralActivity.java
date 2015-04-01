@@ -4,7 +4,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -56,12 +55,6 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 	 */
 	private void initListView(){
 		mDataSource=new ArrayList<Map<String,String>>();
-		for (int i = 0; i < 10; i++) {
-			Map<String,String> map=new HashMap<String, String>();
-			map.put("title", "推荐奖励");
-			map.put("integral", ""+i);
-			mDataSource.add(map);
-		}
 		mAdapter=new PersonalMyIntegralAdapter(this, mDataSource);
 		
 		mListView=(XListView) findViewById(R.id.xListView);
