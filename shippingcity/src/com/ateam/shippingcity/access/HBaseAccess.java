@@ -229,7 +229,7 @@ public class HBaseAccess<T> implements HURL{
 		}
 	}
 	
-	public String _get(String url, List<NameValuePair> nvps) throws Exception {
+	protected String _get(String url, List<NameValuePair> nvps) throws Exception {
 		RequestConfig requestConfig=RequestConfig.custom()
 				.setConnectTimeout(10000)
 				.setSocketTimeout(10000)

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.ateam.shippingcity"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#E8EDEF" />
+
+    <com.ateam.shippingcity.widget.TextViewPair
+        android:id="@+id/txt_rule"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="50dp"
+        android:minHeight="50dp"
+        app:nameColor="#858585"
+        app:nameText="公司认证"
+        app:valueColor="#FFAF4C"
+        app:valueText="40" />
+
+</LinearLayout>

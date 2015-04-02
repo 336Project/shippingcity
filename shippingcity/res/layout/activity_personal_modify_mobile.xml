@@ -52,7 +52,6 @@
                 android:id="@+id/txt_get_code"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
                 android:background="#ffffff"
                 android:gravity="center"
                 android:minWidth="120dp"

@@ -153,4 +153,69 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("Msubmit", "提交"));
 		execute(URL_PERSONAL_MEMBER, nvps);
 	}
+	/**
+	 * 
+	 * 2015-4-2 下午3:38:10
+	 * @param userssid
+	 * @param mobile
+	 * @TODO 手机修改->获取手机验证码
+	 */
+	public void getGeneralMobileMode(String userssid,String mobile){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "generalmobilecode"));
+		nvps.add(new BasicNameValuePair("using", "changemobile"));
+		nvps.add(new BasicNameValuePair("type", "get"));
+		nvps.add(new BasicNameValuePair("mobile", mobile));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-4-2 下午3:41:00
+	 * @param userssid
+	 * @param mobile_code
+	 * @TODO 手机修改->验证手机验证码
+	 */
+	public void checkGeneralMobileMode(String userssid,String mobile_code){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "generalmobilecode"));
+		nvps.add(new BasicNameValuePair("using", "changemobile"));
+		nvps.add(new BasicNameValuePair("type", "validate"));
+		nvps.add(new BasicNameValuePair("mobile_code", mobile_code));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-4-2 下午3:44:19
+	 * @param userssid
+	 * @param mobile
+	 * @TODO 修改手机号
+	 */
+	public void modifyMobile(String userssid,String mobile){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "changemobile"));
+		nvps.add(new BasicNameValuePair("mobile", mobile));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-4-2 下午4:16:33
+	 * @param userssid
+	 * @param truename
+	 * @TODO 修改名称
+	 */
+	public void modifyUsername(String userssid,String truename){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "userinfo"));
+		nvps.add(new BasicNameValuePair("Msubmit", "提交"));
+		nvps.add(new BasicNameValuePair("truename", truename));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
 }

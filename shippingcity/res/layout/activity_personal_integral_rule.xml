@@ -23,6 +23,7 @@
             android:textColor="#FF7474"
             />
         <LinearLayout 
+            android:id="@+id/layout_integral_detail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/frame"
@@ -38,12 +39,8 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 />
-            <View 
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#E8EDEF"
-                />
-            <com.ateam.shippingcity.widget.TextViewPair
+            <!-- <include layout="@layout/item_integral_rule"/> -->
+           <!--  <com.ateam.shippingcity.widget.TextViewPair
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="50dp"
@@ -166,7 +163,7 @@
                 app:valueColor="#FFAF4C"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                />
+                /> -->
         </LinearLayout>
     </LinearLayout>
 

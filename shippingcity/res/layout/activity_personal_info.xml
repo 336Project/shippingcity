@@ -38,7 +38,6 @@
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_launcher"
                     android:gravity="center"
-                    android:text="15759216890"
                     android:textColor="#CFCFCF" />
             </LinearLayout>
 
@@ -69,7 +68,6 @@
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_launcher"
                     android:gravity="center"
-                    android:text="李晓伟"
                     android:textColor="#CFCFCF" />
             </LinearLayout>
 
@@ -94,9 +92,10 @@
                     android:text="头像"
                     android:textColor="#797979" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <com.ateam.shippingcity.widget.imageview.CircleImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="48dp"
+	    			android:layout_height="48dp"
                     android:background="@drawable/ic_launcher" />
 
                 <ImageView
@@ -126,16 +125,18 @@
                     android:textColor="#797979" />
 
                 <TextView
+                    android:id="@+id/txt_vtruename_status"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="已认证"
+                    android:layout_marginLeft="8dp"
                     android:textColor="#99C9F3"
                     android:textSize="15sp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_vtruename"
+                    android:layout_width="48dp"
+	    			android:layout_height="48dp"
                     android:background="@drawable/ic_launcher" />
             </LinearLayout>
 
@@ -160,16 +161,18 @@
                     android:textColor="#797979" />
 
                 <TextView
+                    android:id="@+id/txt_card_status"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="审核中"
+                    android:layout_marginLeft="8dp"
                     android:textColor="#99C9F3"
                     android:textSize="15sp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_card"
+                    android:layout_width="48dp"
+	    			android:layout_height="48dp"
                     android:background="@drawable/ic_launcher" />
             </LinearLayout>
         </LinearLayout>
@@ -197,6 +200,7 @@
                     android:textColor="#797979" />
 
                 <TextView
+                    android:id="@+id/txt_company_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/ic_launcher"
@@ -204,7 +208,6 @@
                     android:ems="8"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="青岛海外国际贷运代理有限公司"
                     android:textColor="#CFCFCF" />
             </LinearLayout>
 
@@ -229,16 +232,19 @@
                     android:textColor="#797979" />
 
                 <TextView
+                    android:id="@+id/txt_vcompany_status"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
                     android:text="认证失败，请重新提交"
                     android:textSize="15sp"
                     android:textColor="#FF6D43" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/iv_vcompany"
+                    android:layout_width="48dp"
+	    			android:layout_height="48dp"
                     android:background="@drawable/ic_launcher" />
             </LinearLayout>
 

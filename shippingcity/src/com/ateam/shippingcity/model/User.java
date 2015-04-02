@@ -1,6 +1,7 @@
 package com.ateam.shippingcity.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -14,19 +15,22 @@ public class User implements Serializable{
 	private String userssid; //登陆令牌
 	private String token; //快速登陆使用
 	
-	private String truename;
-	private String email;
+	private String truename;//姓名
+	private String email;//邮箱
 	private String department;
 	private String career;
 	private String qq;
-	private String company;
+	private String company;//公司
 	private String mobile;
 	private String credit;
 	private String avatar;//头像
 	private String com_address;
-	private String vtruename;
-	private String vcompany;
+	private String vtruename;//实名认证（身份证 工牌）
+	private String vcompany;//公司认证
+	private List<String> vpicture;//对应身份证、工牌、营业执照
 	
+	private String status_company;//公司认证状态
+	private String status_truename;//实名认证状态
 	public String getUserssid() {
 		return userssid;
 	}
@@ -122,5 +126,37 @@ public class User implements Serializable{
 	}
 	public void setVcompany(String vcompany) {
 		this.vcompany = vcompany;
+	}
+	public String getStatus_company() {
+		if(getVcompany().equals("2")){
+			status_company="审核中";
+		}else if(getVcompany().equals("3")){
+			status_company="已认证";
+		}else{
+			status_company="未上传";
+		}
+		return status_company;
+	}
+	public void setStatus_company(String status_company) {
+		this.status_company = status_company;
+	}
+	public String getStatus_truename() {
+		if(getVtruename().equals("2")){
+			status_truename="审核中";
+		}else if(getVtruename().equals("3")){
+			status_truename="已认证";
+		}else{
+			status_truename="未上传";
+		}
+		return status_truename;
+	}
+	public void setStatus_truename(String status_truename) {
+		this.status_truename = status_truename;
+	}
+	public List<String> getVpicture() {
+		return vpicture;
+	}
+	public void setVpicture(List<String> vpicture) {
+		this.vpicture = vpicture;
 	}
 }
