@@ -90,7 +90,7 @@ public abstract class HBaseXListViewFragment<T> extends Fragment implements IXLi
 	 * 2015-3-4 下午4:56:00
 	 * @TODO 加载完成
 	 */
-	public void onLoadComplete(long totalSize,List<T> newDatas) {
+	public void onLoadComplete(long totalPage,List<T> newDatas) {
 		if(mDataSource==null) 
 			throw new NullPointerException("DataSource must be not null");
 		stopRefreshOrLoad();
@@ -102,13 +102,13 @@ public abstract class HBaseXListViewFragment<T> extends Fragment implements IXLi
 		}
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 		mListView.setRefreshTime(df.format(new Date()));
-		if(mDataSource!=null&&mDataSource.size()<totalSize){
+		if(mDataSource!=null&&current_page<totalPage){
 			mListView.setPullLoadEnable(true);
 		}else{
 			mListView.setPullLoadEnable(false);
 		}
 		getAdapter().notifyDataSetChanged();
-		if(totalSize==0){
+		if(mDataSource.size()==0){
 			Toast.makeText(getActivity(), "暂无相关数据", Toast.LENGTH_SHORT).show();
 		}
 	}
