@@ -49,10 +49,10 @@ public class PalletFragment extends Fragment {
 	 */
 	private void initTab() {
 		List<Fragment> fragments=new ArrayList<Fragment>();
-		fragments.add(new PalletSeaTransportFragment("全部"));
-		fragments.add(new PalletSeaTransportFragment("海运"));
-		fragments.add(new PalletSeaTransportFragment("空运"));
-		fragments.add(new PalletSeaTransportFragment("陆运"));
+		fragments.add(getFragment("全部"));
+		fragments.add(getFragment("海运"));
+		fragments.add(getFragment("空运"));
+		fragments.add(getFragment("陆运"));
 		TabFtagmentAdapter adapter=new TabFtagmentAdapter(getChildFragmentManager(),TAB_TITLE,null,fragments);
 		ViewPager tabPager=(ViewPager) view.findViewById(R.id.tab_pager);
 		tabPager.setAdapter(adapter);
@@ -60,5 +60,18 @@ public class PalletFragment extends Fragment {
 		TabPageIndicator mTabIndicator= (TabPageIndicator)view.findViewById(R.id.tab_indicator);
 		mTabIndicator.setViewPager(tabPager);
 	}
-
+	
+	/**
+	 * 获取片段
+	 * @param type 
+	 * @return
+	 */
+	private PalletSeaTransportFragment getFragment(String type){
+		PalletSeaTransportFragment pallet=new PalletSeaTransportFragment();
+		Bundle bundle = new Bundle();  
+		bundle.putString("type", type);  
+		pallet.setArguments(bundle); 
+		return pallet;
+	}
+	
 }

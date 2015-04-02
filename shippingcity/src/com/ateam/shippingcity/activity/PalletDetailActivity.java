@@ -46,7 +46,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	private View mLineAddPhoto;//线
 	private GridView mGvAddPhoto;//添加显示图片布局
 	
-	String[] urls = {
+	private String[] urls = {
             "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing2.jpg",
             "http://c.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=cdab1512d000baa1be2c44b3772bc82f/91529822720e0cf3855c96050b46f21fbf09aaa1.jpg",
             "http://g.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=ccd33b46d53f8794d7ff4b26e2207fc9/0d338744ebf81a4c0f993437d62a6059242da6a1.jpg",
@@ -96,9 +96,6 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		}else{
 			size=urls.length;
 		}
-		DisplayMetrics dm = new DisplayMetrics();  
-        getWindowManager().getDefaultDisplay().getMetrics(dm);  
-        float density = dm.density;  
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(  
         		(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42*size, getResources().getDisplayMetrics()), 
                 LinearLayout.LayoutParams.FILL_PARENT);  
