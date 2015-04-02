@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @version 
  * @create_date 2015-3-28上午9:52:53
  */
-public class PalletSeaTransport implements Serializable{
+public class PalletTransport extends HBaseObject implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	

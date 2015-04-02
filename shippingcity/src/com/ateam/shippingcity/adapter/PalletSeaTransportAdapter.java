@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.activity.PalletSeaWholeOfferActivity;
-import com.ateam.shippingcity.model.PalletSeaTransport;
+import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.utils.MyToast;
 
 /**
@@ -20,16 +20,16 @@ import com.ateam.shippingcity.utils.MyToast;
  * @version 
  * @create_date 2015-3-28上午9:52:09
  */
-public class PalletSeaTransportAdapter extends HBaseAdapter<PalletSeaTransport>{
+public class PalletSeaTransportAdapter extends HBaseAdapter<PalletTransport>{
 
 	private Context c;
-	public PalletSeaTransportAdapter(Context c, List<PalletSeaTransport> datas) {
+	public PalletSeaTransportAdapter(Context c, List<PalletTransport> datas) {
 		super(c, datas);
 		this.c=c;
 	}
 
 	@Override
-	public void convert(ViewHolder holder, PalletSeaTransport bean) {
+	public void convert(ViewHolder holder, PalletTransport bean) {
 		// TODO Auto-generated method stub
 		((TextView)holder.getView(R.id.tv_remainTime)).setText(bean.getRemainTime().toString());
 		((TextView)holder.getView(R.id.tv_boxType)).setText(bean.getBoxType().toString());

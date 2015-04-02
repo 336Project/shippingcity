@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.model.MyQuoteToConfirm;
 import com.ateam.shippingcity.model.MyQuoteToHistory;
-import com.ateam.shippingcity.model.PalletSeaTransport;
+import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.utils.MyToast;
 
 /**
