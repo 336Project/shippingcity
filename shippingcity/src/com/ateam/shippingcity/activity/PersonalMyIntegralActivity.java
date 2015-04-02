@@ -4,18 +4,20 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.adapter.PersonalMyIntegralAdapter;
+import com.ateam.shippingcity.model.MyIntegral;
 import com.ateam.shippingcity.model.Respond;
+import com.ateam.shippingcity.utils.JSONParse;
+import com.ateam.shippingcity.widget.TextViewPair;
 import com.ateam.shippingcity.widget.xlist.XListView;
 import com.ateam.shippingcity.widget.xlist.XListView.IXListViewListener;
+import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -34,9 +36,10 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 	private XListView mListView;
 	protected int page_size=10;
 	protected int current_page=1;
-	private List<Map<String, String>> mDataSource;
+	private List<MyIntegral> mDataSource;
 	private PersonalMyIntegralAdapter mAdapter;
-	private PersonalAccess access;
+	private PersonalAccess<List<MyIntegral>> access;
+	private TextViewPair mTxtTotalCredit;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,15 +58,10 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 	 * @TODO 初始化ListView
 	 */
 	private void initListView(){
-		mDataSource=new ArrayList<Map<String,String>>();
-		for (int i = 0; i < 10; i++) {
-			Map<String,String> map=new HashMap<String, String>();
-			map.put("title", "推荐奖励");
-			map.put("integral", ""+i);
-			mDataSource.add(map);
-		}
+		mDataSource=new ArrayList<MyIntegral>();
 		mAdapter=new PersonalMyIntegralAdapter(this, mDataSource);
-		
+		mTxtTotalCredit=(TextViewPair) findViewById(R.id.txt_total_credit);
+		mTxtTotalCredit.setValueText("0");
 		mListView=(XListView) findViewById(R.id.xListView);
 		mListView.setPullLoadEnable(false);
 		mListView.setPullRefreshEnable(true);
@@ -78,28 +76,34 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 		});
 		mListView.setAdapter(mAdapter);
 		
-		HRequestCallback<Respond> requestCallback=new HRequestCallback<Respond>() {
+		HRequestCallback<Respond<List<MyIntegral>>> requestCallback=new HRequestCallback<Respond<List<MyIntegral>>>() {
 			
 			@Override
 			public void onFail(Context c, String errorMsg) {
 				super.onFail(c, errorMsg);
 				onLoadComplete(mDataSource.size(), null);
 			}
+			@SuppressWarnings("unchecked")
 			@Override
-			public Respond parseJson(String jsonStr) {
-				System.out.println(jsonStr);
-				return null;
+			public Respond<List<MyIntegral>> parseJson(String jsonStr) {
+				java.lang.reflect.Type type = new TypeToken<Respond<List<MyIntegral>>>() {
+				}.getType();
+				return (Respond<List<MyIntegral>>) JSONParse.jsonToObject(jsonStr, type);
 			}
 			
 			@Override
-			public void onSuccess(Respond result) {
-				// TODO Auto-generated method stub
-				
+			public void onSuccess(Respond<List<MyIntegral>> result) {
+				if(result.isSuccess()){
+					mTxtTotalCredit.setValueText(result.getTotalCredit()+"");
+					onLoadComplete(result.getTotalPages(), result.getDatas());
+				}else{
+					showMsg(PersonalMyIntegralActivity.this, result.getMessage());
+				}
 			}
 		};
 		
-		access=new PersonalAccess(this, requestCallback);
-		access.getIntegralRecords(mBaseApp.getUserssid());
+		access=new PersonalAccess<List<MyIntegral>>(this, requestCallback);
+		access.getIntegralRecords(mBaseApp.getUserssid(),current_page,page_size);
 	}
 
 	@Override
@@ -116,7 +120,7 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 	}
 	
 	private void request() {
-		access.getIntegralRecords(mBaseApp.getUserssid());
+		access.getIntegralRecords(mBaseApp.getUserssid(),current_page,page_size);
 	}
 	/**
 	 * 
@@ -124,7 +128,7 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 	 * 2015-3-4 下午4:56:00
 	 * @TODO 加载完成
 	 */
-	public void  onLoadComplete(long totalSize,List<Map<String, String>> newDatas) {
+	public void  onLoadComplete(long totalPage,List<MyIntegral> newDatas) {
 		if(mDataSource==null) 
 			throw new NullPointerException("DataSource must be not null");
 		stopRefreshOrLoad();
@@ -136,13 +140,13 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 		}
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 		mListView.setRefreshTime(df.format(new Date()));
-		if(mDataSource!=null&&mDataSource.size()<totalSize){
+		if(mDataSource!=null&&current_page<totalPage){
 			mListView.setPullLoadEnable(true);
 		}else{
 			mListView.setPullLoadEnable(false);
 		}
 		mAdapter.notifyDataSetChanged();
-		if(totalSize==0){
+		if(mDataSource.size()==0){
 			showMsg(this, R.string.empty_data);
 		}
 	}

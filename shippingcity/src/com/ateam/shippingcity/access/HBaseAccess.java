@@ -13,9 +13,12 @@ import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGetHC4;
 import org.apache.http.client.methods.HttpPostHC4;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtilsHC4;
@@ -219,6 +222,55 @@ public class HBaseAccess<T> implements HURL{
 			Log.i("result",result);
 			return result;
 		} finally {
+			if(response!=null){
+				response.close();
+			}
+			httpclient.close();
+		}
+	}
+	
+	public String _get(String url, List<NameValuePair> nvps) throws Exception {
+		RequestConfig requestConfig=RequestConfig.custom()
+				.setConnectTimeout(10000)
+				.setSocketTimeout(10000)
+				.setConnectionRequestTimeout(10000)
+				.setStaleConnectionCheckEnabled(true)
+				.build();
+		CloseableHttpClient httpclient=HttpClients.custom()
+				.setDefaultRequestConfig(requestConfig)
+				.setRetryHandler(new HttpRequestRetryHandler() {//重连回调
+					
+					@Override
+					public boolean retryRequest(IOException exception, int executionCount,
+							HttpContext context) {
+						/*System.out.println("executionCount:"+executionCount);
+						if(executionCount<2) return true;*/
+						return false;//false表示不重连
+					}
+				}).build();
+		CloseableHttpResponse response = null;
+		try{
+			HttpGetHC4 request=new HttpGetHC4(url);
+			request.setConfig(requestConfig);
+			HttpParams params=new BasicHttpParams();
+			if(nvps!=null){
+				Log.i("NameValuePair", nvps.toString());
+				for (NameValuePair nameValuePair : nvps) {
+					params.setParameter(nameValuePair.getName(), nameValuePair.getValue());
+				}
+				request.setParams(params);
+			}
+			request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+			request.setHeader("Connection", "Keep-Alive");
+			response = httpclient.execute(request);
+			String result="";
+			if(response.getStatusLine().getStatusCode()==200){
+				HttpEntity entity = response.getEntity();
+				result=EntityUtilsHC4.toString(entity);
+			}
+			Log.i("result",result);
+			return result;
+		}finally{
 			if(response!=null){
 				response.close();
 			}

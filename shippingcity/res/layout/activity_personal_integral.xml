@@ -2,18 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/com.ateam.shippingcity">
+    android:orientation="vertical" 
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res/com.ateam.shippingcity">
     <com.ateam.shippingcity.widget.TextViewPair
+        android:id="@+id/txt_total_credit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:minHeight="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         app:nameText="积分总额"
-        app:nameSize="18sp"
+        app:nameSize="16sp"
         app:nameColor="#646464"
         app:valueText="150"
         app:valueSize="18sp"
         app:valueColor="#FFA027"
-       android:background="@color/white"
         />
     <View 
         android:layout_width="fill_parent"
@@ -21,6 +25,7 @@
         android:background="#E8E8E8"
         />
 	<com.ateam.shippingcity.widget.xlist.XListView
+	    android:background="#E8E8E8"
 	    android:id="@+id/xListView"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"

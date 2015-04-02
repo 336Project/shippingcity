@@ -45,6 +45,7 @@ public class HBaseActivity extends FragmentActivity{
 	private TextView mTitleView;
 	private TextView mErrorView;
 	private AnimationDrawable anim;
+	private Toast mToast;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -212,7 +213,14 @@ public class HBaseActivity extends FragmentActivity{
 	 */
 	public void onReload(){
 	}
-	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		if(mToast!=null){
+			mToast.cancel();
+			mToast=null;
+		}
+	}
 	/**
 	 * 
 	 * @author 李晓伟
@@ -222,10 +230,12 @@ public class HBaseActivity extends FragmentActivity{
 	 * @TODO 提示信息
 	 */
 	public void showMsg(Context c,String msg){
-		Toast.makeText(c, msg, Toast.LENGTH_SHORT).show();
+		mToast=Toast.makeText(c, msg, Toast.LENGTH_SHORT);
+		mToast.show();
 	}
 	public void showMsg(Context c,int resId){
-		Toast.makeText(c, resId, Toast.LENGTH_SHORT).show();
+		mToast=Toast.makeText(c, resId, Toast.LENGTH_SHORT);
+		mToast.show();
 	}
 	public ImageView getLeftIcon() {
 		return mLeftIcon;

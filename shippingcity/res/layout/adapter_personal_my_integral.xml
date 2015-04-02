@@ -3,23 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAEEF0"
-    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/com.ateam.shippingcity">
+    android:orientation="vertical" 
+    xmlns:app="http://schemas.android.com/apk/res/com.ateam.shippingcity">
     
 	<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@color/white"
-	    android:layout_marginTop="2dp"
+	    android:minHeight="50dp"
+	    android:layout_marginTop="0.5dp"
 	    >
 	    <com.ateam.shippingcity.widget.TextViewPair 
 	        android:id="@+id/txt_integral"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:minHeight="50dp"
+	        android:minHeight="60dp"
 	        app:nameText="推荐奖励"
 	        app:nameColor="#959595"
+	        app:nameSize="12sp"
 	        app:valueText="45"
 	        app:valueColor="#FFB04E"
+	        app:valueSize="14sp"
 	        android:layout_marginLeft="25dp"
 	        android:layout_marginRight="25dp"
 	        >
