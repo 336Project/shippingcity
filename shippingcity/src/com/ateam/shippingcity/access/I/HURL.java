@@ -20,4 +20,8 @@ public interface HURL {
 	 * 货盘区列表
 	 */
 	public static final String URL_PALLET_LIST="http://"+IP+"/mobile/index.php?route=entrust_index";
+	/**
+	 * 我的报价列表
+	 */
+	public static final String URL_MYQUOTE_LIST="http://"+IP+"/mobile/index.php?route=my";
 }
