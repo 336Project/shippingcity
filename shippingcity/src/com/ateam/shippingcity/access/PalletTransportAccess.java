@@ -33,7 +33,7 @@ public class PalletTransportAccess <T> extends HBaseAccess<Respond<T>>{
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("page", page+""));
 		nvps.add(new BasicNameValuePair("pagesize", pagesize+""));
-		execute(URL_PERSONAL_CENTER, nvps);
+		execute(URL_PALLET_LIST, nvps);
 	};
 	
 }

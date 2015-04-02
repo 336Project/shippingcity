@@ -16,4 +16,8 @@ public interface HURL {
 	 * 积分
 	 */
 	public static final String URL_PERSONAL_CREDIT="http://"+IP+"/mobile/index.php?route=credit";
+	/**
+	 * 货盘区列表
+	 */
+	public static final String URL_PALLET_LIST="http://"+IP+"/mobile/index.php?route=entrust_index";
 }
