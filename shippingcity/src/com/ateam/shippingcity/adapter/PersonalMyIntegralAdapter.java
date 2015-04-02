@@ -1,9 +1,9 @@
 package com.ateam.shippingcity.adapter;
 
 import java.util.List;
-import java.util.Map;
 
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.model.MyIntegral;
 import com.ateam.shippingcity.widget.TextViewPair;
 
 import android.content.Context;
@@ -13,17 +13,17 @@ import android.content.Context;
  * 2015-3-28 下午4:01:33
  * @TODO 我的积分适配器
  */
-public class PersonalMyIntegralAdapter extends HBaseAdapter<Map<String, String>> {
+public class PersonalMyIntegralAdapter extends HBaseAdapter<MyIntegral> {
 
-	public PersonalMyIntegralAdapter(Context c, List<Map<String, String>> datas) {
+	public PersonalMyIntegralAdapter(Context c, List<MyIntegral> datas) {
 		super(c, datas);
 	}
 
 	@Override
-	public void convert(ViewHolder holder, Map<String, String> bean) {
+	public void convert(ViewHolder holder, MyIntegral bean) {
 		TextViewPair pair=holder.getView(R.id.txt_integral);
-		pair.setNameText(bean.get("title"));
-		pair.setValueText(bean.get("integral"));
+		pair.setNameText(bean.getReason());
+		pair.setValueText(bean.getAmount());
 	}
 
 	@Override

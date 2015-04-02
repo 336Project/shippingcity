@@ -39,7 +39,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("action", "login"));
 		nvps.add(new BasicNameValuePair("imei", SysUtil.getIMEI(context)));
 		nvps.add(new BasicNameValuePair("Msubmit", "提交"));
-		execute(URL_PERSONAL_CENTER, nvps);
+		execute(URL_PERSONAL_MEMBER, nvps);
 	}
 	/**
 	 * 
@@ -52,7 +52,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("userssid", userssid));
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("action", "userinfo"));
-		execute(URL_PERSONAL_CENTER, nvps);
+		execute(URL_PERSONAL_MEMBER, nvps);
 	}
 	/**
 	 * 
@@ -66,7 +66,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("step", "getMobileCode"));
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("action", "register"));
-		execute(URL_PERSONAL_CENTER, nvps);
+		execute(URL_PERSONAL_MEMBER, nvps);
 	}
 	/**
 	 * 
@@ -82,7 +82,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("step", "checkMobileCode"));
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("action", "register"));
-		execute(URL_PERSONAL_CENTER, nvps);
+		execute(URL_PERSONAL_MEMBER, nvps);
 	}
 	/**
 	 * 
@@ -106,7 +106,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("post[truename]", truename));
 		nvps.add(new BasicNameValuePair("post[company]", company));
 		nvps.add(new BasicNameValuePair("post[invitermobile]", invitermobile));
-		execute(URL_PERSONAL_CENTER, nvps);
+		execute(URL_PERSONAL_MEMBER, nvps);
 	}
 	/**
 	 * 
@@ -114,12 +114,14 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 	 * @param userssid
 	 * @TODO 获取积分记录
 	 */
-	public void getIntegralRecords(String userssid){
+	public void getIntegralRecords(String userssid,int page,int pagesize){
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("userssid", userssid));
 		nvps.add(new BasicNameValuePair("action", "get"));
-		execute(URL_PERSONAL_CENTER, nvps);
+		nvps.add(new BasicNameValuePair("page", page+""));
+		nvps.add(new BasicNameValuePair("pagesize", pagesize+""));
+		execute(URL_PERSONAL_CREDIT, nvps);
 	}
 	/**
 	 * 
@@ -132,7 +134,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("userssid", userssid));
 		nvps.add(new BasicNameValuePair("action", "getcreditrule"));
-		execute(URL_PERSONAL_CENTER, nvps);
+		execute(URL_PERSONAL_CREDIT, nvps);
 	}
 	/**
 	 * 
@@ -149,6 +151,6 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("post[hidden]", "1"));
 		nvps.add(new BasicNameValuePair("post[content]", content));
 		nvps.add(new BasicNameValuePair("Msubmit", "提交"));
-		execute(URL_PERSONAL_CENTER, nvps);
+		execute(URL_PERSONAL_MEMBER, nvps);
 	}
 }
