@@ -1,11 +1,22 @@
 package com.ateam.shippingcity.activity;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Map;
+
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.access.PersonalAccess;
+import com.ateam.shippingcity.access.I.HRequestCallback;
+import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.model.User;
+import com.ateam.shippingcity.utils.JSONParse;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -18,6 +29,9 @@ import android.widget.TextView;
  * @TODO 个人信息
  */
 public class PersonalInfoActivity extends HBaseActivity implements OnClickListener{
+	public static final int REQ_MODIFY_MOBILE=100;
+	public static final int REQ_MODIFY_NAME=101;
+	public static final int REQ_MODIFY_ADDRESS=102;
 	public static final int REQ_CODE_P=1000;
 	public static final int REQ_CODE_I=1001;
 	public static final int REQ_CODE_W=1002;
@@ -51,7 +65,9 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 		mTxtMobile=(TextView) findViewById(R.id.txt_mobile);
 		mTxtMobile.setText(user.getMobile());//手机号
 		mTxtAddress=(TextView) findViewById(R.id.txt_address);
-		mTxtAddress.setText(user.getCom_address());//公司地址
+		if(!TextUtils.isEmpty(user.getCom_address())){
+			mTxtAddress.setText(user.getCom_address());//公司地址
+		}
 		ImageView avatar=(ImageView) findViewById(R.id.iv_avatar);//头像
 		ImageLoader.getInstance().displayImage(user.getAvatar(), avatar);
 		ImageLoader.getInstance().displayImage(user.getVpicture().get(0), (ImageView)findViewById(R.id.iv_vtruename));//身份证
@@ -68,14 +84,14 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.layout_modify_mobile://修改手机号
-			Bundle b=new Bundle();
-			b.putString("mobile", mTxtMobile.getText().toString());
-			jump(this, PersonalModifyMobileActivity.class,b);
+			Intent intent=new Intent(this, PersonalModifyMobileActivity.class);
+			intent.putExtra("mobile", mTxtMobile.getText().toString());
+			startActivityForResult(intent, REQ_MODIFY_MOBILE);
 			break;
 		case R.id.layout_modify_name://修改名字
-			b=new Bundle();
-			b.putString("name", mTxtUserName.getText().toString());
-			jump(this, PersonalModifyNameActivity.class,b);
+			intent=new Intent(this, PersonalModifyNameActivity.class);
+			intent.putExtra("name", mTxtUserName.getText().toString());
+			startActivityForResult(intent, REQ_MODIFY_NAME);
 			break;
 		case R.id.layout_pick_portrait://修改头像
 			startActivityForResult(new Intent(this, PictureSelectDialogActivity.class), REQ_CODE_P);
@@ -93,9 +109,9 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			jump(this, PersonalModifyPasswordActivity.class);
 			break;
 		case R.id.layout_modify_address://修改公司地址
-			b=new Bundle();
-			b.putString("address", mTxtAddress.getText().toString());
-			jump(this, PersonalModifyAddressActivity.class,b);
+			intent=new Intent(this, PersonalModifyAddressActivity.class);
+			intent.putExtra("address", mTxtAddress.getText().toString());
+			startActivityForResult(intent, REQ_MODIFY_ADDRESS);
 			break;
 		default:
 			break;
@@ -106,15 +122,57 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 	protected void onActivityResult(int requestCode , int resultCode , Intent data) {
 		if(resultCode==RESULT_OK){
 			if(requestCode==REQ_CODE_P){//头像
-				
+				Uri uri=data.getData();
+				uploadAvatar(uri);
 			}else if(requestCode==REQ_CODE_I){//身份证
 				
 			}else if(requestCode==REQ_CODE_W){//工牌
 				
 			}else if(requestCode==REQ_CODE_B){//营业执照
 				
+			}else if(requestCode==REQ_MODIFY_MOBILE){//修改手机号
+				mTxtMobile.setText(data.getStringExtra("mobile"));
+			}else if(requestCode==REQ_MODIFY_NAME){//修改名称
+				mTxtUserName.setText(data.getStringExtra("name"));
+			}else if(requestCode==REQ_MODIFY_ADDRESS){//修改公司地址
+				mTxtAddress.setText(data.getStringExtra("address"));
 			}
-			System.out.println("uri----"+data.getData().toString());
+			//System.out.println("uri----"+data.getData().toString());
+		}
+	}
+	/**
+	 * 
+	 * 2015-4-3 下午3:38:17
+	 * @param uri
+	 * @TODO 上传头像
+	 */
+	private void uploadAvatar(Uri uri){
+		if(uri!=null){
+			ContentResolver cr=getContentResolver();
+			InputStream is=null;
+			try {
+				is=cr.openInputStream(uri);
+			} catch (FileNotFoundException e) {
+			}
+			if(is!=null){
+				HRequestCallback<Respond<Map<String, String>>> requestCallback=new HRequestCallback<Respond<Map<String, String>>>() {
+					
+					@SuppressWarnings("unchecked")
+					@Override
+					public Respond<Map<String, String>> parseJson(String jsonStr) {
+						return (Respond<Map<String, String>>) JSONParse.jsonToBean(jsonStr, Respond.class);
+					}
+					
+					@Override
+					public void onSuccess(Respond<Map<String, String>> result) {
+						showMsg(PersonalInfoActivity.this, result.getMessage());
+					}
+				};
+				PersonalAccess<Map<String, String>> access=new PersonalAccess<Map<String,String>>(this,requestCallback);
+				access.modifyAvatar(mBaseApp.getUserssid(), is);
+			}
+		}else{
+			showMsg(this, "图片错误");
 		}
 	}
 }

@@ -1,22 +1,20 @@
 package com.ateam.shippingcity.activity;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.access.HBaseAccess;
+import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.model.IntegralRule;
+import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.widget.TextViewPair;
+import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,29 +39,32 @@ public class PersonalIntegralRuleActivity extends HBaseActivity {
 	}
 
 	private void request() {
-		HRequestCallback<IntegralRule> requestCallback=new HRequestCallback<IntegralRule>() {
+		HRequestCallback<Respond<List<IntegralRule>>> requestCallback=new HRequestCallback<Respond<List<IntegralRule>>>() {
 			
 			public void onFail(Context c, String errorMsg) {
 				super.onFail(c, errorMsg);
 				onLoadFail();
 			}
+			@SuppressWarnings("unchecked")
 			@Override
-			public IntegralRule parseJson(String jsonStr) {
-				
-				return (IntegralRule) JSONParse.jsonToBean(jsonStr, IntegralRule.class);
+			public Respond<List<IntegralRule>> parseJson(String jsonStr) {
+				java.lang.reflect.Type type = new TypeToken<Respond<List<IntegralRule>>>() {
+				}.getType();
+				return (Respond<List<IntegralRule>>) JSONParse.jsonToObject(jsonStr, type);
 			}
 			
 			@Override
-			public void onSuccess(IntegralRule result) {
-					setupView(result);
+			public void onSuccess(Respond<List<IntegralRule>> result) {
+				if(result.isSuccess()){
+					setupView(result.getDatas());
+					/*for (IntegralRule rule : result.getDatas()) {
+						System.out.println(rule.toString());
+					}*/
+				}
 			}
 		};
-		HBaseAccess<IntegralRule> access=new HBaseAccess<IntegralRule>(this, requestCallback);
-		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
-		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
-		nvps.add(new BasicNameValuePair("userssid", mBaseApp.getUserssid()));
-		nvps.add(new BasicNameValuePair("action", "getcreditrule"));
-		access.execute(HBaseAccess.URL_PERSONAL_CREDIT, nvps);
+		PersonalAccess<List<IntegralRule>> access=new PersonalAccess<List<IntegralRule>>(this, requestCallback);
+		access.getCreditRule(mBaseApp.getUserssid());
 		
 	}
 	/**
@@ -72,8 +73,19 @@ public class PersonalIntegralRuleActivity extends HBaseActivity {
 	 * @param rule
 	 * @TODO 设置规则详情
 	 */
-	private void setupView(IntegralRule rule){
-		if(rule!=null){
+	private void setupView(List<IntegralRule> rules){
+		if(rules!=null){
+			for (IntegralRule rule : rules) {
+				if(!TextUtils.isEmpty(rule.getCredit())){
+					View view=LayoutInflater.from(this).inflate(R.layout.item_integral_rule, null);
+					TextViewPair pair=(TextViewPair) view.findViewById(R.id.txt_rule);
+					pair.setNameText(rule.getName());
+					pair.setValueText(rule.getCredit());
+					mLayout.addView(view);
+				}
+			}
+		}
+		/*if(rule!=null){
 			String value;
 			View view;
 			value=rule.getCredit_edit();
@@ -116,6 +128,6 @@ public class PersonalIntegralRuleActivity extends HBaseActivity {
 				pair.setValueText(value);
 				mLayout.addView(view);
 			}
-		}
+		}*/
 	}
 }

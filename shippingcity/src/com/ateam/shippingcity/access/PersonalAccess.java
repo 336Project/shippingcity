@@ -1,7 +1,10 @@
 package com.ateam.shippingcity.access;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -177,13 +180,14 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 	 * @param mobile_code
 	 * @TODO 手机修改->验证手机验证码
 	 */
-	public void checkGeneralMobileMode(String userssid,String mobile_code){
+	public void checkGeneralMobileMode(String userssid,String mobile,String mobile_code){
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("action", "generalmobilecode"));
 		nvps.add(new BasicNameValuePair("using", "changemobile"));
 		nvps.add(new BasicNameValuePair("type", "validate"));
 		nvps.add(new BasicNameValuePair("mobile_code", mobile_code));
+		nvps.add(new BasicNameValuePair("mobile", mobile));
 		nvps.add(new BasicNameValuePair("userssid", userssid));
 		execute(URL_PERSONAL_MEMBER, nvps);
 	}
@@ -218,4 +222,54 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("userssid", userssid));
 		execute(URL_PERSONAL_MEMBER, nvps);
 	}
+	/**
+	 * 
+	 * 2015-4-3 下午1:42:36
+	 * @param userssid
+	 * @param address
+	 * @TODO 修改公司地址
+	 */
+	public void modifyAddress(String userssid,String address){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "userinfo"));
+		nvps.add(new BasicNameValuePair("Msubmit", "提交"));
+		nvps.add(new BasicNameValuePair("com_address", address));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-4-3 下午1:51:08
+	 * @param userssid
+	 * @param password
+	 * @param newpassword
+	 * @TODO 登录后修改密码
+	 */
+	public void modifyPassword(String userssid,String password,String newpassword){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "loginchangepw"));
+		nvps.add(new BasicNameValuePair("password", password));
+		nvps.add(new BasicNameValuePair("newpassword", newpassword));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-4-3 下午2:01:28
+	 * @param userssid
+	 * @param img
+	 * @TODO 修改头像
+	 */
+	public void modifyAvatar(String userssid,InputStream img){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		Map<String, InputStream> file=new HashMap<String, InputStream>();
+		file.put("img", img);
+		execute(URL_PERSONAL_UPLOAD, nvps,file);
+	}
+	
+	
 }

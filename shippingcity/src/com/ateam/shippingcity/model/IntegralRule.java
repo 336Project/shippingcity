@@ -11,7 +11,9 @@ import java.io.Serializable;
 public class IntegralRule implements Serializable{
 	private static final long serialVersionUID = 1465998800033704359L;
 	
-	private String credit_edit;//完善个人资料奖励
+	private String name;
+	private String credit;
+	/*private String credit_edit;//完善个人资料奖励
 	private String credit_companyedit;//完善公司资料奖励
 	private String credit_login;//24小时登录奖励
 	private String credit_user;//引导一位会员注册奖励
@@ -257,5 +259,29 @@ public class IntegralRule implements Serializable{
 
 	public void setCredit_exchange(String credit_exchange) {
 		this.credit_exchange = credit_exchange;
+	}*/
+
+	public String getName() {
+		return name.replace("奖励", "");
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCredit() {
+		return credit;
+	}
+
+	public void setCredit(String credit) {
+		if(credit!=null){
+			credit=new String(credit.getBytes());
+		}
+		this.credit = credit;
+	}
+
+	@Override
+	public String toString() {
+		return "IntegralRule [name=" + name + ", credit=" + credit + "]";
 	}
 }

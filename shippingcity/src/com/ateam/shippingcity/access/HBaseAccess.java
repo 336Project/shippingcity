@@ -1,9 +1,12 @@
 package com.ateam.shippingcity.access;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -15,6 +18,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGetHC4;
 import org.apache.http.client.methods.HttpPostHC4;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.params.BasicHttpParams;
@@ -111,11 +115,17 @@ public class HBaseAccess<T> implements HURL{
 	 * @param nvps
 	 * @TODO 执行
 	 */
+	public void execute(String url,List<NameValuePair> nvps,Map<String, InputStream> files){
+		if(isShow()){
+			dialog.show();
+		}
+		executorService.execute(new TaskRunnable(url, nvps,files));
+	}
 	public void execute(String url,List<NameValuePair> nvps){
 		if(isShow()){
 			dialog.show();
 		}
-		executorService.execute(new TaskRunnable(url, nvps));
+		executorService.execute(new TaskRunnable(url, nvps,null));
 	}
 	protected void execute(String url){
 		execute(url, null);
@@ -130,9 +140,11 @@ public class HBaseAccess<T> implements HURL{
 	class TaskRunnable implements Runnable{
 		private String url;
 		private List<NameValuePair> nvps;
-		TaskRunnable(String url, List<NameValuePair> nvps){
+		private Map<String, InputStream> files;
+		TaskRunnable(String url, List<NameValuePair> nvps,Map<String, InputStream> files){
 			this.nvps=nvps;
 			this.url=url;
+			this.files=files;
 		}
 		@Override
 		public void run() {
@@ -141,7 +153,12 @@ public class HBaseAccess<T> implements HURL{
 				if(!SysUtil.isNetworkConnected(mContext)){
 					msg.what=HRequestCallback.RESULT_NETWORK_EXCEPTION;
 				}else{
-					String result=_post(url, nvps);
+					String result="";
+					if(files==null){
+						result=_post(url, nvps);
+					}else{
+						result=_postFile(url, nvps, files);
+					}
 					if(!TextUtils.isEmpty(result)){
 						if(callback!=null){
 							T t=callback.parseJson(result);
@@ -218,7 +235,9 @@ public class HBaseAccess<T> implements HURL{
 			if(response.getStatusLine().getStatusCode()==200){
 				HttpEntity entity = response.getEntity();
 				result=EntityUtilsHC4.toString(entity);
+				entity.consumeContent();
 			}
+			request.abort();
 			Log.i("result",result);
 			return result;
 		} finally {
@@ -271,6 +290,71 @@ public class HBaseAccess<T> implements HURL{
 			Log.i("result",result);
 			return result;
 		}finally{
+			if(response!=null){
+				response.close();
+			}
+			httpclient.close();
+		}
+	}
+	/**
+	 * 
+	 * 2015-4-3 下午3:27:24
+	 * @param url
+	 * @param nvps
+	 * @param files
+	 * @return
+	 * @throws Exception
+	 * @TODO post文件资源上传
+	 */
+	protected String _postFile(String url,List<NameValuePair> nvps,Map<String, InputStream> files)throws Exception{
+		RequestConfig requestConfig=RequestConfig.custom()
+				.setConnectTimeout(10000)
+				.setSocketTimeout(10000)
+				.setConnectionRequestTimeout(10000)
+				.setStaleConnectionCheckEnabled(true)
+				.build();
+		CloseableHttpClient httpclient=HttpClients.custom()
+				.setDefaultRequestConfig(requestConfig)
+				.setRetryHandler(new HttpRequestRetryHandler() {//重连回调
+					
+					@Override
+					public boolean retryRequest(IOException exception, int executionCount,
+							HttpContext context) {
+						/*System.out.println("executionCount:"+executionCount);
+						if(executionCount<2) return true;*/
+						return false;//false表示不重连
+					}
+				}).build();
+		CloseableHttpResponse response = null;
+		try {
+			HttpPostHC4 request = new HttpPostHC4(url);
+			request.setConfig(requestConfig);
+			MultipartEntityBuilder builder=MultipartEntityBuilder.create();
+			if(nvps!=null){
+				for (NameValuePair pair : nvps) {
+					builder.addTextBody(pair.getName(), pair.getValue());
+				}
+			}
+			if(files!=null){
+				Set<String> keys=files.keySet();
+				for (String key : keys) {
+					builder.addBinaryBody(key, files.get(key));
+				}
+			}
+			request.setEntity(builder.build());
+			request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+			request.setHeader("Connection", "Keep-Alive");
+			response = httpclient.execute(request);
+			String result="";
+			if(response.getStatusLine().getStatusCode()==200){
+				HttpEntity entity = response.getEntity();
+				result=EntityUtilsHC4.toString(entity);
+				entity.consumeContent();
+			}
+			request.abort();
+			Log.i("result",result);
+			return result;
+		} finally {
 			if(response!=null){
 				response.close();
 			}

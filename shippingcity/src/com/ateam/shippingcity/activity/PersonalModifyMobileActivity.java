@@ -10,6 +10,7 @@ import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.widget.HAutoCompleteTextView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -39,15 +40,29 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 	private PersonalAccess<Map<String, String>> access;
 	private int step=STEP1;
 	private String mobile="";
+	private TextView mTxtMessage;
+	
+	private boolean isModifySuccess=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setActionBarTitle("手机号修改");
 		setBaseContentView(R.layout.activity_personal_modify_mobile);
-		
+		getLeftIcon().setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				onBackPressed();
+			}
+		});
+		init();
+	}
+	
+	private void init(){
 		mEditMobile=(HAutoCompleteTextView) findViewById(R.id.et_mobile);
 		mEditCode=(HAutoCompleteTextView) findViewById(R.id.et_code);
-		mEditMobile.setText(getIntent().getExtras().get("mobile").toString());
+		mEditMobile.setText(getIntent().getStringExtra("mobile"));
+		mobile=mEditMobile.getText().toString();
 		mTxtGetCode=(TextView) findViewById(R.id.txt_get_code);
 		mTxtGetCode.setOnClickListener(this);
 		mLayoutModify=(LinearLayout) findViewById(R.id.layout_modify);
@@ -56,6 +71,7 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 		mLayoutSuccess.setVisibility(View.GONE);
 		mBtnModify=(Button) findViewById(R.id.btn_modify_mobile);
 		mBtnModify.setOnClickListener(this);
+		mTxtMessage=(TextView) findViewById(R.id.txt_message);
 		initRequset();
 	}
 	/**
@@ -97,8 +113,10 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 				case STEP3:
 					if(result.isSuccess()){
 						mBaseApp.getUser().setMobile(mobile);
+						mTxtMessage.setText("您新的手机号"+mobile+"\n已绑定成功!");
 						mLayoutModify.setVisibility(View.GONE);
 						mLayoutSuccess.setVisibility(View.VISIBLE);
+						isModifySuccess=true;
 					}else{
 						showMsg(PersonalModifyMobileActivity.this, result.getMessage());
 					}
@@ -160,7 +178,7 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 				return;
 			}
 			step=STEP2;
-			access.checkGeneralMobileMode(mBaseApp.getUserssid(), mEditCode.getText().toString());
+			access.checkGeneralMobileMode(mBaseApp.getUserssid(),mobile, mEditCode.getText().toString());
 			break;
 		default:
 			break;
@@ -176,4 +194,15 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 		codeTimer.start();
 		access.getGeneralMobileMode(mBaseApp.getUserssid(), mobile);
 	}
+	
+	@Override
+	public void onBackPressed() {
+		if(isModifySuccess){
+			Intent data=new Intent();
+			data.putExtra("mobile", mobile);
+			setResult(RESULT_OK, data);
+		}
+		finish();
+	}
+	
 }

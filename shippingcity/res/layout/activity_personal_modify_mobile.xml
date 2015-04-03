@@ -86,10 +86,10 @@
         android:orientation="vertical" >
         
         <TextView 
+            android:id="@+id/txt_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/ic_launcher"
-            android:text="您新的手机号186-6313-1310\n已绑定成功!"
             android:gravity="center"
             android:textColor="#A4A4A4"
             />

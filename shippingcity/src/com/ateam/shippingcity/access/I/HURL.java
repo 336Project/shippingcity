@@ -17,6 +17,10 @@ public interface HURL {
 	 */
 	public static final String URL_PERSONAL_CREDIT="http://"+IP+"/mobile/index.php?route=credit";
 	/**
+	 * 头像上传
+	 */
+	public static final String URL_PERSONAL_UPLOAD="http://"+IP+"/mobile/index.php?route=upload";
+	/**
 	 * 货盘区列表
 	 */
 	public static final String URL_PALLET_LIST="http://"+IP+"/mobile/index.php?route=entrust_index";
