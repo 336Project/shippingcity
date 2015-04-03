@@ -1,22 +1,31 @@
 package com.ateam.shippingcity.fragment;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
+import com.ateam.shippingcity.access.MyQuoteAccess;
+import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.MyQuoteHistoryActivity;
 import com.ateam.shippingcity.activity.MyQuoteSeaTransportFCLActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToHistoryAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
+import com.ateam.shippingcity.model.MyQuoteToConfirm;
 import com.ateam.shippingcity.model.MyQuoteToHistory;
+import com.ateam.shippingcity.model.PalletTransport;
+import com.ateam.shippingcity.model.Respond;
+import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
 
 @SuppressLint("ValidFragment")
@@ -45,7 +54,6 @@ public class MyQuoteToHistoryFragment extends HBaseXListViewFragment implements 
 	}
 	@Override
 	public BaseAdapter getAdapter() {
-		// TODO Auto-generated method stub
 		return mAdapter;
 	}
 
@@ -61,17 +69,44 @@ public class MyQuoteToHistoryFragment extends HBaseXListViewFragment implements 
 		initRequest();
 	}
 	private void initRequest() {
-		for (int i = 0; i < 11; i++) {	
-			MyQuoteToHistory myQuoteToHistory=new MyQuoteToHistory();
-			myQuoteToHistory.setBoxType("整箱");
-			myQuoteToHistory.setPalletDescribe("真是一群不容易的人啊 。，宅搜的金发来看；萨卡发发；了");
-			myQuoteToHistory.setPlaceBegin("HONGKONG"+i);
-			myQuoteToHistory.setPlaceEnd("ALEXANDRIA"+i);
-			myQuoteToHistory.setTransportTimeBegin(""+i);
-			myQuoteToHistory.setTransportTimeEnd(""+i+i);
-			myQuoteToHistory.setTransportType("海运");
-			dataList.add(myQuoteToHistory);
-		}
+//		for (int i = 0; i < 11; i++) {	
+//			MyQuoteToHistory myQuoteToHistory=new MyQuoteToHistory();
+//			myQuoteToHistory.setBoxType("整箱");
+//			myQuoteToHistory.setPalletDescribe("真是一群不容易的人啊 。，宅搜的金发来看；萨卡发发；了");
+//			myQuoteToHistory.setPlaceBegin("HONGKONG"+i);
+//			myQuoteToHistory.setPlaceEnd("ALEXANDRIA"+i);
+//			myQuoteToHistory.setTransportTimeBegin(""+i);
+//			myQuoteToHistory.setTransportTimeEnd(""+i+i);
+//			myQuoteToHistory.setTransportType("海运");
+//			dataList.add(myQuoteToHistory);
+//		}
+		HRequestCallback<Respond<MyQuoteToHistory>> requestCallback = new HRequestCallback<Respond<MyQuoteToHistory>>() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public Respond<MyQuoteToHistory> parseJson(String jsonStr) {
+				Type type = new com.google.gson.reflect.TypeToken<Respond<PalletTransport>>() {
+				}.getType();
+				return (Respond<MyQuoteToHistory>) JSONParse.jsonToObject(
+						jsonStr, type);
+			}
+
+			@Override
+			public void onSuccess(Respond<MyQuoteToHistory> result) {
+				Log.e("", "" + result.toString());
+				if (result.getDatas() != null) {
+
+				}
+			}
+			@Override
+			public void onFail(Context c, String errorMsg) {
+				super.onFail(c, errorMsg);
+			}
+		};
+		MyQuoteAccess<MyQuoteToHistory> access = new MyQuoteAccess<MyQuoteToHistory>(getActivity(),
+				requestCallback);
+		access.setIsShow(false);
+		access.getMyQuoteList(mBaseApp.getUserssid(), "1", current_page,
+				page_size);
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

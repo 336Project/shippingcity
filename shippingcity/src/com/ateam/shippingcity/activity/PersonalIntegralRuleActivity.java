@@ -43,7 +43,6 @@ public class PersonalIntegralRuleActivity extends HBaseActivity {
 	private void request() {
 		HRequestCallback<IntegralRule> requestCallback=new HRequestCallback<IntegralRule>() {
 			
-			@Override
 			public void onFail(Context c, String errorMsg) {
 				super.onFail(c, errorMsg);
 				onLoadFail();

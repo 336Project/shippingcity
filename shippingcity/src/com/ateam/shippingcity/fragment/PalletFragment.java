@@ -60,7 +60,6 @@ public class PalletFragment extends Fragment {
 		TabPageIndicator mTabIndicator= (TabPageIndicator)view.findViewById(R.id.tab_indicator);
 		mTabIndicator.setViewPager(tabPager);
 	}
-	
 	/**
 	 * 获取片段
 	 * @param type 
@@ -73,5 +72,4 @@ public class PalletFragment extends Fragment {
 		pallet.setArguments(bundle); 
 		return pallet;
 	}
-	
 }
