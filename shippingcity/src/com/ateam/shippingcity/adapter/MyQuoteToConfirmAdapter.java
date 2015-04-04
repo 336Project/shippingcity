@@ -25,23 +25,32 @@ public class MyQuoteToConfirmAdapter extends HBaseAdapter<MyQuoteToConfirm>{
 		super(c, datas);
 		this.c=c;
 	}
-
 	@Override
 	public void convert(ViewHolder holder, MyQuoteToConfirm bean) {
 		// TODO Auto-generated method stub
-		((TextView)holder.getView(R.id.tv_boxType)).setText(bean.getBoxType().toString());
-		((TextView)holder.getView(R.id.tv_placeBegin)).setText(bean.getPlaceBegin().toString());
-		((TextView)holder.getView(R.id.tv_placeEnd)).setText(bean.getPlaceEnd().toString());
-		((TextView)holder.getView(R.id.tv_transportType)).setText(bean.getTransportType().toString());
-		((TextView)holder.getView(R.id.tv_transportTimeBegin)).setText(bean.getTransportTimeBegin().toString());
-		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.getTransportTimeEnd().toString());
-		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(bean.getPalletDescribe().toString());
+//		((TextView)holder.getView(R.id.tv_boxType)).setText(bean.getBoxType().toString());
+//		((TextView)holder.getView(R.id.tv_placeBegin)).setText(bean.getPlaceBegin().toString());
+//		((TextView)holder.getView(R.id.tv_placeEnd)).setText(bean.getPlaceEnd().toString());
+//		((TextView)holder.getView(R.id.tv_transportType)).setText(bean.getTransportType().toString());
+		((TextView)holder.getView(R.id.tv_initiation)).setText(bean.getInitiation());
+		((TextView)holder.getView(R.id.tv_destination)).setText(bean.getDestination());
+		String shipping_type = bean.getShipping_type();
+		if(shipping_type.equals("1")){
+			((TextView)holder.getView(R.id.tv_shipping)).setText("海运");
+		}
+		else if(shipping_type.equals("2")){
+			((TextView)holder.getView(R.id.tv_shipping)).setText("空运");
+		}
+		else{
+			((TextView)holder.getView(R.id.tv_shipping)).setText("陆运");
+		}
+		((TextView)holder.getView(R.id.tv_startime)).setText(bean.getStartime());
+		((TextView)holder.getView(R.id.tv_endtime)).setText(bean.getEndtime());
+//		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.getTransportTimeEnd().toString());
+//		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(bean.getPalletDescribe().toString());
 	}
-
 	@Override
 	public int getResId() {
-		// TODO Auto-generated method stub
 		return R.layout.item_my_quote_to_confirm;
 	}
-
 }

@@ -14,14 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 import com.ateam.shippingcity.access.MyQuoteAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.MyQuoteHistoryActivity;
-import com.ateam.shippingcity.activity.MyQuoteSeaTransportFCLActivity;
+import com.ateam.shippingcity.activity.MyQuoteToConfirmActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToHistoryAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
-import com.ateam.shippingcity.model.MyQuoteToConfirm;
+import com.ateam.shippingcity.model.MyQuoteToHistory;
 import com.ateam.shippingcity.model.MyQuoteToHistory;
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.model.Respond;
@@ -80,21 +81,27 @@ public class MyQuoteToHistoryFragment extends HBaseXListViewFragment implements 
 //			myQuoteToHistory.setTransportType("海运");
 //			dataList.add(myQuoteToHistory);
 //		}
-		HRequestCallback<Respond<MyQuoteToHistory>> requestCallback = new HRequestCallback<Respond<MyQuoteToHistory>>() {
+		HRequestCallback<Respond<List<MyQuoteToHistory>>> requestCallback = new HRequestCallback<Respond<List<MyQuoteToHistory>>>() {
 			@SuppressWarnings("unchecked")
 			@Override
-			public Respond<MyQuoteToHistory> parseJson(String jsonStr) {
-				Type type = new com.google.gson.reflect.TypeToken<Respond<PalletTransport>>() {
+			public Respond<List<MyQuoteToHistory>> parseJson(String jsonStr) {
+				Type type = new com.google.gson.reflect.TypeToken<Respond<List<PalletTransport>>>() {
 				}.getType();
-				return (Respond<MyQuoteToHistory>) JSONParse.jsonToObject(
-						jsonStr, type);
+				return (Respond<List<MyQuoteToHistory>>) JSONParse.jsonToObject(jsonStr, type);
 			}
 
 			@Override
-			public void onSuccess(Respond<MyQuoteToHistory> result) {
-				Log.e("", "" + result.toString());
-				if (result.getDatas() != null) {
-
+			public void onSuccess(Respond<List<MyQuoteToHistory>> result) {
+//				Log.e("", "" + result.toString());
+//				if (result.getDatas() != null) {
+//					
+//				}
+				if(result.isSuccess()){
+					Log.e("result.getDatas()", "result.getDatas():"+result.getDatas());
+//					setupView(result.getDatas());
+					/*for (IntegralRule rule : result.getDatas()) {
+						System.out.println(rule.toString());
+					}*/
 				}
 			}
 			@Override
@@ -102,10 +109,9 @@ public class MyQuoteToHistoryFragment extends HBaseXListViewFragment implements 
 				super.onFail(c, errorMsg);
 			}
 		};
-		MyQuoteAccess<MyQuoteToHistory> access = new MyQuoteAccess<MyQuoteToHistory>(getActivity(),
+		MyQuoteAccess<List<MyQuoteToHistory>> access = new MyQuoteAccess<List<MyQuoteToHistory>>(getActivity(),
 				requestCallback);
-		access.setIsShow(false);
-		access.getMyQuoteList(mBaseApp.getUserssid(), "1", current_page,
+		access.getMyQuoteList(mBaseApp.getUserssid(), "0", current_page,
 				page_size);
 	}
 	@Override

@@ -65,7 +65,6 @@ public class PersonalIntegralRuleActivity extends HBaseActivity {
 		};
 		PersonalAccess<List<IntegralRule>> access=new PersonalAccess<List<IntegralRule>>(this, requestCallback);
 		access.getCreditRule(mBaseApp.getUserssid());
-		
 	}
 	/**
 	 * 

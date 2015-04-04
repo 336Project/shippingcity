@@ -30,14 +30,14 @@ public class MyQuoteToHistoryAdapter extends HBaseAdapter<MyQuoteToHistory>{
 	@Override
 	public void convert(ViewHolder holder, MyQuoteToHistory bean) {
 		// TODO Auto-generated method stub
-		((TextView)holder.getView(R.id.tv_boxType)).setText(bean.getBoxType().toString());
-		((TextView)holder.getView(R.id.tv_placeBegin)).setText(bean.getPlaceBegin().toString());
-		((TextView)holder.getView(R.id.tv_placeEnd)).setText(bean.getPlaceEnd().toString());
-		((TextView)holder.getView(R.id.tv_transportType)).setText(bean.getTransportType().toString());
-		((TextView)holder.getView(R.id.tv_transportTimeBegin)).setText(bean.getTransportTimeBegin().toString());
-		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.getTransportTimeEnd().toString());
-		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(bean.getPalletDescribe().toString());
-		((ImageView)holder.getView(R.id.iv_winType)).setImageResource(R.drawable.ic_launcher);
+//		((TextView)holder.getView(R.id.tv_boxType)).setText(bean.getBoxType().toString());
+//		((TextView)holder.getView(R.id.tv_placeBegin)).setText(bean.getPlaceBegin().toString());
+//		((TextView)holder.getView(R.id.tv_placeEnd)).setText(bean.getPlaceEnd().toString());
+//		((TextView)holder.getView(R.id.tv_transportType)).setText(bean.getTransportType().toString());
+//		((TextView)holder.getView(R.id.tv_transportTimeBegin)).setText(bean.getTransportTimeBegin().toString());
+//		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.getTransportTimeEnd().toString());
+//		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(bean.getPalletDescribe().toString());
+//		((ImageView)holder.getView(R.id.iv_winType)).setImageResource(R.drawable.ic_launcher);
 	}
 
 	@Override
