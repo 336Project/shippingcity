@@ -30,6 +30,7 @@ import android.widget.TextView;
 public class PersonalCenterActivity extends Activity implements OnClickListener{
 	private CircleImageView mPortrait;//头像
 	private TextView mUsername;//姓名
+	private TextView mTxtRenzheng;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,11 +47,14 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 		findViewById(R.id.txt_setting).setOnClickListener(this);
 		findViewById(R.id.txt_my_integral).setOnClickListener(this);
 		findViewById(R.id.txt_invite_friend).setOnClickListener(this);
-		
+		mTxtRenzheng=(TextView) findViewById(R.id.txt_renzheng);
 		mPortrait=(CircleImageView) findViewById(R.id.iv_user_portrait);
 		mUsername=(TextView) findViewById(R.id.txt_username);
 		User user=((HBaseApp)getApplication()).getUser();
 		if(user!=null){
+			if(!user.getVtruename().equals("3")){
+				mTxtRenzheng.setVisibility(View.VISIBLE);
+			}
 			ImageLoader.getInstance().displayImage(user.getAvatar(), mPortrait);
 			mUsername.setText(user.getTruename());
 		}else{
