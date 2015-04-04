@@ -6,7 +6,7 @@ public class Respond<T> extends HBaseObject implements Serializable{
 	private static final long serialVersionUID = 3321056538834150075L;
 	private T datas;
 	private boolean isSuccess;
-	
+
 	private int totalPages;
 	private int totalCredit;//积分总额
 	public T getDatas() {

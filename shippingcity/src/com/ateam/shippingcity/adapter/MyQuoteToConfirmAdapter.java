@@ -35,14 +35,32 @@ public class MyQuoteToConfirmAdapter extends HBaseAdapter<MyQuoteToConfirm>{
 		((TextView)holder.getView(R.id.tv_initiation)).setText(bean.getInitiation());
 		((TextView)holder.getView(R.id.tv_destination)).setText(bean.getDestination());
 		String shipping_type = bean.getShipping_type();
+		String shipment_type = bean.getShipment_type();
 		if(shipping_type.equals("1")){
 			((TextView)holder.getView(R.id.tv_shipping)).setText("海运");
+			if(shipment_type.equals("1")){
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_zhengxiang_great_icon);
+			}else if(shipment_type.equals("2")){
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_of_pinxiang_great_icon);
+			}
+			else{
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_san_groceries_great_icon);
+			}
 		}
 		else if(shipping_type.equals("2")){
 			((TextView)holder.getView(R.id.tv_shipping)).setText("空运");
+			((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_air_transport_great_icon);
 		}
 		else{
 			((TextView)holder.getView(R.id.tv_shipping)).setText("陆运");
+			if(shipment_type.equals("1")){
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_zhengxiang_great_icon);
+			}else if(shipment_type.equals("2")){
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_of_pinxiang_great_icon);
+			}
+			else{
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_san_groceries_great_icon);
+			}
 		}
 		((TextView)holder.getView(R.id.tv_startime)).setText(bean.getStartime());
 		((TextView)holder.getView(R.id.tv_endtime)).setText(bean.getEndtime());

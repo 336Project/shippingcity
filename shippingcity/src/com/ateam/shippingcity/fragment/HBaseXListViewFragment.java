@@ -61,7 +61,6 @@ public abstract class HBaseXListViewFragment<T> extends Fragment implements IXLi
 		mListView.setPullRefreshEnable(true);
 		mListView.setXListViewListener(this);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {

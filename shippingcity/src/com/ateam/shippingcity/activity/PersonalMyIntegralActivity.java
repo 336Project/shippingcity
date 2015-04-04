@@ -67,7 +67,6 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 		mListView.setPullRefreshEnable(true);
 		mListView.setXListViewListener(this);
 		mListView.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -75,9 +74,7 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 			
 		});
 		mListView.setAdapter(mAdapter);
-		
 		HRequestCallback<Respond<List<MyIntegral>>> requestCallback=new HRequestCallback<Respond<List<MyIntegral>>>() {
-			
 			@Override
 			public void onFail(Context c, String errorMsg) {
 				super.onFail(c, errorMsg);
@@ -101,7 +98,6 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 				}
 			}
 		};
-		
 		access=new PersonalAccess<List<MyIntegral>>(this, requestCallback);
 		access.getIntegralRecords(mBaseApp.getUserssid(),current_page,page_size);
 	}
@@ -111,8 +107,6 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 		current_page=1;
 		request();
 	}
-
-
 	@Override
 	public void onLoadMore() {
 		current_page++;

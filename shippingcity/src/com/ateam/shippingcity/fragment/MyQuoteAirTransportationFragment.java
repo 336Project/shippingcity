@@ -41,8 +41,8 @@ public class MyQuoteAirTransportationFragment extends Fragment{
 	 */
 	private void initTab() {
 		List<Fragment> fragments=new ArrayList<Fragment>();
-		fragments.add(new MyQuoteToConfirmFragment("空运"));
-		fragments.add(new MyQuoteToHistoryFragment("空运"));
+		fragments.add(new MyQuoteToConfirmFragment());
+		fragments.add(new MyQuoteToHistoryFragment());
 		TabFtagmentAdapter adapter=new TabFtagmentAdapter(getChildFragmentManager(),TAB_TITLE,null,fragments);
 		ViewPager vp_my_quote_all=(ViewPager) inflate.findViewById(R.id.vp_my_quote_all);
 		vp_my_quote_all.setAdapter(adapter);

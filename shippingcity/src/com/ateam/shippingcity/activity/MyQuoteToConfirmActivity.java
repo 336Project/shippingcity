@@ -51,7 +51,7 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 		init();
 		intIntent();
 		initView();
-//		request();
+		request();
 	}
 	
 	private void request() {

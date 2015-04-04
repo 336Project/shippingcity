@@ -1,10 +1,13 @@
 package com.ateam.shippingcity.fragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
+import com.ateam.shippingcity.adapter.TabFtagmentAdapter;
 import com.ateam.shippingcity.utils.SceenUtils;
+import com.ateam.shippingcity.widget.viewpagerindicator.TabPageIndicator;
 import com.nineoldandroids.animation.ObjectAnimator;
 
 import android.graphics.Color;
@@ -14,6 +17,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,22 +39,39 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 	private PalletAndQuoteCommonActivity activity;
 	private PopupWindow pop_select;
 	private ArrayList<TextView> tv_List=new ArrayList<TextView>();
+	public static final String[] TAB_TITLE={"待确认报价","历史报价"};
+	private View inflate;
+	private List<Fragment> fragments;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		PalletAndQuoteCommonActivity palletAndQuoteCommonActivity = (PalletAndQuoteCommonActivity) getActivity();
 		palletAndQuoteCommonActivity.getRightIcon().setVisibility(View.VISIBLE);
-		View inflate = inflater.inflate(R.layout.fragment_my_quote, null);
-		FragmentManager fm = getFragmentManager();
-		FragmentTransaction ft = fm.beginTransaction();
-		ft.add(R.id.fl_my_quote, new MyQuoteAllFragment());
-		ft.commit();
+		palletAndQuoteCommonActivity.getRightTxt().setVisibility(View.VISIBLE);
+		palletAndQuoteCommonActivity.getRightTxt().setText("全部");
+		
+		inflate = inflater.inflate(R.layout.fragment_my_quote, null);
+		initTab();
 		init();
 		initSelectPopupWindow();
 		return inflate;
 	}
-
+	/**
+	 * 添加tab中的内容
+	 */
+	private void initTab() {
+		fragments = new ArrayList<Fragment>();
+		fragments.add(new MyQuoteToConfirmFragment());
+		fragments.add(new MyQuoteToHistoryFragment());
+		TabFtagmentAdapter adapter=new TabFtagmentAdapter(getChildFragmentManager(),TAB_TITLE,null,fragments);
+		ViewPager vp_my_quote_all=(ViewPager) inflate.findViewById(R.id.vp_my_quote_all);
+		vp_my_quote_all.setAdapter(adapter);
+		vp_my_quote_all.setOffscreenPageLimit(2);
+		TabPageIndicator mTabIndicator= (TabPageIndicator)inflate.findViewById(R.id.tab_indicator);
+		mTabIndicator.setViewPager(vp_my_quote_all);
+	}
+	
 	private void initSelectPopupWindow() {
 		View view_select = LayoutInflater.from(getActivity()).inflate(
 				R.layout.pop_selectefrommyquote, null);
@@ -70,7 +91,6 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 		tv_List.add(tv_sea_transport);
 		tv_List.add(tv_air_transport);
 		tv_List.add(tv_land_transport);
-		
 		
 		pop_select = new PopupWindow(view_select,SceenUtils.dip2px(getActivity(), 80),  LayoutParams.WRAP_CONTENT, true);
 		pop_select.setBackgroundDrawable(new BitmapDrawable());
@@ -99,25 +119,26 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.tv_all:
-			selectFragment(R.id.fl_my_quote, new MyQuoteAllFragment());
+//			selectFragment(R.id.fl_my_quote, new MyQuoteAllFragment());
 			changeTvListState(0);
 			break;
 		case R.id.tv_sea_transport:
-			selectFragment(R.id.fl_my_quote, new MyQuoteSeaTransportationFragment());
+//			selectFragment(R.id.fl_my_quote, new MyQuoteSeaTransportationFragment());
 			changeTvListState(1);
 			break;
 		case R.id.tv_air_transport:
-			selectFragment(R.id.fl_my_quote, new MyQuoteAirTransportationFragment());
+//			selectFragment(R.id.fl_my_quote, new MyQuoteAirTransportationFragment());
 			changeTvListState(2);
 			break;
 		case R.id.tv_land_transport:
-			selectFragment(R.id.fl_my_quote, new MyQuoteLandTransportationFragment());
+//			selectFragment(R.id.fl_my_quote, new MyQuoteLandTransportationFragment());
 			changeTvListState(3);
 			break;
 		default:
 			break;
 		}
 	}
+	@SuppressWarnings("unused")
 	private void selectFragment(int id,Fragment fragment){
 		dismissPop(pop_select);
 		FragmentManager fm = getFragmentManager();
@@ -133,10 +154,14 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 			TextView textView = tv_List.get(i);
 			if(id==i){
 				textView.setSelected(true);
+				MyQuoteToConfirmFragment fragment = (MyQuoteToConfirmFragment) fragments.get(0);
+				fragment.select(i);
+				fragment.setMode(i);
 			}
 			else{
 				textView.setSelected(false);
 			}
 		}
+		dismissPop(pop_select);
 	}
 }

@@ -22,6 +22,7 @@ import com.ateam.shippingcity.activity.MyQuoteHistoryActivity;
 import com.ateam.shippingcity.activity.MyQuoteToConfirmActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToHistoryAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
+import com.ateam.shippingcity.model.MyQuoteToConfirm;
 import com.ateam.shippingcity.model.MyQuoteToHistory;
 import com.ateam.shippingcity.model.MyQuoteToHistory;
 import com.ateam.shippingcity.model.PalletTransport;
@@ -60,7 +61,7 @@ public class MyQuoteToHistoryFragment extends HBaseXListViewFragment implements 
 
 	@Override
 	public List getDataSource() {
-		return null;
+		return dataList;
 	}
 
 	@Override
@@ -85,19 +86,18 @@ public class MyQuoteToHistoryFragment extends HBaseXListViewFragment implements 
 			@SuppressWarnings("unchecked")
 			@Override
 			public Respond<List<MyQuoteToHistory>> parseJson(String jsonStr) {
-				Type type = new com.google.gson.reflect.TypeToken<Respond<List<PalletTransport>>>() {
+				Type type = new com.google.gson.reflect.TypeToken<Respond<List<MyQuoteToHistory>>>() {
 				}.getType();
 				return (Respond<List<MyQuoteToHistory>>) JSONParse.jsonToObject(jsonStr, type);
 			}
 
 			@Override
 			public void onSuccess(Respond<List<MyQuoteToHistory>> result) {
-//				Log.e("", "" + result.toString());
-//				if (result.getDatas() != null) {
-//					
-//				}
 				if(result.isSuccess()){
 					Log.e("result.getDatas()", "result.getDatas():"+result.getDatas());
+					mAdapter.setMyuid("782");
+					dataList = (ArrayList<MyQuoteToHistory>) result.getDatas();
+					onLoadComplete(3, dataList);
 //					setupView(result.getDatas());
 					/*for (IntegralRule rule : result.getDatas()) {
 						System.out.println(rule.toString());
