@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,19 +16,22 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
+import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.access.MyQuoteAccess;
 import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.HBaseActivity;
-import com.ateam.shippingcity.activity.MyQuoteSeaTransportFCLActivity;
+import com.ateam.shippingcity.activity.MyQuoteToConfirmActivity;
 import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToConfirmAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
+import com.ateam.shippingcity.model.IntegralRule;
 import com.ateam.shippingcity.model.MyQuoteToConfirm;
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
+import com.ateam.shippingcity.widget.TextViewPair;
 
 @SuppressLint("ValidFragment")
 public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
@@ -36,7 +40,6 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
 	private MyQuoteToConfirmAdapter mAdapter;// 海运list适配器
 	private ArrayList<MyQuoteToConfirm> dataList = new ArrayList<MyQuoteToConfirm>();// 要显示的数据
 	private String type;
-	private MyQuoteAccess<MyQuoteToConfirm> access;
 
 	public MyQuoteToConfirmFragment() {
 
@@ -49,17 +52,20 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		getActivity()
-				.startActivity(
-						new Intent(getActivity(),
-								MyQuoteSeaTransportFCLActivity.class));
+		if(position>=1){
+			Intent intent = new Intent();
+			intent.setClass(getActivity(), MyQuoteToConfirmActivity.class);
+			String offerid = dataList.get(position-1).getId();
+			intent.putExtra("id", offerid);
+			Log.e("position", "position="+position);
+			getActivity().startActivity(new Intent(getActivity(),MyQuoteToConfirmActivity.class));
+		}
 	}
 
 	@Override
 	public void request() {
 
 	}
-
 	@Override
 	public BaseAdapter getAdapter() {
 		return mAdapter;
@@ -67,9 +73,8 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
 
 	@Override
 	public List getDataSource() {
-		return null;
+		return dataList;
 	}
-
 	@Override
 	public void initData() {
 		mAdapter = new MyQuoteToConfirmAdapter(getActivity(), dataList);
@@ -78,37 +83,24 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
 	}
 
 	private void initRequest() {
-		// for (int i = 0; i < 11; i++) {
-		// MyQuoteToConfirm myQuoteToConfirm=new MyQuoteToConfirm();
-		// myQuoteToConfirm.setBoxType("整箱");
-		// myQuoteToConfirm.setPalletDescribe("真是一群不容易的人啊 。，宅搜的金发来看；萨卡发发；了");
-		// myQuoteToConfirm.setPlaceBegin("HONGKONG"+i);
-		// myQuoteToConfirm.setPlaceEnd("ALEXANDRIA"+i);
-		// myQuoteToConfirm.setTransportTimeBegin(""+i);
-		// myQuoteToConfirm.setTransportTimeEnd(""+i+i);
-		// if(type==null){
-		// myQuoteToConfirm.setTransportType("全部");
-		// }
-		// else{
-		// myQuoteToConfirm.setTransportType(type);
-		// }
-		// dataList.add(myQuoteToConfirm);
-		// }
-		HRequestCallback<Respond<MyQuoteToConfirm>> requestCallback = new HRequestCallback<Respond<MyQuoteToConfirm>>() {
+//		 for (int i = 0; i < 11; i++) {
+//		 MyQuoteToConfirm myQuoteToConfirm=new MyQuoteToConfirm();
+//		 myQuoteToConfirm.setInitiation("HONGKONG"+i);
+//		 dataList.add(myQuoteToConfirm);
+//		 }
+		HRequestCallback<Respond<List<MyQuoteToConfirm>>> requestCallback = new HRequestCallback<Respond<List<MyQuoteToConfirm>>>() {
 			@SuppressWarnings("unchecked")
 			@Override
-			public Respond<MyQuoteToConfirm> parseJson(String jsonStr) {
-				Type type = new com.google.gson.reflect.TypeToken<Respond<PalletTransport>>() {
+			public Respond<List<MyQuoteToConfirm>> parseJson(String jsonStr) {
+				Type type = new com.google.gson.reflect.TypeToken<Respond<List<MyQuoteToConfirm>>>() {
 				}.getType();
-				return (Respond<MyQuoteToConfirm>) JSONParse.jsonToObject(
-						jsonStr, type);
+				return (Respond<List<MyQuoteToConfirm>>) JSONParse.jsonToObject(jsonStr, type);
 			}
-
 			@Override
-			public void onSuccess(Respond<MyQuoteToConfirm> result) {
-				Log.e("", "" + result.toString());
-				if (result.getDatas() != null) {
-
+			public void onSuccess(Respond<List<MyQuoteToConfirm>> result) {
+				if(result.isSuccess()){
+					dataList = (ArrayList<MyQuoteToConfirm>) result.getDatas();
+					onLoadComplete(3, dataList);
 				}
 			}
 			@Override
@@ -116,19 +108,16 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
 				super.onFail(c, errorMsg);
 			}
 		};
-		access = new MyQuoteAccess<MyQuoteToConfirm>(getActivity(),
+		MyQuoteAccess<List<MyQuoteToConfirm>> access = new MyQuoteAccess<List<MyQuoteToConfirm>>(getActivity(),
 				requestCallback);
-		access.setIsShow(false);
 		access.getMyQuoteList(mBaseApp.getUserssid(), "0", current_page,
 				page_size);
 	}
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
-
 	@Override
 	public boolean isLazyLoad() {
 		return true;

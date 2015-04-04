@@ -4,7 +4,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <!-- XList -->
-    <dimen name="xlist_top">15dp</dimen><!-- item 间间隔 -->
+    <dimen name="xlist_top">10dp</dimen><!-- item 间间隔 -->
     <dimen name="xlist_bottom">15dp</dimen><!-- item 间间隔 -->
     <dimen name="xlist_marginl">10dp</dimen><!-- item 内部离左边距离 -->
     <dimen name="xlist_marginr">10dp</dimen><!-- item 内部离右边距离 -->
@@ -21,6 +21,12 @@
 	<dimen name="pallet_edittext">1dp</dimen>
 	
 <!-- 	myQuote -->
+<!-- 字体 -->
+	<dimen name="myQuote_item_tination_size">14sp</dimen>
+	<dimen name="myQuote_item_content_size">12sp</dimen>
+<!-- 间距	 -->
+	<dimen name="myQuote_item_all_height">126dp</dimen>
+	<dimen name="myQuote_item_top">14dp</dimen>
 	<dimen name="myQuote_line_left_iv">70dp</dimen>
 	<dimen name="myQuote_item_height">50dp</dimen>
 	<dimen name="myQuote_iv_height">50dp</dimen>
@@ -31,4 +37,6 @@
 	<dimen name="line_width">2dp</dimen>
 	<dimen name="line_height">2dp</dimen>
 	<dimen name="myQuote_quote_width">200dp</dimen>
+	<dimen name="myQuote_quote_iv_left">10dp</dimen>
+	<dimen name="myQuote_quote_iv_right">11dp</dimen>
 </resources>

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".MyQuoteSeaTransportFCLActivity" >
+    tools:context=".MyQuoteToConfirmActivity" >
 
     <com.ateam.shippingcity.widget.ElasticScrollView
         android:id="@+id/elasticScrollView1"
@@ -19,28 +19,35 @@
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/myQuote_item_height"
+                android:layout_height="53dp"
                 android:gravity="center_vertical" >
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:text="@string/transport_type" />
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/transport_type"
+                    android:textSize="@dimen/myQuote_item_tination_size" 
+                    android:textColor="@color/my_quote_item_tination"
+                    />
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="海运" />
+                    android:layout_marginLeft="10dp"
+                    android:text="海运"
+                    android:textSize="@dimen/myQuote_item_tination_size" 
+                    android:textColor="@color/my_quote_item_tination"
+                    />
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/xlist_marginl"
-                android:layout_marginRight="@dimen/xlist_marginr"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/lineColor" />
 
             <LinearLayout
@@ -50,24 +57,27 @@
                 android:orientation="horizontal" >
 
                 <ImageView
-                    android:layout_width="@dimen/myQuote_iv_width"
-                    android:layout_height="@dimen/myQuote_iv_height"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:src="@drawable/ic_launcher" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/starting" />
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:text="HONGKONG" />
+                    android:text="HONGKONG"
+                    android:textSize="@dimen/myQuote_item_tination_size"
+                    android:textColor="@color/my_quote_item_tination"
+                     />
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/myQuote_line_left_iv"
-                android:layout_marginRight="@dimen/xlist_marginr"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/lineColor" />
 
             <LinearLayout
@@ -77,39 +87,40 @@
                 android:orientation="horizontal" >
 
                 <ImageView
-                    android:layout_width="@dimen/myQuote_iv_width"
-                    android:layout_height="@dimen/myQuote_iv_height"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:src="@drawable/ic_launcher" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/terminal_point" />
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:text="ALEXANDRIA" />
+                    android:text="ALEXANDRIA"
+                    android:textSize="@dimen/myQuote_item_tination_size"
+                    android:textColor="@color/my_quote_item_tination"
+                     />
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/xlist_marginl"
-                android:layout_marginRight="@dimen/xlist_marginr"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/lineColor" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/myQuote_bottom"
-                android:layout_marginTop="@dimen/myQuote_top"
+                android:layout_height="70dp"
                 android:gravity="center_vertical" >
 
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="@dimen/myQuote_iv_width"
-                    android:layout_height="@dimen/myQuote_iv_height"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:src="@drawable/ic_launcher" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:src="@drawable/date_icon" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -121,7 +132,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/my_quote_transport_time" />
+                        android:text="@string/my_quote_transport_time" 
+                        android:textSize="12sp"
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -132,19 +145,25 @@
                             android:id="@+id/textView5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2015/03/06" />
+                            android:text="2015/03/06" 
+                            android:textSize="14sp"
+                            />
 
                         <TextView
                             android:id="@+id/textView6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/my_quote_horizontal_line" />
+                            android:text="@string/my_quote_horizontal_line" 
+                            android:textSize="14sp"
+                            />
 
                         <TextView
                             android:id="@+id/textView7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2015/03/06" />
+                            android:text="2015/03/06" 
+                            android:textSize="14sp"
+                            />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -152,8 +171,8 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/xlist_marginl"
-                android:layout_marginRight="@dimen/xlist_marginr"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/lineColor" />
 
             <LinearLayout
@@ -165,28 +184,31 @@
 
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="@dimen/myQuote_iv_width"
-                    android:layout_height="@dimen/myQuote_iv_height"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
                     android:src="@drawable/ic_launcher" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:text="箱型;20GP;数量2箱;40GP;数量4箱40HQ,数量5箱" />
+                    android:text="箱型;20GP;数量2箱;40GP;数量4箱40HQ,数量5箱" 
+                    android:textSize="14sp"
+                    />
             </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/xlist_marginl"
-                android:layout_marginRight="@dimen/xlist_marginr"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/lineColor" />
+
             <LinearLayout
                 android:id="@+id/layout_addPhoto"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/myQuote_item_height"
+                android:layout_height="44dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:visibility="visible" >
@@ -197,15 +219,6 @@
                     android:layout_marginLeft="@dimen/xlist_marginl"
                     android:text="@string/pallet_photo" />
 
-                <!--
-                    <LinearLayout
-                        android:id="@+id/frame_addPhoto"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal" >
-                    </LinearLayout>
-                -->
 
                 <HorizontalScrollView
                     android:layout_width="0dp"
@@ -219,14 +232,14 @@
                         android:orientation="horizontal" >
 
                         <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
-		                    android:id="@+id/gv_addPhoto"
-		                    android:layout_width="fill_parent"
-		                    android:layout_height="wrap_content"
-		                    android:horizontalSpacing="1dp"
-		                    android:numColumns="5"
-		                    android:stretchMode="columnWidth"
-		                    android:verticalSpacing="1dp"
-		                    android:visibility="visible" />
+                            android:id="@+id/gv_addPhoto"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:horizontalSpacing="1dp"
+                            android:numColumns="5"
+                            android:stretchMode="columnWidth"
+                            android:verticalSpacing="1dp"
+                            android:visibility="visible" />
                     </LinearLayout>
                 </HorizontalScrollView>
 
@@ -235,12 +248,14 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_launcher" />
             </LinearLayout>
-<View
+
+            <View
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/xlist_marginl"
                 android:layout_marginRight="@dimen/xlist_marginr"
                 android:background="@drawable/lineColor" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -251,10 +266,9 @@
                 <TextView
                     android:layout_width="@dimen/myQuote_iv_width"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:text="@string/note" 
                     android:layout_gravity="top"
-                    />
+                    android:layout_marginLeft="@dimen/xlist_marginl"
+                    android:text="@string/note" />
 
                 <TextView
                     android:layout_width="wrap_content"
