@@ -21,7 +21,7 @@
             android:layout_height="40dp"
             android:contentDescription="@string/app_name"
             android:layout_marginLeft="8dp"
-            android:src="@drawable/return" />
+            android:src="@drawable/iv_return" />
 
         <LinearLayout
             android:id="@+id/layout_custom_title_view"
