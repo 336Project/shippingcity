@@ -63,7 +63,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 	 * @param mobile
 	 * @TODO 获取手机验证码
 	 */
-	public void getMobileCode(String mobile){
+	public void getMobileCodeRegister(String mobile){
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("mobile", mobile));
 		nvps.add(new BasicNameValuePair("step", "getMobileCode"));
@@ -109,6 +109,38 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("post[truename]", truename));
 		nvps.add(new BasicNameValuePair("post[company]", company));
 		nvps.add(new BasicNameValuePair("post[invitermobile]", invitermobile));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-4-4 上午11:46:15
+	 * @param mobile
+	 * @TODO 忘记密码->获取验证码
+	 */
+	public void getMobileCodeFindpw(String mobile){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile", mobile));
+		nvps.add(new BasicNameValuePair("step", "getMobileCode"));
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "findpw"));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-4-4 下午12:01:37
+	 * @param mobile
+	 * @param mobile_code
+	 * @param password
+	 * @TODO 忘记密码->重置密码
+	 */
+	public void resetPassword(String mobile,String mobile_code,String password){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile", mobile));
+		nvps.add(new BasicNameValuePair("step", "checkMobileCode"));
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "findpw"));
+		nvps.add(new BasicNameValuePair("mobile_code", mobile_code));
+		nvps.add(new BasicNameValuePair("password", password));
 		execute(URL_PERSONAL_MEMBER, nvps);
 	}
 	/**

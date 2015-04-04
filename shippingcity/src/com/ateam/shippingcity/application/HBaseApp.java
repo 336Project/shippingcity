@@ -48,7 +48,7 @@ public class HBaseApp extends Application {
 
 	public String getUserssid() {
 		
-		return "2rbegfia5hdvfieq9hrithvu21";//"nv5sfejp7me43pldfoql3bgbt7";
+		return userssid;//"9fkp992it4uft419vagotpdap5""2rbegfia5hdvfieq9hrithvu21";
 	}
 
 	public void setUserssid(String userssid) {

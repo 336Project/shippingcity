@@ -92,7 +92,7 @@ public class PersonalRegistActivity extends HBaseActivity implements OnClickList
 			mobile=mEditMobile.getText().toString();
 			if(mobile.length()>0){
 				codeTimer.start();
-				access.getMobileCode(mEditMobile.getText().toString());
+				access.getMobileCodeRegister(mEditMobile.getText().toString());
 			}else{
 				showMsg(this, "请输入手机号码");
 			}
