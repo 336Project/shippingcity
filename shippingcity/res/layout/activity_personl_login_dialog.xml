@@ -4,16 +4,16 @@
     android:layout_height="match_parent"
     android:background="#292C35"
     android:paddingTop="50dp"
-    android:paddingLeft="40dp"
-    android:paddingRight="40dp"
+    android:paddingLeft="46dp"
+    android:paddingRight="46dp"
     android:orientation="vertical" >
 
     <TextView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="您还未登录，请先登录！"
-        android:textSize="18sp"
-        android:textColor="#3F4452"
+        android:textSize="15sp"
+        android:textColor="#4b5161"
         />
     
     <com.ateam.shippingcity.widget.HAutoCompleteTextView
@@ -21,30 +21,35 @@
         android:layout_marginTop="30dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_launcher"
+        android:drawableLeft="@drawable/log_in_username_icon"
         android:background="#292C35"
         android:hint="手机号/用户名"
+        android:textSize="14sp"
+        android:minHeight="50dp"
         android:textColorHint="#3B3E49"
         android:drawablePadding="10dp"
         android:text="15805935223"
+        android:textColor="#3e414c"
         />
     <!-- 15280256971 -->
     <View 
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#424550"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         />
     <com.ateam.shippingcity.widget.HAutoCompleteTextView
         android:id="@+id/et_password"
         android:layout_marginTop="30dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_launcher"
+        android:drawableLeft="@drawable/log_in_password_icon"
         android:background="#292C35"
         android:hint="密码"
+        android:textSize="14sp"
+        android:minHeight="50dp"
         android:textColorHint="#3B3E49"
-        android:textColor="#3F4452"
+        android:textColor="#3e414c"
         android:drawablePadding="10dp"
         android:text="123456"
         android:inputType="textPassword"
@@ -53,17 +58,19 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#424550"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         />
         
     <Button 
         android:id="@+id/btn_login"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="61dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="登录"
-        android:textSize="20sp"
-        android:textColor="#3F4452"
+        android:textSize="17sp"
+        android:background="@drawable/btn_login_bg"
+        android:textColor="#525562"
+        android:minHeight="50dp"
         />
     <LinearLayout 
         android:layout_marginTop="10dp"
@@ -80,18 +87,18 @@
             android:minHeight="40dp"
             android:text="马上注册"
             android:gravity="center_vertical"
-            android:textColor="#3F4452"
-            android:textSize="18sp"
+            android:textColor="#525562"
+            android:textSize="17sp"
             />
         <TextView 
             android:id="@+id/txt_forget_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#3F4452"
+            android:textColor="#525562"
             android:text="忘记密码？"
             android:minHeight="40dp"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:gravity="right|center"
             />
     </LinearLayout>
