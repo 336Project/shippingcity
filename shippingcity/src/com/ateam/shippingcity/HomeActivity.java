@@ -35,6 +35,7 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 		setActionBarTitle("航运城");
 		getRightIcon().setVisibility(View.INVISIBLE);
 		getLeftIcon().setOnClickListener(this);
+		getLeftIcon().setImageResource(R.drawable.home_member_center_icon);
 		setBaseContentView(R.layout.activity_home);
 		initView();
 	}
@@ -74,7 +75,7 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 		
 		@Override
 		public int getCount() {
-			return 4;
+			return 1;
 		}
 
 		@Override
@@ -89,7 +90,7 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
 			ImageView view=new ImageView(HomeActivity.this);
-			view.setBackgroundResource(R.drawable.ic_launcher);
+			view.setBackgroundResource(R.drawable.home_banner);
 			LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
 			container.addView(view,params);
 			return view;
