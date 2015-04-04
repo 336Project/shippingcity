@@ -9,7 +9,10 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:padding="10dp" >
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        >
 
         <com.ateam.shippingcity.widget.HAutoCompleteTextView
             android:id="@+id/et_password"
@@ -35,13 +38,13 @@
             android:layout_marginTop="30dp"
             android:minHeight="50dp"
             android:text="填写基本资料"
-            android:textColor="#6F6F6F"
-            android:textSize="20sp" />
+            android:textColor="#4c4c4c"
+            android:textSize="18sp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="#DBDBDB" />
+            android:background="#bebebe" />
 
         <com.ateam.shippingcity.widget.HAutoCompleteTextView
             android:id="@+id/et_true_name"
@@ -49,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="真实姓名(中文)"
+            android:drawableLeft="@drawable/registration_required_fields_icon"
             android:minHeight="50dp" />
 
         <com.ateam.shippingcity.widget.HAutoCompleteTextView
@@ -57,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:hint="公司名称"
+            android:drawableLeft="@drawable/registration_required_fields_icon"
             android:minHeight="50dp" />
 
         <com.ateam.shippingcity.widget.HAutoCompleteTextView
@@ -69,11 +74,11 @@
             android:minHeight="50dp" />
 
         <Button
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:id="@+id/btn_commit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#FF9900"
+            android:background="@drawable/btn_orange_selector"
             android:text="提交"
             android:textColor="@color/white" />
     </LinearLayout>

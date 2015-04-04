@@ -26,7 +26,7 @@ import android.widget.TextView;
  */
 public class PersonalRegistActivity extends HBaseActivity implements OnClickListener{
 	public static final int STEP1=1;//获取验证码
-	public static final int STEP2=2;//校验验证码
+	public static final int STEP2=2;//
 	private TextView mTxtGetCode;
 	private GetCodeTimer codeTimer=new GetCodeTimer(60*1000, 1000);
 	private HAutoCompleteTextView mEditMobile;

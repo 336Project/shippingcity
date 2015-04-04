@@ -46,10 +46,15 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 	private void initView() {
 		mIndicator=(CirclePageIndicator) findViewById(R.id.indicator);
 		mViewPager=(AutoScrollViewPager) findViewById(R.id.auto_view_page);
-		mViewPager.setAdapter(new BannerPageAdapter());
-		mIndicator.setSnap(true);
-		mIndicator.setViewPager(mViewPager);
-		mViewPager.startAutoScroll(3000);
+		BannerPageAdapter adapter=new BannerPageAdapter();
+		mViewPager.setAdapter(adapter);
+		if (adapter.getCount()<=1) {
+			mIndicator.setVisibility(View.GONE);
+		}else{
+			mIndicator.setSnap(true);
+			mIndicator.setViewPager(mViewPager);
+			mViewPager.startAutoScroll(3000);
+		}
 		
 		findViewById(R.id.layout_quote).setOnClickListener(this);
 		findViewById(R.id.layout_pallet).setOnClickListener(this);

@@ -15,8 +15,8 @@
 	    />
 	<View 
 	    android:layout_width="fill_parent"
-	    android:layout_height="1dp"
-	    android:background="#F0F3F4"
+	    android:layout_height="2dp"
+	    android:background="#e5eaed"
 	    />
 	    <TextView 
 	        android:id="@+id/txt_sure"

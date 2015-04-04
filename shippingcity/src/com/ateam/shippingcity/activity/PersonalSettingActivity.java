@@ -1,8 +1,10 @@
 package com.ateam.shippingcity.activity;
 
+import com.ateam.shippingcity.HomeActivity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.utils.CheckUpdateUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,7 +45,13 @@ public class PersonalSettingActivity extends HBaseActivity implements OnClickLis
 			jump(this, PersonalGuideActivity.class);
 			break;
 		case R.id.btn_logout://退出登录
-	
+			mBaseApp.setUser(null);
+			mBaseApp.setUserssid(null);
+			Intent intent=new Intent();
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.setClass(this, HomeActivity.class);
+			startActivity(intent);
+			finish();
 			break;
 
 		default:
