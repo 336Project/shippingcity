@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res/com.ateam.shippingcity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#292C35"
+    android:background="@drawable/home_bg"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -24,9 +24,9 @@
             android:padding="10dip"
             app:fillColor="#FFFFFF"
             app:pageColor="#B0B5B7"
-            app:radius="8dp"
+            app:radius="5dp"
             app:strokeColor="@android:color/transparent"
-            app:strokeWidth="2dp" />
+            app:strokeWidth="1dp" />
     </RelativeLayout>
 
     <View
@@ -36,7 +36,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@android:color/black"
         android:baselineAligned="false"
@@ -47,32 +47,34 @@
         <LinearLayout
             android:id="@+id/layout_pallet"
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#3F434F"
+            android:background="@drawable/home_selected_bg"
             android:gravity="center" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_launcher"
+                android:drawableTop="@drawable/home_pallet_area_icon"
                 android:text="货盘区"
+                android:drawablePadding="10dp"
                 android:textColor="@color/white" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_quote"
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#363A45"
+            android:background="@drawable/home_normal_bg"
             android:gravity="center" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_launcher"
+                android:drawableTop="@drawable/home_quoted_price_icon"
                 android:text="我的报价"
+                android:drawablePadding="10dp"
                 android:textColor="#ffffff" />
         </LinearLayout>
     </LinearLayout>
@@ -80,22 +82,22 @@
     <LinearLayout
         android:id="@+id/layout_call"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginBottom="40dp"
         android:layout_marginTop="20dp"
-        android:background="#363A45"
+        android:background="@drawable/home_customer_service_bg"
         android:gravity="center_vertical"
-        android:minHeight="100dp"
         android:orientation="horizontal"
         android:paddingLeft="20dp" >
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:drawableLeft="@drawable/ic_launcher"
-            android:drawableRight="@drawable/ic_launcher"
+            android:drawableLeft="@drawable/home_customer_service_icon"
+            android:drawableRight="@drawable/home_customer_care_icon"
             android:gravity="center_vertical"
             android:text="一键客服"
+            android:drawablePadding="10dp"
             android:textColor="#ffffff" />
     </LinearLayout>
 

@@ -26,9 +26,9 @@
         android:hint="手机号/用户名"
         android:textColorHint="#3B3E49"
         android:drawablePadding="10dp"
-        android:text="15280256971"
+        android:text="15805935223"
         />
-    <!-- 15805935223 -->
+    <!-- 15280256971 -->
     <View 
         android:layout_width="fill_parent"
         android:layout_height="1dp"

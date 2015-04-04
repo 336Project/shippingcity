@@ -18,9 +18,10 @@
         <ImageView
             android:id="@+id/iv_left_icon"
             android:layout_width="30dp"
-            android:layout_height="fill_parent"
+            android:layout_height="40dp"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_launcher" />
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/iv_return" />
 
         <LinearLayout
             android:id="@+id/layout_custom_title_view"

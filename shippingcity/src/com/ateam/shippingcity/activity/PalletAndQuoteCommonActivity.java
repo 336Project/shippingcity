@@ -7,11 +7,13 @@ import com.ateam.shippingcity.fragment.MyQuoteFragment;
 import com.ateam.shippingcity.fragment.PalletFragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 /**
  * 
  * @author 李晓伟
@@ -26,29 +28,39 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 	private MyQuoteFragment mQuoteFragment;
 	private PalletFragment mDistrictFragment;
 	private Fragment mCurrFragment;
+	
+	private TextView mTxtHome;
+	private TextView mTxtQuote;
+	private TextView mTxtPallet;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getRightIcon().setVisibility(View.INVISIBLE);
 		getLeftIcon().setOnClickListener(this);
+		getLeftIcon().setImageResource(R.drawable.home_member_center_icon);
 		setBaseContentView(R.layout.activity_main);
 		init();
 	}
 	
 	
 	private void init() {
-		findViewById(R.id.txt_home).setOnClickListener(this);
-		findViewById(R.id.txt_my_quote).setOnClickListener(this);
-		findViewById(R.id.txt_pallet_district).setOnClickListener(this);
+		mTxtHome=(TextView) findViewById(R.id.txt_home);
+		mTxtHome.setOnClickListener(this);
+		mTxtQuote=(TextView) findViewById(R.id.txt_my_quote);
+		mTxtQuote.setOnClickListener(this);
+		mTxtPallet=(TextView) findViewById(R.id.txt_pallet_district);
+		mTxtPallet.setOnClickListener(this);
 		int type=getIntent().getIntExtra(KEY_TYPE, TYPE_PALLET);
 		FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
 		if(type==TYPE_PALLET){
+			setSelect(mTxtPallet);
 			setActionBarTitle("货盘区");
 			mDistrictFragment=new PalletFragment();
 			transaction.add(R.id.layout_main_content, mDistrictFragment);
 			transaction.commit();
 			mCurrFragment=mDistrictFragment;
 		}else{
+			setSelect(mTxtQuote);
 			setActionBarTitle("我的报价");
 			getRightTxt().setVisibility(View.VISIBLE);
 			mQuoteFragment=new MyQuoteFragment();
@@ -75,9 +87,11 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.txt_home://首页
+			setSelect(mTxtHome);
 			startActivity(new Intent(this, HomeActivity.class));
 			break;
 		case R.id.txt_my_quote://我的报价
+			setSelect(mTxtQuote);
 			if(mQuoteFragment==null){
 				mQuoteFragment=new MyQuoteFragment();
 			}
@@ -87,6 +101,7 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 			switchContent(mQuoteFragment);
 			break;
 		case R.id.txt_pallet_district://货盘区
+			setSelect(mTxtPallet);
 			if(mDistrictFragment==null){
 				mDistrictFragment=new PalletFragment();
 			}
@@ -102,5 +117,34 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 			break;
 		}
 	}
-	
+	/**
+	 * 
+	 * 2015-4-4 下午1:11:07
+	 * @param v
+	 * @TODO 设置选中状态
+	 */
+	public void setSelect(TextView currView){
+		if(currView==mTxtHome){
+			mTxtHome.setSelected(true);
+			mTxtHome.setTextColor(Color.rgb(253,173,52));
+			mTxtPallet.setSelected(false);
+			mTxtPallet.setTextColor(Color.rgb(150,150,150));
+			mTxtQuote.setSelected(false);
+			mTxtQuote.setTextColor(Color.rgb(150,150,150));
+		}else if(currView==mTxtPallet){
+			mTxtHome.setSelected(false);
+			mTxtHome.setTextColor(Color.rgb(150,150,150));
+			mTxtPallet.setSelected(true);
+			mTxtPallet.setTextColor(Color.rgb(253,173,52));
+			mTxtQuote.setSelected(false);
+			mTxtQuote.setTextColor(Color.rgb(150,150,150));
+		}else if(currView==mTxtQuote){
+			mTxtHome.setSelected(false);
+			mTxtHome.setTextColor(Color.rgb(150,150,150));
+			mTxtPallet.setSelected(false);
+			mTxtPallet.setTextColor(Color.rgb(150,150,150));
+			mTxtQuote.setSelected(true);
+			mTxtQuote.setTextColor(Color.rgb(253,173,52));
+		}
+	}
 }
