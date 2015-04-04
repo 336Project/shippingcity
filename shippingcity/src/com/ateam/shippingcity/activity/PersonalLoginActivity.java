@@ -15,11 +15,13 @@ import com.ateam.shippingcity.widget.HAutoCompleteTextView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 /**
  * 
  * @author 李晓伟
@@ -58,6 +60,14 @@ public class PersonalLoginActivity extends Activity implements OnClickListener{
 			startActivity(new Intent(this, PersonalForgetPasswordActivity.class));
 			break;
 		case R.id.btn_login:
+			if(TextUtils.isEmpty(mEditUsername.getText().toString())){
+				Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
+				return;
+			}
+			if(TextUtils.isEmpty(mEditPassword.getText().toString())){
+				Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
+				return;
+			}
 			login();
 			break;
 		default:

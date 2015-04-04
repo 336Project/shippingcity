@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="130dp" >
+        android:layout_height="150dp" >
 
         <com.ateam.shippingcity.widget.banner.AutoScrollViewPager
             android:id="@+id/auto_view_page"
@@ -38,16 +38,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@android:color/black"
         android:baselineAligned="false"
-        android:minHeight="150dp"
         android:layout_weight="1"
         android:orientation="horizontal" >
 
         <LinearLayout
             android:id="@+id/layout_pallet"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/home_selected_bg"
             android:gravity="center" >
@@ -64,7 +62,7 @@
         <LinearLayout
             android:id="@+id/layout_quote"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/home_normal_bg"
             android:gravity="center" >
