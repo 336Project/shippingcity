@@ -72,7 +72,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="50dp"
-            android:background="#FF9900"
+            android:background="@drawable/btn_orange_selector"
             android:text="修改并绑定"
             android:textColor="#ffffff" />
     </LinearLayout>
@@ -89,7 +89,7 @@
             android:id="@+id/txt_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_launcher"
+            android:drawableTop="@drawable/submitted_successfully"
             android:gravity="center"
             android:textColor="#A4A4A4"
             />

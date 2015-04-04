@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -110,8 +111,12 @@ public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnCli
 			setActionBarTitle("货盘区");
 			switchContent(mDistrictFragment);
 			break;
-		case R.id.iv_left_icon:
-			startActivity(new Intent(this, PersonalCenterActivity.class));
+		case R.id.iv_left_icon://个人中心
+			if(TextUtils.isEmpty(mBaseApp.getUserssid())){
+				jump(this, PersonalLoginActivity.class);
+			}else{
+				jump(this, PersonalCenterActivity.class);
+			}
 			break;
 		default:
 			break;

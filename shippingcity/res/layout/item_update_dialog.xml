@@ -11,15 +11,15 @@
 	    android:minHeight="100dp"
 	    android:text="发现新版本啦"
 	    android:gravity="center"
-	    android:textSize="30sp"
+	    android:textSize="18sp"
 	    />
 	<TextView 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:paddingLeft="50dp"
-	    android:textColor="#ACACAC"
+	    android:textColor="#4C4C4C"
 	    android:gravity="center_vertical"
-	    android:textSize="22sp"
+	    android:textSize="14sp"
 	    android:text="新版本1.0新功能"
 	    />
 	<TextView 
@@ -27,16 +27,16 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_marginTop="10dp"
-	    android:textColor="#ACACAC"
+	    android:textColor="#4C4C4C"
 	    android:paddingLeft="50dp"
-	    android:textSize="20sp"
+	    android:textSize="14sp"
 	    android:gravity="center_vertical"
 	    android:text="1、新加货代反馈功能\n2、新加实时反馈货盘交易情况\n3、新加在线反馈功能"
 	    />
 	<View 
 	    android:layout_width="fill_parent"
-	    android:layout_height="1dp"
-	    android:background="#F0F3F4"
+	    android:layout_height="2dp"
+	    android:background="#e5eaed"
 	    android:layout_marginTop="20dp"
 	    />
 	<LinearLayout 
@@ -52,12 +52,13 @@
 	        android:minHeight="50dp"
 	        android:gravity="center"
 	        android:text="取消"
-	        android:textColor="#ACACAC"
+	        android:textColor="#4C4C4C"
+	        android:textSize="18sp"
 	        />
 	    <View 
-	    android:layout_width="1dp"
+	    android:layout_width="2dp"
 	    android:layout_height="fill_parent"
-	    android:background="#F0F3F4"
+	    android:background="#e5eaed"
 	    />
 	    <TextView 
 	        android:id="@+id/txt_download"
@@ -67,7 +68,8 @@
 	        android:minHeight="50dp"
 	        android:gravity="center"
 	        android:text="下载"
-	        android:textColor="#FF9400"
+	        android:textSize="18sp"
+	        android:textColor="#FF9c00"
 	        />
 	</LinearLayout>
 </LinearLayout>

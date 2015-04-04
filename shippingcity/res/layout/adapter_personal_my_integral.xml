@@ -10,7 +10,7 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@color/white"
-	    android:minHeight="50dp"
+	    android:minHeight="49dp"
 	    android:layout_marginTop="0.5dp"
 	    >
 	    <com.ateam.shippingcity.widget.TextViewPair 
@@ -19,11 +19,11 @@
 	        android:layout_height="wrap_content"
 	        android:minHeight="60dp"
 	        app:nameText="推荐奖励"
-	        app:nameColor="#959595"
-	        app:nameSize="12sp"
+	        app:nameColor="#4c4c4c"
+	        app:nameSize="16sp"
 	        app:valueText="45"
-	        app:valueColor="#FFB04E"
-	        app:valueSize="14sp"
+	        app:valueColor="#FF9000"
+	        app:valueSize="16sp"
 	        android:layout_marginLeft="25dp"
 	        android:layout_marginRight="25dp"
 	        >

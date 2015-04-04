@@ -10,7 +10,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:text="给通讯录好友推荐"
-	    android:textSize="25sp"
+	    android:textSize="18sp"
 	    android:textColor="#4D4D4D"
 	    />
 	<LinearLayout 
@@ -20,7 +20,7 @@
 	    android:background="@drawable/frame"
 	    android:gravity="center"
 	    android:padding="5dp"
-	    android:layout_marginTop="20dp"
+	    android:layout_marginTop="30dp"
 	    >
 	<EditText 
 	    android:id="@+id/et_phone_number"
@@ -30,13 +30,15 @@
 	    android:hint="输入好友手机号"
 	    android:minHeight="50dp"
 	    android:inputType="phone"
+	    android:paddingLeft="10dp"
 	    android:background="@color/white"
+	    android:textSize="16sp"
 	    />
 	<ImageView 
 	    android:id="@+id/iv_pick_phone_number"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:background="@drawable/ic_launcher"
+	    android:background="@drawable/personal_cente_contacts_icon"
 	    />
 	</LinearLayout>
 	<Button 
@@ -44,18 +46,18 @@
 	    android:layout_height="wrap_content"
 	    android:text="推荐"
 	    android:minHeight="50dp"
-	    android:background="#FF9900"
+	    android:background="@drawable/btn_orange_selector"
 	    android:textColor="@color/white"
-	    android:layout_marginTop="40dp"
+	    android:layout_marginTop="42dp"
 	    />
 	<TextView 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:text="推荐后，系统会以短信形式向您的好友发送航运城APP的下载链接哦!"
 	    android:textColor="#C3C0C0"
-	    android:textSize="16sp"
+	    android:textSize="12sp"
 	    android:gravity="center"
-	    android:layout_marginTop="10dp"
+	    android:layout_marginTop="17dp"
 	    />
 	<TextView 
 	    android:layout_width="wrap_content"
@@ -76,26 +78,26 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:src="@drawable/skyblue_logo_wechat_checked"
+	        android:src="@drawable/share_it_weixinhaoyou_icon"
 	        />
 	    <ImageView 
 	        android:id="@+id/share_sinaweibo"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:src="@drawable/skyblue_logo_sinaweibo_checked"
+	        android:src="@drawable/share_it_xinlang_icon"
 	        />
 	    <ImageView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:src="@drawable/skyblue_logo_wechatmoments_checked"
+	        android:src="@drawable/share_it_pengyouquan_icon"
 	        />
 	    <ImageView 
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:src="@drawable/skyblue_logo_qzone_checked"
+	        android:src="@drawable/share_it_qqkongjian_icon"
 	        />
 	</LinearLayout>
 </LinearLayout>

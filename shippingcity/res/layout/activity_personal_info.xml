@@ -14,6 +14,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
+            android:paddingRight="18dp"
+        	android:paddingLeft="18dp"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -30,14 +32,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="手机"
-                    android:textColor="#797979" />
+                    android:textSize="15sp"
+                    android:textColor="#4c4c4c" />
 
                 <TextView
                     android:id="@+id/txt_mobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_launcher"
+                    android:drawableRight="@drawable/right_arrow"
                     android:gravity="center"
+                    android:textSize="15sp"
+                    android:drawablePadding="13dp"
                     android:textColor="#CFCFCF" />
             </LinearLayout>
 
@@ -60,14 +65,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="姓名"
-                    android:textColor="#797979" />
+                    android:textSize="15sp"
+                    android:textColor="#4c4c4c" />
 
                 <TextView
                     android:id="@+id/txt_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_launcher"
+                    android:drawableRight="@drawable/right_arrow"
                     android:gravity="center"
+                    android:drawablePadding="13dp"
+                    android:textSize="15sp"
                     android:textColor="#CFCFCF" />
             </LinearLayout>
 
@@ -90,18 +98,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="头像"
-                    android:textColor="#797979" />
+                    android:textSize="15sp"
+                    android:textColor="#4c4c4c" />
 
                 <com.ateam.shippingcity.widget.imageview.CircleImageView
                     android:id="@+id/iv_avatar"
                     android:layout_width="48dp"
 	    			android:layout_height="48dp"
-                    android:background="@drawable/ic_launcher" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/personal_information_add_to_icon" />
             </LinearLayout>
 
             <View
@@ -122,7 +126,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="身份证"
-                    android:textColor="#797979" />
+                    android:textSize="15sp"
+                    android:textColor="#4c4c4c" />
 
                 <TextView
                     android:id="@+id/txt_vtruename_status"
@@ -130,14 +135,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginLeft="8dp"
-                    android:textColor="#99C9F3"
-                    android:textSize="15sp" />
+                    android:text="未认证"
+                    android:textSize="13sp"
+                    android:textColor="#F64D4D" />
 
                 <ImageView
                     android:id="@+id/iv_vtruename"
                     android:layout_width="48dp"
 	    			android:layout_height="48dp"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/personal_information_add_to_icon" />
             </LinearLayout>
 
             <View
@@ -158,7 +164,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="工牌"
-                    android:textColor="#797979" />
+                    android:textSize="15sp"
+                    android:textColor="#4c4c4c" />
 
                 <TextView
                     android:id="@+id/txt_card_status"
@@ -166,14 +173,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginLeft="8dp"
-                    android:textColor="#99C9F3"
-                    android:textSize="15sp" />
+                    android:text="未认证"
+                    android:textSize="13sp"
+                    android:textColor="#F64D4D" />
 
                 <ImageView
                     android:id="@+id/iv_card"
                     android:layout_width="48dp"
 	    			android:layout_height="48dp"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/personal_information_add_to_icon" />
             </LinearLayout>
         </LinearLayout>
 
@@ -182,6 +190,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#FFFFFF"
+            android:paddingRight="18dp"
+        	android:paddingLeft="18dp"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -197,17 +207,20 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="公司名称"
-                    android:textColor="#797979" />
+                    android:textSize="15sp"
+                    android:textColor="#4c4c4c" />
 
                 <TextView
                     android:id="@+id/txt_company_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_launcher"
+                    android:drawableRight="@drawable/right_arrow"
                     android:ellipsize="end"
-                    android:ems="8"
+                    android:ems="10"
+                    android:textSize="15sp"
                     android:gravity="center"
                     android:singleLine="true"
+                    android:drawablePadding="13dp"
                     android:textColor="#CFCFCF" />
             </LinearLayout>
 
@@ -229,7 +242,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="营业执照"
-                    android:textColor="#797979" />
+                    android:textSize="15sp"
+                    android:textColor="#4c4c4c" />
 
                 <TextView
                     android:id="@+id/txt_vcompany_status"
@@ -237,15 +251,15 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginLeft="8dp"
-                    android:text="认证失败，请重新提交"
-                    android:textSize="15sp"
-                    android:textColor="#FF6D43" />
+                    android:text="未认证"
+                    android:textSize="13sp"
+                    android:textColor="#F64D4D" />
 
                 <ImageView
                     android:id="@+id/iv_vcompany"
                     android:layout_width="48dp"
 	    			android:layout_height="48dp"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/personal_information_add_to_icon" />
             </LinearLayout>
 
             <View
@@ -267,17 +281,20 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="公司地址"
-                    android:textColor="#797979" />
+                    android:textSize="15sp"
+                    android:textColor="#4c4c4c" />
 
                 <TextView
                     android:id="@+id/txt_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableRight="@drawable/ic_launcher"
+                    android:drawableRight="@drawable/right_arrow"
                     android:ellipsize="end"
                     android:ems="10"
-                    android:gravity="center"
                     android:text="未填写"
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:drawablePadding="13dp"
                     android:textColor="#CFCFCF" />
             </LinearLayout>
         </LinearLayout>
@@ -286,7 +303,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"
             android:background="#FFFFFF"
+            android:paddingRight="18dp"
+        	android:paddingLeft="18dp"
             android:orientation="vertical" >
 
             <TextView
@@ -294,10 +314,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:drawableRight="@drawable/ic_launcher"
+                android:drawableRight="@drawable/right_arrow"
                 android:gravity="center_vertical"
                 android:text="密码修改"
-                android:textColor="#797979" />
+                android:textSize="15sp"
+                android:textColor="#4c4c4c" />
         </LinearLayout>
     </LinearLayout>
 
