@@ -2,7 +2,7 @@ package com.ateam.shippingcity;
 
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.activity.HBaseActivity;
-import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
+import com.ateam.shippingcity.activity.MainActivity;
 import com.ateam.shippingcity.activity.PersonalCenterActivity;
 import com.ateam.shippingcity.activity.PersonalLoginActivity;
 import com.ateam.shippingcity.utils.AppManager;
@@ -10,6 +10,7 @@ import com.ateam.shippingcity.widget.banner.AutoScrollViewPager;
 import com.ateam.shippingcity.widget.viewpagerindicator.CirclePageIndicator;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.text.TextUtils;
@@ -58,6 +59,7 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 		
 		findViewById(R.id.layout_quote).setOnClickListener(this);
 		findViewById(R.id.layout_pallet).setOnClickListener(this);
+		findViewById(R.id.layout_call).setOnClickListener(this);
 	}
 	
 	@Override
@@ -105,17 +107,18 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.layout_quote://我的报价
-			Intent intent=new Intent(this, PalletAndQuoteCommonActivity.class);
-			intent.putExtra(PalletAndQuoteCommonActivity.KEY_TYPE, PalletAndQuoteCommonActivity.TYPE_QUOTE);
+			Intent intent=new Intent(this, MainActivity.class);
+			intent.putExtra(MainActivity.KEY_TYPE, MainActivity.TYPE_QUOTE);
 			startActivity(intent);
 			break;
 		case R.id.layout_pallet://货盘区
-			intent=new Intent(this, PalletAndQuoteCommonActivity.class);
-			intent.putExtra(PalletAndQuoteCommonActivity.KEY_TYPE, PalletAndQuoteCommonActivity.TYPE_PALLET);
+			intent=new Intent(this, MainActivity.class);
+			intent.putExtra(MainActivity.KEY_TYPE, MainActivity.TYPE_PALLET);
 			startActivity(intent);
 			break;
 		case R.id.layout_call://一键客服
-			
+			intent=new Intent(Intent.ACTION_CALL, Uri.parse("tel:15759216890"));
+			startActivity(intent);
 			break;
 		case R.id.iv_left_icon://个人中心
 			if(TextUtils.isEmpty(mBaseApp.getUserssid())){

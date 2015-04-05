@@ -27,7 +27,7 @@ import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.HBaseActivity;
 import com.ateam.shippingcity.activity.MyQuoteToConfirmActivity;
-import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
+import com.ateam.shippingcity.activity.MainActivity;
 import com.ateam.shippingcity.activity.PersonalMyIntegralActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToConfirmAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;

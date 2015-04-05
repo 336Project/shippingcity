@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
+import com.ateam.shippingcity.activity.MainActivity;
 import com.ateam.shippingcity.adapter.TabFtagmentAdapter;
 import com.ateam.shippingcity.widget.viewpagerindicator.TabPageIndicator;
 
@@ -21,7 +21,7 @@ import android.view.ViewGroup;
  *
  */
 public class MyQuoteLandTransportationFragment extends Fragment{
-	private PalletAndQuoteCommonActivity activity;
+	private MainActivity activity;
 	private View inflate;
 	public static final String[] TAB_TITLE={"待确认报价","历史报价"};
 	@Override
@@ -33,7 +33,7 @@ public class MyQuoteLandTransportationFragment extends Fragment{
 		return inflate;
 	}
 	private void init() {
-		activity = (PalletAndQuoteCommonActivity) getActivity();
+		activity = (MainActivity) getActivity();
 		activity.getRightTxt().setText("陆运");
 	}
 	/**

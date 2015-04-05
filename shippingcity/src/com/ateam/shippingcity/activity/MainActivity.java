@@ -22,7 +22,7 @@ import android.widget.TextView;
  * @Version 
  * @TODO
  */
-public class PalletAndQuoteCommonActivity extends HBaseActivity implements OnClickListener{
+public class MainActivity extends HBaseActivity implements OnClickListener{
 	public static final String KEY_TYPE="type";
 	public static final int TYPE_PALLET=1;//货盘区
 	public static final int TYPE_QUOTE=2;//我的报价

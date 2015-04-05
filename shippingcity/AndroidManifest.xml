@@ -5,14 +5,14 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="8"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.READ_CONTACTS" />
-	
+	<uses-permission android:name="android.permission.CALL_PHONE" />
 	<!-- 分享 -->
 	<uses-permission android:name="android.permission.GET_TASKS" />
  	<uses-permission android:name="android.permission.INTERNET" />
@@ -83,7 +83,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity"
+            android:name="com.ateam.shippingcity.activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/StyledIndicators" >
         </activity>

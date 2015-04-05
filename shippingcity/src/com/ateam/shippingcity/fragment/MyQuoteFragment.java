@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
+import com.ateam.shippingcity.activity.MainActivity;
 import com.ateam.shippingcity.adapter.TabFtagmentAdapter;
 import com.ateam.shippingcity.utils.SceenUtils;
 import com.ateam.shippingcity.widget.viewpagerindicator.TabPageIndicator;
@@ -36,7 +36,7 @@ import android.widget.TextView;
  */
 public class MyQuoteFragment extends Fragment implements OnClickListener {
 
-	private PalletAndQuoteCommonActivity activity;
+	private MainActivity activity;
 	private PopupWindow pop_select;
 	private ArrayList<TextView> tv_List=new ArrayList<TextView>();
 	public static final String[] TAB_TITLE={"待确认报价","历史报价"};
@@ -46,7 +46,7 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		PalletAndQuoteCommonActivity palletAndQuoteCommonActivity = (PalletAndQuoteCommonActivity) getActivity();
+		MainActivity palletAndQuoteCommonActivity = (MainActivity) getActivity();
 		palletAndQuoteCommonActivity.getRightIcon().setVisibility(View.VISIBLE);
 		palletAndQuoteCommonActivity.getRightTxt().setVisibility(View.VISIBLE);
 		palletAndQuoteCommonActivity.getRightTxt().setText("全部");
@@ -104,7 +104,7 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 	}
 
 	private void init() {
-		activity = (PalletAndQuoteCommonActivity) getActivity();
+		activity = (MainActivity) getActivity();
 		activity.getRightTxt().setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				pop_select.showAsDropDown(activity.getRightTxt(), 0, -SceenUtils.dip2px(getActivity(), 5));

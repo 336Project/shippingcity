@@ -6,7 +6,7 @@ import java.util.List;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.R.id;
 import com.ateam.shippingcity.R.layout;
-import com.ateam.shippingcity.activity.PalletAndQuoteCommonActivity;
+import com.ateam.shippingcity.activity.MainActivity;
 import com.ateam.shippingcity.adapter.TabFtagmentAdapter;
 import com.ateam.shippingcity.widget.viewpagerindicator.TabPageIndicator;
 
@@ -23,7 +23,7 @@ import android.view.ViewGroup;
 public class PalletFragment extends Fragment {
 
 	private View view;
-	private PalletAndQuoteCommonActivity activity;
+	private MainActivity activity;
 	public static final String[] TAB_TITLE={"全部","海运","空运","陆运"};
 	
 	public PalletFragment() {
@@ -40,7 +40,7 @@ public class PalletFragment extends Fragment {
 	}
 	
 	private void init() {
-		activity = (PalletAndQuoteCommonActivity) getActivity();
+		activity = (MainActivity) getActivity();
 		activity.getRightTxt().setVisibility(View.GONE);
 		activity.getRightIcon().setVisibility(View.GONE);
 	}
