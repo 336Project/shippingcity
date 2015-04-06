@@ -11,301 +11,342 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1" >
-	
-           <LinearLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/myQuote_item_height"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:text="@string/transport_type" />
-
-                    <TextView
-                        android:id="@+id/tv_mode_of_transportation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="海运" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:layout_marginRight="@dimen/xlist_marginr"
-                    android:background="@drawable/lineColor" />
+                android:layout_height="match_parent" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/myQuote_item_height"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal" >
-
-                    <ImageView
-                        android:layout_width="@dimen/myQuote_iv_width"
-                        android:layout_height="@dimen/myQuote_iv_height"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:src="@drawable/ic_launcher" />
-
-                    <TextView
-                        android:id="@+id/tv_placeBegin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:text="HONGKONG" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/myQuote_line_left_iv"
-                    android:layout_marginRight="@dimen/xlist_marginr"
-                    android:background="@drawable/lineColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/myQuote_item_height"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal" >
-
-                    <ImageView
-                        android:layout_width="@dimen/myQuote_iv_width"
-                        android:layout_height="@dimen/myQuote_iv_height"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:src="@drawable/ic_launcher" />
-
-                    <TextView
-                        android:id="@+id/tv_placeEnd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:text="ALEXANDRIA" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:layout_marginRight="@dimen/xlist_marginr"
-                    android:background="@drawable/lineColor" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/myQuote_bottom"
-                    android:layout_marginTop="@dimen/myQuote_top"
-                    android:gravity="center_vertical" >
-
-                    <ImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="@dimen/myQuote_iv_width"
-                        android:layout_height="@dimen/myQuote_iv_height"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:src="@drawable/ic_launcher" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical" >
+                        android:layout_width="fill_parent"
+                        android:layout_height="53dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center_vertical" >
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/my_quote_transport_time" />
+                            android:layout_marginLeft="@dimen/xlist_marginl"
+                            android:text="@string/transport_type" 
+                            android:textSize="14sp"
+                            android:textColor="@color/my_quote_item_tination"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_mode_of_transportation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="海运" 
+                            android:textSize="14sp"
+                            android:textColor="@color/my_quote_item_tination"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/lineColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/myQuote_item_height"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/starting" />
+
+                        <TextView
+                            android:id="@+id/tv_placeBegin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/xlist_marginl"
+                            android:text="HONGKONG"
+                            android:textColor="@color/my_quote_item_tination"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/myQuote_line_left_iv"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/lineColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/terminal_point" />
+
+                        <TextView
+                            android:id="@+id/tv_placeEnd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/xlist_marginl"
+                            android:text="ALEXANDRIA"
+                            android:textColor="@color/my_quote_item_tination"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/lineColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:gravity="center_vertical" >
+
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:src="@drawable/date_icon" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal" >
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/xlist_marginl"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical" >
 
                             <TextView
-                                android:id="@+id/tv_transportTimeBegin"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2015/03/06" />
+                                android:text="@string/my_quote_transport_time"
+                                android:textSize="12sp" 
+                                android:textColor="@color/my_quote_item_tination"
+                                />
 
-                            <TextView
-                                android:id="@+id/textView6"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/my_quote_horizontal_line" />
+                                android:orientation="horizontal" >
 
-                            <TextView
-                                android:id="@+id/tv_transportTimeEnd"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="2015/03/06" />
+                                <TextView
+                                    android:id="@+id/tv_transportTimeBegin"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2015/03/06"
+                                    android:textSize="14sp" 
+                                    android:textColor="@color/my_quote_item_tination"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/textView6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/my_quote_horizontal_line"
+                                    android:textSize="14sp" 
+                                    android:textColor="@color/my_quote_item_tination"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/tv_transportTimeEnd"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2015/03/06"
+                                    android:textSize="14sp" 
+                                    android:textColor="@color/my_quote_item_tination"
+                                    />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
 
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:layout_marginRight="@dimen/xlist_marginr"
-                    android:background="@drawable/lineColor" />
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/lineColor" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/myQuote_bottom"
-                    android:layout_marginTop="@dimen/myQuote_top"
-                    android:gravity="center_vertical" >
-
-                    <ImageView
-                        android:id="@+id/imageView1"
-                        android:layout_width="@dimen/myQuote_iv_width"
-                        android:layout_height="@dimen/myQuote_iv_height"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:src="@drawable/ic_launcher" />
-
-                    <TextView
-                        android:id="@+id/tv_palletDescribe"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:text="箱型;20GP;数量2箱;40GP;数量4箱40HQ,数量5箱" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:layout_marginRight="@dimen/xlist_marginr"
-                    android:background="@drawable/lineColor" />
-
-            <LinearLayout
-                android:id="@+id/layout_addPhoto"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/myQuote_item_height"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="visible" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:text="@string/pallet_photo" />
-
-                <!--
                     <LinearLayout
-                        android:id="@+id/frame_addPhoto"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal" >
-                    </LinearLayout>
-                -->
+                        android:layout_marginBottom="@dimen/myQuote_bottom"
+                        android:layout_marginTop="@dimen/myQuote_top"
+                        android:gravity="center_vertical" >
 
-                <HorizontalScrollView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:scrollbars="none" >
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="@dimen/myQuote_iv_width"
+                            android:layout_height="@dimen/myQuote_iv_height"
+                            android:layout_marginLeft="@dimen/xlist_marginl"
+                            android:src="@drawable/ic_launcher" />
+
+                        <TextView
+                            android:id="@+id/tv_palletDescribe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/xlist_marginl"
+                            android:text="箱型;20GP;数量2箱;40GP;数量4箱40HQ,数量5箱"
+                            android:textSize="@dimen/myQuote_item_tination_size" 
+                            android:textColor="@color/my_quote_item_tination"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/lineColor" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_addPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pallet_photo"
+                            android:textSize="12sp" 
+                            android:textColor="@color/my_quote_item_tination"
+                            />
+
+                        <HorizontalScrollView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:scrollbars="none" >
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal" >
+
+                                <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
+                                    android:id="@+id/gv_addPhoto"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:horizontalSpacing="1dp"
+                                    android:numColumns="5"
+                                    android:stretchMode="columnWidth"
+                                    android:verticalSpacing="1dp"
+                                    android:visibility="visible" />
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/right_arrow" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/lineColor" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/myQuote_bottom"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="@dimen/myQuote_top"
+                        android:gravity="center_vertical" >
+
+                        <TextView
+                            android:layout_width="@dimen/myQuote_iv_width"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:text="@string/note"
+                            android:textSize="14sp" 
+                            android:textColor="@color/my_quote_item_tination"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_remark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/xlist_marginl"
+                            android:text="箱型;20GP;数量2箱;40GP;数量4箱40HQ,数量5箱"
+                            android:textSize="14sp" 
+                            android:textColor="@color/my_quote_item_tination"
+                            />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/lineColor" />
 
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
+                        android:layout_height="@dimen/myQuote_item_height"
+                        android:layout_marginBottom="@dimen/myQuote_bottom"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="@dimen/myQuote_top"
+                        android:gravity="center_vertical" >
 
-                        <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
-		                    android:id="@+id/gv_addPhoto"
-		                    android:layout_width="fill_parent"
-		                    android:layout_height="wrap_content"
-		                    android:horizontalSpacing="1dp"
-		                    android:numColumns="5"
-		                    android:stretchMode="columnWidth"
-		                    android:verticalSpacing="1dp"
-		                    android:visibility="visible" />
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quotation_deadline"
+                            android:textSize="14sp"
+                            android:textColor="@color/my_quote_item_tination"
+                             />
+
+                        <TextView
+                            android:id="@+id/tv_quotation_deadline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11-12 8:00"
+                            android:textSize="14sp" 
+                            android:textColor="@color/my_quote_item_tination"
+                            />
                     </LinearLayout>
-                </HorizontalScrollView>
+                </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/iv_winType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_launcher" />
-            </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/myQuote_bottom"
-                    android:layout_marginTop="@dimen/myQuote_top"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:layout_width="@dimen/myQuote_iv_width"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:text="@string/note" />
-
-                    <TextView
-                        android:id="@+id/tv_remark"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:text="箱型;20GP;数量2箱;40GP;数量4箱40HQ,数量5箱" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:layout_marginRight="@dimen/xlist_marginr"
-                    android:background="@drawable/lineColor" />
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="@dimen/myQuote_item_height"
-                    android:gravity="center_vertical" >
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/xlist_marginl"
-                        android:text="@string/quotation_deadline" />
-
-                    <TextView
-                        android:id="@+id/tv_quotation_deadline"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="11-12 8:00" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/iv_winType"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_launcher"
-                android:layout_gravity="right"
-                 />
-
-        </FrameLayout>
-
-          </LinearLayout>
+                    android:layout_gravity="right"
+                    android:src="@drawable/historical_quotes_unsuccessful_bidders_icon" />
+            </FrameLayout>
+        </LinearLayout>
     </com.ateam.shippingcity.widget.ElasticScrollView>
 
     <View

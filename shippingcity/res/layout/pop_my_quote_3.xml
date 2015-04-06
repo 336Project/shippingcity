@@ -22,20 +22,26 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="47dp"
+            android:layout_marginLeft="22dp" 
+            >
 
-            <TextView
+                <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="@string/my_offer" />
+                android:text="@string/my_offer" 
+                android:textSize="14sp" 
+                />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/iv_close_myquote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher" />
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/my_quotes_shut_down_icon" />
         </LinearLayout>
 
         <View
@@ -47,7 +53,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+               android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            
+            >
 
             <TextView
                 android:id="@+id/textView5"
@@ -63,7 +75,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+               android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+             >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -85,7 +102,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content" 
+               android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            >
 
             <TextView
                 android:layout_width="wrap_content"

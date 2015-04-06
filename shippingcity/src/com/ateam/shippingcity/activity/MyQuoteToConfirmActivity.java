@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickListener{
 	String[] urls = {
@@ -44,6 +46,7 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
     };
 	private GridView mGvAddPhoto;
 	private String id;
+	private TextView tv_initiation;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,7 +58,7 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 	}
 	
 	private void request() {
-		HRequestCallback<Respond<List<MyQuoteToConfirmDetail>>> requestCallback=new HRequestCallback<Respond<List<MyQuoteToConfirmDetail>>>() {
+		HRequestCallback<Respond<MyQuoteToConfirmDetail>> requestCallback=new HRequestCallback<Respond<MyQuoteToConfirmDetail>>() {
 			
 			public void onFail(Context c, String errorMsg) {
 				super.onFail(c, errorMsg);
@@ -63,29 +66,31 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 			}
 			@SuppressWarnings("unchecked")
 			@Override
-			public Respond<List<MyQuoteToConfirmDetail>> parseJson(String jsonStr) {
-				java.lang.reflect.Type type = new TypeToken<Respond<List<MyQuoteToConfirmDetail>>>() {
+			public Respond<MyQuoteToConfirmDetail> parseJson(String jsonStr) {
+				java.lang.reflect.Type type = new TypeToken<Respond<MyQuoteToConfirmDetail>>() {
 				}.getType();
-				return (Respond<List<MyQuoteToConfirmDetail>>) JSONParse.jsonToObject(jsonStr, type);
+				return (Respond<MyQuoteToConfirmDetail>) JSONParse.jsonToObject(jsonStr, type);
 			}
 			@Override
-			public void onSuccess(Respond<List<MyQuoteToConfirmDetail>> result) {
+			public void onSuccess(Respond<MyQuoteToConfirmDetail> result) {
 				if(result.isSuccess()){
-					
+					MyQuoteToConfirmDetail datas = result.getDatas();
 				}
 			}
 		};
-		MyQuoteAccess<List<MyQuoteToConfirmDetail>> access=new MyQuoteAccess<List<MyQuoteToConfirmDetail>>(this, requestCallback);
-		access.getMyQuoteDetail(mBaseApp.getUserssid(), id);
+		MyQuoteAccess<MyQuoteToConfirmDetail> access=new MyQuoteAccess<MyQuoteToConfirmDetail>(this, requestCallback);
+		access.getMyQuoteDetail(mBaseApp.getUserssid(), "304");
 	}
 	
 	private void intIntent() {
 		Intent intent = getIntent();
-		id = intent.getStringExtra("id");
+		id = intent.getStringExtra("offerid");
+		Log.e("id", "id="+id);
 	}
 	private void initView() {
 		mGvAddPhoto=(GridView)findViewById(R.id.gv_addPhoto);
 		initGridView();
+		tv_initiation = (TextView) findViewById(R.id.tv_initiation);
 	}
 	private void initGridView() {
 		int size=0;

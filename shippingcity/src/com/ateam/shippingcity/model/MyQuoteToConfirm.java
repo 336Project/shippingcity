@@ -1,6 +1,7 @@
 package com.ateam.shippingcity.model;
 
 import java.io.Serializable;
+import java.util.List;
 /**
  * 待确认报价对象
  * @author Administrator
@@ -20,6 +21,9 @@ public class MyQuoteToConfirm implements Serializable{
 	private String destination; //目的港
 	private String startime;//走货开始时间
 	private String endtime;//走货结束时间
+	private List<String> boxtype;
+	private List<String> number;
+	private String packages; //件数
 	public String getId() {
 		return id;
 	}
@@ -85,6 +89,24 @@ public class MyQuoteToConfirm implements Serializable{
 	}
 	public void setEndtime(String endtime) {
 		this.endtime = endtime;
+	}
+	public List<String> getBoxtype() {
+		return boxtype;
+	}
+	public void setBoxtype(List<String> boxtype) {
+		this.boxtype = boxtype;
+	}
+	public List<String> getNumber() {
+		return number;
+	}
+	public void setNumber(List<String> number) {
+		this.number = number;
+	}
+	public String getPackages() {
+		return packages;
+	}
+	public void setPackages(String packages) {
+		this.packages = packages;
 	}
 }
 

@@ -14,45 +14,49 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Toast;
 
 import com.ateam.shippingcity.access.MyQuoteAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.MyQuoteHistoryActivity;
-import com.ateam.shippingcity.activity.MyQuoteToConfirmActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToHistoryAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
-import com.ateam.shippingcity.model.MyQuoteToConfirm;
 import com.ateam.shippingcity.model.MyQuoteToHistory;
-import com.ateam.shippingcity.model.MyQuoteToHistory;
-import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
-import com.ateam.shippingcity.utils.MyToast;
 
 @SuppressLint("ValidFragment")
 public class MyQuoteToHistoryFragment extends HBaseXListViewFragment implements OnXListItemClickListener{
 	
 	private MyQuoteToHistoryAdapter mAdapter;//历史报价list适配器
+	private ArrayList<MyQuoteToHistory> allList= new ArrayList<MyQuoteToHistory>();
+	private ArrayList<MyQuoteToHistory> seaList= new ArrayList<MyQuoteToHistory>();
+	private ArrayList<MyQuoteToHistory> airList= new ArrayList<MyQuoteToHistory>();
+	private ArrayList<MyQuoteToHistory> landList= new ArrayList<MyQuoteToHistory>();
 	private ArrayList<MyQuoteToHistory> dataList=new ArrayList<MyQuoteToHistory>();//要显示的数据
-	private String type;
 	
+	protected int page_size=10;
+	protected int current_page=1;
+	private int mode=0;
+	private MyQuoteAccess<List<MyQuoteToHistory>> access;
 	public  MyQuoteToHistoryFragment(){
 		
-	}
-	public MyQuoteToHistoryFragment(String type){
-		this.type=type;
 	}
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		MyToast.showShort(getActivity(), "你点击了该item！");
-		getActivity().startActivity(new Intent(getActivity(), MyQuoteHistoryActivity.class));
+		if(position>=1){
+			Intent intent = new Intent();
+			intent.setClass(getActivity(), MyQuoteHistoryActivity.class);
+			String offerid = dataList.get(position-1).getId();
+			intent.putExtra("offerid", offerid);
+			getActivity().startActivity(intent);
+		}
 	}
 	
 	@Override
 	public void request() {
-		
+		access.getMyQuoteList(mBaseApp.getUserssid(), "0", current_page,
+				page_size);
 	}
 	@Override
 	public BaseAdapter getAdapter() {
@@ -94,25 +98,90 @@ public class MyQuoteToHistoryFragment extends HBaseXListViewFragment implements 
 			@Override
 			public void onSuccess(Respond<List<MyQuoteToHistory>> result) {
 				if(result.isSuccess()){
-					Log.e("result.getDatas()", "result.getDatas():"+result.getDatas());
 					mAdapter.setMyuid("782");
 					dataList = (ArrayList<MyQuoteToHistory>) result.getDatas();
-					onLoadComplete(3, dataList);
-//					setupView(result.getDatas());
-					/*for (IntegralRule rule : result.getDatas()) {
-						System.out.println(rule.toString());
-					}*/
+					if(result.isSuccess()){
+						if(current_page>=1){
+							allList.clear();
+							seaList.clear();
+							airList.clear();
+							landList.clear();
+						}
+						allList.addAll((ArrayList<MyQuoteToHistory>) result.getDatas());
+						for (int i = 0; i < result.getDatas().size(); i++) {
+							MyQuoteToHistory MyQuoteToHistory = ((ArrayList<MyQuoteToHistory>) result.getDatas()).get(i);
+							String shipping_type = MyQuoteToHistory.getShipping_type();
+							if(shipping_type.equals("1")){
+								seaList.add(MyQuoteToHistory);
+							}else if(shipping_type.equals("2")){
+								airList.add(MyQuoteToHistory);
+							}
+							else{
+								landList.add(MyQuoteToHistory);
+							}
+						}
+						if(mode==0){
+							onLoadComplete(1, allList);
+						}
+						else if(mode==1){
+							onLoadComplete(1, seaList);
+						}
+						else if(mode==2){
+							onLoadComplete(1, airList);
+						}
+						else{
+							onLoadComplete(1, landList);
+						}
+					}else{
+						
+					}
 				}
 			}
 			@Override
 			public void onFail(Context c, String errorMsg) {
-				super.onFail(c, errorMsg);
+				onLoadComplete(1, null);
 			}
 		};
-		MyQuoteAccess<List<MyQuoteToHistory>> access = new MyQuoteAccess<List<MyQuoteToHistory>>(getActivity(),
+		access = new MyQuoteAccess<List<MyQuoteToHistory>>(getActivity(),
 				requestCallback);
 		access.getMyQuoteList(mBaseApp.getUserssid(), "0", current_page,
 				page_size);
+	}
+	public void select(int mode){
+		switch (mode) {
+		case 0:
+			onLoadComplete(1, allList);
+			break;
+		case 1:
+			onLoadComplete(1, seaList);
+			break;
+		case 2:
+			onLoadComplete(1, airList);
+			break;
+		case 3:
+			onLoadComplete(1, landList);
+			break;
+
+		default:
+			break;
+		}
+	}
+	@Override
+	public void onRefresh() {
+		current_page=1;
+		request();
+	}
+	@Override
+	public void onLoadMore() {
+		current_page++;
+		request();
+	}
+	public int getMode() {
+		return mode;
+	}
+
+	public void setMode(int mode) {
+		this.mode = mode;
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

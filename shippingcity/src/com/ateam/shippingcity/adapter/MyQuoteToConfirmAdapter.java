@@ -64,6 +64,25 @@ public class MyQuoteToConfirmAdapter extends HBaseAdapter<MyQuoteToConfirm>{
 		}
 		((TextView)holder.getView(R.id.tv_startime)).setText(bean.getStartime());
 		((TextView)holder.getView(R.id.tv_endtime)).setText(bean.getEndtime());
+		List<String> boxtype = bean.getBoxtype();
+		List<String> number = bean.getNumber();
+		StringBuffer describe=new StringBuffer();
+		for (int i = 0; i < boxtype.size(); i++) {
+			if(!boxtype.get(i).equals("")){
+				describe.append(boxtype.get(i)+"*");
+			}
+			if(!number.get(i).equals("")){
+				describe.append(number.get(i));
+			}
+			if(i<boxtype.size()-1){
+				describe.append("、");
+			}
+		}
+		if(!bean.getPackages().equals("0")){
+			describe.append("件数："+bean.getPackages());
+		}
+		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(describe.toString());
+		
 //		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.getTransportTimeEnd().toString());
 //		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(bean.getPalletDescribe().toString());
 	}

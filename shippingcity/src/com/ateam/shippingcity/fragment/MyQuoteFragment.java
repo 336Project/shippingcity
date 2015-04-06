@@ -18,6 +18,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,14 +43,18 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 	public static final String[] TAB_TITLE={"待确认报价","历史报价"};
 	private View inflate;
 	private List<Fragment> fragments;
+	private TextView rightTxt;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		MainActivity palletAndQuoteCommonActivity = (MainActivity) getActivity();
-		palletAndQuoteCommonActivity.getRightIcon().setVisibility(View.VISIBLE);
-		palletAndQuoteCommonActivity.getRightTxt().setVisibility(View.VISIBLE);
-		palletAndQuoteCommonActivity.getRightTxt().setText("全部");
+		activity = (MainActivity) getActivity();
+		activity.getRightIcon().setVisibility(View.VISIBLE);
+		activity.getRightIcon().setImageResource(R.drawable.my_quotes_drop_down);
+		activity.getRightIcon().setOnClickListener(null);
+		rightTxt = activity.getRightTxt();
+		rightTxt.setVisibility(View.VISIBLE);
+		activity.getRightTxt().setText("全部");
 		
 		inflate = inflater.inflate(R.layout.fragment_my_quote, null);
 		initTab();
@@ -95,7 +100,6 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 		pop_select = new PopupWindow(view_select,SceenUtils.dip2px(getActivity(), 80),  LayoutParams.WRAP_CONTENT, true);
 		pop_select.setBackgroundDrawable(new BitmapDrawable());
 		pop_select.setOnDismissListener(new OnDismissListener() {
-			
 			public void onDismiss() {
 				ObjectAnimator oa = ObjectAnimator.ofFloat(activity.getRightIcon(), "rotationX",180, 0);
 				oa.start();
@@ -104,10 +108,9 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 	}
 
 	private void init() {
-		activity = (MainActivity) getActivity();
-		activity.getRightTxt().setOnClickListener(new OnClickListener() {
+		rightTxt.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				pop_select.showAsDropDown(activity.getRightTxt(), 0, -SceenUtils.dip2px(getActivity(), 5));
+				pop_select.showAsDropDown(rightTxt, -SceenUtils.dip2px(getActivity(), 16), 0);
 				  ObjectAnimator oa = ObjectAnimator.ofFloat(activity.getRightIcon(), "rotationX",0, 180);
 				  oa.start();
 			}
@@ -121,18 +124,22 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 		case R.id.tv_all:
 //			selectFragment(R.id.fl_my_quote, new MyQuoteAllFragment());
 			changeTvListState(0);
+			rightTxt.setText("全部");
 			break;
 		case R.id.tv_sea_transport:
 //			selectFragment(R.id.fl_my_quote, new MyQuoteSeaTransportationFragment());
 			changeTvListState(1);
+			rightTxt.setText("海运");
 			break;
 		case R.id.tv_air_transport:
 //			selectFragment(R.id.fl_my_quote, new MyQuoteAirTransportationFragment());
 			changeTvListState(2);
+			rightTxt.setText("空运");
 			break;
 		case R.id.tv_land_transport:
 //			selectFragment(R.id.fl_my_quote, new MyQuoteLandTransportationFragment());
 			changeTvListState(3);
+			rightTxt.setText("陆运");
 			break;
 		default:
 			break;
@@ -155,8 +162,11 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 			if(id==i){
 				textView.setSelected(true);
 				MyQuoteToConfirmFragment fragment = (MyQuoteToConfirmFragment) fragments.get(0);
+				MyQuoteToHistoryFragment fragment1 = (MyQuoteToHistoryFragment) fragments.get(1);
 				fragment.select(i);
 				fragment.setMode(i);
+				fragment1.select(i);
+				fragment1.setMode(i);
 			}
 			else{
 				textView.setSelected(false);

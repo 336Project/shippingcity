@@ -80,7 +80,7 @@ public class HBaseActivity extends FragmentActivity{
 		params.gravity=Gravity.CENTER;
 		View view=getLayoutInflater().inflate(R.layout.item_action_bar_title, null);
 		mTitleView=(TextView) view.findViewById(R.id.action_bar_title);
-		mTitleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+		mTitleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
 		customViewLayout.addView(view, params);
 	}
 	/**

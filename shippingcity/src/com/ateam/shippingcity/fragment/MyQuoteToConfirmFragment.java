@@ -49,18 +49,12 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
 	private ArrayList<MyQuoteToConfirm> airList= new ArrayList<MyQuoteToConfirm>();
 	private ArrayList<MyQuoteToConfirm> landList= new ArrayList<MyQuoteToConfirm>();
 	private ArrayList<MyQuoteToConfirm> dataList = new ArrayList<MyQuoteToConfirm>();// 要显示的数据
-	private String type;
 	protected int page_size=10;
 	protected int current_page=1;
 	private int mode=0;
 	private MyQuoteAccess<List<MyQuoteToConfirm>> access;
-
 	public MyQuoteToConfirmFragment() {
 
-	}
-
-	public MyQuoteToConfirmFragment(String type) {
-		this.type = type;
 	}
 
 	@Override
@@ -70,12 +64,13 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
 			Intent intent = new Intent();
 			intent.setClass(getActivity(), MyQuoteToConfirmActivity.class);
 			String offerid = dataList.get(position-1).getId();
-			intent.putExtra("id", offerid);
+			Log.e("offerid", "offerid="+offerid);
+			intent.putExtra("offerid", offerid);
 			Log.e("position", "position="+position);
-			getActivity().startActivity(new Intent(getActivity(),MyQuoteToConfirmActivity.class));
+			getActivity().startActivity(intent);
 		}
 	}
-
+	
 	@Override
 	public void request() {
 		access.getMyQuoteList(mBaseApp.getUserssid(), "0", current_page,

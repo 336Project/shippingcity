@@ -31,13 +31,9 @@ public class ImagePagerActivity extends FragmentActivity {
 		pagerPosition = getIntent().getIntExtra(EXTRA_IMAGE_INDEX, 0);
 		String[] urls = getIntent().getStringArrayExtra(EXTRA_IMAGE_URLS);
 
-
 		mPager = (HackyViewPager) findViewById(R.id.pager);
-		findViewById(R.id.iv_left_icon).setOnClickListener(new OnClickListener() {
-			
-			@Override
+		findViewById(R.id.ll_back).setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				finish();
 			}
 		});
