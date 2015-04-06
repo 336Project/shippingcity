@@ -74,6 +74,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 			((TextView)holder.getView(R.id.tv_transportType)).setText("海运");
 		}else if(bean.shipping_type.toString().equals("2")){
 			((TextView)holder.getView(R.id.tv_transportType)).setText("空运");
+			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_air_transport_great_icon));
 		}else{
 			((TextView)holder.getView(R.id.tv_transportType)).setText("陆运");
 		}

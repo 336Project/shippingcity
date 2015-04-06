@@ -149,7 +149,7 @@
                         android:textColor="@color/pallet_item_content_text_color" />
 
                     <ImageView
-                        android:layout_width="15dp"
+                        android:layout_width="8dp"
                         android:layout_height="1dp"
                         android:layout_gravity="center_vertical"
                         android:background="@color/pallet_item_content_text_color" />
