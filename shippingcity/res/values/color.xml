@@ -9,9 +9,11 @@
     <color name="btn_orange_press_color">#E58E12</color>
     <color name="txt_sumbit_color">#78A9EB</color>
     <!-- 货盘区列表内容字体颜色 -->
-	<color name="pallet_item_content_text_color">#c0c0c0</color>
-	<color name="pallet_line_color">#c0c0c0</color>
+	<color name="pallet_item_content_text_color">#787878</color>
+	<color name="pallet_line_color">#e5eaed</color>
 	<color name="pallet_text_red">#f08080</color>
+	<color name="pallet_item_title">#4c4c4c</color>
+	<color name="pallet_offer_btn">#424242</color>
 	
     <color name="text_cursor">#54BAF4</color>
     <color name="expand_bg">#f1f1f1</color>
@@ -92,7 +94,7 @@
     <color name="pinkColor">#ff5f9a</color>
     <color name="indianRedColor">#cd5c5c</color>
     <color name="strawberryColor">#be2625</color>
-    <color name="coralColor">#f08080</color>
+    <color name="coralColor">#f14d4d</color>
     <color name="maroonColor">#50041c</color>
     <color name="watermelonColor">#f2473f</color>
     <color name="tomatoColor">#ff6347</color>

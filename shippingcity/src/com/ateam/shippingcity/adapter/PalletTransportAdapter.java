@@ -74,12 +74,13 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 			((TextView)holder.getView(R.id.tv_transportType)).setText("海运");
 		}else if(bean.shipping_type.toString().equals("2")){
 			((TextView)holder.getView(R.id.tv_transportType)).setText("空运");
+			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_air_transport_great_icon));
 		}else{
 			((TextView)holder.getView(R.id.tv_transportType)).setText("陆运");
 		}
 		((TextView)holder.getView(R.id.tv_transportTimeBegin)).setText(bean.startime);
 		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.endtime);
-		((ImageView)holder.getView(R.id.iv_offer)).setOnClickListener(new OnClickListener() {
+		((TextView)holder.getView(R.id.tv_offer)).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {
@@ -116,6 +117,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 				intent.setClass(c, PalletLordOfferActivity.class);
 			}else if(bean.shipment_type.equals("2")){
 				intent.setClass(c, PalletAirOfferActivity.class);
+				intent.putExtra("palletType", "陆运");
 			}
 		}
 		intent.putExtra("palletTransport", bean);

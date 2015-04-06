@@ -1,11 +1,18 @@
 package com.ateam.shippingcity.activity;
 
-import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.R.layout;
+import java.lang.reflect.Type;
+import java.util.List;
 
+import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.access.PalletTransportAccess;
+import com.ateam.shippingcity.access.I.HRequestCallback;
+import com.ateam.shippingcity.model.PalletTransport;
+import com.ateam.shippingcity.model.Respond;
+import com.ateam.shippingcity.utils.JSONParse;
+import com.ateam.shippingcity.utils.MyToast;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -20,6 +27,9 @@ public class PalletSeaDiffOfferActivity extends HBaseActivity {
 
 	private EditText mEtOfferContent;//报价内容
 	private Button mBtnCommit;//提交按钮
+	
+	private PalletTransportAccess<List<PalletTransport>> access;
+	private PalletTransport mPallet;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,7 @@ public class PalletSeaDiffOfferActivity extends HBaseActivity {
 	 * 控件实例化
 	 */
 	private void initView(){
+		mPallet=(PalletTransport) getIntent().getSerializableExtra("palletTransport");
 		mEtOfferContent=(EditText)findViewById(R.id.et_offerContent);
 		mBtnCommit=(Button)findViewById(R.id.btn_commit);
 	}
@@ -47,9 +58,45 @@ public class PalletSeaDiffOfferActivity extends HBaseActivity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				
+				HRequestCallback<Respond<List<PalletTransport>>> requestCallback = new HRequestCallback<Respond<List<PalletTransport>>>() {
+
+					@SuppressWarnings("unchecked")
+					@Override
+					public Respond<List<PalletTransport>> parseJson(String jsonStr) {
+						Type type = new com.google.gson.reflect.TypeToken<Respond<List<PalletTransport>>>() {
+						}.getType();
+						return (Respond<List<PalletTransport>>) JSONParse.jsonToObject(
+								jsonStr, type);
+					}
+
+					@Override
+					public void onSuccess(Respond<List<PalletTransport>> result) {
+//						Log.e("", "" + result.toString());
+						if(result.getStatusCode().equals("200")){
+							MyToast.showShort(PalletSeaDiffOfferActivity.this, "报价成功！");
+							jumpToResult("success");
+							finish();
+						}
+						if(result.getStatusCode().equals("500")){
+							jumpToResult("fial");
+							MyToast.showShort(PalletSeaDiffOfferActivity.this, result.getMessage());
+						}
+					}
+				};
+				access = new PalletTransportAccess<List<PalletTransport>>(
+						PalletSeaDiffOfferActivity.this, requestCallback);
+				access.seaDiffOfferCommit(
+						mBaseApp.getUserssid(), 
+						mPallet.id,
+						mEtOfferContent.getText().toString());
 			}
 		});
+	}
+	
+	private void jumpToResult(String result){
+		Intent intent=new Intent(this,PalletOfferResultActivity.class);
+		intent.putExtra("result", result);
+		startActivity(intent);
 	}
 
 }

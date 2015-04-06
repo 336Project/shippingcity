@@ -75,6 +75,7 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 		View mLine1 = (View)findViewById(R.id.view_TGP);
 		View mLine2 = (View)findViewById(R.id.view_FGP);
 		getCompanyInform();
+		Log.e("", "mPallet.boxtype"+mPallet.boxtype.toString());
 		if(!mPallet.boxtype.contains("20GP")){
 			mLayoutTGP.setVisibility(View.GONE);
 			mLine1.setVisibility(View.GONE);
@@ -83,7 +84,7 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 			mLayoutFGP.setVisibility(View.GONE);
 			mLine2.setVisibility(View.GONE);	
 		}
-		if(!mPallet.boxtype.contains("40HP")){
+		if(!mPallet.boxtype.contains("HQ")){
 			mLayoutFHP.setVisibility(View.GONE);
 		}
 	}
@@ -139,7 +140,6 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 		access = new PalletTransportAccess<List<PalletTransport>>(
 				this, requestCallback);
 		Log.e("", "mPallet.id"+mPallet.id);
-		access.setIsShow(false);
 		access.seaWholeOfferCommit(
 				mBaseApp.getUserssid(), 
 				mEtTGP.getText().toString(),

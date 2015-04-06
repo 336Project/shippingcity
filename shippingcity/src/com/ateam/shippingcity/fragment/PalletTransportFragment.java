@@ -111,7 +111,6 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 		};
 		access = new PalletTransportAccess<List<PalletTransport>>(
 				getActivity(), requestCallback);
-		access.setIsShow(false);
 		access.getPalletRansportList(mBaseApp.getUserssid(), getArguments()
 				.getString("type"), current_page, page_size);
 	}

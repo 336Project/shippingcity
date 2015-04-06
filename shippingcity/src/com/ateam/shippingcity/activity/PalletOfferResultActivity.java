@@ -5,6 +5,7 @@ import com.ateam.shippingcity.R.layout;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +24,7 @@ public class PalletOfferResultActivity extends HBaseActivity {
 	private TextView mTvSucOrFailOne;//成功失败提示一
 	private TextView mTvSucOrFailTwo;//成功失败提示二
 	private Button mBtnReCommit;//重新提交按钮
+	private Intent intent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,19 @@ public class PalletOfferResultActivity extends HBaseActivity {
 	}
 	
 	private void initView(){
-		setActionBarTitle("报价失败");
+		intent=getIntent();
 		mIvSucOrFail=(ImageView)findViewById(R.id.iv_sucOrFail);
 		mTvSucOrFailOne=(TextView)findViewById(R.id.tv_sucOrFailOne);
 		mTvSucOrFailTwo=(TextView)findViewById(R.id.tv_sucOrFailTwo);
 		mBtnReCommit=(Button)findViewById(R.id.btn_reCommit);
+		if(!intent.getStringExtra("result").equals("success")){
+			setActionBarTitle("报价失败");
+			mIvSucOrFail.setBackgroundDrawable(getResources().getDrawable(R.drawable.failure_to_submit));
+		}else{
+			mTvSucOrFailOne.setText(getResources().getString(R.string.success_one));
+			mTvSucOrFailTwo.setText(getResources().getString(R.string.success_two));
+			mBtnReCommit.setVisibility(View.GONE);
+		}
 	}
 	
 	/**
