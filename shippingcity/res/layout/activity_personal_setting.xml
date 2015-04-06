@@ -74,7 +74,7 @@
 	    android:layout_marginBottom="50dp"
 	    android:layout_marginLeft="20dp"
 	    android:layout_marginRight="20dp"
-	    android:textSize="14sp"
+	    android:textSize="16sp"
 	    android:background="#ffffff"
 	    />
 </RelativeLayout>

@@ -13,10 +13,10 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         app:nameText="积分总额"
-        app:nameSize="18sp"
+        app:nameSize="14sp"
         app:nameColor="#4c4c4c"
         app:valueText="150"
-        app:valueSize="18sp"
+        app:valueSize="14sp"
         app:valueColor="#FF9000"
         />
     <View 

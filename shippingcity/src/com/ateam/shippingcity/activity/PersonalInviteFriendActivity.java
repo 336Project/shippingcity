@@ -47,7 +47,7 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 			
 			@Override
 			public boolean handleMessage(Message msg) {
-				showMsg(PersonalInviteFriendActivity.this, "分享成功!");
+				showMsg(PersonalInviteFriendActivity.this, "分享成功");
 				return true;
 			}
 		});
@@ -69,10 +69,10 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 	}
 	
 	private void shareSinweibo(){
-		
 		ShareParams sp = new ShareParams();
-		sp.setText("测试分享的文本");
+		sp.setText("测试分享的文本，测试地址:http://mob.com @划虎烂1990");
 		//sp.setImagePath("/mnt/sdcard/测试分享的图片.jpg");
+		//sp.setImageUrl("http://f1.sharesdk.cn/imgs/2014/05/21/oESpJ78_533x800.jpg");
 		Platform weibo = ShareSDK.getPlatform(SinaWeibo.NAME);
 		// 设置分享事件回调
 		weibo.setPlatformActionListener(new PlatformActionListener() {
@@ -87,16 +87,6 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 			public void onComplete(Platform arg0, int arg1, HashMap<String, Object> res) {
 				System.out.println("onComplete");
 				handler.sendEmptyMessage(0);
-				/*String id,name,description,profile_image_url;
-			    id=res.get("id").toString();//ID
-			    name=res.get("name").toString();//用户名
-			    description=res.get("description").toString();//描述
-			    profile_image_url=res.get("profile_image_url").toString();//头像链接
-			    String str="ID: "+id+";\n"+
-			               "用户名： "+name+";\n"+
-			             "描述："+description+";\n"+
-			             "用户头像地址："+profile_image_url;
-			    System.out.println("用户资料: "+str);*/
 			}
 			
 			@Override
