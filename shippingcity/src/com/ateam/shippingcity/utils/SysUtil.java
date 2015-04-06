@@ -3,6 +3,8 @@ package com.ateam.shippingcity.utils;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.ateam.shippingcity.constant.MyConstant;
 import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
@@ -12,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.ParseException;
 import android.telephony.TelephonyManager;
 
 
@@ -120,5 +123,34 @@ public class SysUtil {
 		intent.putExtra(MyConstant.EXTRA_IMAGE_URLS, urls);
 		intent.putExtra(MyConstant.EXTRA_IMAGE_INDEX, position);
 		context.startActivity(intent);
+	}
+	
+	/**
+	 * 获取  剩余报价时间
+	 * @param strEndTime
+	 * @return
+	 */
+	public static String getRemainTime(String strEndTime){
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	    long endTime = 0;
+	    long time = 0;
+		try {
+			endTime = df.parse(strEndTime).getTime();
+			time = df.parse(df.format(new Date())).getTime();
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(time>=endTime){
+			return "0小时";
+		}else{
+			if((endTime - time) / (1000 * 60 * 60*24)>0){
+				return (endTime - time) / (1000 * 60 * 60*24)+"天"+
+			((endTime - time) / (1000 * 60 * 60)-(endTime - time) / (1000 * 60 * 60*24)*24)+"小时";
+			}else{
+				return (endTime - time) / (1000 * 60 * 60)+"小时";
+			}
+			
+		}
 	}
 }

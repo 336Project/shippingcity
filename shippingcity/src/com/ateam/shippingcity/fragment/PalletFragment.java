@@ -65,8 +65,8 @@ public class PalletFragment extends Fragment {
 	 * @param type 
 	 * @return
 	 */
-	private PalletSeaTransportFragment getFragment(String type){
-		PalletSeaTransportFragment pallet=new PalletSeaTransportFragment();
+	private PalletTransportFragment getFragment(String type){
+		PalletTransportFragment pallet=new PalletTransportFragment();
 		Bundle bundle = new Bundle();  
 		bundle.putString("type", type);  
 		pallet.setArguments(bundle); 

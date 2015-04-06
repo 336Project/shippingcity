@@ -67,6 +67,7 @@
                 android:background="@drawable/lineColor" />
 
             <LinearLayout
+                android:id="@+id/layout_TGP"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/myQuote_item_height"
                 android:gravity="center_vertical"
@@ -81,19 +82,22 @@
                 <EditText
                     android:id="@+id/et_TGP"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/xlist_marginl"
                     android:layout_weight="1"
+                    android:inputType="number"
                     android:background="@color/white" />
             </LinearLayout>
 
             <View
+                android:id="@+id/view_TGP"
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/myQuote_line_left_iv"
                 android:background="@drawable/lineColor" />
 
             <LinearLayout
+                android:id="@+id/layout_FGP"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/myQuote_item_height"
                 android:gravity="center_vertical"
@@ -108,19 +112,22 @@
                 <EditText
                     android:id="@+id/et_FGP"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/xlist_marginl"
                     android:layout_weight="1"
+                    android:inputType="number"
                     android:background="@color/white" />
             </LinearLayout>
 
             <View
+                android:id="@+id/view_FGP"
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/myQuote_line_left_iv"
                 android:background="@drawable/lineColor" />
 
             <LinearLayout
+                android:id="@+id/layout_FHP"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/myQuote_item_height"
                 android:gravity="center_vertical"
@@ -135,9 +142,10 @@
                 <EditText
                     android:id="@+id/et_FHP"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/xlist_marginl"
                     android:layout_weight="1"
+                    android:inputType="number"
                     android:background="@color/white" />
             </LinearLayout>
 

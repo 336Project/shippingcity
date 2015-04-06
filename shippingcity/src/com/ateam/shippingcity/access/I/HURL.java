@@ -25,6 +25,14 @@ public interface HURL {
 	 */
 	public static final String URL_PALLET_LIST="http://"+IP+"/mobile/index.php?route=entrust_index";
 	/**
+	 * 货盘区报价地址
+	 */
+	public static final String URL_ENTRUST_SHOW="http://"+IP+"/mobile/index.php?route=entrust_show";
+	/**
+	 * 获取船公司名称
+	 */
+	public static final String URL_ALL_PORTS="http://"+IP+"/mobile/index.php?route=all_ports";
+	/**
 	 * 我的报价列表
 	 */
 	public static final String URL_MYQUOTE_LIST="http://"+IP+"/mobile/index.php?route=my";

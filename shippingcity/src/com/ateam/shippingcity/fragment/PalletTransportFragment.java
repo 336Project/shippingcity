@@ -8,7 +8,7 @@ import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.PalletDetailActivity;
-import com.ateam.shippingcity.adapter.PalletSeaTransportAdapter;
+import com.ateam.shippingcity.adapter.PalletTransportAdapter;
 import com.ateam.shippingcity.application.HBaseApp;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
 import com.ateam.shippingcity.model.PalletTransport;
@@ -31,17 +31,18 @@ import android.widget.BaseAdapter;
 /**
  * 海运列表片段
  */
-public class PalletSeaTransportFragment extends HBaseXListViewFragment<PalletTransport> implements OnXListItemClickListener {
-	
-	private PalletSeaTransportAdapter mAdapter;//海运list适配器
-	private ArrayList<PalletTransport> dataList=new ArrayList<PalletTransport>();//要显示的数据
-	private PalletTransportAccess<PalletTransport> access;
+public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransport> implements
+		OnXListItemClickListener {
+
+	private PalletTransportAdapter mAdapter;// 海运list适配器
+	private ArrayList<PalletTransport> dataList = new ArrayList<PalletTransport>();// 要显示的数据
+	private PalletTransportAccess<List<PalletTransport>> access;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return super.onCreateView(inflater,container, savedInstanceState);
+		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
 	@Override
@@ -49,14 +50,16 @@ public class PalletSeaTransportFragment extends HBaseXListViewFragment<PalletTra
 			long id) {
 		// TODO Auto-generated method stub
 		MyToast.showShort(getActivity(), "你点击了该item！");
-		Intent intent=new Intent(getActivity(),PalletDetailActivity.class);
+		Intent intent = new Intent(getActivity(), PalletDetailActivity.class);
+		intent.putExtra("palletTransport", dataList.get(position));
 		getActivity().startActivity(intent);
 	}
 
 	@Override
 	public void request() {
 		// TODO Auto-generated method stub
-		access.getPalletRansportList(mBaseApp.getUserssid(), getArguments().getString("type"), current_page, page_size);
+		access.getPalletRansportList(mBaseApp.getUserssid(), getArguments()
+				.getString("type"), current_page, page_size);
 	}
 
 	@Override
@@ -74,50 +77,45 @@ public class PalletSeaTransportFragment extends HBaseXListViewFragment<PalletTra
 	@Override
 	public void initData() {
 		// TODO Auto-generated method stub
-		mAdapter=new PalletSeaTransportAdapter(getActivity(), dataList);
+		mAdapter = new PalletTransportAdapter(getActivity(), dataList);
 		setOnXListItemClickListener(this);
 		initRequest();
 	}
-	
+
 	/**
 	 * 
 	 * 2015-3-11 下午5:08:44
+	 * 
 	 * @TODO 初始化请求
 	 */
 	private void initRequest() {
-		HRequestCallback<Respond<PalletTransport>> requestCallback=new HRequestCallback<Respond<PalletTransport>>() {
-		
-		@SuppressWarnings("unchecked")
-		@Override
-		public Respond<PalletTransport> parseJson(String jsonStr) {
-			Type type=new com.google.gson.reflect.TypeToken<Respond<PalletTransport>>(){}.getType();
-			return (Respond<PalletTransport>) JSONParse.jsonToObject(jsonStr, type);
-		}
-		
-		@Override
-		public void onSuccess(Respond<PalletTransport> result) {
-			Log.e("", ""+result.toString());
-			if(result.getDatas()!=null){
-				
+		HRequestCallback<Respond<List<PalletTransport>>> requestCallback = new HRequestCallback<Respond<List<PalletTransport>>>() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Respond<List<PalletTransport>> parseJson(String jsonStr) {
+				Type type = new com.google.gson.reflect.TypeToken<Respond<List<PalletTransport>>>() {
+				}.getType();
+				return (Respond<List<PalletTransport>>) JSONParse.jsonToObject(
+						jsonStr, type);
 			}
-		}
-	};
-	access=new PalletTransportAccess<PalletTransport>(getActivity(), requestCallback);
-	access.setIsShow(false);
-	access.getPalletRansportList(mBaseApp.getUserssid(), getArguments().getString("type"), current_page, page_size);
-//		for (int i = 0; i < 11; i++) {	
-//			PalletTransport seaTransport=new PalletTransport();
-//			seaTransport.setBoxType("整箱");
-//			seaTransport.setPalletDescribe("真是一群不容易的人啊 。，宅搜的金发来看；萨卡发发；了");
-//			seaTransport.setPlaceBegin("XIAMEN"+i);
-//			seaTransport.setPlaceEnd("fuzhou"+i);
-//			seaTransport.setRemainTime("一个月");
-//			seaTransport.setTransportTimeBegin(""+i);
-//			seaTransport.setTransportTimeEnd(""+i+i);
-//			seaTransport.setTransportType(type);
-//			dataList.add(seaTransport);
-//		}
+
+			@Override
+			public void onSuccess(Respond<List<PalletTransport>> result) {
+				Log.e("", "" + result.toString());
+				if (result.getDatas() != null) {
+					Log.e("", "result.getTotalPages():"+result.getTotalPages());
+					onLoadComplete(result.getTotalPages(), result.getDatas());
+				}
+			}
+		};
+		access = new PalletTransportAccess<List<PalletTransport>>(
+				getActivity(), requestCallback);
+		access.setIsShow(false);
+		access.getPalletRansportList(mBaseApp.getUserssid(), getArguments()
+				.getString("type"), current_page, page_size);
 	}
+
 	@Override
 	public boolean isLazyLoad() {
 		return true;
