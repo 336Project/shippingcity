@@ -117,6 +117,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 				intent.setClass(c, PalletLordOfferActivity.class);
 			}else if(bean.shipment_type.equals("2")){
 				intent.setClass(c, PalletAirOfferActivity.class);
+				intent.putExtra("palletType", "陆运");
 			}
 		}
 		intent.putExtra("palletTransport", bean);

@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/xlist_pallet_title_text"
-            android:textColor="@color/pallet_text_red"
+            android:textColor="@color/coralColor"
             android:text="@string/money_kgs"/>
     </LinearLayout>
     

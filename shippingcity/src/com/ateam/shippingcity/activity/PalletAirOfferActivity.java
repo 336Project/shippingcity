@@ -50,9 +50,13 @@ public class PalletAirOfferActivity extends HBaseActivity {
 	 */
 	private void initView(){
 		mPallet=(PalletTransport) getIntent().getSerializableExtra("palletTransport");
+		TextView mTvMoneyLable = (TextView)findViewById(R.id.tv_moneyLable);
 		mEtMoney=(EditText)findViewById(R.id.et_money);
 		mEtAddInform=(EditText)findViewById(R.id.et_addInform);
 		mBtnCommit=(Button)findViewById(R.id.btn_commit);
+		if(getIntent().getStringExtra("palletType").equals("陆运")){
+			mTvMoneyLable.setText("￥");
+		}
 	}
 	
 	/**
