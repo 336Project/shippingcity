@@ -78,4 +78,25 @@ public class PalletTransportAccess <T> extends HBaseAccess<Respond<T>>{
 		execute(URL_ENTRUST_SHOW, nvps);
 	}
 	
+	/**
+	 * 海运拼箱  报价请求
+	 * @param userssid
+	 * @param price
+	 * @param itemid
+	 * @param shipcompany
+	 * @param remarks
+	 */
+	public void seaSpellOfferCommit(String userssid,
+			String price,String itemid,String remarks,String goods_type){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		nvps.add(new BasicNameValuePair("post[price]", price));
+		nvps.add(new BasicNameValuePair("post[itemid]", itemid));
+		nvps.add(new BasicNameValuePair("post[remarks]", remarks));
+		nvps.add(new BasicNameValuePair("action", "add"));
+		nvps.add(new BasicNameValuePair("goods_type", goods_type));
+		execute(URL_ENTRUST_SHOW, nvps);
+	}
+	
 }

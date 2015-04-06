@@ -16,12 +16,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="7dp"
             android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/select_offer_weight"
-                    android:textSize="@dimen/xlist_pallet_title_text" />
+                    android:textSize="@dimen/pallet_offer_title" />
             </LinearLayout>
 
             <LinearLayout
@@ -45,11 +45,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_rectangle_edittext"
+                    android:background="@drawable/quotes_select_weight_icon"
+                    android:textSize="@dimen/pallet_offer_title"
+                    android:textColor="@color/pallet_offer_btn"
                     android:text="@string/heavy_cargo" />
 
                 <TextView
-                    android:layout_width="30dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -57,14 +59,16 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/shape_rectangle_edittext"
+                    android:background="@drawable/quotes_unselected_weight_icon"
+                    android:textSize="@dimen/pallet_offer_title"
+                    android:textColor="@color/pallet_offer_btn"
                     android:text="@string/light_cargo" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/myQuote_item_height"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="33dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
 
@@ -94,7 +98,7 @@
                 android:id="@+id/et_addInform"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="42dp"
                 android:background="@drawable/shape_rectangle_edittext"
                 android:gravity="left|top"
                 android:hint="@string/add_inform"

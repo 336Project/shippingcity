@@ -1,11 +1,8 @@
 package com.ateam.shippingcity.activity;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.R.layout;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;

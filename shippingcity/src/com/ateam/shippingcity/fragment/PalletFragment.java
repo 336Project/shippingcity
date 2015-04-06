@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.R.id;
-import com.ateam.shippingcity.R.layout;
 import com.ateam.shippingcity.activity.MainActivity;
 import com.ateam.shippingcity.adapter.TabFtagmentAdapter;
 import com.ateam.shippingcity.widget.viewpagerindicator.TabPageIndicator;

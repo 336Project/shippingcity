@@ -1,20 +1,25 @@
 package com.ateam.shippingcity.activity;
 
+import java.lang.reflect.Type;
+import java.util.List;
+
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.R.layout;
+import com.ateam.shippingcity.access.PalletTransportAccess;
+import com.ateam.shippingcity.access.I.HRequestCallback;
+import com.ateam.shippingcity.model.PalletTransport;
+import com.ateam.shippingcity.model.Respond;
+import com.ateam.shippingcity.utils.JSONParse;
+import com.ateam.shippingcity.utils.MyToast;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 
 /**
- * 海运杂箱报价
+ * 海运拼箱报价
  * @version 
  * @create_date 2015-3-30上午9:30:56
  */
@@ -25,7 +30,13 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 	private Button mBtnHeavyCargo;
 	private Button mBtnLightCargo;
 	private Button mBtnCommit;
+	
+	private boolean isHeavy=true;
+	private boolean isLight=false;
 
+	private PalletTransportAccess<List<PalletTransport>> access;
+	private PalletTransport mPallet;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +50,7 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 	 * 控件实例化
 	 */
 	private void initView(){
+		mPallet=(PalletTransport) getIntent().getSerializableExtra("palletTransport");
 		mEtMoney=(EditText)findViewById(R.id.et_money);
 		mEtAddInform=(EditText)findViewById(R.id.et_addInform);
 		mBtnHeavyCargo=(Button)findViewById(R.id.btn_heavyCargo);
@@ -60,18 +72,62 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 		// TODO Auto-generated method stub
 		switch (view.getId()) {
 		case R.id.btn_heavyCargo:
-			
+			mBtnHeavyCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_select_weight_icon));
+			mBtnLightCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_unselected_weight_icon));
+			isHeavy=true;
+			isLight=false;
 			break;
 		case R.id.btn_lightCargo:
-			
+			mBtnLightCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_select_weight_icon));
+			mBtnHeavyCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_unselected_weight_icon));
+			isHeavy=false;
+			isLight=true;
 			break;
 		case R.id.btn_commit:
-	
+			commitData();
 			break;
 
 		default:
 			break;
 		}
+	}
+	
+	/**
+	 * 提交数据
+	 */
+	private void commitData(){
+		HRequestCallback<Respond<List<PalletTransport>>> requestCallback = new HRequestCallback<Respond<List<PalletTransport>>>() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Respond<List<PalletTransport>> parseJson(String jsonStr) {
+				Type type = new com.google.gson.reflect.TypeToken<Respond<List<PalletTransport>>>() {
+				}.getType();
+				return (Respond<List<PalletTransport>>) JSONParse.jsonToObject(
+						jsonStr, type);
+			}
+
+			@Override
+			public void onSuccess(Respond<List<PalletTransport>> result) {
+//				Log.e("", "" + result.toString());
+				if(result.getStatusCode().equals("200")){
+					MyToast.showShort(PalletSeaSpellOfferActivity.this, "报价成功！");
+					finish();
+				}
+				if(result.getStatusCode().equals("500")){
+					MyToast.showShort(PalletSeaSpellOfferActivity.this, result.getMessage());
+				}
+			}
+		};
+		access = new PalletTransportAccess<List<PalletTransport>>(
+				this, requestCallback);
+		int type=isHeavy==true?1:2;
+		access.seaSpellOfferCommit(
+				mBaseApp.getUserssid(), 
+				mEtMoney.getText().toString(), 
+				mPallet.id, 
+				mEtAddInform.getText().toString(), 
+				type+"");
 	}
 
 }

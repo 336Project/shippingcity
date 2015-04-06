@@ -8,13 +8,18 @@
     <dimen name="xlist_bottom">15dp</dimen><!-- item 间间隔 -->
     <dimen name="xlist_marginl">10dp</dimen><!-- item 内部离左边距离 -->
     <dimen name="xlist_marginr">10dp</dimen><!-- item 内部离右边距离 -->
-    <dimen name="xlist_pallet_title_text">18sp</dimen><!-- 小标题字体大小 -->
+    <dimen name="xlist_pallet_title_text">14sp</dimen><!-- 小标题字体大小 -->
     
     <!-- 货盘区 其他 activity -->
     <dimen name="pallet_padding">10dp</dimen> <!-- 页面边距  -->
     <dimen name="pallet_detail_item_magin">5dp</dimen> <!-- 每行间的距离  -->
+    <dimen name="pallet_item_title">14sp</dimen>
+    <dimen name="pallet_item_content_size">12sp</dimen>
+    
+    <!-- 报价 -->
+    <dimen name="pallet_offer_title">18sp</dimen>
 
-<!--     shape -->
+	<!-- shape -->
 	<dimen name="my_offer_radius">5dp</dimen>
 	<dimen name="my_offer_height">40dp</dimen>
 	<dimen name="my_offer_width">140dp</dimen>

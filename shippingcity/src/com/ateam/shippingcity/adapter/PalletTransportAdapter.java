@@ -79,7 +79,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		}
 		((TextView)holder.getView(R.id.tv_transportTimeBegin)).setText(bean.startime);
 		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.endtime);
-		((ImageView)holder.getView(R.id.iv_offer)).setOnClickListener(new OnClickListener() {
+		((TextView)holder.getView(R.id.tv_offer)).setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View arg0) {

@@ -105,6 +105,7 @@
     <string name="focus">关注</string>
     <string name="immediately_offer">立即报价</string>
     <string name="pallet_photo">货物照片:</string>
+    <string name="lest_time">剩余时间:</string>
 
     <!-- 报价 -->
     <string name="ship_company_no_point">船公司</string>
@@ -129,6 +130,7 @@
     <string name="success_one">您的报价已提交成功,</string>
     <string name="success_two">请耐心等待货主消息哦!</string>
     <string name="re_commit">重新提交</string>
+    <string name="offer">报价</string>
 
     <!-- 我的报价 -->
     <string name="my_offer">我的报价</string>
