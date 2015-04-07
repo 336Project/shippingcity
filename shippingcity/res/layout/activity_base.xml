@@ -54,6 +54,7 @@
                 android:gravity="center"
                 android:minWidth="50dp"
                 android:textColor="@color/white"
+                android:textSize="14sp"
                 android:visibility="gone" />
 
             <ImageView

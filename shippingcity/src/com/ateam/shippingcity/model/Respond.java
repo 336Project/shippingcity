@@ -9,6 +9,7 @@ public class Respond<T> extends HBaseObject implements Serializable{
 
 	private int totalPages;
 	private int totalCredit;//积分总额
+	private String myuid;
 	public T getDatas() {
 		return datas;
 	}
@@ -44,5 +45,13 @@ public class Respond<T> extends HBaseObject implements Serializable{
 
 	public void setTotalCredit(int totalCredit) {
 		this.totalCredit = totalCredit;
+	}
+
+	public String getMyuid() {
+		return myuid;
+	}
+
+	public void setMyuid(String myuid) {
+		this.myuid = myuid;
 	}
 }

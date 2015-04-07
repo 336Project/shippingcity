@@ -60,7 +60,7 @@
                 android:text="@string/ship_company" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tv_shipcompany"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OCCL" />

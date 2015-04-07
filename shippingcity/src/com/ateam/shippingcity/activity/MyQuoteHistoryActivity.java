@@ -1,35 +1,52 @@
 package com.ateam.shippingcity.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.R.layout;
 import com.ateam.shippingcity.R.menu;
+import com.ateam.shippingcity.access.MyQuoteAccess;
+import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.constant.MyConstant;
+import com.ateam.shippingcity.model.MyQuoteToConfirmDetail;
+import com.ateam.shippingcity.model.Respond;
+import com.ateam.shippingcity.utils.JSONParse;
+import com.ateam.shippingcity.utils.PopupWindowUtil;
+import com.ateam.shippingcity.utils.SceenUtils;
 import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
 import com.ateam.shippingcity.widget.weinxinImageShow.MyGridAdapter;
+import com.google.gson.reflect.TypeToken;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.FrameLayout.LayoutParams;
 
-public class MyQuoteHistoryActivity extends HBaseActivity {
+public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickListener{
 
-	private TextView tv_mode_of_transportation; //运输方式
-	private TextView tv_placeBegin; //起点
-	private TextView tv_placeEnd; //终点
-	private TextView tv_transportTimeBegin;//运输开始时间
-	private TextView tv_transportTimeEnd;//运输结束时间
-	private TextView tv_palletDescribe; //货盘描述
-	private TextView tv_remark;//备注
-	private TextView tv_quotation_deadline;//报价截止日期
+	private TextView tv_shipping; //运输方式
+	private TextView tv_initiation; //起点
+	private TextView tv_destination; //终点
+	private TextView tv_startime;//运输开始时间
+	private TextView tv_endtime;//运输结束时间
+	private TextView tv_description; //货盘描述
+	private TextView tv_remarks;//备注
+	private TextView tv_deadlinetime;//报价截止日期
 	private ImageView iv_winType;//中标状态
 	String[] urls = {
             "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing2.jpg",
@@ -40,14 +57,150 @@ public class MyQuoteHistoryActivity extends HBaseActivity {
             "http://g.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=e58fb67bc8ea15ce45eee301863b4bce/a5c27d1ed21b0ef4fd6140a0dcc451da80cb3e47.jpg"
     };
 	private GridView mGvAddPhoto;
+	private String id;
+	private ImageView iv_shipment;
+	private String myuid;
+	private LayoutParams fl_Lp_1;
+	private LayoutParams fl_Lp_2;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setBaseContentView(R.layout.activity_my_quote_history);
 		init();
+		initLayoutParams();
+		intIntent();
 		initView();
 		initGridView();
+		request();
+	}
+	private void initLayoutParams() {
+		fl_Lp_1 = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		fl_Lp_1.setMargins(0, SceenUtils.dip2px(this, 12), SceenUtils.dip2px(this, 12), 0);
+		fl_Lp_1.gravity=Gravity.RIGHT;
+		fl_Lp_2 = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		fl_Lp_2.setMargins(0, SceenUtils.dip2px(this, 9), SceenUtils.dip2px(this, 9), 0);
+		fl_Lp_2.gravity=Gravity.RIGHT;
+		
+	}
+	private void intIntent() {
+		Intent intent = getIntent();
+		id = intent.getStringExtra("offerid");
+		myuid = intent.getStringExtra("myuid");
+	}
+	private void request() {
+		HRequestCallback<Respond<MyQuoteToConfirmDetail>> requestCallback=new HRequestCallback<Respond<MyQuoteToConfirmDetail>>() {
+			
+			public void onFail(Context c, String errorMsg) {
+				super.onFail(c, errorMsg);
+				onLoadFail();
+			}
+			@SuppressWarnings("unchecked")
+			@Override
+			public Respond<MyQuoteToConfirmDetail> parseJson(String jsonStr) {
+				java.lang.reflect.Type type = new TypeToken<Respond<MyQuoteToConfirmDetail>>() {
+				}.getType();
+				return (Respond<MyQuoteToConfirmDetail>) JSONParse.jsonToObject(jsonStr, type);
+			}
+			@Override
+			public void onSuccess(Respond<MyQuoteToConfirmDetail> result) {
+				if(result.isSuccess()){
+					MyQuoteToConfirmDetail datas = result.getDatas();
+					
+					String shipping_type = datas.getShipping_type();
+					String shipment_type = datas.getShipment_type();
+					if(shipping_type.equals("1")){
+						tv_shipping.setText("海运");
+						if(shipment_type.equals("1")){
+							iv_shipment.setImageResource(R.drawable.pallet_details_zhengxiang_small_icon);
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_1);
+						}else if(shipment_type.equals("2")){
+							iv_shipment.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_3);
+						}
+						else{
+							iv_shipment.setImageResource(R.drawable.pallet_details_of_pinxiang_small_icon);
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_2);
+						}
+					}
+					else if(shipping_type.equals("2")){
+						tv_shipping.setText("空运");
+						iv_shipment.setImageResource(R.drawable.pallet_details_air_transport_small_icon);
+						ArrayList<Integer> tvId_List=new ArrayList<Integer>();
+						ArrayList<String> content_List=new ArrayList<String>();
+						tvId_List.add(R.id.tv_unit);
+						content_List.add("¥/KGS");
+						PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_2,tvId_List,content_List);
+					}
+					else{
+						tv_shipping.setText("陆运");
+						if(shipment_type.equals("1")){
+							iv_shipment.setImageResource(R.drawable.pallet_details_zhengxiang_small_icon);
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_1);
+						}else if(shipment_type.equals("2")){
+							iv_shipment.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_2);
+						}
+						else{
+							iv_shipment.setImageResource(R.drawable.pallet_details_of_pinxiang_small_icon);
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_1);
+						}
+					}
+					tv_initiation.setText(datas.getInitiation());
+					tv_destination.setText(datas.getDestination());
+					tv_startime.setText(datas.getStartime());
+					tv_endtime.setText(datas.getEndtime());
+					tv_deadlinetime.setText(datas.getDeadlinetime());
+					StringBuffer description=new StringBuffer();
+					if(shipping_type.equals("1")&&shipment_type.equals("1")){
+						List<String> type=datas.getType();
+						List<String> num=datas.getNum();
+						if(type.size()>0){
+							description.append("箱型：");
+							for (int i = 0; i < type.size(); i++) {
+								description.append(type.get(i)+",");
+								description.append("数量"+num.get(i)+"箱");
+								if(i<type.size()-1){
+									description.append(";");
+								}
+								else description.append("。");
+							}
+						}
+					}
+					else{
+						description.append("件数："+datas.getPackages()+";");
+						description.append("毛重："+datas.getWeight()+"kg;");
+						description.append("体积："+datas.getVolume()+"立方;");
+						description.append("单件尺寸："+datas.getSize()+"。");
+					}
+					tv_description.setText(description.toString());
+					tv_remarks.setText(datas.getRemarks());
+					
+					if(datas.getStatus().equals("3")){
+						iv_winType.setLayoutParams(fl_Lp_2);
+						iv_winType.setImageResource(R.drawable.historical_quotes_aborted_transaction_icon);
+					}
+					else{
+						if(datas.getBuyer().equals("0")){
+							//修改
+							iv_winType.setLayoutParams(fl_Lp_1);
+							iv_winType.setImageResource(R.drawable.historical_quotes_unsuccessful_bidders_icon);
+						}
+						else{
+							iv_winType.setLayoutParams(fl_Lp_1);
+							if(myuid.equals(datas.getBuyer())){
+								iv_winType.setImageResource(R.drawable.historical_quotes_the_bid_icon);
+							}
+							else{
+								iv_winType.setImageResource(R.drawable.historical_quotes_unsuccessful_bidders_icon);
+							}
+						}
+					}
+				}
+			}
+		};
+		MyQuoteAccess<MyQuoteToConfirmDetail> access=new MyQuoteAccess<MyQuoteToConfirmDetail>(this, requestCallback);
+		access.getMyQuoteDetail(mBaseApp.getUserssid(), id);
 	}
 	private void initGridView() {
 		int size=0;
@@ -95,16 +248,18 @@ public class MyQuoteHistoryActivity extends HBaseActivity {
 		setActionBarTitle("货盘详情");
 	}
 	private void initView() {
-		tv_mode_of_transportation = (TextView) findViewById(R.id.tv_mode_of_transportation);
-		tv_placeBegin = (TextView) findViewById(R.id.tv_placeBegin);
-		tv_placeEnd = (TextView) findViewById(R.id.tv_placeEnd);
-		tv_transportTimeBegin = (TextView) findViewById(R.id.tv_transportTimeBegin);
-		tv_transportTimeEnd = (TextView) findViewById(R.id.tv_transportTimeEnd);
-		tv_palletDescribe = (TextView) findViewById(R.id.tv_palletDescribe);
-		tv_remark = (TextView) findViewById(R.id.tv_remark);
-		tv_quotation_deadline = (TextView) findViewById(R.id.tv_quotation_deadline);
+		tv_shipping = (TextView) findViewById(R.id.tv_shipping);
+		tv_initiation = (TextView) findViewById(R.id.tv_initiation);
+		tv_destination = (TextView) findViewById(R.id.tv_destination);
+		tv_startime = (TextView) findViewById(R.id.tv_startime);
+		tv_endtime = (TextView) findViewById(R.id.tv_endtime);
+		tv_description = (TextView) findViewById(R.id.tv_description);
+		tv_remarks = (TextView) findViewById(R.id.tv_remarks);
+		tv_deadlinetime = (TextView) findViewById(R.id.tv_deadlinetime);
 		iv_winType = (ImageView) findViewById(R.id.iv_winType);
+		iv_shipment = (ImageView) findViewById(R.id.iv_shipment);
 		mGvAddPhoto=(GridView)findViewById(R.id.gv_addPhoto);
+		findViewById(R.id.tv_show_my_quote_pop).setOnClickListener(this);
 		
 	}
 
@@ -112,6 +267,27 @@ public class MyQuoteHistoryActivity extends HBaseActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.my_quote_history, menu);
 		return true;
+	}
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode==KeyEvent.KEYCODE_BACK){
+			if(PopupWindowUtil.getPopupIsShowing()){
+				PopupWindowUtil.dismissPopup();
+				return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.tv_show_my_quote_pop:
+			PopupWindowUtil.showPopup(this, R.layout.activity_my_quote_history);
+			break;
+
+		default:
+			break;
+		}
 	}
 
 }

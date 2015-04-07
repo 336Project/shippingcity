@@ -1,5 +1,7 @@
 package com.ateam.shippingcity.utils;
 
+import java.util.ArrayList;
+
 import com.ateam.shippingcity.R;
 import com.nineoldandroids.animation.ObjectAnimator;
 
@@ -32,6 +34,21 @@ public class PopupWindowUtil {
 				dismissPopup();
 			}
 		});
+		tv_my_quote_pop_touch = (TextView) inflate.findViewById(R.id.tv_my_quote_pop_touch);
+		pop_MyQuote = new PopupWindow(inflate, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, false);
+//		pop_MyQuote.setBackgroundDrawable(ColorDrawable);
+	}
+	public static void initPopup(Context mContext,int layoutId,ArrayList<Integer> tv_List,ArrayList<String> content_List){
+		View inflate = LayoutInflater.from(mContext).inflate(layoutId, null);
+		inflate.findViewById(R.id.iv_close_myquote).setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				dismissPopup();
+			}
+		});
+		for (int i = 0; i < tv_List.size(); i++) {
+			TextView tv_item = (TextView) inflate.findViewById(tv_List.get(i));
+			tv_item.setText(content_List.get(i));
+		}
 		tv_my_quote_pop_touch = (TextView) inflate.findViewById(R.id.tv_my_quote_pop_touch);
 		pop_MyQuote = new PopupWindow(inflate, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, false);
 //		pop_MyQuote.setBackgroundDrawable(ColorDrawable);

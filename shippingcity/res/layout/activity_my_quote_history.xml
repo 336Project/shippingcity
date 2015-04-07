@@ -10,11 +10,13 @@
         android:id="@+id/elasticScrollView1"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_weight="1" 
+        android:fillViewport="true"
+        >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="vertical" >
 
             <FrameLayout
@@ -43,7 +45,7 @@
                             />
 
                         <TextView
-                            android:id="@+id/tv_mode_of_transportation"
+                            android:id="@+id/tv_shipping"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="海运" 
@@ -73,7 +75,7 @@
                             android:src="@drawable/starting" />
 
                         <TextView
-                            android:id="@+id/tv_placeBegin"
+                            android:id="@+id/tv_initiation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/xlist_marginl"
@@ -103,7 +105,7 @@
                             android:src="@drawable/terminal_point" />
 
                         <TextView
-                            android:id="@+id/tv_placeEnd"
+                            android:id="@+id/tv_destination"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/xlist_marginl"
@@ -122,7 +124,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        android:gravity="center_vertical" >
+                        android:gravity="center_vertical"
+                        android:layout_marginRight="15dp"
+                         >
 
                         <ImageView
                             android:id="@+id/imageView1"
@@ -152,7 +156,7 @@
                                 android:orientation="horizontal" >
 
                                 <TextView
-                                    android:id="@+id/tv_transportTimeBegin"
+                                    android:id="@+id/tv_startime"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="2015/03/06"
@@ -161,7 +165,6 @@
                                     />
 
                                 <TextView
-                                    android:id="@+id/textView6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/my_quote_horizontal_line"
@@ -170,7 +173,7 @@
                                     />
 
                                 <TextView
-                                    android:id="@+id/tv_transportTimeEnd"
+                                    android:id="@+id/tv_endtime"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="2015/03/06"
@@ -196,14 +199,14 @@
                         android:gravity="center_vertical" >
 
                         <ImageView
-                            android:id="@+id/imageView1"
-                            android:layout_width="@dimen/myQuote_iv_width"
-                            android:layout_height="@dimen/myQuote_iv_height"
-                            android:layout_marginLeft="@dimen/xlist_marginl"
+                            android:id="@+id/iv_shipment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
                             android:src="@drawable/ic_launcher" />
 
                         <TextView
-                            android:id="@+id/tv_palletDescribe"
+                            android:id="@+id/tv_description"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/xlist_marginl"
@@ -293,11 +296,10 @@
                             />
 
                         <TextView
-                            android:id="@+id/tv_remark"
+                            android:id="@+id/tv_remarks"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/xlist_marginl"
-                            android:text="箱型;20GP;数量2箱;40GP;数量4箱40HQ,数量5箱"
                             android:textSize="14sp" 
                             android:textColor="@color/my_quote_item_tination"
                             />
@@ -329,7 +331,7 @@
                              />
 
                         <TextView
-                            android:id="@+id/tv_quotation_deadline"
+                            android:id="@+id/tv_deadlinetime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="11-12 8:00"
@@ -355,7 +357,7 @@
         android:background="@drawable/lineColor" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/tv_show_my_quote_pop"
         android:layout_width="@dimen/my_offer_width"
         android:layout_height="@dimen/my_offer_height"
         android:layout_gravity="center"

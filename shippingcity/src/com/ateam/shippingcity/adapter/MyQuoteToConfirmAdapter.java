@@ -28,10 +28,6 @@ public class MyQuoteToConfirmAdapter extends HBaseAdapter<MyQuoteToConfirm>{
 	@Override
 	public void convert(ViewHolder holder, MyQuoteToConfirm bean) {
 		// TODO Auto-generated method stub
-//		((TextView)holder.getView(R.id.tv_boxType)).setText(bean.getBoxType().toString());
-//		((TextView)holder.getView(R.id.tv_placeBegin)).setText(bean.getPlaceBegin().toString());
-//		((TextView)holder.getView(R.id.tv_placeEnd)).setText(bean.getPlaceEnd().toString());
-//		((TextView)holder.getView(R.id.tv_transportType)).setText(bean.getTransportType().toString());
 		((TextView)holder.getView(R.id.tv_initiation)).setText(bean.getInitiation());
 		((TextView)holder.getView(R.id.tv_destination)).setText(bean.getDestination());
 		String shipping_type = bean.getShipping_type();
@@ -41,10 +37,10 @@ public class MyQuoteToConfirmAdapter extends HBaseAdapter<MyQuoteToConfirm>{
 			if(shipment_type.equals("1")){
 				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_zhengxiang_great_icon);
 			}else if(shipment_type.equals("2")){
-				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_of_pinxiang_great_icon);
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_san_groceries_great_icon);
 			}
 			else{
-				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_san_groceries_great_icon);
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_of_pinxiang_great_icon);
 			}
 		}
 		else if(shipping_type.equals("2")){
@@ -56,32 +52,35 @@ public class MyQuoteToConfirmAdapter extends HBaseAdapter<MyQuoteToConfirm>{
 			if(shipment_type.equals("1")){
 				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_zhengxiang_great_icon);
 			}else if(shipment_type.equals("2")){
-				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_of_pinxiang_great_icon);
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_san_groceries_great_icon);
 			}
 			else{
-				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_san_groceries_great_icon);
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_of_pinxiang_great_icon);
 			}
 		}
 		((TextView)holder.getView(R.id.tv_startime)).setText(bean.getStartime());
 		((TextView)holder.getView(R.id.tv_endtime)).setText(bean.getEndtime());
 		List<String> boxtype = bean.getBoxtype();
 		List<String> number = bean.getNumber();
-		StringBuffer describe=new StringBuffer();
-		for (int i = 0; i < boxtype.size(); i++) {
-			if(!boxtype.get(i).equals("")){
-				describe.append(boxtype.get(i)+"*");
-			}
-			if(!number.get(i).equals("")){
-				describe.append(number.get(i));
-			}
-			if(i<boxtype.size()-1){
-				describe.append("、");
+		StringBuffer description=new StringBuffer();
+		if(shipping_type.equals("1")&&shipment_type.equals("1")){
+			if(boxtype.size()>0){
+				for (int i = 0; i < boxtype.size(); i++) {
+					description.append(boxtype.get(i)+"*");
+					description.append(number.get(i));
+					if(i<boxtype.size()-1){
+						description.append("、");
+					}
+				}
 			}
 		}
-		if(!bean.getPackages().equals("0")){
-			describe.append("件数："+bean.getPackages());
+		else{
+			description.append("件数:"+bean.getPackages()+";");
+			description.append("毛重:"+bean.getWeight()+"kg;");
+			description.append("体积:"+bean.getVolume()+"立方;");
+//			description.append("单件尺寸："+bean.getSize()+"。");
 		}
-		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(describe.toString());
+		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(description.toString());
 		
 //		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.getTransportTimeEnd().toString());
 //		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(bean.getPalletDescribe().toString());

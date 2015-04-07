@@ -40,7 +40,7 @@ import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.widget.TextViewPair;
 
 @SuppressLint("ValidFragment")
-public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
+public class MyQuoteToConfirmFragment extends HBaseXListViewFragment<MyQuoteToConfirm> implements
 		OnXListItemClickListener {
 
 	private MyQuoteToConfirmAdapter mAdapter;// 海运list适配器
@@ -56,19 +56,30 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
 	public MyQuoteToConfirmFragment() {
 
 	}
-
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		if(position>=1){
 			Intent intent = new Intent();
 			intent.setClass(getActivity(), MyQuoteToConfirmActivity.class);
-			String offerid = dataList.get(position-1).getId();
-			Log.e("offerid", "offerid="+offerid);
+			String offerid="";
+			switch (mode) {
+			case 0:
+				offerid = allList.get(position).getId();
+				break;
+			case 1:
+				offerid = seaList.get(position).getId();
+				break;
+			case 2:
+				offerid = airList.get(position).getId();
+				break;
+			case 3:
+				offerid = dataList.get(position).getId();
+				break;
+			default:
+				break;
+			}
 			intent.putExtra("offerid", offerid);
-			Log.e("position", "position="+position);
 			getActivity().startActivity(intent);
-		}
 	}
 	
 	@Override
@@ -82,7 +93,7 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment implements
 	}
 
 	@Override
-	public List getDataSource() {
+	public List<MyQuoteToConfirm> getDataSource() {
 		return dataList;
 	}
 	@Override

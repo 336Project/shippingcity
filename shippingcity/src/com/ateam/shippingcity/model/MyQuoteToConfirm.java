@@ -24,6 +24,9 @@ public class MyQuoteToConfirm implements Serializable{
 	private List<String> boxtype;
 	private List<String> number;
 	private String packages; //件数
+	private String weight; //毛重
+	private String volume; //体积
+//	private String size; //单件尺寸
 	public String getId() {
 		return id;
 	}
@@ -108,5 +111,23 @@ public class MyQuoteToConfirm implements Serializable{
 	public void setPackages(String packages) {
 		this.packages = packages;
 	}
+	public String getWeight() {
+		return weight;
+	}
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+	public String getVolume() {
+		return volume;
+	}
+	public void setVolume(String volume) {
+		this.volume = volume;
+	}
+//	public String getSize() {
+//		return size;
+//	}
+//	public void setSize(String size) {
+//		this.size = size;
+//	}
 }
 

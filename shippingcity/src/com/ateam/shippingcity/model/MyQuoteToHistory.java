@@ -1,6 +1,7 @@
 package com.ateam.shippingcity.model;
 
 import java.io.Serializable;
+import java.util.List;
 /**
  * 待确认报价对象
  * @author Administrator
@@ -22,6 +23,12 @@ public class MyQuoteToHistory implements Serializable{
 	private String endtime;//走货结束时间
 	private String status; //货盘状态（{1}报价中 {2}已确认货代 {3}中止交易{4}已截止）
 	private String buyer; //选择的货代userid 0为还未选择报价的货代 非0时如果等于'myuid'则中标 否则未中标
+	private List<String> boxtype;
+	private List<String> number;
+	private String packages; //件数
+	private String weight; //毛重
+	private String volume; //体积
+//	private String size; //单件尺寸
 	public String getId() {
 		return id;
 	}
@@ -99,6 +106,36 @@ public class MyQuoteToHistory implements Serializable{
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public List<String> getBoxtype() {
+		return boxtype;
+	}
+	public void setBoxtype(List<String> boxtype) {
+		this.boxtype = boxtype;
+	}
+	public List<String> getNumber() {
+		return number;
+	}
+	public void setNumber(List<String> number) {
+		this.number = number;
+	}
+	public String getPackages() {
+		return packages;
+	}
+	public void setPackages(String packages) {
+		this.packages = packages;
+	}
+	public String getWeight() {
+		return weight;
+	}
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+	public String getVolume() {
+		return volume;
+	}
+	public void setVolume(String volume) {
+		this.volume = volume;
 	}
 	
 	

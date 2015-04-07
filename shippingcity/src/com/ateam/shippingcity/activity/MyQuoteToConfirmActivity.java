@@ -32,6 +32,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,6 +48,14 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 	private GridView mGvAddPhoto;
 	private String id;
 	private TextView tv_initiation;
+	private TextView tv_destination;
+	private TextView tv_shipping;
+	private ImageView iv_shipment;
+	private TextView tv_startime;
+	private TextView tv_endtime;
+	private TextView tv_deadlinetime;
+	private TextView tv_description;
+	private TextView tv_remarks;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -75,22 +84,88 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 			public void onSuccess(Respond<MyQuoteToConfirmDetail> result) {
 				if(result.isSuccess()){
 					MyQuoteToConfirmDetail datas = result.getDatas();
+					
+					String shipping_type = datas.getShipping_type();
+					String shipment_type = datas.getShipment_type();
+					if(shipping_type.equals("1")){
+						tv_shipping.setText("海运");
+						if(shipment_type.equals("1")){
+							iv_shipment.setImageResource(R.drawable.pallet_details_zhengxiang_small_icon);
+							PopupWindowUtil.initPopup(MyQuoteToConfirmActivity.this, R.layout.pop_my_quote_1);
+						}else if(shipment_type.equals("2")){
+							iv_shipment.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
+						}
+						else{
+							iv_shipment.setImageResource(R.drawable.pallet_details_of_pinxiang_small_icon);
+						}
+					}
+					else if(shipping_type.equals("2")){
+						tv_shipping.setText("空运");
+						iv_shipment.setImageResource(R.drawable.pallet_details_air_transport_small_icon);
+					}
+					else{
+						tv_shipping.setText("陆运");
+						if(shipment_type.equals("1")){
+							iv_shipment.setImageResource(R.drawable.pallet_details_zhengxiang_small_icon);
+						}else if(shipment_type.equals("2")){
+							iv_shipment.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
+						}
+						else{
+							iv_shipment.setImageResource(R.drawable.pallet_details_of_pinxiang_small_icon);
+						}
+					}
+					tv_initiation.setText(datas.getInitiation());
+					tv_destination.setText(datas.getDestination());
+					tv_startime.setText(datas.getStartime());
+					tv_endtime.setText(datas.getEndtime());
+					tv_deadlinetime.setText(datas.getDeadlinetime());
+					StringBuffer description=new StringBuffer();
+					if(shipping_type.equals("1")&&shipment_type.equals("1")){
+						List<String> type=datas.getType();
+						List<String> num=datas.getNum();
+						if(type.size()>0){
+							description.append("箱型：");
+							for (int i = 0; i < type.size(); i++) {
+								description.append(type.get(i)+",");
+								description.append("数量"+num.get(i)+"箱");
+								if(i<type.size()-1){
+									description.append(";");
+								}
+								else description.append("。");
+							}
+						}
+					}
+					else{
+						description.append("件数："+datas.getPackages()+";");
+						description.append("毛重："+datas.getWeight()+"kg;");
+						description.append("体积："+datas.getVolume()+"立方;");
+						description.append("单件尺寸："+datas.getSize()+"。");
+					}
+					tv_description.setText(description.toString());
+					tv_remarks.setText(datas.getRemarks());
 				}
 			}
 		};
 		MyQuoteAccess<MyQuoteToConfirmDetail> access=new MyQuoteAccess<MyQuoteToConfirmDetail>(this, requestCallback);
-		access.getMyQuoteDetail(mBaseApp.getUserssid(), "304");
+		access.getMyQuoteDetail(mBaseApp.getUserssid(), id);
 	}
 	
 	private void intIntent() {
 		Intent intent = getIntent();
 		id = intent.getStringExtra("offerid");
-		Log.e("id", "id="+id);
 	}
 	private void initView() {
 		mGvAddPhoto=(GridView)findViewById(R.id.gv_addPhoto);
 		initGridView();
+		tv_shipping = (TextView) findViewById(R.id.tv_shipping);
+		iv_shipment = (ImageView) findViewById(R.id.iv_shipment);
 		tv_initiation = (TextView) findViewById(R.id.tv_initiation);
+		tv_destination = (TextView) findViewById(R.id.tv_destination);
+		tv_startime = (TextView) findViewById(R.id.tv_startime);
+		tv_endtime = (TextView) findViewById(R.id.tv_endtime);
+		tv_deadlinetime = (TextView) findViewById(R.id.tv_deadlinetime);
+		tv_description = (TextView) findViewById(R.id.tv_description);
+		tv_remarks = (TextView) findViewById(R.id.tv_remarks);
 	}
 	private void initGridView() {
 		int size=0;
@@ -137,7 +212,6 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 	private void init() {
 		setActionBarTitle("货盘详情");
 		findViewById(R.id.tv_show_my_quote_pop).setOnClickListener(this);
-		PopupWindowUtil.initPopup(this, R.layout.pop_my_quote_1);
 	}
 	
 	@Override
@@ -151,7 +225,6 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 		case R.id.tv_show_my_quote_pop:
 			PopupWindowUtil.showPopup(this, R.layout.activity_my_quote_sea_transport_fcl);
 			break;
-
 		default:
 			break;
 		}
