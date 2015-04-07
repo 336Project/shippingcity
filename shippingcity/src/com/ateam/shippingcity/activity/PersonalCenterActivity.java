@@ -47,6 +47,7 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 		findViewById(R.id.txt_setting).setOnClickListener(this);
 		findViewById(R.id.txt_my_integral).setOnClickListener(this);
 		findViewById(R.id.txt_invite_friend).setOnClickListener(this);
+		findViewById(R.id.txt_my_attention_pallet).setOnClickListener(this);
 		mTxtRenzheng=(TextView) findViewById(R.id.txt_renzheng);
 		mPortrait=(CircleImageView) findViewById(R.id.iv_user_portrait);
 		mUsername=(TextView) findViewById(R.id.txt_username);
@@ -100,6 +101,9 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.txt_setting://设置
 			startActivity(new Intent(this, PersonalSettingActivity.class));
+			break;
+		case R.id.txt_my_attention_pallet://我关注的货盘
+			startActivity(new Intent(this, PersonalAttentionPalletActivity.class));
 			break;
 		default:
 			break;
