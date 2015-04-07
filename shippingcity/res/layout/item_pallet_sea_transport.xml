@@ -41,8 +41,7 @@
                 android:id="@+id/tv_offer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/offer"
-                android:textColor="#ff9900"
+                android:textColor="@color/pallet_offer_text"
                 android:gravity="center"
                 android:textSize="16sp"
                 android:background="@drawable/btn_offer_selector" />

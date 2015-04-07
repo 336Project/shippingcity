@@ -7,6 +7,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.model.Respond;
@@ -41,6 +42,7 @@ public class PalletTransportAccess <T> extends HBaseAccess<Respond<T>>{
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("page", page+""));
 		nvps.add(new BasicNameValuePair("pagesize", pagesize+""));
+		Log.e("", ""+nvps.toString());
 		execute(URL_PALLET_LIST, nvps);
 	};
 	

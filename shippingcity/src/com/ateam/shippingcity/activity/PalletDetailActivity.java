@@ -3,6 +3,7 @@ package com.ateam.shippingcity.activity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.R.layout;
 import com.ateam.shippingcity.constant.MyConstant;
+import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.utils.SysUtil;
 import com.ateam.shippingcity.widget.imageview.PictureDialogActivity;
 import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
@@ -46,6 +47,8 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	private View mLineAddPhoto;//线
 	private GridView mGvAddPhoto;//添加显示图片布局
 	
+	private PalletTransport mPallet;
+	
 	private String[] urls = {
             "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing2.jpg",
             "http://c.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=cdab1512d000baa1be2c44b3772bc82f/91529822720e0cf3855c96050b46f21fbf09aaa1.jpg",
@@ -69,6 +72,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	 * 控件实例化
 	 */
 	private void initView(){
+		mPallet=(PalletTransport) getIntent().getSerializableExtra("palletTransport");
 		mTvTransportType=(TextView)findViewById(R.id.tv_transportType);
 		mTvBeginPlace=(TextView)findViewById(R.id.tv_beginPlace);
 		mTvEndPlace=(TextView)findViewById(R.id.tv_endPlace);
@@ -84,6 +88,19 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		mGvAddPhoto=(GridView)findViewById(R.id.gv_addPhoto);
 		mBtnFocus.setOnClickListener(this);
 		mBtnMyOffer.setOnClickListener(this);
+		if(mPallet.ifbid!=null&&mPallet.ifbid.equals("1")){
+			findViewById(R.id.tv_view).setVisibility(View.GONE);
+			mBtnMyOffer.setText("我的报价");
+		}else if(SysUtil.getRemainTime(mPallet.deadlinetime).equals("0小时")){
+			mBtnFocus.setBackgroundDrawable(getResources().getDrawable(R.drawable.closing_quotes_submit_icon));
+			mBtnFocus.setTextColor(getResources().getColor(R.color.white));
+			mBtnFocus.setClickable(false);
+			mBtnMyOffer.setBackgroundDrawable(getResources().getDrawable(R.drawable.closing_quotes_submit_icon));
+			mBtnMyOffer.setTextColor(getResources().getColor(R.color.white));
+			mBtnMyOffer.setClickable(false);
+		}else{
+			
+		}
 	}
 	
 	/**
@@ -137,7 +154,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 			
 			break;
 		case R.id.btn_myOffer:
-	
+			
 			break;
 
 		default:

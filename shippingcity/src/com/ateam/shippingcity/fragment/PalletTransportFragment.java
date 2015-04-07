@@ -7,6 +7,7 @@ import java.util.List;
 import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
+import com.ateam.shippingcity.activity.MyQuoteToConfirmActivity;
 import com.ateam.shippingcity.activity.PalletDetailActivity;
 import com.ateam.shippingcity.adapter.PalletTransportAdapter;
 import com.ateam.shippingcity.application.HBaseApp;
@@ -48,11 +49,16 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		// TODO Auto-generated method stub
-		MyToast.showShort(getActivity(), "你点击了该item！");
-		Intent intent = new Intent(getActivity(), PalletDetailActivity.class);
-		intent.putExtra("palletTransport", dataList.get(position));
-		getActivity().startActivity(intent);
+		//判断是否已经报价，进行跳转
+		if(dataList.get(position).ifbid!=null&&dataList.get(position).ifbid.equals("1")){
+			Intent intent = new Intent(getActivity(), MyQuoteToConfirmActivity.class);
+			intent.putExtra("offerid", dataList.get(position).id);
+			getActivity().startActivity(intent);
+		}else{
+			Intent intent = new Intent(getActivity(), PalletDetailActivity.class);
+			intent.putExtra("palletTransport", dataList.get(position));
+			getActivity().startActivity(intent);
+		}
 	}
 
 	@Override

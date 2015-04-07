@@ -65,7 +65,7 @@ public abstract class HBaseXListViewFragment<T> extends Fragment implements IXLi
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				if(onXListItemClickListener!=null){
-					onXListItemClickListener.onItemClick(parent, view, position, id);
+					onXListItemClickListener.onItemClick(parent, view, position-1, id);
 				}
 			}
 			

@@ -14,6 +14,7 @@
 	<color name="pallet_text_red">#f08080</color>
 	<color name="pallet_item_title">#4c4c4c</color>
 	<color name="pallet_offer_btn">#424242</color>
+	<color name="pallet_offer_text">#8F9193</color>
 	
     <color name="text_cursor">#54BAF4</color>
     <color name="expand_bg">#f1f1f1</color>

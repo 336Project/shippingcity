@@ -80,14 +80,23 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		}
 		((TextView)holder.getView(R.id.tv_transportTimeBegin)).setText(bean.startime);
 		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.endtime);
-		((TextView)holder.getView(R.id.tv_offer)).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				toOfferPage(bean);
-			}
-		});
+		TextView mOffer = ((TextView)holder.getView(R.id.tv_offer));
+		if(bean.ifbid!=null&&bean.ifbid.equals("1")){
+			mOffer.setText("已报价");
+			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
+		}else if(SysUtil.getRemainTime(bean.deadlinetime).equals("0小时")){
+			mOffer.setText("已截止");
+			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
+		}else{
+			((TextView)holder.getView(R.id.tv_offer)).setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					toOfferPage(bean);
+				}
+			});
+		}
 	}
 
 	@Override
