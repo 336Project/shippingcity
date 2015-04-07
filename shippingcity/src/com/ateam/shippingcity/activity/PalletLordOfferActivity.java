@@ -85,7 +85,6 @@ public class PalletLordOfferActivity extends HBaseActivity {
 					public void onSuccess(Respond<List<PalletTransport>> result) {
 //						Log.e("", "" + result.toString());
 						if(result.getStatusCode().equals("200")){
-							MyToast.showShort(PalletLordOfferActivity.this, "报价成功！");
 							jumpToResult("success");
 							finish();
 						}

@@ -52,7 +52,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 			}
 			((TextView)holder.getView(R.id.tv_palletDescribe)).setText(Describe.toString());
 		}else if(bean.shipment_type.equals("2")){
-			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_of_pinxiang_great_icon));
+			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_san_groceries_great_icon));
 			StringBuffer Describe=new StringBuffer();
 			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+";"+"体积:"+bean.volume+";");
 			if(bean.size.size()==3){
@@ -60,7 +60,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 			}
 			((TextView)holder.getView(R.id.tv_palletDescribe)).setText(Describe);
 		}else{
-			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_san_groceries_great_icon));
+			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_of_pinxiang_great_icon));
 			StringBuffer Describe=new StringBuffer();
 			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+";"+"体积:"+bean.volume+";");
 			if(bean.size.size()==3){

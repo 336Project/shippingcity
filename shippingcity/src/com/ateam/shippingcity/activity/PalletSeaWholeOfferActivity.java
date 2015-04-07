@@ -18,6 +18,7 @@ import com.ateam.shippingcity.R.layout;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -129,10 +130,11 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 			public void onSuccess(Respond<List<PalletTransport>> result) {
 //				Log.e("", "" + result.toString());
 				if(result.getStatusCode().equals("200")){
-					MyToast.showShort(PalletSeaWholeOfferActivity.this, "报价成功！");
+					jumpToResult("success");
 					finish();
 				}
 				if(result.getStatusCode().equals("500")){
+					jumpToResult("fial");
 					MyToast.showShort(PalletSeaWholeOfferActivity.this, result.getMessage());
 				}
 			}
@@ -197,5 +199,11 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 		mGetCompanyAccess.setIsShow(false);
 		mGetCompanyAccess.getBootCompany(mBaseApp.getUserssid());
     }
+    
+    private void jumpToResult(String result){
+		Intent intent=new Intent(this,PalletOfferResultActivity.class);
+		intent.putExtra("result", result);
+		startActivity(intent);
+	}
     
 }

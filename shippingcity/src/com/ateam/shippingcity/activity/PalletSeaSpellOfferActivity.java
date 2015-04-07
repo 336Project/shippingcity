@@ -11,6 +11,7 @@ import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -111,10 +112,11 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 			public void onSuccess(Respond<List<PalletTransport>> result) {
 //				Log.e("", "" + result.toString());
 				if(result.getStatusCode().equals("200")){
-					MyToast.showShort(PalletSeaSpellOfferActivity.this, "报价成功！");
+					jumpToResult("success");
 					finish();
 				}
 				if(result.getStatusCode().equals("500")){
+					jumpToResult("fial");
 					MyToast.showShort(PalletSeaSpellOfferActivity.this, result.getMessage());
 				}
 			}
@@ -128,6 +130,12 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 				mPallet.id, 
 				mEtAddInform.getText().toString(), 
 				type+"");
+	}
+	
+	private void jumpToResult(String result){
+		Intent intent=new Intent(this,PalletOfferResultActivity.class);
+		intent.putExtra("result", result);
+		startActivity(intent);
 	}
 
 }

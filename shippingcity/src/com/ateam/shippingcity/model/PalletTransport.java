@@ -16,7 +16,7 @@ public class PalletTransport implements Serializable{
 	public String id;//货盘id
 	public String order_id;// 订单号
 	public String shipping_type;//1海运 2空运 3陆运
-	public String shipment_type;//1整箱 2拼箱 3散杂货
+	public String shipment_type;//1整箱 2散杂货 3拼箱
 	public String userid;//发布货盘的用户id
 	public String truename;//实名
 	public String company;//公司名

@@ -154,12 +154,40 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 			
 			break;
 		case R.id.btn_myOffer:
-			
+			toOfferPage(mPallet);
 			break;
 
 		default:
 			break;
 		}
+	}
+	
+	/**
+	 * 点击报价后，跳转到相应的界面
+	 * @param bean
+	 */
+	private void toOfferPage(PalletTransport bean){
+		Intent intent =new Intent();
+		if(bean.shipping_type.toString().equals("1")){
+			if(bean.shipment_type.equals("1")){
+				intent.setClass(this, PalletSeaWholeOfferActivity.class);
+			}else if(bean.shipment_type.equals("2")){
+				intent.setClass(this, PalletSeaSpellOfferActivity.class);
+			}else{
+				intent.setClass(this, PalletSeaDiffOfferActivity.class);
+			}
+		}else if(bean.shipping_type.toString().equals("2")){
+			intent.setClass(this, PalletAirOfferActivity.class);
+		}else{
+			if(bean.shipment_type.equals("1")){
+				intent.setClass(this, PalletLordOfferActivity.class);
+			}else if(bean.shipment_type.equals("2")){
+				intent.setClass(this, PalletAirOfferActivity.class);
+				intent.putExtra("palletType", "陆运");
+			}
+		}
+		intent.putExtra("palletTransport", bean);
+		startActivity(intent);
 	}
 	
 }
