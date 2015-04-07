@@ -28,88 +28,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/offer_company_Lord"
-                    android:textColor="@color/pallet_text_red"
-                    android:textSize="@dimen/xlist_pallet_title_text" />
+                    android:textColor="@color/coralColor"
+                    android:textSize="16dp" />
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="@drawable/lineColor" />
-
+            
             <LinearLayout
+                android:id="@+id/layout_addBox"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/myQuote_item_height"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/T_GP"
-                    android:textSize="@dimen/xlist_pallet_title_text" />
-
-                <EditText
-                    android:id="@+id/et_TGP"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:layout_weight="1"
-                    android:background="@color/white" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/myQuote_line_left_iv"
-                android:background="@drawable/lineColor" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/myQuote_item_height"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/F_GP"
-                    android:textSize="@dimen/xlist_pallet_title_text" />
-
-                <EditText
-                    android:id="@+id/et_FGP"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:layout_weight="1"
-                    android:background="@color/white" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/myQuote_line_left_iv"
-                android:background="@drawable/lineColor" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/myQuote_item_height"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/F_HP"
-                    android:textSize="@dimen/xlist_pallet_title_text" />
-
-                <EditText
-                    android:id="@+id/et_FHP"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:layout_weight="1"
-                    android:background="@color/white" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                
             </LinearLayout>
 
             <View
@@ -121,7 +50,9 @@
                 android:id="@+id/et_addInform"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="37dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/shape_rectangle_edittext"
                 android:gravity="left|top"
                 android:hint="@string/add_inform"

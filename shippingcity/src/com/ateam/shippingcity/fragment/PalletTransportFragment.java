@@ -75,7 +75,7 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 	}
 
 	@Override
-	public List getDataSource() {
+	public List<PalletTransport> getDataSource() {
 		// TODO Auto-generated method stub
 		return dataList;
 	}
@@ -123,7 +123,7 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 
 	@Override
 	public boolean isLazyLoad() {
-		return true;
+		return false;
 	}
 
 }

@@ -77,6 +77,7 @@ public class PalletTransportAccess <T> extends HBaseAccess<Respond<T>>{
 		nvps.add(new BasicNameValuePair("post[shipcompany]", shipcompany));
 		nvps.add(new BasicNameValuePair("post[remarks]", remarks));
 		nvps.add(new BasicNameValuePair("action", "add"));
+		Log.e("", ""+nvps.toString());
 		execute(URL_ENTRUST_SHOW, nvps);
 	}
 	
@@ -118,6 +119,7 @@ public class PalletTransportAccess <T> extends HBaseAccess<Respond<T>>{
 		nvps.add(new BasicNameValuePair("post[itemid]", itemid));
 		nvps.add(new BasicNameValuePair("post[remarks]", remarks));
 		nvps.add(new BasicNameValuePair("action", "add"));
+		Log.e("", ""+nvps.toString());
 		execute(URL_ENTRUST_SHOW, nvps);
 	}
 	

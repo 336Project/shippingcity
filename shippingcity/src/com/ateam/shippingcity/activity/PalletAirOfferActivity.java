@@ -14,6 +14,7 @@ import com.ateam.shippingcity.utils.MyToast;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -54,7 +55,7 @@ public class PalletAirOfferActivity extends HBaseActivity {
 		mEtMoney=(EditText)findViewById(R.id.et_money);
 		mEtAddInform=(EditText)findViewById(R.id.et_addInform);
 		mBtnCommit=(Button)findViewById(R.id.btn_commit);
-		if(getIntent().getStringExtra("palletType").equals("陆运")){
+		if(getIntent().getStringExtra("palletType")!=null&&getIntent().getStringExtra("palletType").equals("陆运")){
 			mTvMoneyLable.setText("￥");
 		}
 	}
@@ -88,7 +89,16 @@ public class PalletAirOfferActivity extends HBaseActivity {
 						}
 						if(result.getStatusCode().equals("500")){
 							jumpToResult("fial");
+							MyToast.showShort(PalletAirOfferActivity.this, result.getMessage());
+							finish();
 						}
+					}
+					@Override
+					public void onFail(Context c, String errorMsg) {
+						// TODO Auto-generated method stub
+						super.onFail(c, errorMsg);
+						jumpToResult("fial");
+						finish();
 					}
 				};
 				access = new PalletTransportAccess<List<PalletTransport>>(
@@ -105,6 +115,9 @@ public class PalletAirOfferActivity extends HBaseActivity {
 	private void jumpToResult(String result){
 		Intent intent=new Intent(this,PalletOfferResultActivity.class);
 		intent.putExtra("result", result);
+		intent.putExtra("money", mEtMoney.getText().toString());
+		intent.putExtra("addInform", mEtAddInform.getText().toString());
+		intent.putExtra("palletTransport", mPallet);
 		startActivity(intent);
 	}
 

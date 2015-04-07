@@ -11,6 +11,7 @@ import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +38,7 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 
 	private PalletTransportAccess<List<PalletTransport>> access;
 	private PalletTransport mPallet;
+	private int type;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -118,12 +120,20 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 				if(result.getStatusCode().equals("500")){
 					jumpToResult("fial");
 					MyToast.showShort(PalletSeaSpellOfferActivity.this, result.getMessage());
+					finish();
 				}
+			}
+			@Override
+			public void onFail(Context c, String errorMsg) {
+				// TODO Auto-generated method stub
+				super.onFail(c, errorMsg);
+				jumpToResult("fial");
+				finish();
 			}
 		};
 		access = new PalletTransportAccess<List<PalletTransport>>(
 				this, requestCallback);
-		int type=isHeavy==true?1:2;
+		type=isHeavy==true?1:2;
 		access.seaSpellOfferCommit(
 				mBaseApp.getUserssid(), 
 				mEtMoney.getText().toString(), 
@@ -135,6 +145,10 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 	private void jumpToResult(String result){
 		Intent intent=new Intent(this,PalletOfferResultActivity.class);
 		intent.putExtra("result", result);
+		intent.putExtra("money", mEtMoney.getText().toString());
+		intent.putExtra("type", type+"");
+		intent.putExtra("addInform", mEtAddInform.getText().toString());
+		intent.putExtra("palletTransport", mPallet);
 		startActivity(intent);
 	}
 

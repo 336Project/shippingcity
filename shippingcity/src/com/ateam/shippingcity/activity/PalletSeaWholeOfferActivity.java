@@ -13,6 +13,7 @@ import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.widget.HAutoCompleteTextView;
+import com.ateam.shippingcity.widget.PalletWholeOfferItem;
 import com.ateam.shippingcity.R.layout;
 
 import android.os.Bundle;
@@ -37,18 +38,16 @@ import android.widget.LinearLayout;
 public class PalletSeaWholeOfferActivity extends HBaseActivity {
 
 	private HAutoCompleteTextView mEtShipCompany;//公司名称
-	private EditText mEtTGP;//20gp报价
-	private EditText mEtFGP;//40gp报价
-	private EditText mEtFHP;//40hp报价
 	private EditText mEtAddInform;//附加信息
 	private Button mBtnCommit;//提交按钮
 	
+	private ArrayList<EditText> mBoxList=new ArrayList<EditText>();
 	private PalletTransportAccess<List<PalletTransport>> access;
 	private PalletTransportAccess<ArrayList<String>> mGetCompanyAccess;
 	private PalletTransport mPallet;
-	private LinearLayout mLayoutFGP;//40gp布局
-	private LinearLayout mLayoutTGP;
-	private LinearLayout mLayoutFHP;
+	private LinearLayout mLayoutAddBox;
+	private View mLine=null;//上一个box item的线
+	private StringBuffer offerList=new StringBuffer();//报价字符串
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,29 +63,36 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 	private void initView(){
 		mPallet=(PalletTransport) getIntent().getSerializableExtra("palletTransport");
 		mEtShipCompany=(HAutoCompleteTextView)findViewById(R.id.et_shipCompany);
-		mEtTGP=(EditText)findViewById(R.id.et_TGP);
-		mEtFGP=(EditText)findViewById(R.id.et_FGP);
-		mEtFHP=(EditText)findViewById(R.id.et_FHP);
 		mEtAddInform=(EditText)findViewById(R.id.et_addInform);
 		mBtnCommit=(Button)findViewById(R.id.btn_commit);
+		mLayoutAddBox=(LinearLayout)findViewById(R.id.layout_addBox);
 		//是否显示 货箱
-		mLayoutTGP = (LinearLayout)findViewById(R.id.layout_TGP);
-		mLayoutFGP = (LinearLayout)findViewById(R.id.layout_FGP);
-		mLayoutFHP = (LinearLayout)findViewById(R.id.layout_FHP);
-		View mLine1 = (View)findViewById(R.id.view_TGP);
-		View mLine2 = (View)findViewById(R.id.view_FGP);
 		getCompanyInform();
-		Log.e("", "mPallet.boxtype"+mPallet.boxtype.toString());
-		if(!mPallet.boxtype.contains("20GP")){
-			mLayoutTGP.setVisibility(View.GONE);
-			mLine1.setVisibility(View.GONE);
-		}
-		if(!mPallet.boxtype.contains("40GP")){
-			mLayoutFGP.setVisibility(View.GONE);
-			mLine2.setVisibility(View.GONE);	
-		}
-		if(!mPallet.boxtype.contains("HQ")){
-			mLayoutFHP.setVisibility(View.GONE);
+		addBox("20GP","20'GP");
+		addBox("40GP","40'GP");
+		addBox("40HQ","40'HQ");
+		addBox("45HQ","45'HQ");
+		addBox("20RF","20'RF");
+		addBox("40RF","40'RF");
+		addBox("20OT","20'OT");
+		addBox("40OT","40'OT");
+		addBox("20FR","20'FR");
+		addBox("20TK","20'TK");
+		addBox("20SP","20'SP");
+		addBox("40SP","40'SP");
+		addBox("40RH","40'RH");
+	}
+	
+	private void addBox(String boxType,String boxTitle){
+		if(mPallet.boxtype.contains(boxType)){
+			if(mLine!=null){
+				mLine.setVisibility(View.VISIBLE);
+			}
+			PalletWholeOfferItem item=new PalletWholeOfferItem(this);
+			item.setTvBox(boxTitle);
+			mLine=item.getLine();
+			mBoxList.add(item.getBox());
+			mLayoutAddBox.addView(item);
 		}
 	}
 	
@@ -103,9 +109,18 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 					MyToast.showShort(PalletSeaWholeOfferActivity.this, "船公司名称不能为空！");
 					return;
 				}
-//				if(mLayoutTGP.is){
-//					
-//				}
+				offerList=new StringBuffer();
+				for (int i = 0; i < mBoxList.size(); i++) {
+					if(i<(mBoxList.size()-1)){
+						offerList.append(mBoxList.get(i).getText().toString()+"|");
+					}else{
+						offerList.append(mBoxList.get(i).getText().toString());
+					}
+					if(mBoxList.get(i).getText().toString().equals("")){
+						MyToast.showShort(PalletSeaWholeOfferActivity.this, "报价不能为空！");
+						return;
+					}
+				}
 				commitData();
 			}
 		});
@@ -128,7 +143,6 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 
 			@Override
 			public void onSuccess(Respond<List<PalletTransport>> result) {
-//				Log.e("", "" + result.toString());
 				if(result.getStatusCode().equals("200")){
 					jumpToResult("success");
 					finish();
@@ -136,15 +150,22 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 				if(result.getStatusCode().equals("500")){
 					jumpToResult("fial");
 					MyToast.showShort(PalletSeaWholeOfferActivity.this, result.getMessage());
+					finish();
 				}
+			}
+			@Override
+			public void onFail(Context c, String errorMsg) {
+				// TODO Auto-generated method stub
+				super.onFail(c, errorMsg);
+				jumpToResult("fial");
+				finish();
 			}
 		};
 		access = new PalletTransportAccess<List<PalletTransport>>(
 				this, requestCallback);
-		Log.e("", "mPallet.id"+mPallet.id);
 		access.seaWholeOfferCommit(
 				mBaseApp.getUserssid(), 
-				mEtTGP.getText().toString(),
+				offerList.toString(),
 				mPallet.id,
 				mEtShipCompany.getText().toString(),
 				mEtAddInform.getText().toString());
@@ -203,6 +224,10 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
     private void jumpToResult(String result){
 		Intent intent=new Intent(this,PalletOfferResultActivity.class);
 		intent.putExtra("result", result);
+		intent.putExtra("TGP", offerList.toString());
+		intent.putExtra("shipCompany", mEtShipCompany.getText().toString());
+		intent.putExtra("addInform", mEtAddInform.getText().toString());
+		intent.putExtra("palletTransport", mPallet);
 		startActivity(intent);
 	}
     

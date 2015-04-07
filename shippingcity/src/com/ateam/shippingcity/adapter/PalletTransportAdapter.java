@@ -39,12 +39,15 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		// TODO Auto-generated method stub
 		((TextView)holder.getView(R.id.tv_remainTime)).setText(SysUtil.getRemainTime(bean.deadlinetime));
 		TextView mTvBoxType = ((TextView)holder.getView(R.id.tv_boxType));
+		//根据详情的不同，设置不同的明细
 		if(bean.shipment_type.equals("1")){
 			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_zhengxiang_great_icon));
 			StringBuffer Describe=new StringBuffer();
 			if(bean.boxtype.size()==bean.number.size()){
 				for (int i = 0; i < bean.boxtype.size(); i++) {
-					Describe.append(bean.boxtype.get(i)+"*"+bean.number.get(i));
+					if(!bean.boxtype.get(i).equals("")){
+						Describe.append(bean.boxtype.get(i)+"*"+bean.number.get(i));
+					}
 					if((bean.number.size()-i)>=2){
 						Describe.append("、");
 					}
@@ -70,6 +73,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		}
 		((TextView)holder.getView(R.id.tv_placeBegin)).setText(bean.initiation);
 		((TextView)holder.getView(R.id.tv_placeEnd)).setText(bean.destination);
+		//设置当前运输的状态
 		if(bean.shipping_type.toString().equals("1")){
 			((TextView)holder.getView(R.id.tv_transportType)).setText("海运");
 		}else if(bean.shipping_type.toString().equals("2")){
@@ -81,14 +85,20 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		((TextView)holder.getView(R.id.tv_transportTimeBegin)).setText(bean.startime);
 		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.endtime);
 		TextView mOffer = ((TextView)holder.getView(R.id.tv_offer));
+		//判断是否是已经报价，或是已经截止
 		if(bean.ifbid!=null&&bean.ifbid.equals("1")){
 			mOffer.setText("已报价");
+			mOffer.setClickable(false);
 			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
-		}else if(SysUtil.getRemainTime(bean.deadlinetime).equals("0小时")){
+		}else if(!SysUtil.getRemainTime(bean.deadlinetime).equals("0小时")){
 			mOffer.setText("已截止");
+			mOffer.setClickable(false);
 			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
 		}else{
-			((TextView)holder.getView(R.id.tv_offer)).setOnClickListener(new OnClickListener() {
+			mOffer.setText("报价");
+			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.pallet_area_quotes_icon));
+			mOffer.setClickable(true);
+			mOffer.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View arg0) {
@@ -114,7 +124,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		if(bean.shipping_type.toString().equals("1")){
 			if(bean.shipment_type.equals("1")){
 				intent.setClass(c, PalletSeaWholeOfferActivity.class);
-			}else if(bean.shipment_type.equals("2")){
+			}else if(bean.shipment_type.equals("3")){
 				intent.setClass(c, PalletSeaSpellOfferActivity.class);
 			}else{
 				intent.setClass(c, PalletSeaDiffOfferActivity.class);

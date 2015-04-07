@@ -11,6 +11,7 @@ import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -79,7 +80,15 @@ public class PalletSeaDiffOfferActivity extends HBaseActivity {
 						if(result.getStatusCode().equals("500")){
 							jumpToResult("fial");
 							MyToast.showShort(PalletSeaDiffOfferActivity.this, result.getMessage());
+							finish();
 						}
+					}
+					@Override
+					public void onFail(Context c, String errorMsg) {
+						// TODO Auto-generated method stub
+						super.onFail(c, errorMsg);
+						jumpToResult("fial");
+						finish();
 					}
 				};
 				access = new PalletTransportAccess<List<PalletTransport>>(
@@ -95,6 +104,8 @@ public class PalletSeaDiffOfferActivity extends HBaseActivity {
 	private void jumpToResult(String result){
 		Intent intent=new Intent(this,PalletOfferResultActivity.class);
 		intent.putExtra("result", result);
+		intent.putExtra("offerContent", mEtOfferContent.getText().toString());
+		intent.putExtra("palletTransport", mPallet);
 		startActivity(intent);
 	}
 

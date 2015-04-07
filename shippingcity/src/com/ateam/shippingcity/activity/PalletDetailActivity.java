@@ -171,7 +171,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		if(bean.shipping_type.toString().equals("1")){
 			if(bean.shipment_type.equals("1")){
 				intent.setClass(this, PalletSeaWholeOfferActivity.class);
-			}else if(bean.shipment_type.equals("2")){
+			}else if(bean.shipment_type.equals("3")){
 				intent.setClass(this, PalletSeaSpellOfferActivity.class);
 			}else{
 				intent.setClass(this, PalletSeaDiffOfferActivity.class);
