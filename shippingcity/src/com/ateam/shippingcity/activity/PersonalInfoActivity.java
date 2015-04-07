@@ -70,15 +70,21 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			mTxtAddress.setText(user.getCom_address());//公司地址
 		}
 		ImageView avatar=(ImageView) findViewById(R.id.iv_avatar);//头像
-		ImageLoader.getInstance().displayImage(user.getAvatar(), avatar);
-		ImageLoader.getInstance().displayImage(user.getVpicture().get(0), (ImageView)findViewById(R.id.iv_vtruename));//身份证
+		if(!TextUtils.isEmpty(user.getAvatar())){
+			ImageLoader.getInstance().displayImage(user.getAvatar(), avatar);
+		}
+		if(!TextUtils.isEmpty(user.getVpicture().get(0))){
+			ImageLoader.getInstance().displayImage(user.getVpicture().get(0), (ImageView)findViewById(R.id.iv_vtruename));//身份证
+		}
 		TextView txtTruename=((TextView)findViewById(R.id.txt_vtruename_status));//实名认证状态
 		txtTruename.setText(user.getStatus_truename());
 		if(user.getVtruename().equals("3")){
 			txtTruename.setTextColor(Color.rgb(70,159,233));
 			txtTruename.setCompoundDrawablesWithIntrinsicBounds(R.drawable.personal_information_a_certified_icon, 0, 0, 0);
 		}
-		ImageLoader.getInstance().displayImage(user.getVpicture().get(1), (ImageView)findViewById(R.id.iv_card));//工牌
+		if(!TextUtils.isEmpty(user.getVpicture().get(1))){
+			ImageLoader.getInstance().displayImage(user.getVpicture().get(1), (ImageView)findViewById(R.id.iv_card));//工牌
+		}
 		TextView txtStatus=((TextView)findViewById(R.id.txt_card_status));//工牌认证状态
 		txtStatus.setText(user.getStatus_truename());
 		if(user.getVtruename().equals("3")){
@@ -86,7 +92,9 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			txtStatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.personal_information_a_certified_icon, 0, 0, 0);
 		}
 		((TextView)findViewById(R.id.txt_company_name)).setText(user.getCompany());//公司名称
-		ImageLoader.getInstance().displayImage(user.getVpicture().get(2), (ImageView)findViewById(R.id.iv_vcompany));//营业执照
+		if(!TextUtils.isEmpty(user.getVpicture().get(2))){
+			ImageLoader.getInstance().displayImage(user.getVpicture().get(2), (ImageView)findViewById(R.id.iv_vcompany));//营业执照
+		}
 		TextView txtCompany=((TextView)findViewById(R.id.txt_vcompany_status));//公司认证状态
 		txtCompany.setText(user.getStatus_company());
 		if(user.getVcompany().equals("3")){

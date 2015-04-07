@@ -20,10 +20,10 @@
 	        android:minHeight="60dp"
 	        app:nameText="推荐奖励"
 	        app:nameColor="#4c4c4c"
-	        app:nameSize="16sp"
+	        app:nameSize="11sp"
 	        app:valueText="45"
 	        app:valueColor="#FF9000"
-	        app:valueSize="16sp"
+	        app:valueSize="11sp"
 	        android:layout_marginLeft="25dp"
 	        android:layout_marginRight="25dp"
 	        >

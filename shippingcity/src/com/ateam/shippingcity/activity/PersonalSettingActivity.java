@@ -45,6 +45,7 @@ public class PersonalSettingActivity extends HBaseActivity implements OnClickLis
 			jump(this, PersonalGuideActivity.class);
 			break;
 		case R.id.btn_logout://退出登录
+			showMsg(this, "已安全退出");
 			mBaseApp.setUser(null);
 			mBaseApp.setUserssid(null);
 			Intent intent=new Intent();
