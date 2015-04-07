@@ -75,6 +75,7 @@
 	    android:gravity="center_vertical"
 	    >
 	    <ImageView 
+	        android:id="@+id/share_wechat"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
@@ -88,12 +89,14 @@
 	        android:src="@drawable/share_it_xinlang_icon"
 	        />
 	    <ImageView 
+	        android:id="@+id/share_wechat_moments"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
 	        android:src="@drawable/share_it_pengyouquan_icon"
 	        />
 	    <ImageView 
+	        android:id="@+id/share_qzone"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
