@@ -21,7 +21,7 @@ import android.view.ViewGroup;
 public class PalletFragment extends Fragment {
 
 	private View view;
-	private MainActivity activity;
+	//private MainActivity activity;
 	public static final String[] TAB_TITLE={"全部","海运","空运","陆运"};
 	
 	public PalletFragment() {
@@ -38,9 +38,9 @@ public class PalletFragment extends Fragment {
 	}
 	
 	private void init() {
-		activity = (MainActivity) getActivity();
+		/*activity = (MainActivity) getActivity();
 		activity.getRightTxt().setVisibility(View.GONE);
-		activity.getRightIcon().setVisibility(View.GONE);
+		activity.getRightIcon().setVisibility(View.GONE);*/
 	}
 	/**
 	 * 添加tab中的内容

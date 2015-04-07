@@ -93,6 +93,12 @@
             android:theme="@style/ActivityDialogTheme" >
         </activity>
         <activity
+            android:name="com.ateam.shippingcity.activity.PersonalAttentionPalletActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/StyledIndicators"
+             >
+        </activity>
+        <activity
             android:name="com.ateam.shippingcity.activity.PictureSelectDialogActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityDialogTheme" >
