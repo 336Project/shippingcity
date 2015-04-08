@@ -5,8 +5,11 @@ package com.ateam.shippingcity.constant;
  * @version 
  * @create_date 2015-3-31上午11:39:46
  */
-public class MyConstant {
+public class ConstantUtil {
 
 	public static final String EXTRA_IMAGE_INDEX = "image_index";
 	public static final String EXTRA_IMAGE_URLS = "image_urls";
+	
+	public static final String IMAGE_CACHE="/shippingcity/cache/";//图片缓存地址
+	public static final String DOWNLOAD_CACHE="shippingcity/download";//文件下载路径
 }

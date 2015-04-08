@@ -2,7 +2,7 @@ package com.ateam.shippingcity.activity;
 
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.R.layout;
-import com.ateam.shippingcity.constant.MyConstant;
+import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.utils.SysUtil;
 import com.ateam.shippingcity.widget.imageview.PictureDialogActivity;

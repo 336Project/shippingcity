@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
  * @TODO 首页
  */
 public class HomeActivity extends HBaseActivity implements OnClickListener{
+	private int[] resIds=new int[]{R.drawable.home_banner,R.drawable.home_banner_02,R.drawable.home_banner_03};
 	private long currTime=0;
 	private CirclePageIndicator mIndicator;
 	private AutoScrollViewPager mViewPager;
@@ -47,7 +48,7 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 	private void initView() {
 		mIndicator=(CirclePageIndicator) findViewById(R.id.indicator);
 		mViewPager=(AutoScrollViewPager) findViewById(R.id.auto_view_page);
-		BannerPageAdapter adapter=new BannerPageAdapter();
+		BannerPageAdapter adapter=new BannerPageAdapter(resIds);
 		mViewPager.setAdapter(adapter);
 		if (adapter.getCount()<=1) {
 			mIndicator.setVisibility(View.GONE);
@@ -79,10 +80,13 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 	 * @TODO
 	 */
 	class BannerPageAdapter extends PagerAdapter{
-		
+		private int[] resIds;
+		public BannerPageAdapter(int[] resIds){
+			this.resIds=resIds;
+		}
 		@Override
 		public int getCount() {
-			return 1;
+			return resIds.length;
 		}
 
 		@Override
@@ -96,8 +100,9 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 		}
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
+			int id=resIds[position];
 			ImageView view=new ImageView(HomeActivity.this);
-			view.setBackgroundResource(R.drawable.home_banner);
+			view.setBackgroundResource(id);
 			LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
 			container.addView(view,params);
 			return view;

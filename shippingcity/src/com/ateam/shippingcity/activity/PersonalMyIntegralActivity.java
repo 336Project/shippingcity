@@ -151,6 +151,17 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 
 	@Override
 	public void onClick(View v) {
-		jump(this, PersonalIntegralRuleActivity.class);
+		switch (v.getId()) {
+		case R.id.txt_right:
+			jump(this, PersonalIntegralRuleActivity.class);
+			/*Intent intent=new Intent(this, HWebViewActivity.class);
+			intent.putExtra(HWebViewActivity.KEY_TITLE, "积分规则");
+			intent.putExtra(HWebViewActivity.KEY_URL, HURL.URL_PERSONAL_CREDIT_RULE);
+			startActivity(intent);*/
+			break;
+
+		default:
+			break;
+		}
 	}
 }

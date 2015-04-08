@@ -1,6 +1,6 @@
 package com.ateam.shippingcity.access;
 
-import java.io.InputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -294,13 +294,63 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 	 * @param img
 	 * @TODO 修改头像
 	 */
-	public void modifyAvatar(String userssid,InputStream img){
+	public void modifyAvatar(String userssid,File img){
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("userssid", userssid));
-		Map<String, InputStream> file=new HashMap<String, InputStream>();
+		Map<String, File> file=new HashMap<String, File>();
 		file.put("img", img);
 		execute(URL_PERSONAL_UPLOAD, nvps,file);
+	}
+	/**
+	 * 
+	 * 2015-4-8 下午2:56:59
+	 * @param userssid
+	 * @param upthumb
+	 * @param old
+	 * @param type
+	 * @TODO 修改证件
+	 */
+	public void modifyPhoto(String userssid,File upthumb,String old,String type){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		nvps.add(new BasicNameValuePair("old", old));
+		if(type.equals("身份证")){
+			nvps.add(new BasicNameValuePair("fid", "thumb"));
+		}else if(type.equals("工牌")){
+			nvps.add(new BasicNameValuePair("fid", "thumb1"));
+		}else if(type.equals("营业执照")){
+			nvps.add(new BasicNameValuePair("fid", "thumb"));
+		}
+		Map<String, File> file=new HashMap<String, File>();
+		file.put("upthumb", upthumb);
+		execute(URL_PERSONAL_UPLOADS, nvps,file);
+	}
+	/**
+	 * 
+	 * 2015-4-8 下午3:46:45
+	 * @param userssid
+	 * @param imgUrl
+	 * @param type
+	 * @TODO 认证
+	 */
+	public void authen(String userssid,String imgUrl,String type){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		nvps.add(new BasicNameValuePair("Msubmit", "提交"));
+		if(type.equals("身份证")){
+			nvps.add(new BasicNameValuePair("thumb", imgUrl));
+			nvps.add(new BasicNameValuePair("action", "truename"));
+		}else if(type.equals("工牌")){
+			nvps.add(new BasicNameValuePair("thumb1", imgUrl));
+			nvps.add(new BasicNameValuePair("action", "truename"));
+		}else if(type.equals("营业执照")){
+			nvps.add(new BasicNameValuePair("thumb", imgUrl));
+			nvps.add(new BasicNameValuePair("action", "company"));
+		}
+		execute(URL_PERSONAL_AUTHEN, nvps);
 	}
 	/**
 	 * 
@@ -329,4 +379,5 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("collect", "1"));
 		execute(URL_PALLET_LIST, nvps);
 	};
+	
 }

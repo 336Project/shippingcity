@@ -23,10 +23,11 @@
         android:id="@+id/img_back_to_top"
         android:layout_width="96dp"
         android:layout_height="96dp"
+        android:contentDescription="@string/app_name"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/ic_launcher" />
+        android:background="@drawable/personal_center_usage_guide_goto_top_icon" />
 
 </RelativeLayout>

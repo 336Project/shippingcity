@@ -8,7 +8,7 @@ import com.ateam.shippingcity.R.menu;
 import com.ateam.shippingcity.access.MyQuoteAccess;
 import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
-import com.ateam.shippingcity.constant.MyConstant;
+import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.model.MyQuoteToConfirmDetail;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
@@ -205,8 +205,8 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 	private void imageBrower(int position, String[] urls) {
 		Intent intent = new Intent(this, ImagePagerActivity.class);
 		// 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
-		intent.putExtra(MyConstant.EXTRA_IMAGE_URLS, urls);
-		intent.putExtra(MyConstant.EXTRA_IMAGE_INDEX, position);
+		intent.putExtra(ConstantUtil.EXTRA_IMAGE_URLS, urls);
+		intent.putExtra(ConstantUtil.EXTRA_IMAGE_INDEX, position);
 		startActivity(intent);
 	}
 	private void init() {
