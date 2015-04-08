@@ -302,6 +302,31 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		file.put("img", img);
 		execute(URL_PERSONAL_UPLOAD, nvps,file);
 	}
-	
-	
+	/**
+	 * 
+	 * 2015-4-8 上午10:38:22
+	 * @param userssid
+	 * @param shipping
+	 * @param page
+	 * @param pagesize
+	 * @TODO 获取货盘列表
+	 */
+	public void getPalletRansportList(String userssid,String shipping,int page,int pagesize){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		if(shipping.equals("全部")){
+			nvps.add(new BasicNameValuePair("shipping", "0"));
+		}else if(shipping.equals("海运")){
+			nvps.add(new BasicNameValuePair("shipping", "1"));
+		}else if(shipping.equals("空运")){
+			nvps.add(new BasicNameValuePair("shipping", "2"));
+		}else{
+			nvps.add(new BasicNameValuePair("shipping", "3"));
+		}
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("page", page+""));
+		nvps.add(new BasicNameValuePair("pagesize", pagesize+""));
+		nvps.add(new BasicNameValuePair("collect", "1"));
+		execute(URL_PALLET_LIST, nvps);
+	};
 }
