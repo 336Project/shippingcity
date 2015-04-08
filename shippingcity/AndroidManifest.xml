@@ -177,7 +177,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.ateam.shippingcity.activity.MyQuoteToConfirmActivity"
+            android:name="com.ateam.shippingcity.activity.MyQuoteConfirmActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity

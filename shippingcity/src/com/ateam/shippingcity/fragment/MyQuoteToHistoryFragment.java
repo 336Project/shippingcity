@@ -224,6 +224,6 @@ public class MyQuoteToHistoryFragment extends
 
 	@Override
 	public boolean isLazyLoad() {
-		return true;
+		return false;
 	}
 }

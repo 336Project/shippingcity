@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".MyQuoteToConfirmActivity" >
+    tools:context=".MyQuoteConfirmActivity" >
 
     <com.ateam.shippingcity.widget.ElasticScrollView
         android:id="@+id/elasticScrollView1"

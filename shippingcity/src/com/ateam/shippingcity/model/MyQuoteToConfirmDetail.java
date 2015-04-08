@@ -26,6 +26,8 @@ public class MyQuoteToConfirmDetail implements Serializable{
 	private String remarks; //备注
 	private String status;
 	private String buyer;
+	private String picture_path;
+	private MyData mydata;
 	
 	public String getInitiation() {
 		return initiation;
@@ -122,5 +124,17 @@ public class MyQuoteToConfirmDetail implements Serializable{
 	}
 	public void setBuyer(String buyer) {
 		this.buyer = buyer;
+	}
+	public MyData getMydata() {
+		return mydata;
+	}
+	public void setMydata(MyData mydata) {
+		this.mydata = mydata;
+	}
+	public String getPicture_path() {
+		return picture_path;
+	}
+	public void setPicture_path(String picture_path) {
+		this.picture_path = picture_path;
 	}
 }

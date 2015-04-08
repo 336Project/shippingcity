@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content" >
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/tv_totalprices"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$50000"
@@ -107,7 +107,7 @@
                 android:text="@string/note" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/tv_remarks"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -134,7 +134,7 @@
                 android:text="@string/quotation_time" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/tv_createtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="11-12 8:00" />

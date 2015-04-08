@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
-import com.ateam.shippingcity.activity.MyQuoteToConfirmActivity;
+import com.ateam.shippingcity.activity.MyQuoteConfirmActivity;
 import com.ateam.shippingcity.activity.PalletDetailActivity;
 import com.ateam.shippingcity.adapter.PalletTransportAdapter;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
@@ -45,7 +45,7 @@ public class PersoanlAttentionPalletTransportFragment extends HBaseXListViewFrag
 			long id) {
 		//判断是否已经报价，进行跳转
 		if(dataList.get(position).ifbid!=null&&dataList.get(position).ifbid.equals("1")){
-			Intent intent = new Intent(getActivity(), MyQuoteToConfirmActivity.class);
+			Intent intent = new Intent(getActivity(), MyQuoteConfirmActivity.class);
 			intent.putExtra("offerid", dataList.get(position).id);
 			getActivity().startActivity(intent);
 		}else{
