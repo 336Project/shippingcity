@@ -5,21 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ateam.shippingcity.access.PalletTransportAccess;
-import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.MyQuoteConfirmActivity;
 import com.ateam.shippingcity.activity.PalletDetailActivity;
 import com.ateam.shippingcity.adapter.PalletTransportAdapter;
-import com.ateam.shippingcity.application.HBaseApp;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.model.Respond;
-import com.ateam.shippingcity.model.User;
 import com.ateam.shippingcity.utils.JSONParse;
-import com.ateam.shippingcity.utils.MyToast;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +27,7 @@ import android.widget.BaseAdapter;
  */
 public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransport> implements
 		OnXListItemClickListener {
-
+	private String type="";
 	private PalletTransportAdapter mAdapter;// 海运list适配器
 	private ArrayList<PalletTransport> dataList = new ArrayList<PalletTransport>();// 要显示的数据
 	private PalletTransportAccess<List<PalletTransport>> access;
@@ -64,8 +57,7 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 	@Override
 	public void request() {
 		// TODO Auto-generated method stub
-		access.getPalletRansportList(mBaseApp.getUserssid(), getArguments()
-				.getString("type"), current_page, page_size);
+		access.getPalletRansportList(mBaseApp.getUserssid(), type, current_page, page_size);
 	}
 
 	@Override
@@ -83,6 +75,7 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 	@Override
 	public void initData() {
 		// TODO Auto-generated method stub
+		type=getArguments().getString("type");
 		mAdapter = new PalletTransportAdapter(getActivity(), dataList);
 		setOnXListItemClickListener(this);
 		initRequest();
@@ -117,13 +110,17 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 		};
 		access = new PalletTransportAccess<List<PalletTransport>>(
 				getActivity(), requestCallback);
-		access.getPalletRansportList(mBaseApp.getUserssid(), getArguments()
-				.getString("type"), current_page, page_size);
+		if(type.equals("全部")){
+			access.getPalletRansportList(mBaseApp.getUserssid(), type, current_page, page_size);
+		}
 	}
 
 	@Override
 	public boolean isLazyLoad() {
-		return false;
+		if(type.equals("全部")){
+			return false;
+		}
+		return true;
 	}
 
 }

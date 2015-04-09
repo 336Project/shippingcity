@@ -38,7 +38,7 @@
 	    android:textColor="#f64c4c"
 	    android:textSize="14sp"
 	    android:text="尚未认证"
-	    android:visibility="gone"
+	    android:visibility="invisible"
 	    />
 	</LinearLayout>
 	<TextView 

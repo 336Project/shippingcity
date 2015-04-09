@@ -186,7 +186,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("post[hidden]", "1"));
 		nvps.add(new BasicNameValuePair("post[content]", content));
 		nvps.add(new BasicNameValuePair("Msubmit", "提交"));
-		execute(URL_PERSONAL_MEMBER, nvps);
+		execute(URL_PERSONAL_FEEDBACK, nvps);
 	}
 	/**
 	 * 

@@ -62,7 +62,7 @@
         AppKey="909572448"
         AppSecret="40e6e1ca541e4f040f04183938686d11"
         RedirectUrl="http://www.sharesdk.cn"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
 
     <QZone

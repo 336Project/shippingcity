@@ -134,17 +134,20 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			@Override
 			public void onSuccess(Respond<String> result) {
 				if(result.isSuccess()){
-					System.out.println("url---"+result.getDatas());
 					if(step==1){
+						url=result.getDatas();
 						step=2;
 						authAccess.authen(mBaseApp.getUserssid(), result.getDatas(), type);
 					}else{
 						showMsg(PersonalInfoActivity.this, result.getMessage());
 						if(type.equals("身份证")){
+							user.getVpicture().set(0, url);
 							ImageLoader.getInstance().displayImage(url, vtruename);
 						}else if(type.equals("工牌")){
+							user.getVpicture().set(1, url);
 							ImageLoader.getInstance().displayImage(url, card);
 						}else if(type.equals("营业执照")){
+							user.getVpicture().set(2, url);
 							ImageLoader.getInstance().displayImage(url, vcompany);
 						}
 					}

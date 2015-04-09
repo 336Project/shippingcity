@@ -77,6 +77,9 @@ public class PersonalCenterActivity extends Activity implements OnClickListener{
 			public void onSuccess(Respond<User> result) {
 				if(result.getDatas()!=null){
 					((HBaseApp)getApplication()).setUser(result.getDatas());
+					if(!result.getDatas().getVtruename().equals("3")){
+						mTxtRenzheng.setVisibility(View.VISIBLE);
+					}
 					ImageLoader.getInstance().displayImage(result.getDatas().getAvatar(), mPortrait);
 					mUsername.setText(result.getDatas().getTruename());
 				}

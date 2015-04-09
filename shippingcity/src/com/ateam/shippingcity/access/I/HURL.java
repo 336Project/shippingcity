@@ -15,7 +15,11 @@ public interface HURL {
 	/**
 	 * 个人信息
 	 */
-	public static final String URL_PERSONAL_MEMBER="http://"+IP+"/mobile/index.php?route=guestbook";
+	public static final String URL_PERSONAL_MEMBER="http://"+IP+"/mobile/index.php?route=member";
+	/**
+	 * 意见反馈
+	 */
+	public static final String URL_PERSONAL_FEEDBACK="http://"+IP+"/mobile/index.php?route=guestbook";
 	/**
 	 * 积分
 	 */

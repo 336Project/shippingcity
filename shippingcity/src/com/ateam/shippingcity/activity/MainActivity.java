@@ -92,14 +92,18 @@ public class MainActivity extends HBaseActivity implements OnClickListener{
 			startActivity(new Intent(this, HomeActivity.class));
 			break;
 		case R.id.txt_my_quote://我的报价
-			setSelect(mTxtQuote);
-			if(mQuoteFragment==null){
-				mQuoteFragment=new MyQuoteFragment();
+			if(TextUtils.isEmpty(mBaseApp.getUserssid())){
+				jump(this, PersonalLoginActivity.class);
+			}else{
+				setSelect(mTxtQuote);
+				if(mQuoteFragment==null){
+					mQuoteFragment=new MyQuoteFragment();
+				}
+				getRightIcon().setVisibility(View.VISIBLE);
+				getRightTxt().setVisibility(View.VISIBLE);
+				setActionBarTitle("我的报价");
+				switchContent(mQuoteFragment);
 			}
-			getRightIcon().setVisibility(View.VISIBLE);
-			getRightTxt().setVisibility(View.VISIBLE);
-			setActionBarTitle("我的报价");
-			switchContent(mQuoteFragment);
 			break;
 		case R.id.txt_pallet_district://货盘区
 			setSelect(mTxtPallet);

@@ -135,7 +135,7 @@ public class SysUtil {
 	 * @return
 	 */
 	public static String getRemainTime(String strEndTime){
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
 	    long endTime = 0;
 	    long time = 0;
 		try {

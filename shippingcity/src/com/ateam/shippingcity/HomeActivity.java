@@ -112,9 +112,14 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.layout_quote://我的报价
-			Intent intent=new Intent(this, MainActivity.class);
-			intent.putExtra(MainActivity.KEY_TYPE, MainActivity.TYPE_QUOTE);
-			startActivity(intent);
+			Intent intent;
+			if(TextUtils.isEmpty(mBaseApp.getUserssid())){
+				jump(this, PersonalLoginActivity.class);
+			}else{
+				intent=new Intent(this, MainActivity.class);
+				intent.putExtra(MainActivity.KEY_TYPE, MainActivity.TYPE_QUOTE);
+				startActivity(intent);
+			}
 			break;
 		case R.id.layout_pallet://货盘区
 			intent=new Intent(this, MainActivity.class);
