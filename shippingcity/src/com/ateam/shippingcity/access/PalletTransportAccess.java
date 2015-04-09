@@ -159,4 +159,38 @@ public class PalletTransportAccess <T> extends HBaseAccess<Respond<T>>{
 		execute(URL_ENTRUST_SHOW, nvps);
 	}
 	
+	/**
+	 * 详情接口(暂不使用，)
+	 * @param userssid
+	 * @param price
+	 * @param itemid
+	 * @param shipcompany
+	 * @param remarks
+	 */
+	public void getPalletDetail(String userssid,String itemid){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		nvps.add(new BasicNameValuePair("itemid", itemid));
+		execute(URL_ENTRUST_SHOW, nvps);
+	}
+	
+	/**
+	 * 关注
+	 * @param userssid
+	 * @param price
+	 * @param itemid
+	 * @param shipcompany
+	 * @param remarks
+	 */
+	public void toFocus(String userssid,String itemid,String action){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		nvps.add(new BasicNameValuePair("itemid", itemid));
+		nvps.add(new BasicNameValuePair("type", "货盘"));
+		nvps.add(new BasicNameValuePair("action", action));
+		execute(URL_FOCUS, nvps);
+	}
+	
 }

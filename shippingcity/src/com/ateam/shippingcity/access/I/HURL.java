@@ -52,4 +52,8 @@ public interface HURL {
 	 * 我的报价列表
 	 */
 	public static final String URL_MYQUOTE_LIST="http://"+IP+"/mobile/index.php?route=my";
+	/**
+	 * 关注
+	 */
+	public static final String URL_FOCUS="http://"+IP+"/mobile/index.php?route=collect";
 }

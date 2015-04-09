@@ -1,26 +1,29 @@
 package com.ateam.shippingcity.activity;
 
+import java.lang.reflect.Type;
+import java.util.List;
+
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.R.layout;
-import com.ateam.shippingcity.constant.ConstantUtil;
+import com.ateam.shippingcity.access.MyQuoteAccess;
+import com.ateam.shippingcity.access.PalletTransportAccess;
+import com.ateam.shippingcity.access.I.HRequestCallback;
+import com.ateam.shippingcity.model.MyQuoteToConfirmDetail;
 import com.ateam.shippingcity.model.PalletTransport;
+import com.ateam.shippingcity.model.Respond;
+import com.ateam.shippingcity.utils.JSONParse;
+import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.utils.SysUtil;
-import com.ateam.shippingcity.widget.imageview.PictureDialogActivity;
-import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
 import com.ateam.shippingcity.widget.weinxinImageShow.MyGridAdapter;
 
 import android.os.Bundle;
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,8 +49,12 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	private Button mBtnMyOffer;//我的报价按钮
 	private View mLineAddPhoto;//线
 	private GridView mGvAddPhoto;//添加显示图片布局
+	private ImageView mIvType;//
 	
 	private PalletTransport mPallet;
+	
+	private MyQuoteAccess<MyQuoteToConfirmDetail> access;
+	private PalletTransportAccess<List<PalletTransport>> mFocusAccess;
 	
 	private String[] urls = {
             "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing2.jpg",
@@ -64,13 +71,14 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		setActionBarTitle("货盘详情");
 		setBaseContentView(R.layout.activity_pallet_detail);
 		initView();
-		initData();
 		initGridView();
+		initData();
 	}
 	
 	/**
 	 * 控件实例化
 	 */
+	@SuppressWarnings("deprecation")
 	private void initView(){
 		mPallet=(PalletTransport) getIntent().getSerializableExtra("palletTransport");
 		mTvTransportType=(TextView)findViewById(R.id.tv_transportType);
@@ -86,20 +94,30 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		mBtnFocus=(Button)findViewById(R.id.btn_focus);
 		mBtnMyOffer=(Button)findViewById(R.id.btn_myOffer);
 		mGvAddPhoto=(GridView)findViewById(R.id.gv_addPhoto);
+		mIvType=(ImageView)findViewById(R.id.iv_type);
 		mBtnFocus.setOnClickListener(this);
 		mBtnMyOffer.setOnClickListener(this);
 		if(mPallet.ifbid!=null&&mPallet.ifbid.equals("1")){
 			findViewById(R.id.tv_view).setVisibility(View.GONE);
 			mBtnMyOffer.setText("我的报价");
-		}else if(SysUtil.getRemainTime(mPallet.deadlinetime).equals("0小时")){
+		}else if(!SysUtil.getRemainTime(mPallet.deadlinetime).equals("0小时")){
 			mBtnFocus.setBackgroundDrawable(getResources().getDrawable(R.drawable.closing_quotes_submit_icon));
 			mBtnFocus.setTextColor(getResources().getColor(R.color.white));
 			mBtnFocus.setClickable(false);
 			mBtnMyOffer.setBackgroundDrawable(getResources().getDrawable(R.drawable.closing_quotes_submit_icon));
 			mBtnMyOffer.setTextColor(getResources().getColor(R.color.white));
 			mBtnMyOffer.setClickable(false);
+		}
+		//设置箱型图标
+		if(mPallet.shipment_type.equals("1")){
+			mIvType.setBackgroundDrawable(getResources().getDrawable(R.drawable.pallet_details_zhengxiang_small_icon));
+		}else if(mPallet.shipment_type.equals("2")){
+			mIvType.setBackgroundDrawable(getResources().getDrawable(R.drawable.pallet_details_san_groceries_small_icon));
 		}else{
-			
+			mIvType.setBackgroundDrawable(getResources().getDrawable(R.drawable.pallet_details_of_pinxiang_small_icon));
+		}
+		if(mPallet.shipping_type.toString().equals("2")){
+			mIvType.setBackgroundDrawable(getResources().getDrawable(R.drawable.pallet_details_air_transport_small_icon));
 		}
 	}
 	
@@ -143,7 +161,68 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	 * 提交数据
 	 */
 	private void initData(){
-		
+		HRequestCallback<Respond<MyQuoteToConfirmDetail>> requestCallback = new HRequestCallback<Respond<MyQuoteToConfirmDetail>>() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Respond<MyQuoteToConfirmDetail> parseJson(String jsonStr) {
+				Log.e("", "jsonStr"+jsonStr);
+				Type type = new com.google.gson.reflect.TypeToken<Respond<MyQuoteToConfirmDetail>>() {
+				}.getType();
+				return (Respond<MyQuoteToConfirmDetail>) JSONParse.jsonToObject(
+						jsonStr, type);
+			}
+
+			@Override
+			public void onSuccess(Respond<MyQuoteToConfirmDetail> result) {
+				if(result.isSuccess()){
+					MyQuoteToConfirmDetail datas = result.getDatas();
+					String shipping_type = datas.getShipping_type();
+					String shipment_type = datas.getShipment_type();
+					if(shipping_type.equals("1")){
+						mTvTransportType.setText("海运");
+					}else if(datas.getShipping_type().equals("2")){
+						mTvTransportType.setText("空运");
+					}else{
+						mTvTransportType.setText("陆运");
+					}
+					mTvBeginPlace.setText(datas.getInitiation());
+					mTvEndPlace.setText(datas.getDestination());
+					mTvGoBeginTime.setText(datas.getStartime());
+					mTvGoEndTime.setText(datas.getEndtime());
+					StringBuffer description=new StringBuffer();
+					if(shipment_type.equals("1")){
+						List<String> type=datas.getType();
+						List<String> num=datas.getNum();
+						if(type.size()>0){
+							description.append("箱型：");
+							for (int i = 0; i < type.size(); i++) {
+								description.append(type.get(i)+",");
+								description.append("数量"+num.get(i)+"箱");
+								if(i<type.size()-1){
+									description.append(";");
+								}
+								else description.append("。");
+							}
+						}
+					}else{
+						description.append("件数："+datas.getPackages()+";");
+						description.append("毛重："+datas.getWeight()+"kg;");
+						description.append("体积："+datas.getVolume()+"立方;");
+						description.append("单件尺寸："+datas.getSize()+"。");
+					}
+					mTvBoxType.setText(description);
+					mTvNotice.setText(datas.getRemarks());
+					mTvOfferEndTime.setText(datas.getDeadlinetime());
+				}
+				if(result.getStatusCode().equals("500")){
+					MyToast.showShort(PalletDetailActivity.this, result.getMessage());
+				}
+			}
+		};
+		access = new MyQuoteAccess<MyQuoteToConfirmDetail>(
+				PalletDetailActivity.this, requestCallback);
+		access.getMyQuoteDetail(mBaseApp.getUserssid(), mPallet.id);
 	}
 
 	@Override
@@ -151,7 +230,11 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		// TODO Auto-generated method stub
 		switch (view.getId()) {
 		case R.id.btn_focus:
-			
+			if(mBtnFocus.getText().equals("关注")){
+				toFocus("add");
+			}else{
+				toFocus("delete");
+			}
 			break;
 		case R.id.btn_myOffer:
 			toOfferPage(mPallet);
@@ -160,6 +243,48 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		default:
 			break;
 		}
+	}
+	
+	/**
+	 * 关注
+	 */
+	private void toFocus(final String action){
+		HRequestCallback<Respond<List<PalletTransport>>> requestCallback = new HRequestCallback<Respond<List<PalletTransport>>>() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Respond<List<PalletTransport>> parseJson(String jsonStr) {
+				Log.e("", "" + jsonStr.toString());
+				Type type = new com.google.gson.reflect.TypeToken<Respond<List<PalletTransport>>>() {
+				}.getType();
+				return (Respond<List<PalletTransport>>) JSONParse.jsonToObject(
+						jsonStr, type);
+			}
+
+			@Override
+			public void onSuccess(Respond<List<PalletTransport>> result) {
+				if(result.getStatusCode().equals("200")){
+					if(action.equals("add")){
+						MyToast.showShort(PalletDetailActivity.this, "关注成功!");
+						mBtnFocus.setText("取消关注");
+					}else{
+						MyToast.showShort(PalletDetailActivity.this, "取消关注成功!");
+						mBtnFocus.setText("关注");
+					}
+				}
+				if(result.getStatusCode().equals("500")){
+					MyToast.showShort(PalletDetailActivity.this, result.getMessage());
+				}
+			}
+			@Override
+			public void onFail(Context c, String errorMsg) {
+				// TODO Auto-generated method stub
+				super.onFail(c, errorMsg);
+			}
+		};
+		mFocusAccess = new PalletTransportAccess<List<PalletTransport>>(
+				PalletDetailActivity.this, requestCallback);
+		mFocusAccess.toFocus(mBaseApp.getUserssid(),mPallet.id,action);
 	}
 	
 	/**
