@@ -5,16 +5,20 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
-import com.ateam.shippingcity.constant.MyConstant;
+import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
 
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.ParseException;
+import android.net.Uri;
+import android.provider.MediaStore.Images.ImageColumns;
 import android.telephony.TelephonyManager;
 
 
@@ -120,8 +124,8 @@ public class SysUtil {
 	public static void showImage(Context context,int position,String[] urls){
 		Intent intent = new Intent(context, ImagePagerActivity.class);
 		// 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
-		intent.putExtra(MyConstant.EXTRA_IMAGE_URLS, urls);
-		intent.putExtra(MyConstant.EXTRA_IMAGE_INDEX, position);
+		intent.putExtra(ConstantUtil.EXTRA_IMAGE_URLS, urls);
+		intent.putExtra(ConstantUtil.EXTRA_IMAGE_INDEX, position);
 		context.startActivity(intent);
 	}
 	
@@ -131,7 +135,7 @@ public class SysUtil {
 	 * @return
 	 */
 	public static String getRemainTime(String strEndTime){
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
 	    long endTime = 0;
 	    long time = 0;
 		try {
@@ -152,5 +156,36 @@ public class SysUtil {
 			}
 			
 		}
+	}
+	/**
+	 * 
+	 * 2015-4-8 下午12:00:37
+	 * @param context
+	 * @param uri
+	 * @return
+	 * @TODO 根据uri获取图片路径
+	 */
+	public static String getRealFilePath( final Context context, final Uri uri ) {
+	    if ( null == uri ) return null;
+	    final String scheme = uri.getScheme();
+	    String data = null;
+	    if ( scheme == null )
+	        data = uri.getPath();
+	    else if ( ContentResolver.SCHEME_FILE.equals(scheme)) {
+	        data = uri.getPath();
+	    } else if ( ContentResolver.SCHEME_CONTENT.equals( scheme ) ) {
+	        Cursor cursor = context.getContentResolver().query( uri, new String[] { ImageColumns.DATA }, null, null, null );
+	        if ( null != cursor ) {
+	            if ( cursor.moveToFirst() ) {
+	                int index = cursor.getColumnIndex(ImageColumns.DATA);
+	                if ( index > -1 ) {
+	                    data = cursor.getString(index);
+	                }
+	            }
+	            cursor.close();
+	        }
+	    }
+	    System.out.println(data);
+	    return data;
 	}
 }

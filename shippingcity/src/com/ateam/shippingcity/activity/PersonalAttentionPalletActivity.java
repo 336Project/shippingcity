@@ -1,7 +1,7 @@
 package com.ateam.shippingcity.activity;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.fragment.PalletFragment;
+import com.ateam.shippingcity.fragment.PersonalAttentionPalletFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -27,7 +27,7 @@ public class PersonalAttentionPalletActivity extends HBaseActivity implements On
 
 	private void init() {
 		FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.fragment_content, new PalletFragment());
+		transaction.replace(R.id.fragment_content, new PersonalAttentionPalletFragment());
 		transaction.commit();
 	}
 

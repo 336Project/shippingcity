@@ -40,7 +40,7 @@
                 android:layout_marginRight="15dp"
                 />
             <!-- <include layout="@layout/item_integral_rule"/> -->
-           <!--  <com.ateam.shippingcity.widget.TextViewPair
+            <com.ateam.shippingcity.widget.TextViewPair
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="50dp"
@@ -163,7 +163,7 @@
                 app:valueColor="#FFAF4C"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                /> -->
+                />
         </LinearLayout>
     </LinearLayout>
 

@@ -1,11 +1,12 @@
 package com.ateam.shippingcity.access;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,7 +19,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGetHC4;
 import org.apache.http.client.methods.HttpPostHC4;
+import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.params.BasicHttpParams;
@@ -115,7 +118,7 @@ public class HBaseAccess<T> implements HURL{
 	 * @param nvps
 	 * @TODO 执行
 	 */
-	public void execute(String url,List<NameValuePair> nvps,Map<String, InputStream> files){
+	public void execute(String url,List<NameValuePair> nvps,Map<String, File> files){
 		if(isShow()){
 			dialog.show();
 		}
@@ -140,8 +143,8 @@ public class HBaseAccess<T> implements HURL{
 	class TaskRunnable implements Runnable{
 		private String url;
 		private List<NameValuePair> nvps;
-		private Map<String, InputStream> files;
-		TaskRunnable(String url, List<NameValuePair> nvps,Map<String, InputStream> files){
+		private Map<String, File> files;
+		TaskRunnable(String url, List<NameValuePair> nvps,Map<String, File> files){
 			this.nvps=nvps;
 			this.url=url;
 			this.files=files;
@@ -306,7 +309,7 @@ public class HBaseAccess<T> implements HURL{
 	 * @throws Exception
 	 * @TODO post文件资源上传
 	 */
-	protected String _postFile(String url,List<NameValuePair> nvps,Map<String, InputStream> files)throws Exception{
+	protected String _postFile(String url,List<NameValuePair> nvps,Map<String, File> files)throws Exception{
 		RequestConfig requestConfig=RequestConfig.custom()
 				.setConnectTimeout(10000)
 				.setSocketTimeout(10000)
@@ -330,20 +333,21 @@ public class HBaseAccess<T> implements HURL{
 			HttpPostHC4 request = new HttpPostHC4(url);
 			request.setConfig(requestConfig);
 			MultipartEntityBuilder builder=MultipartEntityBuilder.create();
+			builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 			if(nvps!=null){
+				Log.i("NameValuePair", nvps.toString());
 				for (NameValuePair pair : nvps) {
 					builder.addTextBody(pair.getName(), pair.getValue());
 				}
 			}
 			if(files!=null){
-				Set<String> keys=files.keySet();
-				for (String key : keys) {
-					builder.addBinaryBody(key, files.get(key));
+				Set<Entry<String, File>> entries=files.entrySet();
+				for (Entry<String, File> entry : entries) {
+					Log.i("file-key", entry.getKey());
+					builder.addPart(entry.getKey(), new FileBody(entry.getValue()));
 				}
 			}
 			request.setEntity(builder.build());
-			request.setHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
-			request.setHeader("Connection", "Keep-Alive");
 			response = httpclient.execute(request);
 			String result="";
 			if(response.getStatusLine().getStatusCode()==200){

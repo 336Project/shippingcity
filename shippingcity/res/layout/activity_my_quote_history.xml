@@ -224,58 +224,66 @@
                         android:background="@drawable/lineColor" />
 
                     <LinearLayout
-                        android:id="@+id/layout_addPhoto"
+                        android:id="@+id/ll_photo"
                         android:layout_width="match_parent"
-                        android:layout_height="44dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:visibility="visible" >
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/pallet_photo"
-                            android:textSize="12sp" 
-                            android:textColor="@color/my_quote_item_tination"
-                            />
+                        <LinearLayout
+                            android:id="@+id/layout_addPhoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="visible" >
 
-                        <HorizontalScrollView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:scrollbars="none" >
-
-                            <LinearLayout
-                                android:layout_width="fill_parent"
+                            <TextView
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal" >
+                                android:text="@string/pallet_photo"
+                                android:textColor="@color/my_quote_item_tination"
+                                android:textSize="12sp" />
 
-                                <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
-                                    android:id="@+id/gv_addPhoto"
+                            <HorizontalScrollView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:scrollbars="none" >
+
+                                <LinearLayout
                                     android:layout_width="fill_parent"
                                     android:layout_height="wrap_content"
-                                    android:horizontalSpacing="1dp"
-                                    android:numColumns="5"
-                                    android:stretchMode="columnWidth"
-                                    android:verticalSpacing="1dp"
-                                    android:visibility="visible" />
-                            </LinearLayout>
-                        </HorizontalScrollView>
+                                    android:orientation="horizontal" >
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/right_arrow" />
+                                    <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
+                                        android:id="@+id/gv_addPhoto"
+                                        android:layout_width="fill_parent"
+                                        android:layout_height="wrap_content"
+                                        android:horizontalSpacing="1dp"
+                                        android:numColumns="5"
+                                        android:stretchMode="columnWidth"
+                                        android:verticalSpacing="1dp"
+                                        android:visibility="visible" >
+                                    </com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView>
+                                </LinearLayout>
+                            </HorizontalScrollView>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/right_arrow" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/lineColor" />
+
                     </LinearLayout>
-
-                    <View
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:background="@drawable/lineColor" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

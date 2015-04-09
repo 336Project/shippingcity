@@ -1,7 +1,6 @@
 package com.ateam.shippingcity.activity;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.File;
 import java.util.Map;
 
 import com.ateam.shippingcity.R;
@@ -10,9 +9,10 @@ import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.model.User;
 import com.ateam.shippingcity.utils.JSONParse;
+import com.ateam.shippingcity.utils.SysUtil;
+import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -42,6 +42,15 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 	private TextView mTxtMobile;
 	private TextView mTxtAddress;
 	
+	private ImageView avatar;//头像
+	private ImageView vtruename;//身份证
+	private ImageView card;//工牌
+	private ImageView vcompany;//营业执照
+	
+	PersonalAccess<String> authAccess,modifyAccess;
+	private String type;
+	private int step=1;
+	private String url;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,12 +78,13 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 		if(!TextUtils.isEmpty(user.getCom_address())){
 			mTxtAddress.setText(user.getCom_address());//公司地址
 		}
-		ImageView avatar=(ImageView) findViewById(R.id.iv_avatar);//头像
+		avatar=(ImageView) findViewById(R.id.iv_avatar);//头像
 		if(!TextUtils.isEmpty(user.getAvatar())){
 			ImageLoader.getInstance().displayImage(user.getAvatar(), avatar);
 		}
+		vtruename=(ImageView)findViewById(R.id.iv_vtruename);
 		if(!TextUtils.isEmpty(user.getVpicture().get(0))){
-			ImageLoader.getInstance().displayImage(user.getVpicture().get(0), (ImageView)findViewById(R.id.iv_vtruename));//身份证
+			ImageLoader.getInstance().displayImage(user.getVpicture().get(0), vtruename);//身份证
 		}
 		TextView txtTruename=((TextView)findViewById(R.id.txt_vtruename_status));//实名认证状态
 		txtTruename.setText(user.getStatus_truename());
@@ -82,8 +92,9 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			txtTruename.setTextColor(Color.rgb(70,159,233));
 			txtTruename.setCompoundDrawablesWithIntrinsicBounds(R.drawable.personal_information_a_certified_icon, 0, 0, 0);
 		}
+		card=(ImageView)findViewById(R.id.iv_card);
 		if(!TextUtils.isEmpty(user.getVpicture().get(1))){
-			ImageLoader.getInstance().displayImage(user.getVpicture().get(1), (ImageView)findViewById(R.id.iv_card));//工牌
+			ImageLoader.getInstance().displayImage(user.getVpicture().get(1), card);//工牌
 		}
 		TextView txtStatus=((TextView)findViewById(R.id.txt_card_status));//工牌认证状态
 		txtStatus.setText(user.getStatus_truename());
@@ -92,8 +103,9 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			txtStatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.personal_information_a_certified_icon, 0, 0, 0);
 		}
 		((TextView)findViewById(R.id.txt_company_name)).setText(user.getCompany());//公司名称
+		vcompany=(ImageView)findViewById(R.id.iv_vcompany);
 		if(!TextUtils.isEmpty(user.getVpicture().get(2))){
-			ImageLoader.getInstance().displayImage(user.getVpicture().get(2), (ImageView)findViewById(R.id.iv_vcompany));//营业执照
+			ImageLoader.getInstance().displayImage(user.getVpicture().get(2), vcompany);//营业执照
 		}
 		TextView txtCompany=((TextView)findViewById(R.id.txt_vcompany_status));//公司认证状态
 		txtCompany.setText(user.getStatus_company());
@@ -102,6 +114,47 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			txtCompany.setCompoundDrawablesWithIntrinsicBounds(R.drawable.personal_information_a_certified_icon, 0, 0, 0);
 		}
 		
+		initRequest();
+	}
+	/**
+	 * 2015-4-8 下午3:56:45
+	 * @TODO
+	 */
+	private void initRequest() {
+		HRequestCallback<Respond<String>> requestCallback=new HRequestCallback<Respond<String>>() {
+			
+			@SuppressWarnings("unchecked")
+			@Override
+			public Respond<String> parseJson(String jsonStr) {
+				java.lang.reflect.Type type = new TypeToken<Respond<String>>() {
+				}.getType();
+				return (Respond<String>) JSONParse.jsonToObject(jsonStr, type);
+			}
+			
+			@Override
+			public void onSuccess(Respond<String> result) {
+				if(result.isSuccess()){
+					System.out.println("url---"+result.getDatas());
+					if(step==1){
+						step=2;
+						authAccess.authen(mBaseApp.getUserssid(), result.getDatas(), type);
+					}else{
+						showMsg(PersonalInfoActivity.this, result.getMessage());
+						if(type.equals("身份证")){
+							ImageLoader.getInstance().displayImage(url, vtruename);
+						}else if(type.equals("工牌")){
+							ImageLoader.getInstance().displayImage(url, card);
+						}else if(type.equals("营业执照")){
+							ImageLoader.getInstance().displayImage(url, vcompany);
+						}
+					}
+				}else{
+					showMsg(PersonalInfoActivity.this, result.getMessage());
+				}
+			}
+		};
+		modifyAccess=new PersonalAccess<String>(this,requestCallback);
+		authAccess=new PersonalAccess<String>(this, requestCallback);
 	}
 
 	@Override
@@ -145,15 +198,21 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 	@Override
 	protected void onActivityResult(int requestCode , int resultCode , Intent data) {
 		if(resultCode==RESULT_OK){
+			Uri uri=data.getData();
 			if(requestCode==REQ_CODE_P){//头像
-				Uri uri=data.getData();
 				uploadAvatar(uri);
 			}else if(requestCode==REQ_CODE_I){//身份证
-				
+				step=1;
+				type="身份证";
+				uploadAuth(uri, type, user.getVpicture().get(0));
 			}else if(requestCode==REQ_CODE_W){//工牌
-				
+				step=1;
+				type="工牌";
+				uploadAuth(uri, type, user.getVpicture().get(1));
 			}else if(requestCode==REQ_CODE_B){//营业执照
-				
+				step=1;
+				type="营业执照";
+				uploadAuth(uri, type, user.getVpicture().get(2));
 			}else if(requestCode==REQ_MODIFY_MOBILE){//修改手机号
 				mTxtMobile.setText(data.getStringExtra("mobile"));
 			}else if(requestCode==REQ_MODIFY_NAME){//修改名称
@@ -161,7 +220,6 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			}else if(requestCode==REQ_MODIFY_ADDRESS){//修改公司地址
 				mTxtAddress.setText(data.getStringExtra("address"));
 			}
-			//System.out.println("uri----"+data.getData().toString());
 		}
 	}
 	/**
@@ -170,33 +228,45 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 	 * @param uri
 	 * @TODO 上传头像
 	 */
-	private void uploadAvatar(Uri uri){
+	private void uploadAvatar(final Uri uri){
 		if(uri!=null){
-			ContentResolver cr=getContentResolver();
-			InputStream is=null;
-			try {
-				is=cr.openInputStream(uri);
-			} catch (FileNotFoundException e) {
-			}
-			if(is!=null){
-				HRequestCallback<Respond<Map<String, String>>> requestCallback=new HRequestCallback<Respond<Map<String, String>>>() {
-					
-					@SuppressWarnings("unchecked")
-					@Override
-					public Respond<Map<String, String>> parseJson(String jsonStr) {
-						return (Respond<Map<String, String>>) JSONParse.jsonToBean(jsonStr, Respond.class);
+			HRequestCallback<Respond<Map<String, String>>> requestCallback=new HRequestCallback<Respond<Map<String, String>>>() {
+				
+				@SuppressWarnings("unchecked")
+				@Override
+				public Respond<Map<String, String>> parseJson(String jsonStr) {
+					return (Respond<Map<String, String>>) JSONParse.jsonToBean(jsonStr, Respond.class);
+				}
+				
+				@Override
+				public void onSuccess(Respond<Map<String, String>> result) {
+					showMsg(PersonalInfoActivity.this, result.getMessage());
+					if(result.isSuccess()){
+						user.setAvatar(uri.toString());
+						ImageLoader.getInstance().displayImage(uri.toString(), avatar);
 					}
-					
-					@Override
-					public void onSuccess(Respond<Map<String, String>> result) {
-						showMsg(PersonalInfoActivity.this, result.getMessage());
-					}
-				};
-				PersonalAccess<Map<String, String>> access=new PersonalAccess<Map<String,String>>(this,requestCallback);
-				access.modifyAvatar(mBaseApp.getUserssid(), is);
-			}
+				}
+			};
+			PersonalAccess<Map<String, String>> access=new PersonalAccess<Map<String,String>>(this,requestCallback);
+			access.modifyAvatar(mBaseApp.getUserssid(), new File(SysUtil.getRealFilePath(PersonalInfoActivity.this, uri)));
 		}else{
-			showMsg(this, "图片错误");
+			showMsg(this, "获取图片出错");
+		}
+	}
+	/**
+	 * 
+	 * 2015-4-8 下午4:30:25
+	 * @param uri
+	 * @param type
+	 * @param old
+	 * @TODO 认证
+	 */
+	private void uploadAuth(Uri uri,String type,String old){
+		if(uri!=null){
+			url=uri.toString();
+			modifyAccess.modifyPhoto(mBaseApp.getUserssid(), new File(SysUtil.getRealFilePath(PersonalInfoActivity.this, uri)), old, type);
+		}else{
+			showMsg(this, "获取图片出错");
 		}
 	}
 }

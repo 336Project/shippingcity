@@ -14,7 +14,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.widget.Toast;
 /**
  * 
  * @author 李晓伟
@@ -88,7 +87,7 @@ public class PictureSelectDialogActivity extends Activity implements OnClickList
 			setResult(RESULT_OK, intent);
 			finish();
 		}else{
-			Toast.makeText(this, "获取图片失败，请选择一张图片", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(this, "获取图片失败，请选择一张图片", Toast.LENGTH_SHORT).show();
 		}
 	}
 }

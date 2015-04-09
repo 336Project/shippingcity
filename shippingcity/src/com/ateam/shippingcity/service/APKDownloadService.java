@@ -9,6 +9,7 @@ import java.net.URLConnection;
 
 import com.ateam.shippingcity.HomeActivity;
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.utils.FileUtil;
 
 
@@ -37,7 +38,7 @@ public class APKDownloadService extends Service{
 	/**
 	 * 文件下载目录
 	 */
-	private static final String DIR="shippingcity/download";
+	private static final String DIR=ConstantUtil.DOWNLOAD_CACHE;
 	/**
 	 * 通知栏ID
 	 */

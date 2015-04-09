@@ -26,7 +26,7 @@ import com.ateam.shippingcity.access.MyQuoteAccess;
 import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.HBaseActivity;
-import com.ateam.shippingcity.activity.MyQuoteToConfirmActivity;
+import com.ateam.shippingcity.activity.MyQuoteConfirmActivity;
 import com.ateam.shippingcity.activity.MainActivity;
 import com.ateam.shippingcity.activity.PersonalMyIntegralActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToConfirmAdapter;
@@ -60,7 +60,7 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment<MyQuoteToCo
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 			Intent intent = new Intent();
-			intent.setClass(getActivity(), MyQuoteToConfirmActivity.class);
+			intent.setClass(getActivity(), MyQuoteConfirmActivity.class);
 			String offerid="";
 			switch (mode) {
 			case 0:
@@ -159,7 +159,6 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment<MyQuoteToCo
 			@Override
 			public void onFail(Context c, String errorMsg) {
 				super.onFail(c, errorMsg);
-				onLoadComplete(1, null);
 			}
 		};
 		access = new MyQuoteAccess<List<MyQuoteToConfirm>>(getActivity(),
@@ -203,7 +202,7 @@ public class MyQuoteToConfirmFragment extends HBaseXListViewFragment<MyQuoteToCo
 	}
 	@Override
 	public boolean isLazyLoad() {
-		return true;
+		return false;
 	}
 
 	public int getMode() {

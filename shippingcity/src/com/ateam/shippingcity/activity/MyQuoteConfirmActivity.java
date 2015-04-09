@@ -8,7 +8,8 @@ import com.ateam.shippingcity.R.menu;
 import com.ateam.shippingcity.access.MyQuoteAccess;
 import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
-import com.ateam.shippingcity.constant.MyConstant;
+import com.ateam.shippingcity.access.I.HURL;
+import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.model.MyQuoteToConfirmDetail;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
@@ -36,7 +37,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickListener{
+public class MyQuoteConfirmActivity extends HBaseActivity implements OnClickListener{
 	String[] urls = {
             "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing2.jpg",
             "http://c.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=cdab1512d000baa1be2c44b3772bc82f/91529822720e0cf3855c96050b46f21fbf09aaa1.jpg",
@@ -56,6 +57,7 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 	private TextView tv_deadlinetime;
 	private TextView tv_description;
 	private TextView tv_remarks;
+	private LinearLayout ll_photo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -85,13 +87,27 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 				if(result.isSuccess()){
 					MyQuoteToConfirmDetail datas = result.getDatas();
 					
+					String picture_path = datas.getPicture_path();
+					if(!picture_path.equals("")){
+						String[] split = picture_path.split("\\|");
+						for (int i = 0; i < split.length; i++) {
+							String string = split[i];
+							string="http://"+HURL.IP+"/"+string;
+							split[i]=string;
+						}
+						initGridView(split);
+					}
+					else{
+						ll_photo.setVisibility(View.GONE);
+					}
+					
 					String shipping_type = datas.getShipping_type();
 					String shipment_type = datas.getShipment_type();
 					if(shipping_type.equals("1")){
 						tv_shipping.setText("海运");
 						if(shipment_type.equals("1")){
 							iv_shipment.setImageResource(R.drawable.pallet_details_zhengxiang_small_icon);
-							PopupWindowUtil.initPopup(MyQuoteToConfirmActivity.this, R.layout.pop_my_quote_1);
+							PopupWindowUtil.initPopup(MyQuoteConfirmActivity.this, R.layout.pop_my_quote_1);
 						}else if(shipment_type.equals("2")){
 							iv_shipment.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
 						}
@@ -109,9 +125,6 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 							iv_shipment.setImageResource(R.drawable.pallet_details_zhengxiang_small_icon);
 						}else if(shipment_type.equals("2")){
 							iv_shipment.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
-						}
-						else{
-							iv_shipment.setImageResource(R.drawable.pallet_details_of_pinxiang_small_icon);
 						}
 					}
 					tv_initiation.setText(datas.getInitiation());
@@ -156,7 +169,6 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 	}
 	private void initView() {
 		mGvAddPhoto=(GridView)findViewById(R.id.gv_addPhoto);
-		initGridView();
 		tv_shipping = (TextView) findViewById(R.id.tv_shipping);
 		iv_shipment = (ImageView) findViewById(R.id.iv_shipment);
 		tv_initiation = (TextView) findViewById(R.id.tv_initiation);
@@ -166,8 +178,9 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 		tv_deadlinetime = (TextView) findViewById(R.id.tv_deadlinetime);
 		tv_description = (TextView) findViewById(R.id.tv_description);
 		tv_remarks = (TextView) findViewById(R.id.tv_remarks);
+		ll_photo = (LinearLayout) findViewById(R.id.ll_photo);
 	}
-	private void initGridView() {
+	private void initGridView(final String[] urls) {
 		int size=0;
 		if(urls.length>5){
 			size=5;
@@ -205,8 +218,8 @@ public class MyQuoteToConfirmActivity extends HBaseActivity implements OnClickLi
 	private void imageBrower(int position, String[] urls) {
 		Intent intent = new Intent(this, ImagePagerActivity.class);
 		// 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
-		intent.putExtra(MyConstant.EXTRA_IMAGE_URLS, urls);
-		intent.putExtra(MyConstant.EXTRA_IMAGE_INDEX, position);
+		intent.putExtra(ConstantUtil.EXTRA_IMAGE_URLS, urls);
+		intent.putExtra(ConstantUtil.EXTRA_IMAGE_INDEX, position);
 		startActivity(intent);
 	}
 	private void init() {
