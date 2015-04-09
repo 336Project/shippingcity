@@ -13,7 +13,6 @@ import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.utils.FileUtil;
 
 
-import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -26,6 +25,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -51,7 +51,7 @@ public class APKDownloadService extends Service{
 	private NotificationManager mManager;
 	private Notification mNotice;
 	private Handler mHandler;//进度更新处理器
-	private int mProgress;//进度
+	private int mProgress=0;//进度
 	
 	private DownloadThread mDownloadThread;
 	private boolean isStop=true;
@@ -63,6 +63,7 @@ public class APKDownloadService extends Service{
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		mDownloadUrl= intent.getStringExtra(KEY_DOWNLOAD_URL);
+		Log.v("download_url", mDownloadUrl);
 		mVersion=intent.getStringExtra(KEY_VERSION);
 		String fileName=intent.getStringExtra(KEY_FILE_NAME);
 		initNotification();
@@ -168,7 +169,6 @@ public class APKDownloadService extends Service{
 	 */
 	private class DownloadThread extends Thread{
 		
-		@SuppressLint("SimpleDateFormat")
 		@Override
 		public void run() {
 			if(!isStop){
@@ -178,6 +178,8 @@ public class APKDownloadService extends Service{
 					URL url=new URL(mDownloadUrl);
 					URLConnection conn=url.openConnection();
 					conn.setConnectTimeout(5000);
+					conn.setDoOutput(true);
+					conn.setRequestProperty("Accept-Encoding", "identity");
 					int len=conn.getContentLength();
 					long fileLen=mApkFile.length();
 					/**2014-10-15 李晓伟 如果已经存在安装文件，则直接安装，无需下载*/

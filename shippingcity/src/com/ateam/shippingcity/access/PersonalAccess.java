@@ -190,6 +190,20 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 	}
 	/**
 	 * 
+	 * 2015-4-9 上午11:51:56
+	 * @param versioncode
+	 * @TODO 检测更新
+	 */
+	public void updateCheck(String versioncode){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("appid", "2"));
+		nvps.add(new BasicNameValuePair("versioncode", versioncode));
+		nvps.add(new BasicNameValuePair("apptype", "货代端"));
+		execute(URL_PERSONAL_UPDATE, nvps);
+	}
+	/**
+	 * 
 	 * 2015-4-2 下午3:38:10
 	 * @param userssid
 	 * @param mobile
@@ -359,7 +373,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 	 * @param shipping
 	 * @param page
 	 * @param pagesize
-	 * @TODO 获取货盘列表
+	 * @TODO 获取关注的货盘列表
 	 */
 	public void getPalletRansportList(String userssid,String shipping,int page,int pagesize){
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
@@ -378,6 +392,6 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("pagesize", pagesize+""));
 		nvps.add(new BasicNameValuePair("collect", "1"));
 		execute(URL_PALLET_LIST, nvps);
-	};
+	}
 	
 }

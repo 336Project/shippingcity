@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
@@ -24,6 +22,7 @@ import com.ateam.shippingcity.HomeActivity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.application.HBaseApp;
 import com.ateam.shippingcity.utils.AppManager;
+import com.ateam.shippingcity.utils.MyToast;
 /**
  * 
  * @author 李晓伟
@@ -45,7 +44,7 @@ public class HBaseActivity extends FragmentActivity{
 	private TextView mTitleView;
 	private TextView mErrorView;
 	private AnimationDrawable anim;
-	private Toast mToast;
+	//private Toast mToast;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,7 +79,7 @@ public class HBaseActivity extends FragmentActivity{
 		params.gravity=Gravity.CENTER;
 		View view=getLayoutInflater().inflate(R.layout.item_action_bar_title, null);
 		mTitleView=(TextView) view.findViewById(R.id.action_bar_title);
-		mTitleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+		//mTitleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
 		customViewLayout.addView(view, params);
 	}
 	/**
@@ -216,10 +215,10 @@ public class HBaseActivity extends FragmentActivity{
 	@Override
 	protected void onStop() {
 		super.onStop();
-		if(mToast!=null){
+		/*if(mToast!=null){
 			mToast.cancel();
 			mToast=null;
-		}
+		}*/
 	}
 	/**
 	 * 
@@ -230,12 +229,14 @@ public class HBaseActivity extends FragmentActivity{
 	 * @TODO 提示信息
 	 */
 	public void showMsg(Context c,String msg){
-		mToast=Toast.makeText(c, msg, Toast.LENGTH_SHORT);
-		mToast.show();
+		MyToast.showShort(c, msg);
+		/*mToast=Toast.makeText(c, msg, Toast.LENGTH_SHORT);
+		mToast.show();*/
 	}
 	public void showMsg(Context c,int resId){
-		mToast=Toast.makeText(c, resId, Toast.LENGTH_SHORT);
-		mToast.show();
+		MyToast.showShort(c, resId);
+		/*mToast=Toast.makeText(c, resId, Toast.LENGTH_SHORT);
+		mToast.show();*/
 	}
 	public ImageView getLeftIcon() {
 		return mLeftIcon;

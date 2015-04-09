@@ -47,9 +47,11 @@ public class PersonalFeedbackActivity extends HBaseActivity implements OnClickLi
 			
 			@Override
 			public void onSuccess(Respond<Map<String, String>> result) {
-				showMsg(PersonalFeedbackActivity.this, result.getMessage());
 				if(result.getStatusCode().equals("200")){
+					showMsg(PersonalFeedbackActivity.this, "提交成功");
 					finish();
+				}else{
+					showMsg(PersonalFeedbackActivity.this, result.getMessage());
 				}
 			}
 		};

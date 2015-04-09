@@ -1,27 +1,25 @@
 package com.ateam.shippingcity.utils;
 
-
-
-
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.access.PersonalAccess;
+import com.ateam.shippingcity.access.I.HRequestCallback;
+import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.model.UpdateInfo;
 import com.ateam.shippingcity.service.APKDownloadService;
+import com.google.gson.reflect.TypeToken;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
+import android.widget.TextView;
 /**
  * 
  * @author 李晓伟
@@ -53,45 +51,50 @@ public class CheckUpdateUtil {
 	 * @TODO 
 	 */
 	public void check(final boolean isShow) {
-		showDownloadDialog(1, null);
-		/*HRequestCallback<UpdateInfo> requestCallback=new HRequestCallback<UpdateInfo>() {
+		HRequestCallback<Respond<UpdateInfo>> requestCallback=new HRequestCallback<Respond<UpdateInfo>>() {
 			@Override
-			public UpdateInfo parseJson(String jsonStr) {
-				
-				return (UpdateInfo) JSONParse.jsonToBean(jsonStr, UpdateInfo.class);
+			public void onFail(Context c, String errorMsg) {
+				if(isShow){
+					super.onFail(c, errorMsg);
+				}
+			}
+			@SuppressWarnings("unchecked")
+			@Override
+			public Respond<UpdateInfo> parseJson(String jsonStr) {
+				java.lang.reflect.Type type = new TypeToken<Respond<UpdateInfo>>() {
+				}.getType();
+				return (Respond<UpdateInfo>) JSONParse.jsonToObject(jsonStr, type);
 			}
 			
 			@Override
-			public void onSuccess(UpdateInfo updateInfo) {
+			public void onSuccess(Respond<UpdateInfo> result) {
 				setNewVersion(false);
 				if(isShow){
-					if(updateInfo==null){
-						Toast.makeText(mContext, "抱歉，更新发生异常！", Toast.LENGTH_SHORT).show();
-					}else if(updateInfo.getRemark()==null||updateInfo.getRemark().equals("")){
-						setNewVersion(true);
-						showDownloadDialog(0,updateInfo);
+					if(result.isSuccess()&&result.getDatas()!=null){
+						showDownloadDialog(0,result.getDatas());
 					}else{
-						Toast.makeText(mContext, "当前已是最新版本", Toast.LENGTH_SHORT).show();
+						MyToast.showShort(mContext, "抱歉，更新发生异常！");
 					}
-				}else{
-					if(updateInfo==null){
-					}else if(updateInfo.getRemark()==null||updateInfo.getRemark().equals("")){
+					
+				}else{//静默检测
+					/*if(!result.isSuccess()){
+					}else if(result.getDatas()!=null){
 						SharedPreferences sp=mContext.getSharedPreferences(CheckUpdateUtil.UPDATE_SETTING, 0);
 						setNewVersion(true);
-						if(sp.getBoolean("is_alert", true)||updateInfo.getForce_flag().equals("是")){
-							showDownloadDialog(1,updateInfo);
+						if(sp.getBoolean("is_alert", true)||result.getDatas().getType().equals("2")){
+							showDownloadDialog(1,result.getDatas());
 						}
 					}else{
-					}
+					}*/
 				}
 				if(updateCallback!=null){
 					updateCallback.onResult(isNewVersion());
 				}
 			}
 		};
-		UpdateAccess access=new UpdateAccess(mContext, requestCallback);
+		PersonalAccess<UpdateInfo> access=new PersonalAccess<UpdateInfo>(mContext, requestCallback);
 		access.setIsShow(isShow);
-		access.execute(getVersionName());*/
+		access.updateCheck(getVersionName());
 	}
 	/**
 	 * 
@@ -137,102 +140,56 @@ public class CheckUpdateUtil {
 	 * @TODO 提示更新窗口
 	 */
 	public void showDownloadDialog(int type, final UpdateInfo updateInfo){
-		/*if(updateInfo==null||updateInfo.isEmpty()){
-			Toast.makeText(mContext, "抱歉，更新发生异常！", Toast.LENGTH_SHORT).show();
-			return;
-		}
-		AlertDialog.Builder builder=new Builder(mContext);
-		builder.setCancelable(false);
-		StringBuffer sb=new StringBuffer();
-		sb.append("更新内容:\n");
-		if(updateInfo.getForce_flag().equals("否")){
-			builder.setTitle("软件有新版本(v"+updateInfo.getVersion()+")，是否更新？");
-		}else{
-			builder.setTitle("软件有重要更新(v"+updateInfo.getVersion()+")！取消更新将不能使用系统，是否更新？");
-		}
-		sb.append(updateInfo.getUpdateContent());
-		builder.setMessage(sb.toString());
-		if(type!=0){
-			if(!updateInfo.getForce_flag().equals("是")){
-				builder.setNeutralButton("不再提醒", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						SharedPreferences sp=mContext.getSharedPreferences(UPDATE_SETTING, 0);
-						sp.edit().putBoolean("is_alert", false).commit();
-					}
-				});
-			}
-		}
-		builder.setPositiveButton("立即更新", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				//开始下载
-				Intent downloadIntent = new Intent(mContext,APKDownloadService.class);
-				downloadIntent.putExtra(APKDownloadService.KEY_DOWNLOAD_URL, updateInfo.getDownloadUrl());
-				downloadIntent.putExtra(APKDownloadService.KEY_VERSION, updateInfo.getVersion());
-				mContext.startService(downloadIntent);
-				if(updateInfo.getForce_flag().equals("是")){
-					AppManager.getInstance().ExitApp();
-					System.exit(0);
-				}
-			}
-		});
-		
-		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-				if(updateInfo.getForce_flag().equals("是")){
-					AppManager.getInstance().ExitApp();
-					System.exit(0);
-				}
-			}
-		});
-		AlertDialog dialog=builder.create();
-		builder.show();
-		DisplayMetrics dm = new DisplayMetrics();
-		((Activity)mContext).getWindowManager().getDefaultDisplay().getMetrics(dm);
-		int height = (int) (dm.heightPixels*(0.8));  // 获取屏幕的4/5大小
-		dialog.getWindow().setLayout(LayoutParams.MATCH_PARENT, height);
-		*/
+		if(type==1)return;
 		final AlertDialog dialog=new AlertDialog.Builder(mContext).create();
-		/*View view=LayoutInflater.from(mContext).inflate(R.layout.item_update_dialog, null);
-		view.findViewById(R.id.txt_cancel).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-			}
-		});
-		view.findViewById(R.id.txt_download).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-				//开始下载
-				Intent downloadIntent = new Intent(mContext,APKDownloadService.class);
-				downloadIntent.putExtra(APKDownloadService.KEY_DOWNLOAD_URL, updateInfo.getDownloadUrl());
-				downloadIntent.putExtra(APKDownloadService.KEY_VERSION, updateInfo.getVersion());
-				mContext.startService(downloadIntent);
-				if(updateInfo.getForce_flag().equals("是")){
-					AppManager.getInstance().ExitApp();
-					System.exit(0);
+		View view;
+		if(updateInfo!=null&&(updateInfo.getType().equals("1")||updateInfo.getType().equals("2"))){
+			setNewVersion(true);
+			view=LayoutInflater.from(mContext).inflate(R.layout.item_update_dialog, null);
+			((TextView)view.findViewById(R.id.txt_new_version)).setText("新版本V"+updateInfo.getVersion_code()+"新功能");
+			String[] contents=updateInfo.getUpgrade_point().split("\\|");
+			StringBuffer sb=new StringBuffer();
+			for (int i = 0; i < contents.length; i++) {
+				sb.append((i+1)+"、"+contents[i]);
+				if(i<contents.length-1){
+					sb.append("\n");
 				}
 			}
-		});*/
-		
-		View view=LayoutInflater.from(mContext).inflate(R.layout.item_no_update_dialog, null);
-		view.findViewById(R.id.txt_sure).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-			}
-		});
-		
+			((TextView)view.findViewById(R.id.txt_update_content)).setText(sb.toString());
+			view.findViewById(R.id.txt_cancel).setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					dialog.dismiss();
+				}
+			});
+			view.findViewById(R.id.txt_download).setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					dialog.dismiss();
+					//开始下载
+					Intent downloadIntent = new Intent(mContext,APKDownloadService.class);
+					downloadIntent.putExtra(APKDownloadService.KEY_DOWNLOAD_URL, updateInfo.getApk_url());
+					downloadIntent.putExtra(APKDownloadService.KEY_VERSION, updateInfo.getVersion_code());
+					mContext.startService(downloadIntent);
+					if(updateInfo.getType().equals("2")){
+						AppManager.getInstance().ExitApp();
+						System.exit(0);
+					}
+				}
+			});
+		}else{
+			setNewVersion(false);
+			view=LayoutInflater.from(mContext).inflate(R.layout.item_no_update_dialog, null);
+			view.findViewById(R.id.txt_sure).setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					dialog.dismiss();
+				}
+			});
+		}
 		dialog.setView(view);
 		dialog.show();
 		dialog.getWindow().setGravity(Gravity.CENTER);

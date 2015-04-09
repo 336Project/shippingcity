@@ -9,9 +9,13 @@ package com.ateam.shippingcity.access.I;
 public interface HURL {
 	public static final String IP="118.193.146.184";
 	/**
+	 * 检测更新
+	 */
+	public static final String URL_PERSONAL_UPDATE="http://"+IP+"/mobile/index.php?route=version_upgrade";
+	/**
 	 * 个人信息
 	 */
-	public static final String URL_PERSONAL_MEMBER="http://"+IP+"/mobile/index.php?route=member";
+	public static final String URL_PERSONAL_MEMBER="http://"+IP+"/mobile/index.php?route=guestbook";
 	/**
 	 * 积分
 	 */

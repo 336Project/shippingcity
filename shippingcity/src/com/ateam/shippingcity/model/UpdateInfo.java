@@ -1,72 +1,44 @@
 package com.ateam.shippingcity.model;
 
-import java.io.Serializable;
 
-import android.text.TextUtils;
-
-
-public class UpdateInfo implements Serializable{
-	private static final long serialVersionUID = 1L;
+/**
+ * 
+ * @author 李晓伟
+ * 2015-4-9 上午11:58:04
+ * @TODO 更新
+ */
+public class UpdateInfo {
+	private String type;//是否升级：1升级0不升级2强制升级
+	private String upgrade_point;//更新内容
+	private String apk_url;//下载地址
+	private String version_code;//版本号
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getUpgrade_point() {
+		if(upgrade_point!=null){
+			return new String(upgrade_point.getBytes());
+		}
+		return upgrade_point;
+	}
+	public void setUpgrade_point(String upgrade_point) {
+		this.upgrade_point = upgrade_point;
+	}
+	public String getApk_url() {
+		return apk_url;
+	}
+	public void setApk_url(String apk_url) {
+		this.apk_url = apk_url;
+	}
+	public String getVersion_code() {
+		return version_code;
+	}
+	public void setVersion_code(String version_code) {
+		this.version_code = version_code;
+	}
 	
-	private String version;//版本号
-	private String size;//APK大小
-	private String updateContent;//更新内容
-	private String downloadUrl;//更新地址
-	private String force_flag;//是否强制更新
-	private String status;//获取信息结果
-	private String remark;//标记
-	
-	public boolean isEmpty(){
-		if(TextUtils.isEmpty(version)||TextUtils.isEmpty(downloadUrl)) return true;
-		return false;
-	}
-	public String getVersion() {
-		return version;
-	}
-	public void setVersion(String version) {
-		this.version = version;
-	}
-	public String getSize() {
-		return size;
-	}
-	public void setSize(String size) {
-		this.size = size;
-	}
-	public String getUpdateContent() {
-		return updateContent;
-	}
-	public void setUpdateContent(String updateContent) {
-		this.updateContent = updateContent;
-	}
-	public String getDownloadUrl() {
-		return downloadUrl;
-	}
-	public void setDownloadUrl(String downloadUrl) {
-		this.downloadUrl = downloadUrl;
-	}
-	@Override
-	public String toString() {
-		return "ZHCG_UpdateInfo [version=" + version + ", size=" + size
-				+ ", updateContent=" + updateContent + ", downloadUrl="
-				+ downloadUrl + "]";
-	}
-	public String getForce_flag() {
-		return force_flag;
-	}
-	public void setForce_flag(String force_flag) {
-		this.force_flag = force_flag;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public String getRemark() {
-		return remark;
-	}
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
 	
 }

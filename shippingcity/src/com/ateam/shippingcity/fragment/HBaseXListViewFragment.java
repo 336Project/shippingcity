@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.application.HBaseApp;
+import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.widget.xlist.XListView;
 import com.ateam.shippingcity.widget.xlist.XListView.IXListViewListener;
 
@@ -19,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
 /**
  * 
  * @author 李晓伟
@@ -108,7 +108,7 @@ public abstract class HBaseXListViewFragment<T> extends Fragment implements IXLi
 		}
 		getAdapter().notifyDataSetChanged();
 		if(mDataSource.size()==0){
-			Toast.makeText(getActivity(), "暂无相关数据", Toast.LENGTH_SHORT).show();
+			MyToast.showShort(getActivity(), "暂无相关数据");
 		}
 	}
 	/**
