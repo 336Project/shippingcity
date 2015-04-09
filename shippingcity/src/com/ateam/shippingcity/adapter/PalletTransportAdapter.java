@@ -87,16 +87,13 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		TextView mOffer = ((TextView)holder.getView(R.id.tv_offer));
 		//判断是否是已经报价，或是已经截止
 		if(bean.ifbid!=null&&bean.ifbid.equals("1")){
-			mOffer.setText("已报价");
 			mOffer.setClickable(false);
-			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
+			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.quoted_bg_gray));
 		}else if(!SysUtil.getRemainTime(bean.deadlinetime).equals("0小时")){
-			mOffer.setText("已截止");
 			mOffer.setClickable(false);
 			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
 		}else{
-			mOffer.setText("报价");
-			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.pallet_area_quotes_icon));
+			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.btn_offer_selector));
 			mOffer.setClickable(true);
 			mOffer.setOnClickListener(new OnClickListener() {
 				
