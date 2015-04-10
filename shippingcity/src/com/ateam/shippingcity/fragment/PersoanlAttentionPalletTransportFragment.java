@@ -24,7 +24,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
 /**
- * 海运列表片段
+ * 关注的海运列表片段
  */
 public class PersoanlAttentionPalletTransportFragment extends HBaseXListViewFragment<PalletTransport> implements
 		OnXListItemClickListener {
@@ -111,7 +111,9 @@ public class PersoanlAttentionPalletTransportFragment extends HBaseXListViewFrag
 		};
 		access = new PersonalAccess<List<PalletTransport>>(
 				getActivity(), requestCallback);
-		access.getPalletRansportList(mBaseApp.getUserssid(), type, current_page, page_size);
+		if(type.equals("全部")){
+			access.getPalletRansportList(mBaseApp.getUserssid(), type, current_page, page_size);
+		}
 	}
 
 	@Override
