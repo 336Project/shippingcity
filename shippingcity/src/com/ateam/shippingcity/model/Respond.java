@@ -9,7 +9,16 @@ public class Respond<T> extends HBaseObject implements Serializable{
 
 	private int totalPages;
 	private int totalCredit;//积分总额
+	private String root_url;
 	private String myuid;
+	public String getRoot_url() {
+		return root_url;
+	}
+
+	public void setRoot_url(String root_url) {
+		this.root_url = root_url;
+	}
+
 	public T getDatas() {
 		return datas;
 	}

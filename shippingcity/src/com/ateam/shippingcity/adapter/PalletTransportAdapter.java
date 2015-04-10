@@ -89,7 +89,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		if(bean.ifbid!=null&&bean.ifbid.equals("1")){
 			mOffer.setClickable(false);
 			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.quoted_bg_gray));
-		}else if(!SysUtil.getRemainTime(bean.deadlinetime).equals("0小时")){
+		}else if(SysUtil.getRemainTime(bean.deadlinetime).equals("0小时")){
 			mOffer.setClickable(false);
 			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
 		}else{

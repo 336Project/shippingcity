@@ -4,11 +4,11 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.access.MyQuoteAccess;
 import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
-import com.ateam.shippingcity.model.MyQuoteToConfirmDetail;
+import com.ateam.shippingcity.access.I.HURL;
 import com.ateam.shippingcity.model.PalletTransport;
+import com.ateam.shippingcity.model.PalletTransportDetail;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
@@ -47,23 +47,23 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	private LinearLayout mLinearAddPhoto;//添加显示图片布局
 	private Button mBtnFocus;//关注按钮
 	private Button mBtnMyOffer;//我的报价按钮
-	private View mLineAddPhoto;//线
 	private GridView mGvAddPhoto;//添加显示图片布局
 	private ImageView mIvType;//
 	
 	private PalletTransport mPallet;
 	
-	private MyQuoteAccess<MyQuoteToConfirmDetail> access;
+	private PalletTransportAccess<PalletTransportDetail> access;
 	private PalletTransportAccess<List<PalletTransport>> mFocusAccess;
 	
-	private String[] urls = {
-            "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing2.jpg",
-            "http://c.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=cdab1512d000baa1be2c44b3772bc82f/91529822720e0cf3855c96050b46f21fbf09aaa1.jpg",
-            "http://g.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=ccd33b46d53f8794d7ff4b26e2207fc9/0d338744ebf81a4c0f993437d62a6059242da6a1.jpg",
-            "http://f.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=6b62f61bac6eddc422e7b7f309e0c7c0/6159252dd42a2834510deef55ab5c9ea14cebfa1.jpg",
-            "http://c.hiphotos.bdimg.com/album/s%3D900%3Bq%3D90/sign=b8658f17f3d3572c62e290dcba28121a/5fdf8db1cb134954bb97309a574e9258d0094a47.jpg",
-            "http://g.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=e58fb67bc8ea15ce45eee301863b4bce/a5c27d1ed21b0ef4fd6140a0dcc451da80cb3e47.jpg"
-    };
+//	private String[] urls = {
+//            "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing2.jpg",
+//            "http://c.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=cdab1512d000baa1be2c44b3772bc82f/91529822720e0cf3855c96050b46f21fbf09aaa1.jpg",
+//            "http://g.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=ccd33b46d53f8794d7ff4b26e2207fc9/0d338744ebf81a4c0f993437d62a6059242da6a1.jpg",
+//            "http://f.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=6b62f61bac6eddc422e7b7f309e0c7c0/6159252dd42a2834510deef55ab5c9ea14cebfa1.jpg",
+//            "http://c.hiphotos.bdimg.com/album/s%3D900%3Bq%3D90/sign=b8658f17f3d3572c62e290dcba28121a/5fdf8db1cb134954bb97309a574e9258d0094a47.jpg",
+//            "http://g.hiphotos.bdimg.com/album/s%3D680%3Bq%3D90/sign=e58fb67bc8ea15ce45eee301863b4bce/a5c27d1ed21b0ef4fd6140a0dcc451da80cb3e47.jpg"
+//    };
+	private View mViewAddPhoto;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,6 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		setActionBarTitle("货盘详情");
 		setBaseContentView(R.layout.activity_pallet_detail);
 		initView();
-		initGridView();
 		initData();
 	}
 	
@@ -81,26 +80,27 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	@SuppressWarnings("deprecation")
 	private void initView(){
 		mPallet=(PalletTransport) getIntent().getSerializableExtra("palletTransport");
+		Log.e("", "mPallet.picture"+mPallet.picture_path);
 		mTvTransportType=(TextView)findViewById(R.id.tv_transportType);
 		mTvBeginPlace=(TextView)findViewById(R.id.tv_beginPlace);
 		mTvEndPlace=(TextView)findViewById(R.id.tv_endPlace);
 		mTvGoBeginTime=(TextView)findViewById(R.id.tv_goBeginTime);
 		mTvGoEndTime=(TextView)findViewById(R.id.tv_goEndTime);
 		mTvBoxType=(TextView)findViewById(R.id.tv_boxType);
-		mLineAddPhoto=(View)findViewById(R.id.view_addPhoto);
 		mLinearAddPhoto=(LinearLayout)findViewById(R.id.layout_addPhoto);
 		mTvNotice=(TextView)findViewById(R.id.tv_notice);
 		mTvOfferEndTime=(TextView)findViewById(R.id.tv_offerEndTime);
 		mBtnFocus=(Button)findViewById(R.id.btn_focus);
 		mBtnMyOffer=(Button)findViewById(R.id.btn_myOffer);
 		mGvAddPhoto=(GridView)findViewById(R.id.gv_addPhoto);
+		mViewAddPhoto=(View)findViewById(R.id.view_addPhoto);
 		mIvType=(ImageView)findViewById(R.id.iv_type);
 		mBtnFocus.setOnClickListener(this);
 		mBtnMyOffer.setOnClickListener(this);
 		if(mPallet.ifbid!=null&&mPallet.ifbid.equals("1")){
 			findViewById(R.id.tv_view).setVisibility(View.GONE);
 			mBtnMyOffer.setText("我的报价");
-		}else if(!SysUtil.getRemainTime(mPallet.deadlinetime).equals("0小时")){
+		}else if(SysUtil.getRemainTime(mPallet.deadlinetime).equals("0小时")){
 			mBtnFocus.setBackgroundDrawable(getResources().getDrawable(R.drawable.closing_quotes_submit_icon));
 			mBtnFocus.setTextColor(getResources().getColor(R.color.white));
 			mBtnFocus.setClickable(false);
@@ -124,7 +124,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	/**
 	 * 配置横向滑动的gridview，并传值显示
 	 */
-	private void initGridView(){
+	private void initGridView(final String[] urls){
 		int size=0;
 		if(urls.length>5){
 			size=5;
@@ -161,39 +161,60 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	 * 提交数据
 	 */
 	private void initData(){
-		HRequestCallback<Respond<MyQuoteToConfirmDetail>> requestCallback = new HRequestCallback<Respond<MyQuoteToConfirmDetail>>() {
+		HRequestCallback<Respond<PalletTransportDetail>> requestCallback = new HRequestCallback<Respond<PalletTransportDetail>>() {
 
 			@SuppressWarnings("unchecked")
 			@Override
-			public Respond<MyQuoteToConfirmDetail> parseJson(String jsonStr) {
+			public Respond<PalletTransportDetail> parseJson(String jsonStr) {
 				Log.e("", "jsonStr"+jsonStr);
-				Type type = new com.google.gson.reflect.TypeToken<Respond<MyQuoteToConfirmDetail>>() {
+				Type type = new com.google.gson.reflect.TypeToken<Respond<PalletTransportDetail>>() {
 				}.getType();
-				return (Respond<MyQuoteToConfirmDetail>) JSONParse.jsonToObject(
+				return (Respond<PalletTransportDetail>) JSONParse.jsonToObject(
 						jsonStr, type);
 			}
 
 			@Override
-			public void onSuccess(Respond<MyQuoteToConfirmDetail> result) {
+			public void onSuccess(Respond<PalletTransportDetail> result) {
 				if(result.isSuccess()){
-					MyQuoteToConfirmDetail datas = result.getDatas();
-					String shipping_type = datas.getShipping_type();
-					String shipment_type = datas.getShipment_type();
+					PalletTransportDetail datas = result.getDatas();
+					String picture_path = datas.picture_path;
+					if(!SysUtil.getRemainTime(mPallet.deadlinetime).equals("0小时")){
+						if(datas.collected.equals("0")){
+							mBtnFocus.setText("关注");
+						}else if(datas.collected.equals("1")){
+							mBtnFocus.setText("取消关注");
+						}
+					}
+					if(!picture_path.equals("")){
+						String[] split = picture_path.split("\\|");
+						for (int i = 0; i < split.length; i++) {
+							String string = split[i];
+							string="http://"+HURL.IP+"/"+string;
+							split[i]=string;
+						}
+						initGridView(split);
+					}
+					else{
+						mLinearAddPhoto.setVisibility(View.GONE);
+						mViewAddPhoto.setVisibility(View.GONE);
+					}
+					String shipping_type = datas.shipping_type;
+					String shipment_type = datas.shipment_type;
 					if(shipping_type.equals("1")){
 						mTvTransportType.setText("海运");
-					}else if(datas.getShipping_type().equals("2")){
+					}else if(shipping_type.equals("2")){
 						mTvTransportType.setText("空运");
 					}else{
 						mTvTransportType.setText("陆运");
 					}
-					mTvBeginPlace.setText(datas.getInitiation());
-					mTvEndPlace.setText(datas.getDestination());
-					mTvGoBeginTime.setText(datas.getStartime());
-					mTvGoEndTime.setText(datas.getEndtime());
+					mTvBeginPlace.setText(datas.initiation);
+					mTvEndPlace.setText(datas.destination);
+					mTvGoBeginTime.setText(datas.startime);
+					mTvGoEndTime.setText(datas.endtime);
 					StringBuffer description=new StringBuffer();
 					if(shipment_type.equals("1")){
-						List<String> type=datas.getType();
-						List<String> num=datas.getNum();
+						List<String> type=datas.type;
+						List<String> num=datas.num;
 						if(type.size()>0){
 							description.append("箱型：");
 							for (int i = 0; i < type.size(); i++) {
@@ -206,23 +227,25 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 							}
 						}
 					}else{
-						description.append("件数："+datas.getPackages()+";");
-						description.append("毛重："+datas.getWeight()+"kg;");
-						description.append("体积："+datas.getVolume()+"立方;");
-						description.append("单件尺寸："+datas.getSize()+"。");
+						description.append("件数："+datas.packages+";");
+						description.append("毛重："+datas.weight+"kg;");
+						description.append("体积："+datas.volume+"立方;");
+						if(datas.size.size()==3){
+							description.append("长:"+datas.size.get(0)+";"+"宽:"+datas.size.get(1)+";"+"高:"+datas.size.get(2)+";");
+						}
 					}
 					mTvBoxType.setText(description);
-					mTvNotice.setText(datas.getRemarks());
-					mTvOfferEndTime.setText(datas.getDeadlinetime());
+					mTvNotice.setText(datas.remarks);
+					mTvOfferEndTime.setText(datas.deadlinetime);
 				}
 				if(result.getStatusCode().equals("500")){
 					MyToast.showShort(PalletDetailActivity.this, result.getMessage());
 				}
 			}
 		};
-		access = new MyQuoteAccess<MyQuoteToConfirmDetail>(
+		access = new PalletTransportAccess<PalletTransportDetail>(
 				PalletDetailActivity.this, requestCallback);
-		access.getMyQuoteDetail(mBaseApp.getUserssid(), mPallet.id);
+		access.getPalletDetail(mBaseApp.getUserssid(), mPallet.id);
 	}
 
 	@Override

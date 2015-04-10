@@ -187,7 +187,7 @@ public class PalletTransportAccess <T> extends HBaseAccess<Respond<T>>{
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("userssid", userssid));
-		nvps.add(new BasicNameValuePair("itemid", itemid));
+		nvps.add(new BasicNameValuePair("id", itemid));
 		nvps.add(new BasicNameValuePair("type", "货盘"));
 		nvps.add(new BasicNameValuePair("action", action));
 		execute(URL_FOCUS, nvps);

@@ -78,6 +78,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements OnClickList
 			@SuppressWarnings("unchecked")
 			@Override
 			public Respond<MyQuoteToConfirmDetail> parseJson(String jsonStr) {
+				Log.e("", "jsonStr"+jsonStr);
 				java.lang.reflect.Type type = new TypeToken<Respond<MyQuoteToConfirmDetail>>() {
 				}.getType();
 				return (Respond<MyQuoteToConfirmDetail>) JSONParse.jsonToObject(jsonStr, type);
