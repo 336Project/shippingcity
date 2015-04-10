@@ -31,6 +31,8 @@ import android.widget.EditText;
  * @TODO 邀请好友
  */
 public class PersonalInviteFriendActivity extends HBaseActivity implements OnClickListener{
+	public static final int SUCCESS=0;
+	public static final int CANCEL=1;
 	private EditText mEditPhoneNumber;
 	private Handler handler;
 	@Override
@@ -53,7 +55,16 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 			
 			@Override
 			public boolean handleMessage(Message msg) {
-				showMsg(PersonalInviteFriendActivity.this, "分享成功");
+				switch (msg.what) {
+				case SUCCESS:
+					showMsg(PersonalInviteFriendActivity.this, "分享成功");
+					break;
+				case CANCEL:
+					showMsg(PersonalInviteFriendActivity.this, "取消分享");
+					break;
+				default:
+					break;
+				}
 				return true;
 			}
 		});
@@ -87,19 +98,17 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 		@Override
 		public void onError(Platform arg0, int arg1, Throwable arg2) {
 			System.out.println("onError-----"+arg2.getMessage());
-			handler.sendEmptyMessage(0);
+			handler.sendEmptyMessage(SUCCESS);
 		}
 		
 		@Override
 		public void onComplete(Platform arg0, int arg1, HashMap<String, Object> res) {
-			System.out.println("onComplete");
-			handler.sendEmptyMessage(0);
+			handler.sendEmptyMessage(SUCCESS);
 		}
 		
 		@Override
 		public void onCancel(Platform arg0, int arg1) {
-			// TODO Auto-generated method stub
-			System.out.println("onCancel");
+			handler.sendEmptyMessage(CANCEL);
 		}
 		
 	}
