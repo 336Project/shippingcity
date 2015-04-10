@@ -1,19 +1,26 @@
 package com.ateam.shippingcity.activity;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.onekeyshare.OnekeyShareTheme;
 import cn.sharesdk.sina.weibo.SinaWeibo;
-import cn.sharesdk.sina.weibo.SinaWeibo.ShareParams;
 import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.constant.ConstantUtil;
+import com.ateam.shippingcity.utils.FileUtil;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -118,7 +125,7 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 	 * @TODO 新浪分享
 	 */
 	private void shareSinweibo(){
-		ShareParams sp = new ShareParams();
+		/*ShareParams sp = new ShareParams();
 		sp.setText("测试分享的文本，测试地址:http://www.shippingcity.com @划虎烂1990");
 		//sp.setImagePath("/mnt/sdcard/测试分享的图片.jpg");
 		//sp.setImageUrl("http://f1.sharesdk.cn/imgs/2014/05/21/oESpJ78_533x800.jpg");
@@ -126,7 +133,8 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 		// 设置分享事件回调
 		weibo.setPlatformActionListener(new ShareListener());
 		// 执行图文分享
-		weibo.share(sp);
+		weibo.share(sp);*/
+		showShare(SinaWeibo.NAME);
 	}
 	/**
 	 * 
@@ -134,14 +142,15 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 	 * @TODO 分享微信好友
 	 */
 	private void shareWechat(){
-		ShareParams sp = new ShareParams();
+		/*ShareParams sp = new ShareParams();
 		sp.setTitle("测试标题");
 		sp.setText("测试分享的文本，测试地址:http://mob.com @划虎烂1990");
 		sp.setShareType(Platform.SHARE_TEXT);//分享文本
 		//sp.setImageData(arg0);//分享图片
 		Platform wechat=ShareSDK.getPlatform(Wechat.NAME);
 		wechat.setPlatformActionListener(new ShareListener());
-		wechat.share(sp);
+		wechat.share(sp);*/
+		showShare(Wechat.NAME);
 	}
 	/**
 	 * 
@@ -149,14 +158,15 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 	 * @TODO 分享微信朋友圈
 	 */
 	private void shareWechatMoments(){
-		ShareParams sp = new ShareParams();
+		/*ShareParams sp = new ShareParams();
 		sp.setTitle("测试标题");
 		sp.setText("测试分享的文本，测试地址:http://www.shippingcity.com @划虎烂1990");
 		sp.setShareType(Platform.SHARE_TEXT);//分享文本
 		//sp.setImageData(arg0);//分享图片
 		Platform moments=ShareSDK.getPlatform(WechatMoments.NAME);
 		moments.setPlatformActionListener(new ShareListener());
-		moments.share(sp);
+		moments.share(sp);*/
+		showShare(WechatMoments.NAME);
 	}
 	/**
 	 * 
@@ -164,7 +174,7 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 	 * @TODO 分享qq空间
 	 */
 	private void shareQZone(){
-		ShareParams sp = new ShareParams();
+		/*ShareParams sp = new ShareParams();
 		sp.setTitle("测试分享的标题");
 		sp.setTitleUrl("http://www.shippingcity.com"); // 标题的超链接
 		sp.setText("测试分享的文本");
@@ -174,7 +184,52 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 		Platform qzone = ShareSDK.getPlatform (QZone.NAME);
 		qzone. setPlatformActionListener (new ShareListener()); // 设置分享事件回调
 		// 执行图文分享
-		qzone.share(sp);
+		qzone.share(sp);*/
+		showShare(QZone.NAME);
+	}
+	
+	private void showShare(String platform) {
+		Context context = this;
+		final OnekeyShare oks = new OnekeyShare();
+		oks.setTitle("航运城");
+		oks.setTitleUrl("http://www.shippingcity.com");
+		oks.setText("运价大搜索，尽在航运城 ，详见官网：http://www.shippingcity.com");
+		oks.setImagePath(getFile().getPath());
+		
+		oks.setUrl("http://www.shippingcity.com");
+		oks.setSite("航运城");
+		oks.setSiteUrl("http://www.shippingcity.com");
+		oks.setSilent(false);
+		oks.setShareFromQQAuthSupport(true);
+		oks.setTheme(OnekeyShareTheme.CLASSIC);
+		oks.setPlatform(platform);
+		// 令编辑页面显示为Dialog模式
+		oks.setDialogMode();
+
+		// 在自动授权时可以禁用SSO方式
+		oks.disableSSOWhenAuthorize();
+		// 去除注释，则快捷分享的操作结果将通过OneKeyShareCallback回调
+		//oks.setCallback(new ShareListener());
+		oks.setEditPageBackground(getLayoutContent());
+		oks.show(context);
+	}
+	/**
+	 * 
+	 * 2015-4-10 下午11:27:35
+	 * @return
+	 * @TODO 获取分享图片
+	 */
+	private File getFile(){
+		File file=new File(FileUtil.getInstance().getFilePath(ConstantUtil.IMAGE_DIR, "logo.png"));
+		if(!file.exists()){
+			try {
+				AssetManager manager=getAssets();
+				file=FileUtil.getInstance().write2SDFromInput(ConstantUtil.IMAGE_DIR, "logo.png", manager.open("logo.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return file;
 	}
 	/**
 	 * 打开通讯录，获取电话号码

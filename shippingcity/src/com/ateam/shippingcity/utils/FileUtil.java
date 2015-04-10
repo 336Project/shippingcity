@@ -54,6 +54,7 @@ public class FileUtil {
 	 * @throws IOException
 	 */
 	public File createFileInSDCard(String dir, String fileName){
+		createSDDir(dir);
 		File file = new File(mSDCardRoot + dir + File.separator + fileName);
 		try {
 			file.createNewFile();
