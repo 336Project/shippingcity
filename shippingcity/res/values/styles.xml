@@ -14,7 +14,7 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     <!-- 指示器样式主题 -->
@@ -35,8 +35,8 @@
         <item name="android:background">@drawable/custom_tab_indicator</item>
         <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
         <item name="android:textSize">17sp</item>
-        <!-- <item name="android:divider">@drawable/custom_tab_indicator_divider</item>
-        <item name="android:dividerPadding">10dp</item> -->
+        <item name="android:divider">@drawable/custom_tab_indicator_divider</item>
+        <item name="android:dividerPadding">10dp</item>
         <item name="android:showDividers">middle</item>
         <item name="android:textColor">@drawable/tab_select_color</item>  
         <item name="android:paddingLeft">8dp</item>

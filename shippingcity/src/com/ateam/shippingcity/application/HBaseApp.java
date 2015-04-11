@@ -44,13 +44,13 @@ public class HBaseApp extends Application {
 				.diskCache(new UnlimitedDiscCache(new File(Environment.getExternalStorageDirectory() + ConstantUtil.IMAGE_CACHE)))
 				.tasksProcessingOrder(QueueProcessingType.LIFO)
 				.build();
-		L.writeLogs(false);
+		L.writeLogs(false);//关闭日志
 		ImageLoader.getInstance().init(config);
 	}
 
 	public String getUserssid() {
 		
-		return "2rbegfia5hdvfieq9hrithvu21";//"9fkp992it4uft419vagotpdap5";
+		return userssid;//"9fkp992it4uft419vagotpdap5";
 	}
 
 	public void setUserssid(String userssid) {

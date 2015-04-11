@@ -62,7 +62,7 @@
         AppKey="493941073"
         AppSecret="a2e6c0b1fe8bbae922d10639ca01d820"
         RedirectUrl="http://www.shippingcity.com"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
 
     <QZone
@@ -70,7 +70,7 @@
         SortId="3"
         AppId="1104513426"
         AppKey="YFHlg70JtAzQfrar"
-        ShareByAppClient="true"
+        ShareByAppClient="false"
         Enable="true" />
     
     <!-- 
