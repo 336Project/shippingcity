@@ -98,17 +98,6 @@ public class MyQuoteToHistoryFragment extends
 	}
 
 	private void initRequest() {
-		// for (int i = 0; i < 11; i++) {
-		// MyQuoteToHistory myQuoteToHistory=new MyQuoteToHistory();
-		// myQuoteToHistory.setBoxType("整箱");
-		// myQuoteToHistory.setPalletDescribe("真是一群不容易的人啊 。，宅搜的金发来看；萨卡发发；了");
-		// myQuoteToHistory.setPlaceBegin("HONGKONG"+i);
-		// myQuoteToHistory.setPlaceEnd("ALEXANDRIA"+i);
-		// myQuoteToHistory.setTransportTimeBegin(""+i);
-		// myQuoteToHistory.setTransportTimeEnd(""+i+i);
-		// myQuoteToHistory.setTransportType("海运");
-		// dataList.add(myQuoteToHistory);
-		// }
 		HRequestCallback<Respond<List<MyQuoteToHistory>>> requestCallback = new HRequestCallback<Respond<List<MyQuoteToHistory>>>() {
 			
 

@@ -18,6 +18,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +28,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
@@ -67,14 +70,40 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 	 */
 	private void initTab() {
 		fragments = new ArrayList<Fragment>();
-		fragments.add(new MyQuoteToConfirmFragment());
-		fragments.add(new MyQuoteToHistoryFragment());
+		fragments.add(new MyQuoteToConfirmFragment2());
+		fragments.add(new MyQuoteToHistoryFragment2());
 		TabFtagmentAdapter adapter=new TabFtagmentAdapter(getChildFragmentManager(),TAB_TITLE,null,fragments);
 		ViewPager vp_my_quote_all=(ViewPager) inflate.findViewById(R.id.vp_my_quote_all);
 		vp_my_quote_all.setAdapter(adapter);
 		vp_my_quote_all.setOffscreenPageLimit(2);
 		TabPageIndicator mTabIndicator= (TabPageIndicator)inflate.findViewById(R.id.tab_indicator);
 		mTabIndicator.setViewPager(vp_my_quote_all);
+		mTabIndicator.setOnPageChangeListener(new OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int arg0) {
+				if(arg0==0){
+					MyQuoteToConfirmFragment2 myQuoteToConfirmFragment = (MyQuoteToConfirmFragment2) fragments.get(0);
+					myQuoteToConfirmFragment.setCurrentPage(true);
+					MyQuoteToHistoryFragment2 myQuoteToHistoryFragment = (MyQuoteToHistoryFragment2) fragments.get(1);
+					myQuoteToHistoryFragment.setCurrentPage(false);
+				}
+				else if(arg0==1){
+					MyQuoteToConfirmFragment2 myQuoteToConfirmFragment = (MyQuoteToConfirmFragment2) fragments.get(0);
+					myQuoteToConfirmFragment.setCurrentPage(false);
+					MyQuoteToHistoryFragment2 myQuoteToHistoryFragment = (MyQuoteToHistoryFragment2) fragments.get(1);
+					myQuoteToHistoryFragment.setCurrentPage(true);
+				}
+			}
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				
+			}
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				
+			}
+		});
 	}
 	
 	private void initSelectPopupWindow() {
@@ -161,8 +190,8 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 			TextView textView = tv_List.get(i);
 			if(id==i){
 				textView.setSelected(true);
-				MyQuoteToConfirmFragment fragment = (MyQuoteToConfirmFragment) fragments.get(0);
-				MyQuoteToHistoryFragment fragment1 = (MyQuoteToHistoryFragment) fragments.get(1);
+				MyQuoteToConfirmFragment2 fragment = (MyQuoteToConfirmFragment2) fragments.get(0);
+				MyQuoteToHistoryFragment2 fragment1 = (MyQuoteToHistoryFragment2) fragments.get(1);
 				fragment.select(i);
 				fragment.setMode(i);
 				fragment1.select(i);

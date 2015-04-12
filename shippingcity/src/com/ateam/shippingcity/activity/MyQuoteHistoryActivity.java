@@ -14,6 +14,7 @@ import com.ateam.shippingcity.access.MyQuoteAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.access.I.HURL;
 import com.ateam.shippingcity.constant.ConstantUtil;
+import com.ateam.shippingcity.model.MyData;
 import com.ateam.shippingcity.model.MyQuoteToConfirmDetail;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
@@ -104,6 +105,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 			public void onSuccess(Respond<MyQuoteToConfirmDetail> result) {
 				if(result.isSuccess()){
 					MyQuoteToConfirmDetail datas = result.getDatas();
+					MyData mydata = datas.getMydata();
 					String picture_path = datas.getPicture_path();
 					if(!picture_path.equals("")){
 						String[] split = picture_path.split("\\|");
@@ -118,21 +120,92 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 						ll_photo.setVisibility(View.GONE);
 					}
 					
-					
 					String shipping_type = datas.getShipping_type();
 					String shipment_type = datas.getShipment_type();
 					if(shipping_type.equals("1")){
 						tv_shipping.setText("海运");
 						if(shipment_type.equals("1")){
 							iv_shipment.setImageResource(R.drawable.pallet_details_zhengxiang_small_icon);
-							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_1);
+							
+							ArrayList<Integer> tvId_List=new ArrayList<Integer>();
+							ArrayList<String> content_List=new ArrayList<String>();
+							tvId_List.add(R.id.tv_shipcompany);
+							tvId_List.add(R.id.tv_totalprices);
+							tvId_List.add(R.id.tv_remarks);
+							tvId_List.add(R.id.tv_createtime);
+							tvId_List.add(R.id.ll_quotation);
+							content_List.add(mydata.getShipcompany());
+							List<String> price = mydata.getPrice();
+							double sum=0;
+							for (int i = 0; i < price.size(); i++) {
+								String price_item = price.get(i);
+								if(!price_item.equals("")){
+									double parseDouble = Double.parseDouble(price_item);
+									sum+=parseDouble;
+								}
+							}
+							content_List.add("$"+sum+"");
+							content_List.add(mydata.getRemarks());
+							String createtime = mydata.getCreatetime();
+							if(createtime.equals("")){
+								content_List.add("");
+							}
+							else{
+								content_List.add(formatDate(createtime));
+							}
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_1,tvId_List,content_List,datas.getType(),datas.getNum(),mydata.getPrice());
 						}else if(shipment_type.equals("2")){
 							iv_shipment.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
-							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_3);
+							
+							ArrayList<Integer> tvId_List=new ArrayList<Integer>();
+							ArrayList<String> content_List=new ArrayList<String>();
+							tvId_List.add(R.id.tv_remarks);
+							tvId_List.add(R.id.tv_createtime);
+							content_List.add(mydata.getRemarks());
+							String createtime = mydata.getCreatetime();
+							if(createtime.equals("")){
+								content_List.add("");
+							}
+							else{
+								content_List.add(formatDate(createtime));
+							}
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_3,tvId_List,content_List);
 						}
 						else{
 							iv_shipment.setImageResource(R.drawable.pallet_details_of_pinxiang_small_icon);
-							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_2);
+							
+							ArrayList<Integer> tvId_List=new ArrayList<Integer>();
+							ArrayList<String> content_List=new ArrayList<String>();
+							tvId_List.add(R.id.tv_totalprices);
+							tvId_List.add(R.id.tv_remarks);
+							tvId_List.add(R.id.tv_createtime);
+							tvId_List.add(R.id.tv_unit);
+							List<String> price = datas.getMydata().getPrice();
+							double sum=0;
+							for (int i = 0; i < price.size(); i++) {
+								String price_item = price.get(i);
+								if(!price_item.equals("")){
+									double parseDouble = Double.parseDouble(price_item);
+									sum+=parseDouble;
+								}
+							}
+							content_List.add(sum+"");
+							content_List.add(mydata.getRemarks());
+							String createtime = mydata.getCreatetime();
+							if(createtime.equals("")){
+								content_List.add("");
+							}
+							else{
+								content_List.add(formatDate(createtime));
+							}
+							String goods_type = mydata.getGoods_type();
+							if(goods_type.equals("0")){
+								content_List.add("$/RT");
+							}
+							else{
+								content_List.add("$/CBM");
+							}
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_2,tvId_List,content_List);
 						}
 					}
 					else if(shipping_type.equals("2")){
@@ -171,7 +244,33 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 						tv_shipping.setText("陆运");
 						if(shipment_type.equals("1")){
 							iv_shipment.setImageResource(R.drawable.pallet_details_zhengxiang_small_icon);
-							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_1);
+							
+							ArrayList<Integer> tvId_List=new ArrayList<Integer>();
+							ArrayList<String> content_List=new ArrayList<String>();
+							tvId_List.add(R.id.tv_totalprices);
+							tvId_List.add(R.id.tv_remarks);
+							tvId_List.add(R.id.tv_createtime);
+							tvId_List.add(R.id.ll_quotation);
+							List<String> price = mydata.getPrice();
+							double sum=0;
+							for (int i = 0; i < price.size(); i++) {
+								String price_item = price.get(i);
+								if(!price_item.equals("")){
+									double parseDouble = Double.parseDouble(price_item);
+									sum+=parseDouble;
+								}
+							}
+							content_List.add(sum+"");
+							content_List.add(mydata.getRemarks());
+							String createtime = mydata.getCreatetime();
+							if(createtime.equals("")){
+								content_List.add("");
+							}
+							else{
+								content_List.add(formatDate(createtime));
+							}
+							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_4,tvId_List,content_List,datas.getType(),datas.getNum(),mydata.getPrice());
+							
 						}else if(shipment_type.equals("2")){  //散货
 							iv_shipment.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
 							ArrayList<Integer> tvId_List=new ArrayList<Integer>();
@@ -295,7 +394,6 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 	}
 	private void imageBrower(int position, String[] urls) {
 		Intent intent = new Intent(this, ImagePagerActivity.class);
-		// 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
 		intent.putExtra(ConstantUtil.EXTRA_IMAGE_URLS, urls);
 		intent.putExtra(ConstantUtil.EXTRA_IMAGE_INDEX, position);
 		startActivity(intent);
@@ -347,8 +445,8 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 		}
 	}
 	private String formatDate(String createtime){
-		Date date = new Date(Long.parseLong(createtime));
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date date = new Date(Long.parseLong(createtime)*1000);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd HH:mm");
 		return simpleDateFormat.format(date);
 	}
 

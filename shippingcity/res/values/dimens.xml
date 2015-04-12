@@ -40,7 +40,7 @@
 	<dimen name="myQuote_bottom">10dp</dimen>
 	<dimen name="photo_spacing">5dp</dimen>
 	<dimen name="line_width">2dp</dimen>
-	<dimen name="line_height">2dp</dimen>
+	<dimen name="line_height">1dp</dimen>
 	<dimen name="myQuote_quote_width">200dp</dimen>
 	<dimen name="myQuote_quote_iv_left">10dp</dimen>
 	<dimen name="myQuote_quote_iv_right">11dp</dimen>
