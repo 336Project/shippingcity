@@ -18,7 +18,6 @@ import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.utils.FileUtil;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.database.Cursor;
@@ -189,18 +188,17 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 	}
 	
 	private void showShare(String platform) {
-		Context context = this;
-		final OnekeyShare oks = new OnekeyShare();
+		OnekeyShare oks = new OnekeyShare();
 		oks.setTitle("航运城");
 		oks.setTitleUrl("http://www.shippingcity.com");
 		oks.setText("运价大搜索，尽在航运城 ，详见官网：http://www.shippingcity.com");
 		oks.setImagePath(getFile().getPath());
-		
+		oks.setComment("航运城——运价大搜索，尽在航运城");
 		oks.setUrl("http://www.shippingcity.com");
 		oks.setSite("航运城");
 		oks.setSiteUrl("http://www.shippingcity.com");
 		oks.setSilent(false);
-		oks.setShareFromQQAuthSupport(true);
+		oks.setShareFromQQAuthSupport(false);
 		oks.setTheme(OnekeyShareTheme.CLASSIC);
 		oks.setPlatform(platform);
 		// 令编辑页面显示为Dialog模式
@@ -211,7 +209,7 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 		// 去除注释，则快捷分享的操作结果将通过OneKeyShareCallback回调
 		//oks.setCallback(new ShareListener());
 		oks.setEditPageBackground(getLayoutContent());
-		oks.show(context);
+		oks.show(this);
 	}
 	/**
 	 * 

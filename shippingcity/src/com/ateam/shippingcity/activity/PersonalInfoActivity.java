@@ -142,12 +142,15 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 						showMsg(PersonalInfoActivity.this, result.getMessage());
 						if(type.equals("身份证")){
 							user.getVpicture().set(0, url);
+							user.setVtruename("2");
 							ImageLoader.getInstance().displayImage(url, vtruename);
 						}else if(type.equals("工牌")){
 							user.getVpicture().set(1, url);
+							user.setVtruename("2");
 							ImageLoader.getInstance().displayImage(url, card);
 						}else if(type.equals("营业执照")){
 							user.getVpicture().set(2, url);
+							user.setVcompany("2");
 							ImageLoader.getInstance().displayImage(url, vcompany);
 						}
 					}
