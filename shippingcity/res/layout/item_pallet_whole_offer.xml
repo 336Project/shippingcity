@@ -25,7 +25,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="@dimen/xlist_marginl"
             android:background="@color/white"
-            android:inputType="number" />
+            android:inputType="numberDecimal" />
 
         <View
             android:id="@+id/view_line"

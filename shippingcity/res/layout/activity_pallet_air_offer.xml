@@ -16,10 +16,11 @@
         <EditText 
             android:id="@+id/et_money"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/white"
             android:hint="@string/input_price"
+            android:inputType="numberDecimal"
             android:layout_marginLeft="@dimen/xlist_marginl"/>
         <TextView 
             android:id="@+id/tv_moneyLable"
