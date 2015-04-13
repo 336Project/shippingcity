@@ -10,6 +10,8 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -87,7 +89,14 @@ public class PopupWindowUtil {
 				if(type.size()>0&&num.size()>0&&price.size()>0){
 					for (int j = 0; j < price.size(); j++) {
 						TextView textView = new TextView(mContext);
-						textView.setText(num.get(j)+"*"+type.get(j)+","+"$"+price.get(j));
+						textView.setTextColor(Color.parseColor("#696969"));
+						textView.setTextSize(18);
+						if(price.get(j).equals("")){
+							textView.setText(num.get(j)+"*"+type.get(j)+","+"$"+0);
+						}
+						else{
+							textView.setText(num.get(j)+"*"+type.get(j)+","+"$"+price.get(j));
+						}
 						ll_quotation.addView(textView);
 					}
 				}

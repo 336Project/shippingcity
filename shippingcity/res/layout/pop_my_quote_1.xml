@@ -30,8 +30,9 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:text="@string/my_offer"
-                android:textSize="14sp" 
-                />
+                android:textColor="@color/my_quote_item_tination"
+                android:textSize="20sp"
+                 />
 
             <ImageView
                 android:id="@+id/iv_close_myquote"
@@ -57,13 +58,15 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ship_company" />
+                android:text="@string/ship_company"
+                android:textColor="@color/my_quote_pop_item_normal" />
 
             <TextView
                 android:id="@+id/tv_shipcompany"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OCCL" />
+                android:text="OCCL"
+                android:textColor="@color/my_quote_pop_item_normal" />
         </LinearLayout>
 
         <View
@@ -81,17 +84,17 @@
             <LinearLayout
                 android:layout_width="@dimen/myQuote_quote_width"
                 android:layout_height="match_parent"
+                android:layout_marginRight="22dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="vertical" 
-                android:layout_marginRight="22dp"
-                >
+                android:orientation="vertical" >
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/total_about" />
+                    android:text="@string/total_about"
+                    android:textColor="@color/my_quote_pop_item_normal" />
 
                 <TextView
                     android:id="@+id/tv_totalprices"
@@ -99,53 +102,26 @@
                     android:layout_height="wrap_content"
                     android:text="$50000"
                     android:textColor="@color/totalabout_Red"
-                    android:textSize="20sp"
+                    android:textSize="26sp"
                      />
             </LinearLayout>
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/lineColor" />
 
             <LinearLayout
                 android:id="@+id/ll_quotation"
                 android:layout_width="@dimen/myQuote_quote_width"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="22dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_marginLeft="22dp"
                 android:orientation="vertical" >
             </LinearLayout>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/line_height"
-            android:background="@drawable/lineColor" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="22dp"
-            android:layout_marginRight="22dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/note" />
-
-            <TextView
-                android:id="@+id/tv_remarks"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="附加费用需当面沟通,货盘超重要另外缴纳超重费" />
         </LinearLayout>
 
         <View
@@ -164,13 +140,43 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quotation_time" />
+                android:text="@string/note"
+                android:textColor="@color/my_quote_pop_item_normal" />
+
+            <TextView
+                android:id="@+id/tv_remarks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="附加费用需当面沟通,货盘超重要另外缴纳超重费"
+                android:textColor="@color/my_quote_pop_item_normal" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@drawable/lineColor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quotation_time"
+                android:textColor="@color/my_quote_pop_item_normal" />
 
             <TextView
                 android:id="@+id/tv_createtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="11-12 8:00" />
+                android:text="11-12 8:00"
+                android:textColor="@color/my_quote_pop_item_normal" />
         </LinearLayout>
     </LinearLayout>
 

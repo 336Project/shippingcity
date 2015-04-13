@@ -75,12 +75,19 @@ public class MyQuoteToConfirmAdapter extends HBaseAdapter<MyQuoteToConfirm>{
 			description.append("件数:"+bean.getPackages()+";");
 			description.append("毛重:"+bean.getWeight()+"kg;");
 			description.append("体积:"+bean.getVolume()+"立方;");
-//			description.append("单件尺寸："+bean.getSize()+"。");
+			List<String> size = bean.getSize();
+			if(size.size()>0){
+				description.append("单件尺寸:");
+				for (int i = 0; i < size.size(); i++) {
+					String string = size.get(i);
+					description.append(string);
+					if(i<size.size()-1){
+						description.append("x");
+					}
+				}
+			}
 		}
 		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(description.toString());
-		
-//		((TextView)holder.getView(R.id.tv_transportTimeEnd)).setText(bean.getTransportTimeEnd().toString());
-//		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(bean.getPalletDescribe().toString());
 	}
 	@Override
 	public int getResId() {

@@ -22,11 +22,12 @@
 
             <ImageView
                 android:id="@+id/iv_left_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/iv_return"
+                android:scaleType="center"
                 android:layout_gravity="center"
                  />
         </LinearLayout>
@@ -37,6 +38,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:layout_marginLeft="16dp"
             android:orientation="vertical" >
         </LinearLayout>
 
@@ -54,8 +56,10 @@
                 android:gravity="center"
                 android:minWidth="50dp"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                android:visibility="gone" />
+                android:textSize="14sp"
+                android:visibility="gone" 
+               
+                />
 
             <ImageView
                 android:id="@+id/iv_right_icon"

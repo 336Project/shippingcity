@@ -1,10 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".MyQuoteHistoryActivity" >
+    android:visibility="gone"
+    tools:context=".MyQuoteHistoryActivity" 
+    >
 
     <com.ateam.shippingcity.widget.ElasticScrollView
         android:id="@+id/elasticScrollView1"
@@ -40,7 +43,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/xlist_marginl"
                             android:text="@string/transport_type" 
-                            android:textSize="14sp"
+                            android:textSize="@dimen/myQuote_item_tination_size"
                             android:textColor="@color/my_quote_item_tination"
                             />
 
@@ -49,7 +52,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="海运" 
-                            android:textSize="14sp"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="@dimen/myQuote_item_tination_size"
                             android:textColor="@color/my_quote_item_tination"
                             />
                     </LinearLayout>
@@ -295,7 +299,7 @@
                         android:gravity="center_vertical" >
 
                         <TextView
-                            android:layout_width="@dimen/myQuote_iv_width"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="top"
                             android:text="@string/note"
@@ -305,8 +309,9 @@
 
                         <TextView
                             android:id="@+id/tv_remarks"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:layout_marginLeft="@dimen/xlist_marginl"
                             android:textSize="14sp" 
                             android:textColor="@color/my_quote_item_tination"
@@ -322,7 +327,7 @@
 
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="@dimen/myQuote_item_height"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/myQuote_bottom"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"

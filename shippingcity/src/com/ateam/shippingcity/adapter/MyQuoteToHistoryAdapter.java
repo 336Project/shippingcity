@@ -35,7 +35,7 @@ public class MyQuoteToHistoryAdapter extends HBaseAdapter<MyQuoteToHistory>{
 		fl_Lp_1.setMargins(0, SceenUtils.dip2px(c, 18), SceenUtils.dip2px(c, 6), 0);
 		fl_Lp_1.gravity=Gravity.RIGHT;
 		fl_Lp_2 = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		fl_Lp_2.setMargins(0, SceenUtils.dip2px(c, 8), SceenUtils.dip2px(c, 4), 0);
+		fl_Lp_2.setMargins(0, SceenUtils.dip2px(c, 18), SceenUtils.dip2px(c, 4), 0);
 		fl_Lp_2.gravity=Gravity.RIGHT;
 	}
 
@@ -109,7 +109,17 @@ public class MyQuoteToHistoryAdapter extends HBaseAdapter<MyQuoteToHistory>{
 			description.append("件数:"+bean.getPackages()+";");
 			description.append("毛重:"+bean.getWeight()+"kg;");
 			description.append("体积:"+bean.getVolume()+"立方;");
-//			description.append("单件尺寸："+bean.getSize()+"。");
+			List<String> size = bean.getSize();
+			if(size.size()>0){
+				description.append("单件尺寸:");
+				for (int i = 0; i < size.size(); i++) {
+					String string = size.get(i);
+					description.append(string);
+					if(i<size.size()-1){
+						description.append("x");
+					}
+				}
+			}
 		}
 		((TextView)holder.getView(R.id.tv_palletDescribe)).setText(description.toString());
 	}

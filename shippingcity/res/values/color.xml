@@ -153,7 +153,8 @@
     <drawable name="my_offer">#FF9900</drawable>
     <drawable name="carrotColor">#ed9121</drawable>
     <drawable name="lineColor">#F0F3F5</drawable>
-    <color name="totalabout_Red">#E91C01</color>
+    <color name="totalabout_Red">#ed4c37</color>
+    <color name="my_quote_pop_item_normal">#696969</color>
     <color name="my_quote_select_selected">#6CA2EF</color>
     <color name="my_quote_item_tination">#4c4c4c</color>
     <color name="my_quote_item_content">#787878</color>

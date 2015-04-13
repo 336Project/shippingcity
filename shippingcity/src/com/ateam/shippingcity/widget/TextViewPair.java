@@ -9,6 +9,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -61,7 +62,7 @@ public class TextViewPair extends LinearLayout {
 		params.gravity=Gravity.CENTER;
 		mNameView=new TextView(getContext());
 		mNameView.setText(mNameText);
-		mNameView.setTextSize(mNameSize);
+		mNameView.setTextSize(TypedValue.COMPLEX_UNIT_PX,mNameSize);
 		mNameView.setTextColor(mNameColor);
 		addView(mNameView, params);
 		
@@ -73,7 +74,7 @@ public class TextViewPair extends LinearLayout {
 		params.gravity=Gravity.CENTER;
 		mValueView=new TextView(getContext());
 		mValueView.setText(enter(mValueText));
-		mValueView.setTextSize(mValueSize);
+		mValueView.setTextSize(TypedValue.COMPLEX_UNIT_PX,mValueSize);
 		mValueView.setTextColor(mValueColor);
 		addView(mValueView, params);
 	}

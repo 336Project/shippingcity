@@ -62,6 +62,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 	private LayoutParams fl_Lp_1;
 	private LayoutParams fl_Lp_2;
 	private LinearLayout ll_photo;
+	private LinearLayout ll_main;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -135,16 +136,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 							tvId_List.add(R.id.tv_createtime);
 							tvId_List.add(R.id.ll_quotation);
 							content_List.add(mydata.getShipcompany());
-							List<String> price = mydata.getPrice();
-							double sum=0;
-							for (int i = 0; i < price.size(); i++) {
-								String price_item = price.get(i);
-								if(!price_item.equals("")){
-									double parseDouble = Double.parseDouble(price_item);
-									sum+=parseDouble;
-								}
-							}
-							content_List.add("$"+sum+"");
+							content_List.add("$"+mydata.getTotal_price());
 							content_List.add(mydata.getRemarks());
 							String createtime = mydata.getCreatetime();
 							if(createtime.equals("")){
@@ -180,16 +172,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 							tvId_List.add(R.id.tv_remarks);
 							tvId_List.add(R.id.tv_createtime);
 							tvId_List.add(R.id.tv_unit);
-							List<String> price = datas.getMydata().getPrice();
-							double sum=0;
-							for (int i = 0; i < price.size(); i++) {
-								String price_item = price.get(i);
-								if(!price_item.equals("")){
-									double parseDouble = Double.parseDouble(price_item);
-									sum+=parseDouble;
-								}
-							}
-							content_List.add(sum+"");
+							content_List.add(mydata.getTotal_price()+"");
 							content_List.add(mydata.getRemarks());
 							String createtime = mydata.getCreatetime();
 							if(createtime.equals("")){
@@ -199,11 +182,11 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 								content_List.add(formatDate(createtime));
 							}
 							String goods_type = mydata.getGoods_type();
-							if(goods_type.equals("0")){
-								content_List.add("$/RT");
+							if(goods_type.equals("2")){
+								content_List.add("$/CBM");
 							}
 							else{
-								content_List.add("$/CBM");
+								content_List.add("$/RT");
 							}
 							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_2,tvId_List,content_List);
 						}
@@ -218,16 +201,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 						tvId_List.add(R.id.tv_remarks);
 						tvId_List.add(R.id.tv_createtime);
 						tvId_List.add(R.id.tv_unit);
-						List<String> price = datas.getMydata().getPrice();
-						double sum=0;
-						for (int i = 0; i < price.size(); i++) {
-							String price_item = price.get(i);
-							if(!price_item.equals("")){
-								double parseDouble = Double.parseDouble(price_item);
-								sum+=parseDouble;
-							}
-						}
-						content_List.add(sum+"");
+						content_List.add(mydata.getTotal_price()+"");
 						content_List.add(datas.getMydata().getRemarks());
 						String createtime = datas.getMydata().getCreatetime();
 						if(createtime.equals("")){
@@ -251,16 +225,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 							tvId_List.add(R.id.tv_remarks);
 							tvId_List.add(R.id.tv_createtime);
 							tvId_List.add(R.id.ll_quotation);
-							List<String> price = mydata.getPrice();
-							double sum=0;
-							for (int i = 0; i < price.size(); i++) {
-								String price_item = price.get(i);
-								if(!price_item.equals("")){
-									double parseDouble = Double.parseDouble(price_item);
-									sum+=parseDouble;
-								}
-							}
-							content_List.add(sum+"");
+							content_List.add("¥"+mydata.getTotal_price()+"");
 							content_List.add(mydata.getRemarks());
 							String createtime = mydata.getCreatetime();
 							if(createtime.equals("")){
@@ -278,17 +243,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 							tvId_List.add(R.id.tv_totalprices);
 							tvId_List.add(R.id.tv_remarks);
 							tvId_List.add(R.id.tv_createtime);
-							
-							List<String> price = datas.getMydata().getPrice();
-							double sum=0;
-							for (int i = 0; i < price.size(); i++) {
-								String price_item = price.get(i);
-								if(!price_item.equals("")){
-									double parseDouble = Double.parseDouble(price_item);
-									sum+=parseDouble;
-								}
-							}
-							content_List.add("¥"+sum+"");
+							content_List.add("¥"+mydata.getTotal_price()+"");
 							content_List.add(datas.getMydata().getRemarks());
 							String createtime = datas.getMydata().getCreatetime();
 							if(createtime.equals("")){
@@ -323,10 +278,18 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 						}
 					}
 					else{
+						String size = datas.getSize();
+						String[] size_split = size.split("\\|");
 						description.append("件数："+datas.getPackages()+";");
 						description.append("毛重："+datas.getWeight()+"kg;");
 						description.append("体积："+datas.getVolume()+"立方;");
-						description.append("单件尺寸："+datas.getSize()+"。");
+						description.append("单件尺寸：");
+						for (int i = 0; i < size_split.length; i++) {
+							description.append(size_split[i]);
+							if(i<size_split.length-1){
+								description.append("x");
+							}
+						}
 					}
 					tv_description.setText(description.toString());
 					tv_remarks.setText(datas.getRemarks());
@@ -351,6 +314,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 							}
 						}
 					}
+					ll_main.setVisibility(View.VISIBLE);
 				}
 			}
 		};
@@ -415,6 +379,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 		mGvAddPhoto=(GridView)findViewById(R.id.gv_addPhoto);
 		findViewById(R.id.tv_show_my_quote_pop).setOnClickListener(this);
 		ll_photo = (LinearLayout) findViewById(R.id.ll_photo);
+		ll_main = (LinearLayout) findViewById(R.id.ll_main);
 		
 	}
 

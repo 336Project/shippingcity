@@ -32,7 +32,7 @@
 <!-- 间距	 -->
 	<dimen name="myQuote_item_all_height">126dp</dimen>
 	<dimen name="myQuote_item_top">14dp</dimen>
-	<dimen name="myQuote_line_left_iv">70dp</dimen>
+	<dimen name="myQuote_line_left_iv">55dp</dimen>
 	<dimen name="myQuote_item_height">50dp</dimen>
 	<dimen name="myQuote_iv_height">50dp</dimen>
 	<dimen name="myQuote_iv_width">50dp</dimen>

@@ -19,20 +19,20 @@
         android:background="@drawable/my_quote_pop_shape"
         android:orientation="vertical" >
 
-   <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="47dp"
-            android:layout_marginLeft="22dp" 
-            >
+            android:layout_marginLeft="22dp" >
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="@string/my_offer" 
-                android:textSize="14sp" 
-                />
+                android:text="@string/my_offer"
+                android:textColor="@color/my_quote_item_tination"
+                android:textSize="20sp"
+                 />
 
             <ImageView
                 android:id="@+id/iv_close_myquote"
@@ -50,19 +50,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical" 
-              android:layout_height="126dp"
+            android:layout_height="126dp"
             android:layout_marginLeft="22dp"
             android:layout_marginRight="22dp"
-            
-            >
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/total_about" />
+                android:text="@string/total_about"
+                android:textColor="@color/my_quote_pop_item_normal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,17 +72,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$50000"
-                    android:textColor="@color/totalabout_Red" 
-                     android:textSize="20sp"
-                    />
+                    android:textColor="@color/totalabout_Red"
+                    android:textSize="26sp" />
 
                 <TextView
                     android:id="@+id/tv_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/totalabout_Red"
-                    />
-
+                    android:textColor="@color/totalabout_Red" />
             </LinearLayout>
         </LinearLayout>
 
@@ -94,24 +90,25 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="22dp"
             android:layout_marginRight="22dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_marginTop="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/note" />
+                android:text="@string/note"
+                android:textColor="@color/my_quote_pop_item_normal" />
 
             <TextView
                 android:id="@+id/tv_remarks"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="附加费用需当面沟通,货盘超重要另外缴纳超重费" />
+                android:text="附加费用需当面沟通,货盘超重要另外缴纳超重费"
+                android:textColor="@color/my_quote_pop_item_normal" />
         </LinearLayout>
 
         <View
@@ -121,23 +118,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="22dp"
             android:layout_marginRight="22dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_marginTop="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/quotation_time" />
+                android:text="@string/quotation_time"
+                android:textColor="@color/my_quote_pop_item_normal" />
 
             <TextView
                 android:id="@+id/tv_createtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="11-12 8:00" />
+                android:text="11-12 8:00"
+                android:textColor="@color/my_quote_pop_item_normal" />
         </LinearLayout>
     </LinearLayout>
 

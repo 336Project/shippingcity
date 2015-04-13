@@ -28,7 +28,7 @@ public class MyQuoteToHistory implements Serializable{
 	private String packages; //件数
 	private String weight; //毛重
 	private String volume; //体积
-//	private String size; //单件尺寸
+	private List<String> size;//单件尺寸
 	public String getId() {
 		return id;
 	}
@@ -136,6 +136,12 @@ public class MyQuoteToHistory implements Serializable{
 	}
 	public void setVolume(String volume) {
 		this.volume = volume;
+	}
+	public List<String> getSize() {
+		return size;
+	}
+	public void setSize(List<String> size) {
+		this.size = size;
 	}
 	
 	

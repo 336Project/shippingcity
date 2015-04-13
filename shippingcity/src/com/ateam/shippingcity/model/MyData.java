@@ -17,6 +17,7 @@ public class MyData implements Serializable{
 	private String goods_type; //1拼箱重货 2拼箱轻货
 	private String content; 
 	private String textpath; 
+	private String total_price; //合计
 	
 	
 	private List<String> price; //价格
@@ -99,5 +100,13 @@ public class MyData implements Serializable{
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getTotal_price() {
+		return total_price;
+	}
+
+	public void setTotal_price(String total_price) {
+		this.total_price = total_price;
 	}
 }

@@ -217,7 +217,6 @@ public class MyQuoteToHistoryFragment2 extends Fragment implements
 	public void setMode(int mode) {
 		this.mode = mode;
 	}
-
 	public void onLoadComplete(long totalPage, List<MyQuoteToHistory> newDatas) {
 		if (mDataSource == null)
 			throw new NullPointerException("DataSource must be not null");
@@ -227,7 +226,6 @@ public class MyQuoteToHistoryFragment2 extends Fragment implements
 		}
 		if (newDatas != null && !newDatas.isEmpty()) {
 			mDataSource.addAll(newDatas);
-			Log.e("mDataSource", "mDataSource:" + mDataSource.size());
 		}
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
 				Locale.getDefault());
