@@ -179,10 +179,12 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 					PalletTransportDetail datas = result.getDatas();
 					String picture_path = datas.picture_path;
 					if(!SysUtil.getRemainTime(mPallet.deadlinetime).equals("0小时")){
-						if(datas.collected.equals("0")){
-							mBtnFocus.setText("关注");
-						}else if(datas.collected.equals("1")){
-							mBtnFocus.setText("取消关注");
+						if(datas.collected!=null){
+							if(datas.collected.equals("0")){
+								mBtnFocus.setText("关注");
+							}else if(datas.collected.equals("1")){
+								mBtnFocus.setText("取消关注");
+							}
 						}
 					}
 					if(!picture_path.equals("")){
