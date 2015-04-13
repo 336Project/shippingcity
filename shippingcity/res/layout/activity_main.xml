@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@drawable/tab_bar_my_quote_selector"
+            android:drawableTop="@drawable/tab_bar_pallet_selector"
             android:gravity="center"
             android:drawablePadding="8dp"
             android:text="货盘区" />
