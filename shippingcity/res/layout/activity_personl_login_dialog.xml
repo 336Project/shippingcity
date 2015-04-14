@@ -1,103 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#292C35"
-    android:paddingTop="50dp"
-    android:paddingLeft="46dp"
-    android:paddingRight="46dp"
-    android:orientation="vertical" >
+    android:fillViewport="true" >
 
-    <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="您还未登录，请先登录！"
-        android:textSize="15sp"
-        android:textColor="#4b5161"
-        />
-    
-    <com.ateam.shippingcity.widget.HAutoCompleteTextView
-        android:id="@+id/et_username"
-        android:layout_marginTop="30dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/log_in_username_icon"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#292C35"
-        android:hint="手机号/用户名"
-        android:textSize="14sp"
-        android:minHeight="50dp"
-        android:textColorHint="#3B3E49"
-        android:drawablePadding="10dp"
-        android:textColor="#3e414c"
-        />
-    <!-- 15280256971 -->
-    <View 
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#424550"
-        android:layout_marginTop="10dp"
-        />
-    <com.ateam.shippingcity.widget.HAutoCompleteTextView
-        android:id="@+id/et_password"
-        android:layout_marginTop="30dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/log_in_password_icon"
-        android:background="#292C35"
-        android:hint="密码"
-        android:textSize="14sp"
-        android:minHeight="50dp"
-        android:textColorHint="#3B3E49"
-        android:textColor="#3e414c"
-        android:drawablePadding="10dp"
-        android:inputType="textPassword"
-        />
-    <View 
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#424550"
-        android:layout_marginTop="10dp"
-        />
-        
-    <Button 
-        android:id="@+id/btn_login"
-        android:layout_marginTop="61dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="登录"
-        android:textSize="17sp"
-        android:background="@drawable/btn_login_bg"
-        android:textColor="#525562"
-        android:minHeight="50dp"
-        />
-    <LinearLayout 
-        android:layout_marginTop="10dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        >
-        <TextView 
-            android:id="@+id/txt_goto_regist"
-            android:layout_width="0dp"
+        android:orientation="vertical"
+        android:paddingLeft="46dp"
+        android:paddingRight="46dp"
+        android:paddingTop="50dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minHeight="40dp"
-            android:text="马上注册"
-            android:gravity="center_vertical"
-            android:textColor="#525562"
-            android:textSize="17sp"
-            />
-        <TextView 
-            android:id="@+id/txt_forget_password"
-            android:layout_width="0dp"
+            android:text="您还未登录，请先登录！"
+            android:textColor="#4b5161"
+            android:textSize="15sp" />
+
+        <com.ateam.shippingcity.widget.HAutoCompleteTextView
+            android:id="@+id/et_username"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="30dp"
+            android:background="#292C35"
+            android:drawableLeft="@drawable/log_in_username_icon"
+            android:drawablePadding="10dp"
+            android:hint="手机号/用户名"
+            android:minHeight="50dp"
+            android:textColor="#3e414c"
+            android:textColorHint="#3B3E49"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#424550" />
+
+        <com.ateam.shippingcity.widget.HAutoCompleteTextView
+            android:id="@+id/et_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="#292C35"
+            android:drawableLeft="@drawable/log_in_password_icon"
+            android:drawablePadding="10dp"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:minHeight="50dp"
+            android:textColor="#3e414c"
+            android:textColorHint="#3B3E49"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#424550" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="61dp"
+            android:background="@drawable/btn_login_bg"
+            android:minHeight="50dp"
+            android:text="登录"
             android:textColor="#525562"
-            android:text="忘记密码？"
-            android:minHeight="40dp"
-            android:textSize="17sp"
-            android:gravity="right|center"
-            />
+            android:textSize="17sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txt_goto_regist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:minHeight="40dp"
+                android:text="马上注册"
+                android:textColor="#525562"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txt_forget_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right|center"
+                android:minHeight="40dp"
+                android:text="忘记密码？"
+                android:textColor="#525562"
+                android:textSize="17sp" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+</ScrollView>

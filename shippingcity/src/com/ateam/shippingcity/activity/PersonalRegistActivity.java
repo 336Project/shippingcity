@@ -34,7 +34,7 @@ public class PersonalRegistActivity extends HBaseActivity implements OnClickList
 	private CheckBox mCheckAgress;
 	private PersonalAccess<Map<String, String>> access;
 	
-	private String mobile="";
+	//private String mobile="";
 	private int step=STEP1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +89,8 @@ public class PersonalRegistActivity extends HBaseActivity implements OnClickList
 		switch (v.getId()) {
 		case R.id.txt_get_code://获取验证码
 			step=STEP1;
-			mobile=mEditMobile.getText().toString();
-			if(mobile.length()>0){
+			//mobile=mEditMobile.getText().toString();
+			if(mEditMobile.getText().toString().length()>0){
 				codeTimer.start();
 				access.getMobileCodeRegister(mEditMobile.getText().toString());
 			}else{
@@ -102,13 +102,13 @@ public class PersonalRegistActivity extends HBaseActivity implements OnClickList
 			break;
 		case R.id.btn_regist:
 			step=STEP2;
-			if(mobile.length()<=0){
+			if(mEditMobile.getText().toString().length()<=0){
 				showMsg(this, "请输入手机号码");
 				return;
 			}
 			if(mCheckAgress.isChecked()){
 				if(mEditCode.getText().toString().length()>0){
-					access.checkMobileCode(mobile, mEditCode.getText().toString());
+					access.checkMobileCode(mEditMobile.getText().toString(), mEditCode.getText().toString());
 				}else{
 					showMsg(this, "请输入验证码");
 				}
@@ -154,7 +154,7 @@ public class PersonalRegistActivity extends HBaseActivity implements OnClickList
 					case STEP2:
 						if(result.getStatusCode().equals("200")){
 							Intent intent=new Intent(PersonalRegistActivity.this, PersonalPerfectInfoActivity.class);
-							intent.putExtra("mobile", mobile);
+							intent.putExtra("mobile", mEditMobile.getText().toString());
 							startActivity(intent);
 						}else{
 							showMsg(PersonalRegistActivity.this, result.getMessage());
