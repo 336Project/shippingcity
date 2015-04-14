@@ -127,7 +127,7 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 			startActivity(intent);
 			break;
 		case R.id.layout_call://一键客服
-			intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:15759216890"));
+			intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:400-000-6591"));
 			startActivity(intent);
 			break;
 		case R.id.iv_left_icon://个人中心

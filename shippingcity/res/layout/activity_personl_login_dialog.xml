@@ -28,7 +28,6 @@
         android:minHeight="50dp"
         android:textColorHint="#3B3E49"
         android:drawablePadding="10dp"
-        android:text="15805935223"
         android:textColor="#3e414c"
         />
     <!-- 15280256971 -->
@@ -51,7 +50,6 @@
         android:textColorHint="#3B3E49"
         android:textColor="#3e414c"
         android:drawablePadding="10dp"
-        android:text="123456"
         android:inputType="textPassword"
         />
     <View 
