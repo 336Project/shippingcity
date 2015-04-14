@@ -106,14 +106,18 @@ public class MainActivity extends HBaseActivity implements OnClickListener{
 			}
 			break;
 		case R.id.txt_pallet_district://货盘区
-			setSelect(mTxtPallet);
-			if(mDistrictFragment==null){
-				mDistrictFragment=new PalletFragment();
+			if(TextUtils.isEmpty(mBaseApp.getUserssid())){
+				jump(this, PersonalLoginActivity.class);
+			}else{
+				setSelect(mTxtPallet);
+				if(mDistrictFragment==null){
+					mDistrictFragment=new PalletFragment();
+				}
+				getRightIcon().setVisibility(View.INVISIBLE);
+				getRightTxt().setVisibility(View.GONE);
+				setActionBarTitle("货盘区");
+				switchContent(mDistrictFragment);
 			}
-			getRightIcon().setVisibility(View.INVISIBLE);
-			getRightTxt().setVisibility(View.GONE);
-			setActionBarTitle("货盘区");
-			switchContent(mDistrictFragment);
 			break;
 		case R.id.iv_left_icon://个人中心
 			if(TextUtils.isEmpty(mBaseApp.getUserssid())){

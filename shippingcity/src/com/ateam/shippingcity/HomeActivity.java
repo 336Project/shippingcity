@@ -122,9 +122,13 @@ public class HomeActivity extends HBaseActivity implements OnClickListener{
 			}
 			break;
 		case R.id.layout_pallet://货盘区
-			intent=new Intent(this, MainActivity.class);
-			intent.putExtra(MainActivity.KEY_TYPE, MainActivity.TYPE_PALLET);
-			startActivity(intent);
+			if(TextUtils.isEmpty(mBaseApp.getUserssid())){
+				jump(this, PersonalLoginActivity.class);
+			}else{
+				intent=new Intent(this, MainActivity.class);
+				intent.putExtra(MainActivity.KEY_TYPE, MainActivity.TYPE_PALLET);
+				startActivity(intent);
+			}
 			break;
 		case R.id.layout_call://一键客服
 			intent=new Intent(Intent.ACTION_DIAL, Uri.parse("tel:400-000-6591"));
