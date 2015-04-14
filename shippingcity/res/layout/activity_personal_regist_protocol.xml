@@ -28,6 +28,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
+        android:visibility="invisible"
         android:background="@drawable/personal_center_usage_guide_goto_top_icon" />
 
 </RelativeLayout>

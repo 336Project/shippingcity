@@ -16,7 +16,7 @@ import android.widget.ScrollView;
  * @TODO 有弹性的ScrollView
  */
 public class ElasticScrollView extends ScrollView {
-
+	private OnScrollListener onScrollListener;
 	// 拖动的距离 size = 4 的意思 只允许拖动屏幕的1/4
 	private static final int size = 4;
 	private View inner;
@@ -118,5 +118,26 @@ public class ElasticScrollView extends ScrollView {
 		}
 		return false;
 	}
+	@Override
+	protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+		if(onScrollListener!=null){
+			onScrollListener.onScroll(t);
+		}
+		super.onScrollChanged(l, t, oldl, oldt);
+	}
+	public interface OnScrollListener{  
+        /** 
+         * 回调方法， 返回滑动的Y方向距离 
+         * @param scrollY 
+         */  
+        public void onScroll(int scrollY);  
+    }
 
+	public OnScrollListener getOnScrollListener() {
+		return onScrollListener;
+	}
+
+	public void setOnScrollListener(OnScrollListener onScrollListener) {
+		this.onScrollListener = onScrollListener;
+	}  
 }

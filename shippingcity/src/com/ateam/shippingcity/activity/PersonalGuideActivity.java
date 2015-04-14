@@ -4,8 +4,10 @@ import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.widget.ElasticScrollView;
 
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ public class PersonalGuideActivity extends HBaseActivity implements OnClickListe
 	private TextView mTxtTitle6;
 	
 	private int[] location = new int[2];
+	private ImageView mGoToTop;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,7 +48,20 @@ public class PersonalGuideActivity extends HBaseActivity implements OnClickListe
 		mTxtTitle5=(TextView) findViewById(R.id.txt_title5);
 		mTxtTitle6=(TextView) findViewById(R.id.txt_title6);
 		
-		findViewById(R.id.img_back_to_top).setOnClickListener(this);
+		mGoToTop=(ImageView) findViewById(R.id.img_back_to_top);
+		mGoToTop.setOnClickListener(this);
+		final int y=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 300, getResources().getDisplayMetrics());
+		scrollView.setOnScrollListener(new ElasticScrollView.OnScrollListener() {
+			
+			@Override
+			public void onScroll(int scrollY) {
+				if(scrollY>y){
+					mGoToTop.setVisibility(View.VISIBLE);
+				}else{
+					mGoToTop.setVisibility(View.INVISIBLE);
+				}
+			}
+		});
 	}
 	@Override
 	public void onClick(View v) {

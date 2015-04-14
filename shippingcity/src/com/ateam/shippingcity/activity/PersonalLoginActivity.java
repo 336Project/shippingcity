@@ -96,7 +96,7 @@ public class PersonalLoginActivity extends Activity implements OnClickListener{
 					((HBaseApp)getApplication()).setUserssid(result.getDatas().getUserssid());
 					finish();
 				}else{
-					MyToast.showShort(PersonalLoginActivity.this, result.getMessage());
+					MyToast.showShort(PersonalLoginActivity.this, "用户名或密码错误");
 				}
 				
 			}
