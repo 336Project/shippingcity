@@ -78,7 +78,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/xlist_marginl"
                     android:layout_weight="1"
-                    android:background="@color/white"
                     android:inputType="numberDecimal"
                     android:hint="@string/input_price" />
 

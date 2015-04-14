@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.sax.StartElementListener;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,11 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.activity.MainActivity;
 import com.ateam.shippingcity.activity.PalletAirOfferActivity;
 import com.ateam.shippingcity.activity.PalletLordOfferActivity;
 import com.ateam.shippingcity.activity.PalletSeaDiffOfferActivity;
 import com.ateam.shippingcity.activity.PalletSeaSpellOfferActivity;
 import com.ateam.shippingcity.activity.PalletSeaWholeOfferActivity;
+import com.ateam.shippingcity.activity.PersonalCenterActivity;
+import com.ateam.shippingcity.activity.PersonalLoginActivity;
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.utils.SysUtil;
@@ -90,6 +94,8 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 			mOffer.setClickable(false);
 			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.quoted_bg_gray));
 		}else if(SysUtil.getRemainTime(bean.deadlinetime).equals("0小时")){
+			((TextView)holder.getView(R.id.tv_lableRemainTime)).setVisibility(View.GONE);
+			((TextView)holder.getView(R.id.tv_remainTime)).setText("");
 			mOffer.setClickable(false);
 			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
 		}else{
@@ -100,7 +106,12 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					toOfferPage(bean);
+					if(TextUtils.isEmpty(((MainActivity)c).mBaseApp.getUserssid())){
+						Intent intent=new Intent(c, PersonalLoginActivity.class);
+						c.startActivity(intent);
+					}else{
+						toOfferPage(bean);
+					}
 				}
 			});
 		}

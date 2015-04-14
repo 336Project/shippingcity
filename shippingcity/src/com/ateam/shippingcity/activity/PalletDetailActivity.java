@@ -25,6 +25,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	private PalletTransportAccess<List<PalletTransport>> mFocusAccess;
 	
 	private View mViewAddPhoto;
+	private TextView mTvShowPhoto;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +89,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		mGvAddPhoto=(GridView)findViewById(R.id.gv_addPhoto);
 		mViewAddPhoto=(View)findViewById(R.id.view_addPhoto);
 		mIvType=(ImageView)findViewById(R.id.iv_type);
+		mTvShowPhoto=(TextView)findViewById(R.id.tv_showPhoto);
 		mBtnFocus.setOnClickListener(this);
 		mBtnMyOffer.setOnClickListener(this);
 		if(mPallet.ifbid!=null&&mPallet.ifbid.equals("1")){
@@ -145,6 +148,17 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				SysUtil.showImage(PalletDetailActivity.this,position,urls);
+			}
+		});
+		mLinearAddPhoto.setClickable(true);
+		mLinearAddPhoto.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				if(urls.length!=0){
+					SysUtil.showImage(PalletDetailActivity.this,0,urls);
+				}
 			}
 		});
 	}
@@ -209,15 +223,15 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 					if(shipment_type.equals("1")){
 						List<String> type=datas.type;
 						List<String> num=datas.num;
-						if(type.size()>0){
-							description.append("箱型：");
-							for (int i = 0; i < type.size(); i++) {
-								description.append(type.get(i)+",");
-								description.append("数量"+num.get(i)+"箱");
-								if(i<type.size()-1){
-									description.append(";");
+						description.append("箱型：");
+						if(mPallet.boxtype.size()==mPallet.number.size()){
+							for (int i = 0; i < mPallet.boxtype.size(); i++) {
+								if(!mPallet.boxtype.get(i).equals("")){
+									description.append(mPallet.boxtype.get(i)+"*"+mPallet.number.get(i));
 								}
-								else description.append("。");
+								if((mPallet.number.size()-i)>=2){
+									description.append("、");
+								}
 							}
 						}
 					}else{

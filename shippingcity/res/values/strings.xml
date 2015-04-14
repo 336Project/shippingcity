@@ -130,6 +130,7 @@
     <string name="success_two">请耐心等待货主消息哦!</string>
     <string name="re_commit">重新提交</string>
     <string name="offer">报价</string>
+    <string name="input_you_offer">请输入您的报价</string>
 
     <!-- 我的报价 -->
     <string name="my_offer">我的报价</string>

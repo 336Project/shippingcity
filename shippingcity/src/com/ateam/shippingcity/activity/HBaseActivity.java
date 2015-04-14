@@ -31,7 +31,7 @@ import com.ateam.shippingcity.utils.MyToast;
  * @TODO
  */
 public class HBaseActivity extends FragmentActivity{
-	protected HBaseApp mBaseApp;
+	public HBaseApp mBaseApp;
 	
 	private FrameLayout mLayoutContent;
 	private RelativeLayout mLayoutError;
