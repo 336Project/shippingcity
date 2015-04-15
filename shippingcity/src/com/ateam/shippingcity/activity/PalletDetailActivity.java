@@ -18,6 +18,7 @@ import com.ateam.shippingcity.widget.weinxinImageShow.MyGridAdapter;
 import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -259,14 +260,24 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		// TODO Auto-generated method stub
 		switch (view.getId()) {
 		case R.id.btn_focus:
-			if(mBtnFocus.getText().equals("关注")){
-				toFocus("add");
+			if(TextUtils.isEmpty(mBaseApp.getUserssid())){
+				Intent intent=new Intent(PalletDetailActivity.this, PersonalLoginActivity.class);
+				startActivity(intent);
 			}else{
-				toFocus("delete");
+				if(mBtnFocus.getText().equals("关注")){
+					toFocus("add");
+				}else{
+					toFocus("delete");
+				}
 			}
 			break;
 		case R.id.btn_myOffer:
-			toOfferPage(mPallet);
+			if(TextUtils.isEmpty(mBaseApp.getUserssid())){
+				Intent intent=new Intent(PalletDetailActivity.this, PersonalLoginActivity.class);
+				startActivity(intent);
+			}else{
+				toOfferPage(mPallet);
+			}
 			break;
 
 		default:
