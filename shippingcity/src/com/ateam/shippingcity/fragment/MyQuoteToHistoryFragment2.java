@@ -56,6 +56,7 @@ public class MyQuoteToHistoryFragment2 extends Fragment implements
 	private XListView mListView;
 	private List<MyQuoteToHistory> mDataSource;
 	private boolean isCurrentPage=false;
+	private boolean isLoad=false;
 
 	public MyQuoteToHistoryFragment2() {
 
@@ -110,9 +111,15 @@ public class MyQuoteToHistoryFragment2 extends Fragment implements
 
 	public void initData() {
 		mAdapter = new MyQuoteToHistoryAdapter(getActivity(), dataList);
-		initRequest();
+		if(isLoad){
+			initRequest();
+		}
 	}
-
+	public void firstRequest(){
+		if(!isLoad){
+			initRequest();
+		}
+	}
 	private void initRequest() {
 		HRequestCallback<Respond<List<MyQuoteToHistory>>> requestCallback = new HRequestCallback<Respond<List<MyQuoteToHistory>>>() {
 
@@ -254,5 +261,13 @@ public class MyQuoteToHistoryFragment2 extends Fragment implements
 
 	public void setCurrentPage(boolean isCurrentPage) {
 		this.isCurrentPage = isCurrentPage;
+	}
+
+	public boolean isLoad() {
+		return isLoad;
+	}
+
+	public void setLoad(boolean isLoad) {
+		this.isLoad = isLoad;
 	}
 }

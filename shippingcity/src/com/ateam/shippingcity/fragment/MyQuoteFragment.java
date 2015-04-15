@@ -93,6 +93,8 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 					myQuoteToConfirmFragment.setCurrentPage(false);
 					MyQuoteToHistoryFragment2 myQuoteToHistoryFragment = (MyQuoteToHistoryFragment2) fragments.get(1);
 					myQuoteToHistoryFragment.setCurrentPage(true);
+					myQuoteToHistoryFragment.firstRequest();
+					myQuoteToHistoryFragment.setLoad(true);
 				}
 			}
 			@Override
