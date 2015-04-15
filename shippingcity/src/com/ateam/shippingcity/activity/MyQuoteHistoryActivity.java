@@ -239,7 +239,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 							PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_4,tvId_List,content_List,datas.getType(),datas.getNum(),mydata.getPrice());
 							
 						}else if(shipment_type.equals("2")){  //散货
-							iv_shipment.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
+							iv_shipment.setImageResource(R.drawable.pallet_details_sanhuo_groceries_small_icon);
 							ArrayList<Integer> tvId_List=new ArrayList<Integer>();
 							ArrayList<String> content_List=new ArrayList<String>();
 							tvId_List.add(R.id.tv_totalprices);

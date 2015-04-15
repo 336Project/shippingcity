@@ -228,7 +228,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 									datas.getNum(), mydata.getPrice());
 						} else if (shipment_type.equals("2")) {
 							iv_shipment
-									.setImageResource(R.drawable.pallet_details_san_groceries_small_icon);
+									.setImageResource(R.drawable.pallet_details_sanhuo_groceries_small_icon);
 							ArrayList<Integer> tvId_List = new ArrayList<Integer>();
 							ArrayList<String> content_List = new ArrayList<String>();
 							tvId_List.add(R.id.tv_totalprices);

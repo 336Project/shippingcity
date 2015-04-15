@@ -108,7 +108,11 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		if(mPallet.shipment_type.equals("1")){
 			mIvType.setBackgroundDrawable(getResources().getDrawable(R.drawable.pallet_details_zhengxiang_small_icon));
 		}else if(mPallet.shipment_type.equals("2")){
-			mIvType.setBackgroundDrawable(getResources().getDrawable(R.drawable.pallet_details_san_groceries_small_icon));
+			if(mPallet.shipping_type.equals("3")){
+				mIvType.setBackgroundDrawable(getResources().getDrawable(R.drawable.pallet_details_sanhuo_groceries_small_icon));
+			}else{
+				mIvType.setBackgroundDrawable(getResources().getDrawable(R.drawable.pallet_details_san_groceries_small_icon));
+			}
 		}else{
 			mIvType.setBackgroundDrawable(getResources().getDrawable(R.drawable.pallet_details_of_pinxiang_small_icon));
 		}

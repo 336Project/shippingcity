@@ -66,7 +66,7 @@ public class MyQuoteToHistoryAdapter extends HBaseAdapter<MyQuoteToHistory>{
 			if(shipment_type.equals("1")){
 				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_zhengxiang_great_icon);
 			}else if(shipment_type.equals("2")){
-				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_san_groceries_great_icon);
+				((ImageView)holder.getView(R.id.iv_shipment)).setImageResource(R.drawable.list_sanhuo_groceries_great_icon);
 			}
 		}
 		((TextView)holder.getView(R.id.tv_startime)).setText(bean.getStartime());
