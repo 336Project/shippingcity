@@ -270,8 +270,8 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 						if(type.size()>0){
 							description.append("箱型：");
 							for (int i = 0; i < type.size(); i++) {
-								description.append(type.get(i)+",");
-								description.append("数量"+num.get(i)+"箱");
+								description.append(type.get(i)+"*");
+								description.append(num.get(i));
 								if(i<type.size()-1){
 									description.append(";");
 								}
