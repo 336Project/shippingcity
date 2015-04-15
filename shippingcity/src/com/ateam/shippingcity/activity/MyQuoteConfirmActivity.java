@@ -19,6 +19,7 @@ import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.utils.PopupWindowUtil;
+import com.ateam.shippingcity.utils.SysUtil;
 import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
 import com.ateam.shippingcity.widget.weinxinImageShow.MyGridAdapter;
 import com.google.gson.reflect.TypeToken;
@@ -56,6 +57,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 	private TextView tv_remarks;
 	private LinearLayout ll_photo;
 	private LinearLayout ll_main;
+	private View view_Photo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +102,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 						initGridView(split);
 					} else {
 						ll_photo.setVisibility(View.GONE);
+						view_Photo.setVisibility(View.GONE);
 					}
 
 					String shipping_type = datas.getShipping_type();
@@ -309,6 +312,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 		tv_remarks = (TextView) findViewById(R.id.tv_remarks);
 		ll_photo = (LinearLayout) findViewById(R.id.ll_photo);
 		ll_main = (LinearLayout) findViewById(R.id.ll_main);
+		view_Photo = (View) findViewById(R.id.view_photo);
 	}
 
 	private void initGridView(final String[] urls) {
@@ -318,10 +322,6 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 		} else {
 			size = urls.length;
 		}
-		DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);
-		float density = dm.density;
-		int allWidth = (int) (55 * size * density);
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 				(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 						42 * size, getResources().getDisplayMetrics()),
@@ -350,6 +350,17 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 						imageBrower(position, urls);
 					}
 				});
+		ll_photo.setClickable(true);
+		ll_photo.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				if(urls.length!=0){
+					imageBrower(0, urls);
+				}
+			}
+		});
 	}
 
 	private void imageBrower(int position, String[] urls) {

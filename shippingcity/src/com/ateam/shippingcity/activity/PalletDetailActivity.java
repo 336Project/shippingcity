@@ -221,8 +221,6 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 					mTvGoEndTime.setText(datas.endtime);
 					StringBuffer description=new StringBuffer();
 					if(shipment_type.equals("1")){
-						List<String> type=datas.type;
-						List<String> num=datas.num;
 						description.append("箱型：");
 						if(mPallet.boxtype.size()==mPallet.number.size()){
 							for (int i = 0; i < mPallet.boxtype.size(); i++) {

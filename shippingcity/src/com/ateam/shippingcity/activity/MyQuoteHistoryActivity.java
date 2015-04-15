@@ -63,6 +63,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 	private LayoutParams fl_Lp_2;
 	private LinearLayout ll_photo;
 	private LinearLayout ll_main;
+	private View view_Photo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +120,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 					}
 					else{
 						ll_photo.setVisibility(View.GONE);
+						view_Photo.setVisibility(View.GONE);
 					}
 					
 					String shipping_type = datas.getShipping_type();
@@ -355,6 +357,17 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 				imageBrower(position,urls);
 			}
 		});
+		ll_photo.setClickable(true);
+		ll_photo.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				if(urls.length!=0){
+					imageBrower(0, urls);
+				}
+			}
+		});
 	}
 	private void imageBrower(int position, String[] urls) {
 		Intent intent = new Intent(this, ImagePagerActivity.class);
@@ -380,6 +393,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 		findViewById(R.id.tv_show_my_quote_pop).setOnClickListener(this);
 		ll_photo = (LinearLayout) findViewById(R.id.ll_photo);
 		ll_main = (LinearLayout) findViewById(R.id.ll_main);
+		view_Photo = (View) findViewById(R.id.view_photo);
 		
 	}
 

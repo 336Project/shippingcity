@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.sax.StartElementListener;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -91,14 +92,36 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		TextView mOffer = ((TextView)holder.getView(R.id.tv_offer));
 		//判断是否是已经报价，或是已经截止
 		if(bean.ifbid!=null&&bean.ifbid.equals("1")){
+			((TextView)holder.getView(R.id.tv_lableRemainTime)).setVisibility(View.VISIBLE);
+			TextView lableTitle = ((TextView)holder.getView(R.id.tv_remainTime));
+			lableTitle.setText(SysUtil.getRemainTime(bean.deadlinetime));
+			lableTitle.setTextColor(c.getResources().getColor(R.color.coralColor));
+			lableTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+			mOffer.setVisibility(View.VISIBLE);
 			mOffer.setClickable(false);
 			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.quoted_bg_gray));
+			if(SysUtil.getRemainTime(bean.deadlinetime).equals("0小时")){
+				((TextView)holder.getView(R.id.tv_lableRemainTime)).setVisibility(View.GONE);
+				lableTitle.setText("本单报价已截止");
+				lableTitle.setTextColor(c.getResources().getColor(R.color.pallet_item_grey_title));
+				lableTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+			}
 		}else if(SysUtil.getRemainTime(bean.deadlinetime).equals("0小时")){
 			((TextView)holder.getView(R.id.tv_lableRemainTime)).setVisibility(View.GONE);
-			((TextView)holder.getView(R.id.tv_remainTime)).setText("");
-			mOffer.setClickable(false);
-			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
+			TextView lableTitle = ((TextView)holder.getView(R.id.tv_remainTime));
+			lableTitle.setText("本单报价已截止");
+			lableTitle.setTextColor(c.getResources().getColor(R.color.pallet_item_grey_title));
+			lableTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+			mOffer.setVisibility(View.GONE);
+//			mOffer.setClickable(false);
+//			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.round_rect_bg_gray));
 		}else{
+			((TextView)holder.getView(R.id.tv_lableRemainTime)).setVisibility(View.VISIBLE);
+			TextView lableTitle = ((TextView)holder.getView(R.id.tv_remainTime));
+			lableTitle.setText(SysUtil.getRemainTime(bean.deadlinetime));
+			lableTitle.setTextColor(c.getResources().getColor(R.color.coralColor));
+			lableTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+			mOffer.setVisibility(View.VISIBLE);
 			mOffer.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.btn_offer_selector));
 			mOffer.setClickable(true);
 			mOffer.setOnClickListener(new OnClickListener() {
@@ -116,7 +139,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 			});
 		}
 	}
-
+	
 	@Override
 	public int getResId() {
 		// TODO Auto-generated method stub
