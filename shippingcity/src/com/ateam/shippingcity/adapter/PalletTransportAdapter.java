@@ -22,6 +22,7 @@ import com.ateam.shippingcity.activity.PalletSeaSpellOfferActivity;
 import com.ateam.shippingcity.activity.PalletSeaWholeOfferActivity;
 import com.ateam.shippingcity.activity.PersonalCenterActivity;
 import com.ateam.shippingcity.activity.PersonalLoginActivity;
+import com.ateam.shippingcity.application.HBaseApp;
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.utils.SysUtil;
@@ -129,7 +130,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 				@Override
 				public void onClick(View arg0) {
 					// TODO Auto-generated method stub
-					if(TextUtils.isEmpty(((MainActivity)c).mBaseApp.getUserssid())){
+					if(TextUtils.isEmpty(((HBaseApp)c.getApplicationContext()).getUserssid())){
 						Intent intent=new Intent(c, PersonalLoginActivity.class);
 						c.startActivity(intent);
 					}else{
