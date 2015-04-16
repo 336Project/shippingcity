@@ -4,18 +4,13 @@ import java.util.List;
 
 import android.content.Context;
 import android.view.Gravity;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.model.MyQuoteToConfirm;
 import com.ateam.shippingcity.model.MyQuoteToHistory;
-import com.ateam.shippingcity.model.PalletTransport;
-import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.utils.SceenUtils;
 
 /**
@@ -25,12 +20,12 @@ import com.ateam.shippingcity.utils.SceenUtils;
  */
 public class MyQuoteToHistoryAdapter extends HBaseAdapter<MyQuoteToHistory>{
 	private String myuid;
-	private Context c;
+	//private Context c;
 	private LayoutParams fl_Lp_1;
 	private LayoutParams fl_Lp_2;
 	public MyQuoteToHistoryAdapter(Context c, List<MyQuoteToHistory> datas) {
 		super(c, datas);
-		this.c=c;
+		//this.c=c;
 		fl_Lp_1 = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		fl_Lp_1.setMargins(0, SceenUtils.dip2px(c, 18), SceenUtils.dip2px(c, 6), 0);
 		fl_Lp_1.gravity=Gravity.RIGHT;

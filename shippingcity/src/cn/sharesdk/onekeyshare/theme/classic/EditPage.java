@@ -146,6 +146,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 		}.start();
 	}
 
+	@SuppressWarnings("deprecation")
 	private RelativeLayout getPageView() {
 		rlPage = new RelativeLayout(getContext());
 		rlPage.setBackgroundDrawable(background);
@@ -230,6 +231,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 		return llBody;
 	}
 
+	@SuppressWarnings("deprecation")
 	private LinearLayout getMainBody() {
 		LinearLayout llMainBody = new LinearLayout(getContext());
 		llMainBody.setOrientation(LinearLayout.VERTICAL);
@@ -672,7 +674,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 		hideSoftInput();
 		return super.onFinish();
 	}
-
+	@SuppressWarnings("deprecation")
 	public void onConfigurationChanged(Configuration newConfig) {
 		int orientation = activity.getResources().getConfiguration().orientation;
 		if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -682,6 +684,7 @@ public class EditPage extends EditPageFakeActivity implements OnClickListener, T
 					| WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 			rlPage.setBackgroundColor(DIM_COLOR);
 			rlPage.postDelayed(new Runnable() {
+				
 				public void run() {
 					genBackground();
 					rlPage.setBackgroundDrawable(background);

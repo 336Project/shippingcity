@@ -14,14 +14,10 @@ import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.widget.HAutoCompleteTextView;
 import com.ateam.shippingcity.widget.PalletWholeOfferItem;
-import com.ateam.shippingcity.R.layout;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;

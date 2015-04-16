@@ -15,8 +15,12 @@ import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
 import com.ateam.shippingcity.R;
+import com.ateam.shippingcity.access.PersonalAccess;
+import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.constant.ConstantUtil;
+import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.FileUtil;
+import com.ateam.shippingcity.utils.JSONParse;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -27,6 +31,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.ContactsContract;
 import android.support.v4.content.CursorLoader;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -41,6 +46,7 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 	public static final int CANCEL=1;
 	private EditText mEditPhoneNumber;
 	private Handler handler;
+	private PersonalAccess<String> access;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,6 +57,7 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 
 	private void init() {
 		findViewById(R.id.iv_pick_phone_number).setOnClickListener(this);
+		findViewById(R.id.btn_invite).setOnClickListener(this);
 		mEditPhoneNumber=(EditText) findViewById(R.id.et_phone_number);
 		findViewById(R.id.share_sinaweibo).setOnClickListener(this);
 		findViewById(R.id.share_wechat).setOnClickListener(this);
@@ -74,6 +81,26 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 				return true;
 			}
 		});
+		
+		
+		HRequestCallback<Respond<String>> requestCallback=new HRequestCallback<Respond<String>>() {
+			
+			@SuppressWarnings("unchecked")
+			@Override
+			public Respond<String> parseJson(String jsonStr) {
+				return (Respond<String>) JSONParse.jsonToBean(jsonStr, Respond.class);
+			}
+			
+			@Override
+			public void onSuccess(Respond<String> result) {
+				if(result.isSuccess()){
+					showMsg(PersonalInviteFriendActivity.this, "邀请成功");
+				}else{
+					showMsg(PersonalInviteFriendActivity.this, result.getMessage());
+				}
+			}
+		};
+		access=new PersonalAccess<String>(this, requestCallback);
 	}
 
 	@Override
@@ -93,6 +120,13 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 			break;
 		case R.id.share_qzone:
 			shareQZone();
+			break;
+		case R.id.btn_invite://邀请
+			if(TextUtils.isEmpty(mEditPhoneNumber.getText().toString())){
+				showMsg(this, "请输入手机号码");
+				return ;
+			}
+			access.invite(mBaseApp.getUserssid(), mEditPhoneNumber.getText().toString());
 			break;
 		default:
 			break;

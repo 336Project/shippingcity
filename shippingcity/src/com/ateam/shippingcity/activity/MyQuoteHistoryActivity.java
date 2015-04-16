@@ -4,12 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-import m.framework.utils.Data;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.R.layout;
-import com.ateam.shippingcity.R.menu;
 import com.ateam.shippingcity.access.MyQuoteAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.access.I.HURL;
@@ -25,11 +23,9 @@ import com.ateam.shippingcity.widget.weinxinImageShow.MyGridAdapter;
 import com.google.gson.reflect.TypeToken;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -336,7 +332,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
         int allWidth = (int) (55 * size * density);  
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(  
         		(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42*size, getResources().getDisplayMetrics()), 
-                LinearLayout.LayoutParams.FILL_PARENT);  
+                LinearLayout.LayoutParams.MATCH_PARENT);  
         mGvAddPhoto.setLayoutParams(params);  
         mGvAddPhoto.setColumnWidth((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42, getResources().getDisplayMetrics()));  
         mGvAddPhoto.setHorizontalSpacing(1);  
@@ -425,7 +421,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 	}
 	private String formatDate(String createtime){
 		Date date = new Date(Long.parseLong(createtime)*1000);
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd HH:mm");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd HH:mm",Locale.getDefault());
 		return simpleDateFormat.format(date);
 	}
 

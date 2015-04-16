@@ -8,45 +8,31 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.access.MyQuoteAccess;
-import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
-import com.ateam.shippingcity.activity.HBaseActivity;
 import com.ateam.shippingcity.activity.MyQuoteConfirmActivity;
-import com.ateam.shippingcity.activity.MainActivity;
-import com.ateam.shippingcity.activity.MyQuoteHistoryActivity;
-import com.ateam.shippingcity.activity.PersonalMyIntegralActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToConfirmAdapter;
 import com.ateam.shippingcity.application.HBaseApp;
-import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
-import com.ateam.shippingcity.model.IntegralRule;
 import com.ateam.shippingcity.model.MyQuoteToConfirm;
-import com.ateam.shippingcity.model.MyQuoteToHistory;
-import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
-import com.ateam.shippingcity.widget.TextViewPair;
 import com.ateam.shippingcity.widget.xlist.XListView;
 import com.ateam.shippingcity.widget.xlist.XListView.IXListViewListener;
 
-@SuppressLint("ValidFragment")
 public class MyQuoteToConfirmFragment2 extends Fragment implements IXListViewListener {
 
 	private MyQuoteToConfirmAdapter mAdapter;// 海运list适配器
@@ -117,6 +103,7 @@ public class MyQuoteToConfirmFragment2 extends Fragment implements IXListViewLis
 
 	private void initRequest() {
 		HRequestCallback<Respond<List<MyQuoteToConfirm>>> requestCallback = new HRequestCallback<Respond<List<MyQuoteToConfirm>>>() {
+			
 			@SuppressWarnings("unchecked")
 			@Override
 			public Respond<List<MyQuoteToConfirm>> parseJson(String jsonStr) {
@@ -167,6 +154,7 @@ public class MyQuoteToConfirmFragment2 extends Fragment implements IXListViewLis
 			@Override
 			public void onFail(Context c, String errorMsg) {
 				super.onFail(c, errorMsg);
+				stopRefreshOrLoad();
 			}
 		};
 		access = new MyQuoteAccess<List<MyQuoteToConfirm>>(getActivity(),

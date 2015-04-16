@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.R.layout;
 import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.model.PalletTransport;
@@ -15,18 +14,13 @@ import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.widget.PalletWholeOfferItem;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 /**
  * 陆运整箱报价

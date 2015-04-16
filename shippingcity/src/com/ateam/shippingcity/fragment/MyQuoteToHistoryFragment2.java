@@ -8,12 +8,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +25,6 @@ import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.MyQuoteHistoryActivity;
 import com.ateam.shippingcity.adapter.MyQuoteToHistoryAdapter;
 import com.ateam.shippingcity.application.HBaseApp;
-import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
 import com.ateam.shippingcity.model.MyQuoteToHistory;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
@@ -35,7 +32,6 @@ import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.widget.xlist.XListView;
 import com.ateam.shippingcity.widget.xlist.XListView.IXListViewListener;
 
-@SuppressLint("ValidFragment")
 public class MyQuoteToHistoryFragment2 extends Fragment implements
 		IXListViewListener {
 
@@ -176,7 +172,7 @@ public class MyQuoteToHistoryFragment2 extends Fragment implements
 
 			@Override
 			public void onFail(Context c, String errorMsg) {
-				onLoadComplete(1, null);
+				stopRefreshOrLoad();
 			}
 		};
 		access = new MyQuoteAccess<List<MyQuoteToHistory>>(getActivity(),

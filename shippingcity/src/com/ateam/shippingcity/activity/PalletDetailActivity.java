@@ -26,7 +26,6 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -133,7 +132,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		}
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(  
         		(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42*size, getResources().getDisplayMetrics()), 
-                LinearLayout.LayoutParams.FILL_PARENT);  
+                LinearLayout.LayoutParams.MATCH_PARENT);  
         mGvAddPhoto.setLayoutParams(params);  
         mGvAddPhoto.setColumnWidth((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 42, getResources().getDisplayMetrics()));  
         mGvAddPhoto.setHorizontalSpacing(1);  

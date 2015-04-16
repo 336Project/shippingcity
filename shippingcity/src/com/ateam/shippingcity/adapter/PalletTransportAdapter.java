@@ -4,27 +4,21 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
-import android.sax.StartElementListener;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.activity.MainActivity;
 import com.ateam.shippingcity.activity.PalletAirOfferActivity;
 import com.ateam.shippingcity.activity.PalletLordOfferActivity;
 import com.ateam.shippingcity.activity.PalletSeaDiffOfferActivity;
 import com.ateam.shippingcity.activity.PalletSeaSpellOfferActivity;
 import com.ateam.shippingcity.activity.PalletSeaWholeOfferActivity;
-import com.ateam.shippingcity.activity.PersonalCenterActivity;
 import com.ateam.shippingcity.activity.PersonalLoginActivity;
 import com.ateam.shippingcity.application.HBaseApp;
 import com.ateam.shippingcity.model.PalletTransport;
-import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.utils.SysUtil;
 
 /**
@@ -40,6 +34,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		this.c=c;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void convert(ViewHolder holder, final PalletTransport bean) {
 		// TODO Auto-generated method stub

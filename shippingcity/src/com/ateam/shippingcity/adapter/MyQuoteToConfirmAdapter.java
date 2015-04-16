@@ -3,15 +3,11 @@ package com.ateam.shippingcity.adapter;
 import java.util.List;
 
 import android.content.Context;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.model.MyQuoteToConfirm;
-import com.ateam.shippingcity.model.PalletTransport;
-import com.ateam.shippingcity.utils.MyToast;
 
 /**
  * 我的报价-待正确报价适配器
@@ -20,10 +16,10 @@ import com.ateam.shippingcity.utils.MyToast;
  */
 public class MyQuoteToConfirmAdapter extends HBaseAdapter<MyQuoteToConfirm>{
 
-	private Context c;
+	//private Context c;
 	public MyQuoteToConfirmAdapter(Context c, List<MyQuoteToConfirm> datas) {
 		super(c, datas);
-		this.c=c;
+		//this.c=c;
 	}
 	@Override
 	public void convert(ViewHolder holder, MyQuoteToConfirm bean) {

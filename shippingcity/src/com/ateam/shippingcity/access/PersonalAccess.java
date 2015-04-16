@@ -393,5 +393,19 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("collect", "1"));
 		execute(URL_PALLET_LIST, nvps);
 	}
-	
+	/**
+	 * 
+	 * 2015-4-16 上午11:18:39
+	 * @param userssid
+	 * @param mobile
+	 * @TODO 好友邀请
+	 */
+	public void invite(String userssid,String mobile){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("apptype", "货代端"));
+		nvps.add(new BasicNameValuePair("mobilelist", mobile));
+		execute(URL_PERSONAL_INVITE, nvps);
+	}
 }

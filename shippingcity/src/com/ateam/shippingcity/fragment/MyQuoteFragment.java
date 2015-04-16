@@ -14,21 +14,16 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.FrameLayout;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 import android.widget.PopupWindow.OnDismissListener;
 import android.widget.TextView;
 
@@ -108,6 +103,7 @@ public class MyQuoteFragment extends Fragment implements OnClickListener {
 		});
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void initSelectPopupWindow() {
 		View view_select = LayoutInflater.from(getActivity()).inflate(
 				R.layout.pop_selectefrommyquote, null);

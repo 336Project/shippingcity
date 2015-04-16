@@ -13,6 +13,8 @@ import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickLi
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -89,7 +91,12 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 	 */
 	private void initRequest() {
 		HRequestCallback<Respond<List<PalletTransport>>> requestCallback = new HRequestCallback<Respond<List<PalletTransport>>>() {
-
+			@Override
+			public void onFail(Context c, String errorMsg) {
+				// TODO Auto-generated method stub
+				super.onFail(c, errorMsg);
+				stopRefreshOrLoad();
+			}
 			@SuppressWarnings("unchecked")
 			@Override
 			public Respond<List<PalletTransport>> parseJson(String jsonStr) {

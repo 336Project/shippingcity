@@ -4,7 +4,6 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.R.layout;
 import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.model.PalletTransport;
@@ -13,10 +12,8 @@ import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.utils.MyToast;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;

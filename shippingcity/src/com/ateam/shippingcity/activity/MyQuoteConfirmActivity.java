@@ -4,12 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import com.ateam.shippingcity.R;
-import com.ateam.shippingcity.R.layout;
-import com.ateam.shippingcity.R.menu;
 import com.ateam.shippingcity.access.MyQuoteAccess;
-import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.access.I.HURL;
 import com.ateam.shippingcity.constant.ConstantUtil;
@@ -17,22 +15,16 @@ import com.ateam.shippingcity.model.MyData;
 import com.ateam.shippingcity.model.MyQuoteToConfirmDetail;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
-import com.ateam.shippingcity.utils.MyToast;
 import com.ateam.shippingcity.utils.PopupWindowUtil;
-import com.ateam.shippingcity.utils.SysUtil;
 import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
 import com.ateam.shippingcity.widget.weinxinImageShow.MyGridAdapter;
 import com.google.gson.reflect.TypeToken;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -325,7 +317,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 				(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 						42 * size, getResources().getDisplayMetrics()),
-				LinearLayout.LayoutParams.FILL_PARENT);
+				LinearLayout.LayoutParams.MATCH_PARENT);
 		mGvAddPhoto.setLayoutParams(params);
 		mGvAddPhoto.setColumnWidth((int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_DIP, 42, getResources()
@@ -408,7 +400,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 	private String formatDate(String createtime) {
 		Date date = new Date(Long.parseLong(createtime)*1000);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"MM-dd HH:mm");
+				"MM-dd HH:mm",Locale.getDefault());
 		return simpleDateFormat.format(date);
 	}
 }

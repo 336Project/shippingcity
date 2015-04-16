@@ -78,7 +78,7 @@ public class PersonalMyIntegralActivity extends HBaseActivity implements IXListV
 			@Override
 			public void onFail(Context c, String errorMsg) {
 				super.onFail(c, errorMsg);
-				onLoadComplete(mDataSource.size(), null);
+				stopRefreshOrLoad();
 			}
 			@SuppressWarnings("unchecked")
 			@Override

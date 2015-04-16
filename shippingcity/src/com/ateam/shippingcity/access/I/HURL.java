@@ -41,6 +41,10 @@ public interface HURL {
 	 */
 	public static final String URL_PERSONAL_AUTHEN="http://"+IP+"/mobile/index.php?route=validate";
 	/**
+	 * 邀请
+	 */
+	public static final String URL_PERSONAL_INVITE="http://"+IP+"/mobile/index.php?route=mobile_sms";
+	/**
 	 * 货盘区列表
 	 */
 	public static final String URL_PALLET_LIST="http://"+IP+"/mobile/index.php?route=entrust_index";
