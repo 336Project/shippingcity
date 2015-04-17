@@ -180,12 +180,24 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			startActivityForResult(new Intent(this, PictureSelectDialogActivity.class), REQ_CODE_P);
 			break;
 		case R.id.layout_pick_IDCard://修改身份证
+			if("已认证".equals(user.getStatus_truename())){
+				showMsg(this, "已认证");
+				return ;
+			}
 			startActivityForResult(new Intent(this, PictureSelectDialogActivity.class), REQ_CODE_I);
 			break;
 		case R.id.layout_pick_work_card://修改工牌
+			if("已认证".equals(user.getStatus_truename())){
+				showMsg(this, "已认证");
+				return ;
+			}
 			startActivityForResult(new Intent(this, PictureSelectDialogActivity.class), REQ_CODE_W);
 			break;
 		case R.id.layout_pick_business_licence://修改营业执照
+			if("已认证".equals(user.getStatus_company())){
+				showMsg(this, "已认证");
+				return ;
+			}
 			startActivityForResult(new Intent(this, PictureSelectDialogActivity.class), REQ_CODE_B);
 			break;
 		case R.id.txt_modify_password://修改密码

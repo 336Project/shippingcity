@@ -2,6 +2,7 @@ package com.ateam.shippingcity.activity;
 
 import java.util.Map;
 
+import com.ateam.shippingcity.HomeActivity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
@@ -9,6 +10,7 @@ import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.widget.HAutoCompleteTextView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,6 +51,10 @@ public class PersonalModifyPasswordActivity extends HBaseActivity implements OnC
 	}
 	
 	private void save() {
+		if(mEditNewPassword.getText().toString().equals("")){
+			showMsg(this, "密码不能为空");
+			return ;
+		}
 		if(!mEditNewPassword.getText().toString().equals(mEditConfirmPassword.getText().toString())){
 			showMsg(this, "两次输入的密码不同，请再次确认");
 			return ;
@@ -65,6 +71,11 @@ public class PersonalModifyPasswordActivity extends HBaseActivity implements OnC
 			@Override
 			public void onSuccess(Respond<Map<String, String>> result) {
 				if(result.isSuccess()){
+					mBaseApp.setUserssid(null);
+					mBaseApp.setUser(null);
+					Intent intent=new Intent(PersonalModifyPasswordActivity.this, HomeActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivity(intent);
 					finish();
 				}
 				showMsg(PersonalModifyPasswordActivity.this, result.getMessage());

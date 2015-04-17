@@ -42,7 +42,8 @@ public class PersonalModifyAddressActivity extends HBaseActivity implements OnCl
 		case R.id.txt_right:
 			address=mEditAddress.getText().toString();
 			if(address.equals("")){
-				showMsg(this, "名字不能为空");
+				showMsg(this, "地址不能为空");
+				return ;
 			}
 			modityAddress();
 			break;

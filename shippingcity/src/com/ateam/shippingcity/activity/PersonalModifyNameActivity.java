@@ -43,6 +43,7 @@ public class PersonalModifyNameActivity extends HBaseActivity implements OnClick
 			name=mEditName.getText().toString();
 			if(name.equals("")){
 				showMsg(this, "名字不能为空");
+				return;
 			}
 			modityName();
 			break;
