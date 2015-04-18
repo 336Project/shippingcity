@@ -68,7 +68,6 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 				super.onFail(c, errorMsg);
 				onLoadFail();
 			}
-
 			@SuppressWarnings("unchecked")
 			@Override
 			public Respond<MyQuoteToConfirmDetail> parseJson(String jsonStr) {
@@ -81,6 +80,8 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 			@Override
 			public void onSuccess(Respond<MyQuoteToConfirmDetail> result) {
 				if (result.isSuccess()) {
+					getLayoutError().setVisibility(View.GONE);
+					getLayoutContent().setVisibility(View.VISIBLE);
 					MyQuoteToConfirmDetail datas = result.getDatas();
 					MyData mydata = datas.getMydata();
 					String picture_path = datas.getPicture_path();
@@ -257,8 +258,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 								description.append(num.get(i));
 								if (i < type.size() - 1) {
 									description.append(";");
-								} else
-									description.append("。");
+								}
 							}
 						}
 					} else {
@@ -344,7 +344,6 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 				});
 		ll_photo.setClickable(true);
 		ll_photo.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
@@ -402,5 +401,10 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 				"MM-dd HH:mm",Locale.getDefault());
 		return simpleDateFormat.format(date);
+	}
+	@Override
+	public void onReload() {
+		super.onReload();
+		request();
 	}
 }

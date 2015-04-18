@@ -44,7 +44,7 @@
             android:id="@+id/et_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="16dp"
             android:background="#292C35"
             android:drawableLeft="@drawable/log_in_password_icon"
             android:drawablePadding="10dp"

@@ -102,6 +102,8 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 			@Override
 			public void onSuccess(Respond<MyQuoteToConfirmDetail> result) {
 				if(result.isSuccess()){
+					getLayoutError().setVisibility(View.GONE);
+					getLayoutContent().setVisibility(View.VISIBLE);
 					MyQuoteToConfirmDetail datas = result.getDatas();
 					MyData mydata = datas.getMydata();
 					String picture_path = datas.getPicture_path();
@@ -271,7 +273,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 								if(i<type.size()-1){
 									description.append(";");
 								}
-								else description.append("。");
+								
 							}
 						}
 					}
@@ -392,7 +394,11 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 		view_Photo = (View) findViewById(R.id.view_photo);
 		
 	}
-
+	@Override
+	public void onReload() {
+		super.onReload();
+		request();
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.my_quote_history, menu);
