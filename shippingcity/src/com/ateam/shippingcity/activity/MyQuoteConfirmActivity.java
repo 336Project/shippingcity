@@ -259,7 +259,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 								description.append(type.get(i) + "*");
 								description.append(num.get(i));
 								if (i < type.size() - 1) {
-									description.append(";");
+									description.append("、");
 								}
 							}
 						}
