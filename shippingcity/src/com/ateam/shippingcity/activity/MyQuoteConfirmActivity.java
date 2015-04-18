@@ -250,7 +250,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 					tv_endtime.setText(datas.getEndtime());
 					tv_deadlinetime.setText(datas.getDeadlinetime());
 					StringBuffer description = new StringBuffer();
-					if (shipping_type.equals("1") && shipment_type.equals("1")) {
+					if ((shipping_type.equals("1") && shipment_type.equals("1"))||(shipping_type.equals("3") && shipment_type.equals("1"))) {
 						List<String> type = datas.getType();
 						List<String> num = datas.getNum();
 						if (type.size() > 0) {
@@ -266,14 +266,16 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 					} else {
 						String size = datas.getSize();
 						String[] size_split = size.split("\\|");
-						description.append("件数："+datas.getPackages()+";");
-						description.append("毛重："+datas.getWeight()+"kg;");
-						description.append("体积："+datas.getVolume()+"立方;");
-						description.append("单件尺寸：");
-						for (int i = 0; i < size_split.length; i++) {
-							description.append(size_split[i]);
-							if(i<size_split.length-1){
-								description.append("x");
+						description.append("件数:"+datas.getPackages()+";");
+						description.append("毛重:"+datas.getWeight()+"kg;");
+						description.append("体积:"+datas.getVolume()+"立方;");
+						if(!size.equals("")){
+							description.append("单件尺寸:");
+							for (int i = 0; i < size_split.length; i++) {
+								description.append(size_split[i]);
+								if(i<size_split.length-1){
+									description.append("x");
+								}
 							}
 						}
 					}

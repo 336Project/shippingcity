@@ -56,7 +56,7 @@ public class MyQuoteToConfirmAdapter extends HBaseAdapter<MyQuoteToConfirm>{
 		List<String> boxtype = bean.getBoxtype();
 		List<String> number = bean.getNumber();
 		StringBuffer description=new StringBuffer();
-		if(shipping_type.equals("1")&&shipment_type.equals("1")){
+		if((shipping_type.equals("1")&&shipment_type.equals("1"))||(shipping_type.equals("3")&&shipment_type.equals("1"))){
 			if(boxtype.size()>0){
 				for (int i = 0; i < boxtype.size(); i++) {
 					description.append(boxtype.get(i)+"*");
