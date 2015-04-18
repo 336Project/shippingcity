@@ -80,7 +80,9 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 			@Override
 			public void onSuccess(Respond<MyQuoteToConfirmDetail> result) {
 				if (result.isSuccess()) {
-					getLayoutError().setVisibility(View.GONE);
+					if(getLayoutError()!=null){
+						getLayoutError().setVisibility(View.GONE);
+					}
 					getLayoutContent().setVisibility(View.VISIBLE);
 					MyQuoteToConfirmDetail datas = result.getDatas();
 					MyData mydata = datas.getMydata();
