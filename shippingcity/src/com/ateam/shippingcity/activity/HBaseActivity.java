@@ -266,7 +266,13 @@ public class HBaseActivity extends FragmentActivity{
 	}
 
 	public RelativeLayout getLayoutError() {
-		return mLayoutError;
+		if(mLayoutError==null){
+			View view=((ViewStub) findViewById(R.id.vs_error)).inflate();
+			mLayoutError=(RelativeLayout) view.findViewById(R.id.layout_error);
+			return mLayoutError;
+		}else{
+			return mLayoutError;
+		}
 	}
 	public TextView getRightTxt() {
 		return mRightTxt;

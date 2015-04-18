@@ -87,6 +87,10 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 			isLight=true;
 			break;
 		case R.id.btn_commit:
+			if(mEtMoney.getText().toString().equals("")){
+				MyToast.showShort(PalletSeaSpellOfferActivity.this, "报价不能为空!");
+				return;
+			}
 			commitData();
 			break;
 

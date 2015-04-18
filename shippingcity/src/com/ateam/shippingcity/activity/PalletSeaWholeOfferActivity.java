@@ -18,6 +18,7 @@ import com.ateam.shippingcity.widget.PalletWholeOfferItem;
 import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -101,7 +102,7 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				if(mEtShipCompany.getText().equals("")){
+				if(mEtShipCompany.getText().toString().equals("")){
 					MyToast.showShort(PalletSeaWholeOfferActivity.this, "船公司名称不能为空！");
 					return;
 				}

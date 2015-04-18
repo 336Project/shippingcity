@@ -160,7 +160,7 @@ public class PalletTransportAccess <T> extends HBaseAccess<Respond<T>>{
 	}
 	
 	/**
-	 * 详情接口(暂不使用，)
+	 * 详情接口
 	 * @param userssid
 	 * @param price
 	 * @param itemid

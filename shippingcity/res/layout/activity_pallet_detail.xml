@@ -1,359 +1,362 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_palletDetail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
+    android:visibility="gone"
     tools:context=".MyQuoteConfirmActivity" >
 
-    <com.ateam.shippingcity.widget.ElasticScrollView
-        android:id="@+id/elasticScrollView1"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="53dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center_vertical" >
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/transport_type"
-                    android:textColor="@color/my_quote_item_tination"
-                    android:textSize="@dimen/myQuote_item_tination_size" />
-
-                <TextView
-                    android:id="@+id/tv_transportType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/my_quote_item_tination"
-                    android:textSize="@dimen/myQuote_item_tination_size" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/lineColor" />
+        <com.ateam.shippingcity.widget.ElasticScrollView
+            android:id="@+id/elasticScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/myQuote_item_height"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/starting" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="53dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical" >
 
-                <TextView
-                    android:id="@+id/tv_beginPlace"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:textColor="@color/my_quote_item_tination"
-                    android:textSize="@dimen/myQuote_item_tination_size" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/transport_type"
+                        android:textColor="@color/my_quote_item_tination"
+                        android:textSize="@dimen/myQuote_item_tination_size" />
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/myQuote_line_left_iv"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/lineColor" />
+                    <TextView
+                        android:id="@+id/tv_transportType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/my_quote_item_tination"
+                        android:textSize="@dimen/myQuote_item_tination_size" />
+                </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/myQuote_item_height"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/terminal_point" />
-
-                <TextView
-                    android:id="@+id/tv_endPlace"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:textColor="@color/my_quote_item_tination"
-                    android:textSize="@dimen/myQuote_item_tination_size" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/lineColor" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:gravity="center_vertical" 
-                android:layout_marginRight="15dp"
-                >
-
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                      android:layout_marginLeft="17dp"
-                    android:src="@drawable/date_icon" />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/lineColor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
+                    android:layout_height="@dimen/myQuote_item_height"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:gravity="center_vertical"
-                    android:orientation="vertical" >
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/starting" />
+
+                    <TextView
+                        android:id="@+id/tv_beginPlace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/xlist_marginl"
+                        android:textColor="@color/my_quote_item_tination"
+                        android:textSize="@dimen/myQuote_item_tination_size" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/myQuote_line_left_iv"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/lineColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/myQuote_item_height"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/terminal_point" />
+
+                    <TextView
+                        android:id="@+id/tv_endPlace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/xlist_marginl"
+                        android:textColor="@color/my_quote_item_tination"
+                        android:textSize="@dimen/myQuote_item_tination_size" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/lineColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical" >
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="17dp"
+                        android:src="@drawable/date_icon" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/xlist_marginl"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/my_quote_transport_time"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/tv_goBeginTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/my_quote_horizontal_line"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_goEndTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/lineColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/myQuote_bottom"
+                    android:layout_marginTop="@dimen/myQuote_top"
+                    android:gravity="center_vertical" >
+
+                    <ImageView
+                        android:id="@+id/iv_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="17dp" />
+
+                    <TextView
+                        android:id="@+id/tv_boxType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/xlist_marginl"
+                        android:textSize="@dimen/myQuote_item_tination_size" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_addPhoto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/lineColor" />
+
+                <LinearLayout
+                    android:id="@+id/layout_addPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible" >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/my_quote_transport_time"
+                        android:text="@string/pallet_photo"
                         android:textSize="12sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
+                        android:scrollbars="none" >
 
-                        <TextView
-                            android:id="@+id/tv_goBeginTime"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp" />
+                            android:orientation="horizontal" >
 
-                        <TextView
-                            android:id="@+id/textView6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/my_quote_horizontal_line"
-                            android:textSize="14sp" />
+                            <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
+                                android:id="@+id/gv_addPhoto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:horizontalSpacing="1dp"
+                                android:numColumns="5"
+                                android:stretchMode="columnWidth"
+                                android:verticalSpacing="1dp"
+                                android:visibility="visible" />
 
-                        <TextView
-                            android:id="@+id/tv_goEndTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp" />
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/tv_showPhoto"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/right_arrow" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/lineColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/myQuote_bottom"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="@dimen/myQuote_top"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:layout_width="@dimen/myQuote_iv_width"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:text="@string/note"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_notice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/xlist_marginl"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="@dimen/xlist_marginl"
+                    android:layout_marginRight="@dimen/xlist_marginr"
+                    android:background="@drawable/lineColor" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/myQuote_item_height"
+                    android:layout_marginBottom="@dimen/myQuote_bottom"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="@dimen/myQuote_top"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/quotation_deadline"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_offerEndTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
+        </com.ateam.shippingcity.widget.ElasticScrollView>
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/lineColor" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/lineColor" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/xlist_bottom"
+            android:layout_marginLeft="@dimen/xlist_marginl"
+            android:layout_marginRight="@dimen/xlist_marginr"
+            android:layout_marginTop="@dimen/xlist_top"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_focus"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/myQuote_bottom"
-                android:layout_marginTop="@dimen/myQuote_top"
-                android:gravity="center_vertical" >
+                android:layout_weight="1"
+                android:background="@drawable/shape_rectangle_blue"
+                android:text="@string/focus"
+                android:textColor="@color/white" />
 
-                <ImageView
-                    android:id="@+id/iv_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="17dp"/>
+            <TextView
+                android:id="@+id/tv_view"
+                android:layout_width="20dp"
+                android:layout_height="match_parent" />
 
-                <TextView
-                    android:id="@+id/tv_boxType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:textSize="@dimen/myQuote_item_tination_size" 
-                    />
-            </LinearLayout>
-
-            <View
-                android:id="@+id/view_addPhoto"
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/lineColor" />
-
-            <LinearLayout
-                android:id="@+id/layout_addPhoto"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="visible" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pallet_photo"
-                    android:textSize="12sp" />
-
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
-
-                        <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
-                            android:id="@+id/gv_addPhoto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:horizontalSpacing="1dp"
-                            android:numColumns="5"
-                            android:stretchMode="columnWidth"
-                            android:verticalSpacing="1dp"
-                            android:visibility="visible" />
-                        <TextView 
-                            android:id="@+id/tv_showPhoto"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"/>
-                    </LinearLayout>
-                </HorizontalScrollView>
-                <TextView 
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/right_arrow" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                  android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/lineColor" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btn_myOffer"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center_vertical"
-                 android:layout_marginBottom="@dimen/myQuote_bottom"
-                android:layout_marginTop="@dimen/myQuote_top"
-                 >
-
-                <TextView
-                    android:layout_width="@dimen/myQuote_iv_width"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:text="@string/note" 
-                     android:textSize="14sp" 
-                    />
-
-                <TextView
-                    android:id="@+id/tv_notice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/xlist_marginl"
-                    android:textSize="14sp" 
-                    
-                    />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/xlist_marginl"
-                android:layout_marginRight="@dimen/xlist_marginr"
-                android:background="@drawable/lineColor" />
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/myQuote_item_height"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="@dimen/myQuote_bottom"
-                android:layout_marginTop="@dimen/myQuote_top"
-                android:gravity="center_vertical" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quotation_deadline" 
-                    android:textSize="14sp" 
-                    />
-
-                <TextView
-                    android:id="@+id/tv_offerEndTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp" 
-                     />
-            </LinearLayout>
+                android:layout_weight="1"
+                android:background="@drawable/submit_button"
+                android:text="@string/immediately_offer"
+                android:textColor="@color/white" />
         </LinearLayout>
-    </com.ateam.shippingcity.widget.ElasticScrollView>
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@drawable/lineColor" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/xlist_bottom"
-        android:layout_marginLeft="@dimen/xlist_marginl"
-        android:layout_marginRight="@dimen/xlist_marginr"
-        android:layout_marginTop="@dimen/xlist_top"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/btn_focus"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/shape_rectangle_blue"
-            android:text="@string/focus"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/tv_view"
-            android:layout_width="20dp"
-            android:layout_height="match_parent" />
-
-        <Button
-            android:id="@+id/btn_myOffer"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/submit_button"
-            android:text="@string/immediately_offer"
-            android:textColor="@color/white" />
     </LinearLayout>
-
+    
 </LinearLayout>

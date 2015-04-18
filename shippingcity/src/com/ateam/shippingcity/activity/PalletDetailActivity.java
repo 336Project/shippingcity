@@ -58,6 +58,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	
 	private View mViewAddPhoto;
 	private TextView mTvShowPhoto;
+	private LinearLayout mLayoutPalletDetail;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		mViewAddPhoto=(View)findViewById(R.id.view_addPhoto);
 		mIvType=(ImageView)findViewById(R.id.iv_type);
 		mTvShowPhoto=(TextView)findViewById(R.id.tv_showPhoto);
+		mLayoutPalletDetail=(LinearLayout)findViewById(R.id.layout_palletDetail);
 		mBtnFocus.setOnClickListener(this);
 		mBtnMyOffer.setOnClickListener(this);
 		if(mPallet.ifbid!=null&&mPallet.ifbid.equals("1")){
@@ -186,6 +188,8 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 			@Override
 			public void onSuccess(Respond<PalletTransportDetail> result) {
 				if(result.isSuccess()){
+					getLayoutError().setVisibility(View.GONE);
+					getLayoutContent().setVisibility(View.VISIBLE);
 					PalletTransportDetail datas = result.getDatas();
 					String picture_path = datas.picture_path;
 					if(!SysUtil.getRemainTime(mPallet.deadlinetime).equals("0小时")){
@@ -212,13 +216,6 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 					}
 					String shipping_type = datas.shipping_type;
 					String shipment_type = datas.shipment_type;
-					if(shipping_type.equals("1")){
-						mTvTransportType.setText("海运");
-					}else if(shipping_type.equals("2")){
-						mTvTransportType.setText("空运");
-					}else{
-						mTvTransportType.setText("陆运");
-					}
 					mTvBeginPlace.setText(datas.initiation);
 					mTvEndPlace.setText(datas.destination);
 					mTvGoBeginTime.setText(datas.startime);
@@ -241,21 +238,49 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 						description.append("毛重："+datas.weight+"kg;");
 						description.append("体积："+datas.volume+"立方;");
 						if(datas.size.size()==3){
-							description.append("长:"+datas.size.get(0)+";"+"宽:"+datas.size.get(1)+";"+"高:"+datas.size.get(2)+";");
+							description.append("单件尺寸:"+datas.size.get(0)+"*"+datas.size.get(1)+"*"+datas.size.get(2)+";");
 						}
 					}
 					mTvBoxType.setText(description);
+					if(shipping_type.equals("1")){
+						mTvTransportType.setText("海运");
+					}else if(shipping_type.equals("2")){
+						mTvTransportType.setText("空运");
+						description=new StringBuffer();
+						description.append("件数："+datas.packages+";");
+						description.append("毛重："+datas.weight+"kg;");
+						description.append("体积："+datas.volume+"立方;");
+						if(datas.size.size()==3){
+							description.append("单件尺寸:"+datas.size.get(0)+"*"+datas.size.get(1)+"*"+datas.size.get(2)+";");
+						}
+						mTvBoxType.setText(description);
+					}else{
+						mTvTransportType.setText("陆运");
+					}
 					mTvNotice.setText(datas.remarks);
 					mTvOfferEndTime.setText(datas.deadlinetime);
+					mLayoutPalletDetail.setVisibility(View.VISIBLE);
 				}
 				if(result.getStatusCode().equals("500")){
 					MyToast.showShort(PalletDetailActivity.this, result.getMessage());
 				}
 			}
+			@Override
+			public void onFail(Context c, String errorMsg) {
+				// TODO Auto-generated method stub
+				super.onFail(c, errorMsg);
+				onLoadFail();
+			}
 		};
 		access = new PalletTransportAccess<PalletTransportDetail>(
 				PalletDetailActivity.this, requestCallback);
 		access.getPalletDetail(mBaseApp.getUserssid(), mPallet.id);
+	}
+	
+	@Override
+	public void onReload() {
+		super.onReload();
+		initData();
 	}
 
 	@Override

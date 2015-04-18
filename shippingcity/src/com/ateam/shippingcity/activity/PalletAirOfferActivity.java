@@ -66,6 +66,10 @@ public class PalletAirOfferActivity extends HBaseActivity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				if(mEtMoney.getText().toString().equals("")){
+					MyToast.showShort(PalletAirOfferActivity.this, "报价不能为空!");
+					return;
+				}
 				HRequestCallback<Respond<List<PalletTransport>>> requestCallback = new HRequestCallback<Respond<List<PalletTransport>>>() {
 
 					@SuppressWarnings("unchecked")

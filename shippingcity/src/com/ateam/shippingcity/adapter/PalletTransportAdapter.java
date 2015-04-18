@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -64,7 +65,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 			StringBuffer Describe=new StringBuffer();
 			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+";"+"体积:"+bean.volume+";");
 			if(bean.size.size()==3){
-				Describe.append("长:"+bean.size.get(0)+";"+"宽:"+bean.size.get(1)+";"+"高:"+bean.size.get(2)+";");
+				Describe.append("单件尺寸:"+bean.size.get(0)+"*"+bean.size.get(1)+"*"+bean.size.get(2)+";");
 			}
 			((TextView)holder.getView(R.id.tv_palletDescribe)).setText(Describe);
 		}else{
@@ -72,7 +73,7 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 			StringBuffer Describe=new StringBuffer();
 			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+";"+"体积:"+bean.volume+";");
 			if(bean.size.size()==3){
-				Describe.append("长:"+bean.size.get(0)+";"+"宽:"+bean.size.get(1)+";"+"高:"+bean.size.get(2)+";");
+				Describe.append("单件尺寸:"+bean.size.get(0)+"*"+bean.size.get(1)+"*"+bean.size.get(2)+";");
 			}
 			((TextView)holder.getView(R.id.tv_palletDescribe)).setText(Describe);
 		}
@@ -84,6 +85,12 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 		}else if(bean.shipping_type.toString().equals("2")){
 			((TextView)holder.getView(R.id.tv_transportType)).setText("空运");
 			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_air_transport_great_icon));
+			StringBuffer Describe=new StringBuffer();
+			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+";"+"体积:"+bean.volume+";");
+			if(bean.size.size()==3){
+				Describe.append("单件尺寸:"+bean.size.get(0)+"*"+bean.size.get(1)+"*"+bean.size.get(2)+";");
+			}
+			((TextView)holder.getView(R.id.tv_palletDescribe)).setText(Describe);
 		}else{
 			((TextView)holder.getView(R.id.tv_transportType)).setText("陆运");
 		}
