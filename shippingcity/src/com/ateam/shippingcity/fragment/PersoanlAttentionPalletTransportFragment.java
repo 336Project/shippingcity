@@ -52,7 +52,8 @@ public class PersoanlAttentionPalletTransportFragment extends HBaseXListViewFrag
 			Intent intent = new Intent(getActivity(), PalletDetailActivity.class);
 			intent.putExtra("palletTransport", dataList.get(position));
 //			getActivity().startActivityForResult(intent, 1000);
-			startActivityForResult(intent, 1000);
+//			startActivityForResult(intent, 1000);
+			getParentFragment().startActivityForResult(intent, 1000);
 		}
 	}
 	
