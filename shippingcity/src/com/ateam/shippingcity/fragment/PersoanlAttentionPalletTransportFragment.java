@@ -51,10 +51,11 @@ public class PersoanlAttentionPalletTransportFragment extends HBaseXListViewFrag
 		}else{
 			Intent intent = new Intent(getActivity(), PalletDetailActivity.class);
 			intent.putExtra("palletTransport", dataList.get(position));
-			getActivity().startActivity(intent);
+//			getActivity().startActivityForResult(intent, 1000);
+			startActivityForResult(intent, 1000);
 		}
 	}
-
+	
 	@Override
 	public void request() {
 		// TODO Auto-generated method stub

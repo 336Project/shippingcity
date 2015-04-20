@@ -7,6 +7,8 @@ import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.adapter.TabFtagmentAdapter;
 import com.ateam.shippingcity.widget.viewpagerindicator.TabPageIndicator;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -20,6 +22,8 @@ import android.view.ViewGroup;
 public class PersonalAttentionPalletFragment extends Fragment {
 
 	private View view;
+	private ViewPager tabPager;
+	private List<Fragment> fragments;
 	public static final String[] TAB_TITLE={"全部","海运","空运","陆运"};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,13 +41,13 @@ public class PersonalAttentionPalletFragment extends Fragment {
 	 * 添加tab中的内容
 	 */
 	private void initTab() {
-		List<Fragment> fragments=new ArrayList<Fragment>();
+		fragments=new ArrayList<Fragment>();
 		fragments.add(getFragment("全部"));
 		fragments.add(getFragment("海运"));
 		fragments.add(getFragment("空运"));
 		fragments.add(getFragment("陆运"));
 		TabFtagmentAdapter adapter=new TabFtagmentAdapter(getChildFragmentManager(),TAB_TITLE,null,fragments);
-		ViewPager tabPager=(ViewPager) view.findViewById(R.id.tab_pager);
+		tabPager=(ViewPager) view.findViewById(R.id.tab_pager);
 		tabPager.setAdapter(adapter);
 		tabPager.setOffscreenPageLimit(4);
 		TabPageIndicator mTabIndicator= (TabPageIndicator)view.findViewById(R.id.tab_indicator);
@@ -60,5 +64,15 @@ public class PersonalAttentionPalletFragment extends Fragment {
 		bundle.putString("type", type);  
 		pallet.setArguments(bundle); 
 		return pallet;
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		System.out.println("onActivityResult");
+		if(resultCode==Activity.RESULT_OK){
+			if(requestCode==1000){
+				((PersoanlAttentionPalletTransportFragment)fragments.get(tabPager.getCurrentItem())).request();
+			}
+		}
 	}
 }

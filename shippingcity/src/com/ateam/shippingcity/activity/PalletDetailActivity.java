@@ -58,12 +58,13 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	private LinearLayout mLayoutPalletDetail;
 	
 	private boolean isFocus=false;//标记是否被关注  默认没有  （false未关注  true关注）
-
+	private boolean isFocusChange=false;//标记关注是否改变
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setActionBarTitle("货盘详情");
 		setBaseContentView(R.layout.activity_pallet_detail);
+		getLeftIcon().setOnClickListener(this);
 		initView();
 		initData();
 	}
@@ -308,7 +309,9 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 				toOfferPage(mPallet);
 			}
 			break;
-
+		case R.id.iv_left_icon:
+			onBackPressed();
+			break;
 		default:
 			break;
 		}
@@ -335,11 +338,19 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 				if(result.getStatusCode().equals("200")){
 					if(action.equals("add")){
 						MyToast.showShort(PalletDetailActivity.this, "关注成功!");
-						isFocus=true;
+						if(!isFocus){
+							isFocusChange=true;
+						}else{
+							isFocusChange=false;
+						}
 						mBtnFocus.setText("取消关注");
 					}else{
 						MyToast.showShort(PalletDetailActivity.this, "取消关注成功!");
-						isFocus=false;
+						if(isFocus){
+							isFocusChange=true;
+						}else{
+							isFocusChange=false;
+						}
 						mBtnFocus.setText("关注");
 					}
 				}
@@ -349,7 +360,6 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 			}
 			@Override
 			public void onFail(Context c, String errorMsg) {
-				// TODO Auto-generated method stub
 				super.onFail(c, errorMsg);
 			}
 		};
@@ -386,4 +396,11 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 		startActivity(intent);
 	}
 	
+	@Override
+	public void onBackPressed() {
+		if(isFocusChange){
+			setResult(RESULT_OK);
+		}
+		finish();
+	}
 }
