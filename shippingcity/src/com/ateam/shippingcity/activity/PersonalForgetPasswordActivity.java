@@ -70,15 +70,17 @@ public class PersonalForgetPasswordActivity extends HBaseActivity implements OnC
 			@Override
 			public void onSuccess(Respond<Map<String, String>> result) {
 				showMsg(PersonalForgetPasswordActivity.this, result.getMessage());
-					if(result.isSuccess()){
-						if(!isGetCode){
-							finish();
-						}
-					}else{
-						if(isGetCode){
-							codeTimer.onFinish();
-						}
+				if(result.isSuccess()){
+					if(!isGetCode){
+						//showMsg(PersonalForgetPasswordActivity.this, "操作成功");
+						finish();
 					}
+				}else{
+					if(isGetCode){
+						codeTimer.onFinish();
+						//showMsg(PersonalForgetPasswordActivity.this, "手机号码格式错误");
+					}
+				}
 			}
 		};
 		access=new PersonalAccess<Map<String,String>>(this, requestCallback);
@@ -132,6 +134,10 @@ public class PersonalForgetPasswordActivity extends HBaseActivity implements OnC
 			}
 			if(TextUtils.isEmpty(mEditCode.getText().toString())){
 				showMsg(this, "验证码不能为空");
+				return;
+			}
+			if(mEditPassword.getText().toString().equals("")){
+				showMsg(this, "密码不能为空");
 				return;
 			}
 			if(!mEditPassword.getText().toString().equals(mEditConfirmPassword.getText().toString())){

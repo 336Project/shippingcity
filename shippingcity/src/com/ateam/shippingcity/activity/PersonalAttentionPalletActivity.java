@@ -5,7 +5,6 @@ import com.ateam.shippingcity.fragment.PersonalAttentionPalletFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 /**
@@ -19,8 +18,8 @@ public class PersonalAttentionPalletActivity extends HBaseActivity implements On
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getLeftIcon().setOnClickListener(this);
-		getLeftIcon().setImageResource(R.drawable.home_member_center_icon);
+		/*getLeftIcon().setOnClickListener(this);
+		getLeftIcon().setImageResource(R.drawable.home_member_center_icon);*/
 		setActionBarTitle("我关注的货盘");
 		init();
 	}
@@ -34,13 +33,13 @@ public class PersonalAttentionPalletActivity extends HBaseActivity implements On
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.iv_left_icon://个人中心
+		/*case R.id.iv_left_icon://个人中心
 			if(TextUtils.isEmpty(mBaseApp.getUserssid())){
 				jump(this, PersonalLoginActivity.class);
 			}else{
 				jump(this, PersonalCenterActivity.class);
 			}
-			break;
+			break;*/
 		default:
 			break;
 			
