@@ -354,15 +354,17 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
 		nvps.add(new BasicNameValuePair("userssid", userssid));
 		nvps.add(new BasicNameValuePair("Msubmit", "提交"));
+		nvps.add(new BasicNameValuePair("thumb", imgUrl));
 		if(type.equals("身份证")){
-			nvps.add(new BasicNameValuePair("thumb", imgUrl));
+			//nvps.add(new BasicNameValuePair("thumb", imgUrl));
 			nvps.add(new BasicNameValuePair("action", "truename"));
 		}else if(type.equals("工牌")){
-			nvps.add(new BasicNameValuePair("thumb1", imgUrl));
-			nvps.add(new BasicNameValuePair("action", "truename"));
-		}else if(type.equals("营业执照")){
-			nvps.add(new BasicNameValuePair("thumb", imgUrl));
+			//nvps.add(new BasicNameValuePair("thumb1", imgUrl));
+			//nvps.add(new BasicNameValuePair("action", "truename"));
 			nvps.add(new BasicNameValuePair("action", "company"));
+		}else if(type.equals("营业执照")){
+			//nvps.add(new BasicNameValuePair("thumb", imgUrl));
+			nvps.add(new BasicNameValuePair("action", "vcompany"));
 		}
 		execute(URL_PERSONAL_AUTHEN, nvps);
 	}

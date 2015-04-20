@@ -25,11 +25,32 @@ public class User implements Serializable{
 	private String credit;
 	private String avatar;//头像
 	private String com_address;
-	private String vtruename;//实名认证（身份证 工牌）
-	private String vcompany;//公司认证
+	private String vtruename;//实名认证
+	private String vcompany;// 工牌认证（企业员工认证）
+	private String vcompany2;//企业认证
 	private List<String> vpicture;//对应身份证、工牌、营业执照
 	
-	private String status_company;//公司认证状态
+	private String status_company;//企业认证状态
+	private String status_company2;//工牌认证状态
+	public String getVcompany2() {
+		return vcompany2;
+	}
+	public void setVcompany2(String vcompany2) {
+		this.vcompany2 = vcompany2;
+	}
+	public String getStatus_company2() {
+		if(getVcompany2().equals("2")){
+			status_company2="审核中";
+		}else if(getVcompany2().equals("3")){
+			status_company2="已认证";
+		}else{
+			status_company2="未上传";
+		}
+		return status_company2;
+	}
+	public void setStatus_company2(String status_company2) {
+		this.status_company2 = status_company2;
+	}
 	private String status_truename;//实名认证状态
 	public String getUserssid() {
 		return userssid;

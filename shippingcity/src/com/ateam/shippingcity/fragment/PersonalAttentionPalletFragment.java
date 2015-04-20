@@ -68,10 +68,25 @@ public class PersonalAttentionPalletFragment extends Fragment {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		System.out.println("onActivityResult");
 		if(resultCode==Activity.RESULT_OK){
 			if(requestCode==1000){
-				((PersoanlAttentionPalletTransportFragment)fragments.get(tabPager.getCurrentItem())).request();
+				int index=tabPager.getCurrentItem();
+				if(index==0){
+					((PersoanlAttentionPalletTransportFragment)fragments.get(0)).request();
+					((PersoanlAttentionPalletTransportFragment)fragments.get(1)).request();
+					((PersoanlAttentionPalletTransportFragment)fragments.get(2)).request();
+					((PersoanlAttentionPalletTransportFragment)fragments.get(3)).request();
+				}else if(index==1){
+					((PersoanlAttentionPalletTransportFragment)fragments.get(0)).request();
+					((PersoanlAttentionPalletTransportFragment)fragments.get(index)).request();
+				}else if(index==2){
+					((PersoanlAttentionPalletTransportFragment)fragments.get(0)).request();
+					((PersoanlAttentionPalletTransportFragment)fragments.get(index)).request();
+				}else if(index==3){
+					((PersoanlAttentionPalletTransportFragment)fragments.get(0)).request();
+					((PersoanlAttentionPalletTransportFragment)fragments.get(index)).request();
+				}
+				
 			}
 		}
 	}

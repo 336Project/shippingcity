@@ -97,8 +97,8 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			ImageLoader.getInstance().displayImage(user.getVpicture().get(1), card);//工牌
 		}
 		TextView txtStatus=((TextView)findViewById(R.id.txt_card_status));//工牌认证状态
-		txtStatus.setText(user.getStatus_truename());
-		if(user.getVtruename().equals("3")){
+		txtStatus.setText(user.getStatus_company());
+		if(user.getVcompany().equals("3")){
 			txtStatus.setTextColor(Color.rgb(70,159,233));
 			txtStatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.personal_information_a_certified_icon, 0, 0, 0);
 		}
@@ -108,8 +108,8 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			ImageLoader.getInstance().displayImage(user.getVpicture().get(2), vcompany);//营业执照
 		}
 		TextView txtCompany=((TextView)findViewById(R.id.txt_vcompany_status));//公司认证状态
-		txtCompany.setText(user.getStatus_company());
-		if(user.getVcompany().equals("3")){
+		txtCompany.setText(user.getStatus_company2());
+		if(user.getVcompany2().equals("3")){
 			txtCompany.setTextColor(Color.rgb(70,159,233));
 			txtCompany.setCompoundDrawablesWithIntrinsicBounds(R.drawable.personal_information_a_certified_icon, 0, 0, 0);
 		}
@@ -146,11 +146,11 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 							ImageLoader.getInstance().displayImage(url, vtruename);
 						}else if(type.equals("工牌")){
 							user.getVpicture().set(1, url);
-							user.setVtruename("2");
+							user.setVcompany("2");
 							ImageLoader.getInstance().displayImage(url, card);
 						}else if(type.equals("营业执照")){
 							user.getVpicture().set(2, url);
-							user.setVcompany("2");
+							user.setVcompany2("2");
 							ImageLoader.getInstance().displayImage(url, vcompany);
 						}
 					}
@@ -187,14 +187,14 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 			startActivityForResult(new Intent(this, PictureSelectDialogActivity.class), REQ_CODE_I);
 			break;
 		case R.id.layout_pick_work_card://修改工牌
-			if("已认证".equals(user.getStatus_truename())){
+			if("已认证".equals(user.getStatus_company())){
 				showMsg(this, "已认证");
 				return ;
 			}
 			startActivityForResult(new Intent(this, PictureSelectDialogActivity.class), REQ_CODE_W);
 			break;
 		case R.id.layout_pick_business_licence://修改营业执照
-			if("已认证".equals(user.getStatus_company())){
+			if("已认证".equals(user.getStatus_company2())){
 				showMsg(this, "已认证");
 				return ;
 			}
