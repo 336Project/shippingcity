@@ -50,15 +50,14 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 	private Button mBtnMyOffer;//我的报价按钮
 	private GridView mGvAddPhoto;//添加显示图片布局
 	private ImageView mIvType;//
-	
 	private PalletTransport mPallet;
-	
 	private PalletTransportAccess<PalletTransportDetail> access;
 	private PalletTransportAccess<List<PalletTransport>> mFocusAccess;
-	
 	private View mViewAddPhoto;
 	private TextView mTvShowPhoto;
 	private LinearLayout mLayoutPalletDetail;
+	
+	private boolean isFocus=false;//标记是否被关注  默认没有  （false未关注  true关注）
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -195,8 +194,10 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 					if(!SysUtil.getRemainTime(mPallet.deadlinetime).equals("0小时")){
 						if(datas.collected!=null){
 							if(datas.collected.equals("0")){
+								isFocus=false;
 								mBtnFocus.setText("关注");
 							}else if(datas.collected.equals("1")){
+								isFocus=true;
 								mBtnFocus.setText("取消关注");
 							}
 						}
@@ -334,9 +335,11 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 				if(result.getStatusCode().equals("200")){
 					if(action.equals("add")){
 						MyToast.showShort(PalletDetailActivity.this, "关注成功!");
+						isFocus=true;
 						mBtnFocus.setText("取消关注");
 					}else{
 						MyToast.showShort(PalletDetailActivity.this, "取消关注成功!");
+						isFocus=false;
 						mBtnFocus.setText("关注");
 					}
 				}
