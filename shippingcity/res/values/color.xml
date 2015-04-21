@@ -152,6 +152,7 @@
     <color name="dustColor">#ecd6c5</color>
     
     <drawable name="my_offer">#FF9900</drawable>
+    <drawable name="contact_forwarder">#568DE1</drawable>
     <drawable name="carrotColor">#ed9121</drawable>
     <drawable name="lineColor">#F0F3F5</drawable>
     <color name="totalabout_Red">#ed4c37</color>

@@ -6,16 +6,14 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:visibility="gone"
-    tools:context=".MyQuoteHistoryActivity" 
-    >
+    tools:context=".MyQuoteHistoryActivity" >
 
     <com.ateam.shippingcity.widget.ElasticScrollView
         android:id="@+id/elasticScrollView1"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" 
-        android:fillViewport="true"
-        >
+        android:layout_weight="1"
+        android:fillViewport="true" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -42,20 +40,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/xlist_marginl"
-                            android:text="@string/transport_type" 
-                            android:textSize="@dimen/myQuote_item_tination_size"
+                            android:text="@string/transport_type"
                             android:textColor="@color/my_quote_item_tination"
-                            />
+                            android:textSize="@dimen/myQuote_item_tination_size" />
 
                         <TextView
                             android:id="@+id/tv_shipping"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="海运" 
                             android:layout_marginLeft="10dp"
-                            android:textSize="@dimen/myQuote_item_tination_size"
+                            android:text="海运"
                             android:textColor="@color/my_quote_item_tination"
-                            />
+                            android:textSize="@dimen/myQuote_item_tination_size" />
                     </LinearLayout>
 
                     <View
@@ -128,9 +124,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        android:gravity="center_vertical"
                         android:layout_marginRight="15dp"
-                         >
+                        android:gravity="center_vertical" >
 
                         <ImageView
                             android:id="@+id/imageView1"
@@ -150,9 +145,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/my_quote_transport_time"
-                                android:textSize="12sp" 
                                 android:textColor="@color/my_quote_item_tination"
-                                />
+                                android:textSize="12sp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -164,26 +158,23 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="2015/03/06"
-                                    android:textSize="14sp" 
                                     android:textColor="@color/my_quote_item_tination"
-                                    />
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/my_quote_horizontal_line"
-                                    android:textSize="14sp" 
                                     android:textColor="@color/my_quote_item_tination"
-                                    />
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/tv_endtime"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="2015/03/06"
-                                    android:textSize="14sp" 
                                     android:textColor="@color/my_quote_item_tination"
-                                    />
+                                    android:textSize="14sp" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -215,9 +206,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/xlist_marginl"
                             android:text="箱型;20GP;数量2箱;40GP;数量4箱40HQ,数量5箱"
-                            android:textSize="@dimen/myQuote_item_tination_size" 
                             android:textColor="@color/my_quote_item_tination"
-                            />
+                            android:textSize="@dimen/myQuote_item_tination_size" />
                     </LinearLayout>
 
                     <View
@@ -229,65 +219,68 @@
                         android:background="@drawable/lineColor" />
 
                     <LinearLayout
-                android:id="@+id/ll_photo"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="visible" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pallet_photo"
-                    android:textSize="12sp" />
-
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none" >
-
-                    <LinearLayout
+                        android:id="@+id/ll_photo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal" >
+                        android:layout_height="44dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible" >
 
-                        <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
-                            android:id="@+id/gv_addPhoto"
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:horizontalSpacing="1dp"
-                            android:numColumns="5"
-                            android:stretchMode="columnWidth"
-                            android:verticalSpacing="1dp"
-                            android:visibility="visible" />
-                        <TextView 
-                            android:id="@+id/tv_showPhoto"
+                            android:text="@string/pallet_photo"
+                            android:textSize="12sp" />
+
+                        <HorizontalScrollView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal" >
+
+                                <com.ateam.shippingcity.widget.weinxinImageShow.NoScrollGridView
+                                    android:id="@+id/gv_addPhoto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:horizontalSpacing="1dp"
+                                    android:numColumns="5"
+                                    android:stretchMode="columnWidth"
+                                    android:verticalSpacing="1dp"
+                                    android:visibility="visible" />
+
+                                <TextView
+                                    android:id="@+id/tv_showPhoto"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+                            </LinearLayout>
+                        </HorizontalScrollView>
+
+                        <TextView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"/>
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/right_arrow" />
                     </LinearLayout>
-                </HorizontalScrollView>
-                <TextView 
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/right_arrow" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                  android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/lineColor" />
-                    <!-- <LinearLayout
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/lineColor" />
+                    <!--
+                    <LinearLayout
                         android:id="@+id/ll_photo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -347,7 +340,8 @@
                             android:layout_marginRight="15dp"
                             android:background="@drawable/lineColor" />
 
-                    </LinearLayout> -->
+                    </LinearLayout>
+                    -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -363,19 +357,17 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="top"
                             android:text="@string/note"
-                            android:textSize="14sp" 
                             android:textColor="@color/my_quote_item_tination"
-                            />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/tv_remarks"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_marginLeft="@dimen/xlist_marginl"
-                            android:textSize="14sp" 
+                            android:layout_weight="1"
                             android:textColor="@color/my_quote_item_tination"
-                            />
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <View
@@ -399,18 +391,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/quotation_deadline"
-                            android:textSize="14sp"
                             android:textColor="@color/my_quote_item_tination"
-                             />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/tv_deadlinetime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="11-12 8:00"
-                            android:textSize="14sp" 
                             android:textColor="@color/my_quote_item_tination"
-                            />
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -429,16 +419,34 @@
         android:layout_height="1dp"
         android:background="@drawable/lineColor" />
 
-    <TextView
-        android:id="@+id/tv_show_my_quote_pop"
-        android:layout_width="@dimen/my_offer_width"
-        android:layout_height="@dimen/my_offer_height"
-        android:layout_gravity="center"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/xlist_bottom"
         android:layout_marginTop="@dimen/xlist_top"
-        android:background="@drawable/my_offer_shape"
         android:gravity="center"
-        android:text="@string/my_offer"
-        android:textColor="@color/white" />
+         >
+		<TextView
+            android:id="@+id/tv_contact_forwarder"
+            android:layout_width="@dimen/my_offer_width"
+            android:layout_height="@dimen/my_offer_height"
+            android:layout_gravity="center"
+            android:background="@drawable/contact_forwarder_shape"
+            android:gravity="center"
+            android:text="@string/contact_forwarder"
+            android:textColor="@color/white" 
+            android:layout_marginRight="18dp"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/tv_show_my_quote_pop"
+            android:layout_width="@dimen/my_offer_width"
+            android:layout_height="@dimen/my_offer_height"
+            android:layout_gravity="center"
+            android:background="@drawable/my_offer_shape"
+            android:gravity="center"
+            android:text="@string/my_offer"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -22,6 +22,7 @@ import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
 import com.ateam.shippingcity.widget.weinxinImageShow.MyGridAdapter;
 import com.google.gson.reflect.TypeToken;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
@@ -60,6 +61,8 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 	private LinearLayout ll_photo;
 	private LinearLayout ll_main;
 	private View view_Photo;
+	private TextView tv_contact_forwarder;
+	private String mobile;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 	private void request() {
 		HRequestCallback<Respond<MyQuoteToConfirmDetail>> requestCallback=new HRequestCallback<Respond<MyQuoteToConfirmDetail>>() {
 			
+			
 			public void onFail(Context c, String errorMsg) {
 				super.onFail(c, errorMsg);
 				onLoadFail();
@@ -109,6 +113,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 					MyQuoteToConfirmDetail datas = result.getDatas();
 					MyData mydata = datas.getMydata();
 					String picture_path = datas.getPicture_path();
+					mobile = datas.getMobile();
 					if(!picture_path.equals("")){
 						String[] split = picture_path.split("\\|");
 						for (int i = 0; i < split.length; i++) {
@@ -312,6 +317,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 							iv_winType.setLayoutParams(fl_Lp_1);
 							if(myuid.equals(datas.getBuyer())){
 								iv_winType.setImageResource(R.drawable.historical_quotes_the_bid_icon);
+								tv_contact_forwarder.setVisibility(View.VISIBLE);
 							}
 							else{
 								iv_winType.setImageResource(R.drawable.historical_quotes_unsuccessful_bidders_icon);
@@ -396,6 +402,8 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 		ll_photo = (LinearLayout) findViewById(R.id.ll_photo);
 		ll_main = (LinearLayout) findViewById(R.id.ll_main);
 		view_Photo = (View) findViewById(R.id.view_photo);
+		tv_contact_forwarder = (TextView) findViewById(R.id.tv_contact_forwarder);
+		tv_contact_forwarder.setOnClickListener(this);
 		
 	}
 	@Override
@@ -424,7 +432,11 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 		case R.id.tv_show_my_quote_pop:
 			PopupWindowUtil.showPopup(this, R.layout.activity_my_quote_history);
 			break;
-
+		case R.id.tv_contact_forwarder:
+			Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + mobile));
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			break;
 		default:
 			break;
 		}

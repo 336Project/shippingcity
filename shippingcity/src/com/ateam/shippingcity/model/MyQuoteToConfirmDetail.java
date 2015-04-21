@@ -24,6 +24,7 @@ public class MyQuoteToConfirmDetail implements Serializable{
 	private String volume; //体积
 	private String size; //单件尺寸
 	private String remarks; //备注
+	private String mobile; //电话
 	private String status;
 	private String buyer;
 	private String picture_path;
@@ -136,5 +137,11 @@ public class MyQuoteToConfirmDetail implements Serializable{
 	}
 	public void setPicture_path(String picture_path) {
 		this.picture_path = picture_path;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 }

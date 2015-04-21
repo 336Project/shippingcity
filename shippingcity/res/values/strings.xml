@@ -134,6 +134,7 @@
 
     <!-- 我的报价 -->
     <string name="my_offer">我的报价</string>
+    <string name="contact_forwarder">联系货代</string>
     <string name="my_quote_transport_time">走货日期</string>
     <string name="my_quote_horizontal_line">-</string>
     <string name="all">全部</string>
