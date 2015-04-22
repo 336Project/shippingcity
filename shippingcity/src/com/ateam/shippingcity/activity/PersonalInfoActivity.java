@@ -167,7 +167,7 @@ public class PersonalInfoActivity extends HBaseActivity implements OnClickListen
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.layout_modify_mobile://修改手机号
-			Intent intent=new Intent(this, PersonalModifyMobileActivity.class);
+			Intent intent=new Intent(this, PersonalVerifyOldMobileActivity.class);
 			intent.putExtra("mobile", mTxtMobile.getText().toString());
 			startActivityForResult(intent, REQ_MODIFY_MOBILE);
 			break;

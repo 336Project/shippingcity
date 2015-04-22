@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/com.ateam.shippingcity">
 
     <LinearLayout
         android:id="@+id/layout_modify"
@@ -11,18 +11,19 @@
         android:visibility="visible"
         android:orientation="vertical" >
 
-        <com.ateam.shippingcity.widget.HAutoCompleteTextView
-            android:id="@+id/et_mobile"
+        <com.ateam.shippingcity.widget.TextViewPair
+            android:id="@+id/txt_mobile"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:inputType="phone"
             android:minHeight="50dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:hint="请输入新手机号"
-            android:textCursorDrawable="@color/text_cursor" >
-        </com.ateam.shippingcity.widget.HAutoCompleteTextView>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:nameText="原号码："
+            app:nameSize="16sp"
+            app:valueColor="#B3B4B5"
+            app:valueSize="16sp"
+            app:valueText="15759216890"
+            />
 
         <View
             android:layout_width="fill_parent"
@@ -74,7 +75,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/btn_orange_selector"
-            android:text="修改并绑定"
+            android:text="修改手机号"
             android:textColor="#ffffff" />
     </LinearLayout>
 

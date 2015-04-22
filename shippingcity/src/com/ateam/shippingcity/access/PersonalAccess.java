@@ -204,10 +204,42 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 	}
 	/**
 	 * 
+	 * 2015-4-22 下午4:42:08
+	 * @param userssid
+	 * @TODO 手机修改->旧手机获取验证码
+	 */
+	public void getOldMobileMode(String userssid){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "generalmobilecode"));
+		nvps.add(new BasicNameValuePair("using", "changemobile"));
+		nvps.add(new BasicNameValuePair("type", "get"));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
+	/**
+	 * 
+	 * 2015-4-22 下午4:43:28
+	 * @param userssid
+	 * @param mobile_code
+	 * @TODO 手机修改->旧手机验证
+	 */
+	public void checkOldMobileMode(String userssid,String mobile_code){
+		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("mobile_access_token", "thekeyvalue"));
+		nvps.add(new BasicNameValuePair("action", "generalmobilecode"));
+		nvps.add(new BasicNameValuePair("using", "changemobile"));
+		nvps.add(new BasicNameValuePair("type", "validate"));
+		nvps.add(new BasicNameValuePair("mobile_code", mobile_code));
+		nvps.add(new BasicNameValuePair("userssid", userssid));
+		execute(URL_PERSONAL_MEMBER, nvps);
+	}
+	/**
+	 * 
 	 * 2015-4-2 下午3:38:10
 	 * @param userssid
 	 * @param mobile
-	 * @TODO 手机修改->获取手机验证码
+	 * @TODO 手机修改->获取新手机验证码
 	 */
 	public void getGeneralMobileMode(String userssid,String mobile){
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();
@@ -219,12 +251,13 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 		nvps.add(new BasicNameValuePair("userssid", userssid));
 		execute(URL_PERSONAL_MEMBER, nvps);
 	}
+	
 	/**
 	 * 
 	 * 2015-4-2 下午3:41:00
 	 * @param userssid
 	 * @param mobile_code
-	 * @TODO 手机修改->验证手机验证码
+	 * @TODO 手机修改->验证新手机验证码
 	 */
 	public void checkGeneralMobileMode(String userssid,String mobile,String mobile_code){
 		List<NameValuePair> nvps=new ArrayList<NameValuePair>();

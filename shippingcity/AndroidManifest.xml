@@ -123,6 +123,10 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name="com.ateam.shippingcity.activity.PersonalVerifyOldMobileActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.ateam.shippingcity.activity.PersonalModifyAddressActivity"
             android:screenOrientation="portrait" >
         </activity>

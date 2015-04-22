@@ -41,10 +41,10 @@ public class TextViewPair extends LinearLayout {
 		mNameText=a.getString(R.styleable.TextViewPair_nameText);
 		mNameColor=a.getColor(R.styleable.TextViewPair_nameColor, Color.BLACK);
 		//int size=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, context.getResources().getDisplayMetrics());
-		mNameSize=a.getDimensionPixelSize(R.styleable.TextViewPair_nameSize,15);
+		mNameSize=a.getDimensionPixelSize(R.styleable.TextViewPair_nameSize,22);
 		mValueText=a.getString(R.styleable.TextViewPair_valueText);
 		mValueColor=a.getColor(R.styleable.TextViewPair_valueColor, Color.BLACK);
-		mValueSize=a.getDimensionPixelSize(R.styleable.TextViewPair_valueSize, 15);
+		mValueSize=a.getDimensionPixelSize(R.styleable.TextViewPair_valueSize, 22);
 		
 		a.recycle();
 		init();
