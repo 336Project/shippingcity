@@ -176,10 +176,10 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
      */  
     private void initAutoComplete(HAutoCompleteTextView auto,ArrayList<String> dataList) {  
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,  
-                android.R.layout.simple_dropdown_item_1line, dataList);  
+                R.layout.item_selectedcoolcompany, dataList);  
         //只保留最近的50条的记录  
         auto.setAdapter(adapter);  
-        auto.setDropDownHeight(400);  
+//        auto.setDropDownHeight(800); 
         auto.setThreshold(1);  
         auto.setOnFocusChangeListener(new OnFocusChangeListener() {  
             @Override  
