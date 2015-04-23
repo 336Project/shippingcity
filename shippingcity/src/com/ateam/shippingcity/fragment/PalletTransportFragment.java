@@ -9,13 +9,16 @@ import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.activity.MyQuoteConfirmActivity;
 import com.ateam.shippingcity.activity.PalletDetailActivity;
 import com.ateam.shippingcity.adapter.PalletTransportAdapter;
+import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.fragment.HBaseXListViewFragment.OnXListItemClickListener;
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +41,7 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
+		registerBoradcastReceiver();
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
@@ -121,6 +125,29 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 			access.getPalletRansportList(mBaseApp.getUserssid(), type, current_page, page_size);
 		}
 	}
+	
+	/**
+	 * 广播接受者
+	 */
+	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver(){  
+        @Override  
+        public void onReceive(Context context, Intent intent) {  
+            String action = intent.getAction();  
+            if(action.equals(ConstantUtil.REFRESH_HUOPAN)){  
+                request();
+            }  
+        }  
+    }; 
+    
+    /**
+     * 注册广播
+     */
+    public void registerBoradcastReceiver(){  
+        IntentFilter myIntentFilter = new IntentFilter();  
+        myIntentFilter.addAction(ConstantUtil.REFRESH_HUOPAN);  
+        //注册广播        
+        getActivity().registerReceiver(mBroadcastReceiver, myIntentFilter);  
+    }  
 
 	@Override
 	public boolean isLazyLoad() {

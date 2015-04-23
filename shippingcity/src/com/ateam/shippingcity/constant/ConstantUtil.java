@@ -14,5 +14,6 @@ public class ConstantUtil {
 	public static final String DOWNLOAD_CACHE="shippingcity/download";//文件下载路径
 	public static final String IMAGE_DIR="shippingcity/image";
 	
+	public static final String REFRESH_HUOPAN="pallet_list";//货盘区提交成功后，返回广播刷新列表
 	public static final String SETTING_PRE="setting_pre";
 }

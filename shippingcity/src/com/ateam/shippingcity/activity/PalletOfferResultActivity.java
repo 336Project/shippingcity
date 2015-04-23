@@ -6,6 +6,7 @@ import java.util.List;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
+import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
@@ -56,11 +57,29 @@ public class PalletOfferResultActivity extends HBaseActivity {
 			setActionBarTitle("报价失败");
 			mIvSucOrFail.setBackgroundDrawable(getResources().getDrawable(R.drawable.failure_to_submit));
 		}else{
+			refreshData();
+			mIvSucOrFail.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					finish();
+				}
+			});
 			mTvSucOrFailOne.setText(getResources().getString(R.string.success_one));
 			mTvSucOrFailTwo.setText(getResources().getString(R.string.success_two));
 			mBtnReCommit.setVisibility(View.GONE);
 		}
 	}
+	
+	/**
+	 * 报价成功后  ， 刷新列表
+	 */
+   private void refreshData(){
+	   Intent mIntent = new Intent(ConstantUtil.REFRESH_HUOPAN);  
+       //发送广播  
+       sendBroadcast(mIntent); 
+   }
 	
 	/**
 	 * 重新提交数据
