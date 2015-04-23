@@ -1,5 +1,9 @@
 package com.ateam.shippingcity.utils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -14,11 +18,12 @@ import com.ateam.shippingcity.widget.weinxinImageShow.ImagePagerActivity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.provider.MediaStore.Images.ImageColumns;
 import android.telephony.TelephonyManager;
 
 
@@ -142,7 +147,6 @@ public class SysUtil {
 			endTime = df.parse(strEndTime).getTime();
 			time = df.parse(df.format(new Date())).getTime();
 		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(time>=endTime){
@@ -167,7 +171,25 @@ public class SysUtil {
 	 */
 	public static String getRealFilePath( final Context context, final Uri uri ) {
 	    if ( null == uri ) return null;
-	    final String scheme = uri.getScheme();
+	    String filePath=null;
+	    try{
+		    ContentResolver cr = context.getContentResolver();
+		    InputStream is=cr.openInputStream(uri);
+		    Bitmap bitmap = BitmapFactory.decodeStream(is, null, null);
+			is.close();
+			byte[] datas=extractThumbnail(bitmap);
+			if(datas!=null){
+				File file=FileUtil.getInstance().createFileInSDCard(ConstantUtil.IMAGE_CACHE, System.currentTimeMillis()+".jpg");
+				FileOutputStream fileOutputStream=new FileOutputStream(file);
+				fileOutputStream.write(datas);
+				fileOutputStream.flush();
+				fileOutputStream.close();
+				filePath=file.getAbsolutePath();
+			}
+	    }catch(Exception e){
+	    	
+	    }
+	    /*final String scheme = uri.getScheme();
 	    String data = null;
 	    if ( scheme == null )
 	        data = uri.getPath();
@@ -184,8 +206,67 @@ public class SysUtil {
 	            }
 	            cursor.close();
 	        }
-	    }
-	    System.out.println(data);
-	    return data;
+	    }*/
+	    
+	    return filePath;
+	}
+	
+	/**
+	 * 
+	 * @author 李晓伟
+	 * 2015-3-20 下午3:22:49
+	 * @param bitmap
+	 * @return
+	 * @throws Exception
+	 * @TODO 生成缩略图
+	 */
+	public static byte[] extractThumbnail(Bitmap bitmap) throws Exception{
+		float scale=calScale(bitmap);
+		bitmap=ThumbnailUtils.extractThumbnail(bitmap, (int)(bitmap.getWidth()/scale), (int)(bitmap.getHeight()/scale), ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中  
+        int options = 90;
+        while (baos.toByteArray().length / 1024>1024*1024&&options>0) {  //循环判断如果压缩后图片是否大于1M,大于继续压缩         
+            baos.reset();//重置baos即清空baos  
+            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中  
+            options -= 10;//每次都减少10
+        }
+        bitmap.recycle();
+        bitmap=null;
+        baos.flush();
+		byte[] resource =baos.toByteArray();
+		baos.close();
+		return resource;
+	}
+	/**
+	 * 
+	 * @author 李晓伟
+	 * 2015-3-20 上午10:13:18
+	 * @param bitmap
+	 * @param width
+	 * @param height
+	 * @return
+	 * @TODO 根据宽高获取缩放比例
+	 */
+	private static float calScale(Bitmap bitmap){
+		int width=480,height=800;//一般分辨率480*800
+		float w = bitmap.getWidth(); 
+		float h = bitmap.getHeight();
+		if(w>=1920||h>=1920){//1920*1080
+			width=1080;
+			height=1920;
+		}else if(w>=1280||h>=1280){//720*1280
+			width=720;
+			height=1280;
+		}
+		float be = 1.0f;//be=1表示不缩放
+	    if (w > h && w > width) {//如果宽度大的话根据宽度固定大小缩放  
+	        be = (float) (w / width);  
+	    } else if (w < h && h > height) {//如果高度高的话根据宽度固定大小缩放  
+	        be = (float) (h / height);  
+	    }  
+	    if (be <= 0)
+	        be = 1; 
+		return be;
 	}
 }
