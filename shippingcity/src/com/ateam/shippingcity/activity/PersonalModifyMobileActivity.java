@@ -2,6 +2,7 @@ package com.ateam.shippingcity.activity;
 
 import java.util.Map;
 
+import com.ateam.shippingcity.HomeActivity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
@@ -116,6 +117,7 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 						mTxtMessage.setText("您新的手机号"+mobile+"\n已绑定成功!");
 						mLayoutModify.setVisibility(View.GONE);
 						mLayoutSuccess.setVisibility(View.VISIBLE);
+						mLayoutSuccess.setOnClickListener(PersonalModifyMobileActivity.this);
 						isModifySuccess=true;
 					}else{
 						showMsg(PersonalModifyMobileActivity.this, result.getMessage());
@@ -180,6 +182,14 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 			step=STEP2;
 			access.checkGeneralMobileMode(mBaseApp.getUserssid(),mobile, mEditCode.getText().toString());
 			break;
+		case R.id.layout_modify_success:
+			mBaseApp.setUser(null);
+			mBaseApp.setUserssid("");
+			Intent intent=new Intent(this, HomeActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			showMsg(this, "手机号码修改成功，请重新登录");
+			break;
 		default:
 			break;
 		}
@@ -197,12 +207,14 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 	
 	@Override
 	public void onBackPressed() {
-		if(isModifySuccess){
-			Intent data=new Intent();
+		if(isModifySuccess&&mLayoutSuccess.getVisibility()==View.VISIBLE){
+			/*Intent data=new Intent();
 			data.putExtra("mobile", mobile);
-			setResult(RESULT_OK, data);
+			setResult(RESULT_OK, data);*/
+			mLayoutSuccess.performClick();
+		}else{
+			finish();
 		}
-		finish();
 	}
 	
 }
