@@ -179,7 +179,7 @@ public class SysUtil {
 			is.close();
 			byte[] datas=extractThumbnail(bitmap);
 			if(datas!=null){
-				File file=FileUtil.getInstance().createFileInSDCard(ConstantUtil.IMAGE_CACHE, System.currentTimeMillis()+".jpg");
+				File file=FileUtil.getInstance().createFileInSDCard(ConstantUtil.IMAGE_DIR, System.currentTimeMillis()+".jpg");
 				FileOutputStream fileOutputStream=new FileOutputStream(file);
 				fileOutputStream.write(datas);
 				fileOutputStream.flush();
