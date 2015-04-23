@@ -13,16 +13,20 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.L;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap.Config;
 import android.os.Environment;
+import android.text.TextUtils;
 
 public class HBaseApp extends Application {
 	private String userssid;//登录令牌
 	private User user;
+	private SharedPreferences sp;
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		initImageLoader();
+		sp=getSharedPreferences(ConstantUtil.SETTING_PRE, 0);
 	}
 
 	private void initImageLoader() {
@@ -49,12 +53,16 @@ public class HBaseApp extends Application {
 	}
 
 	public String getUserssid() {
-		
-		return userssid;
+		return sp.getString("userssid", userssid);
 	}
 
 	public void setUserssid(String userssid) {
 		this.userssid = userssid;
+		if(TextUtils.isEmpty(userssid)){
+			sp.edit().putString("userssid", "").commit();
+		}else{
+			sp.edit().putString("userssid", userssid).commit();
+		}
 	}
 
 	public User getUser() {

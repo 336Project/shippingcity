@@ -2,13 +2,13 @@ package com.ateam.shippingcity.activity;
 
 import java.util.Map;
 
-import com.ateam.shippingcity.HomeActivity;
 import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.access.PersonalAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
 import com.ateam.shippingcity.widget.HAutoCompleteTextView;
+import com.ateam.shippingcity.widget.TextViewPair;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,14 +23,13 @@ import android.widget.TextView;
  * 
  * @author 李晓伟
  * 2015-3-27 下午3:28:54
- * @TODO 修改手机号
+ * @TODO 修改手机号->验证旧手机
  */
-public class PersonalModifyMobileActivity extends HBaseActivity implements OnClickListener{
+public class PersonalVerifyOldMobileActivity extends HBaseActivity implements OnClickListener{
 	public static final int STEP1=1;
 	public static final int STEP2=2;
-	public static final int STEP3=3;
 	
-	private HAutoCompleteTextView mEditMobile;
+	private TextViewPair mTxtOldMobile;
 	private HAutoCompleteTextView mEditCode;
 	private TextView mTxtGetCode;
 	private GetCodeTimer codeTimer=new GetCodeTimer(60*1000, 1000);
@@ -40,15 +39,12 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 	
 	private PersonalAccess<Map<String, String>> access;
 	private int step=STEP1;
-	private String mobile="";
-	private TextView mTxtMessage;
 	
-	private boolean isModifySuccess=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setActionBarTitle("手机号修改");
-		setBaseContentView(R.layout.activity_personal_modify_mobile);
+		setBaseContentView(R.layout.activity_personal_verify_mobile);
 		getLeftIcon().setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -60,10 +56,9 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 	}
 	
 	private void init(){
-		mEditMobile=(HAutoCompleteTextView) findViewById(R.id.et_mobile);
+		mTxtOldMobile=(TextViewPair) findViewById(R.id.txt_mobile);
 		mEditCode=(HAutoCompleteTextView) findViewById(R.id.et_code);
-		mEditMobile.setText(getIntent().getStringExtra("mobile"));
-		mobile=mEditMobile.getText().toString();
+		mTxtOldMobile.setValueText(getIntent().getStringExtra("mobile"));
 		mTxtGetCode=(TextView) findViewById(R.id.txt_get_code);
 		mTxtGetCode.setOnClickListener(this);
 		mLayoutModify=(LinearLayout) findViewById(R.id.layout_modify);
@@ -72,7 +67,6 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 		mLayoutSuccess.setVisibility(View.GONE);
 		mBtnModify=(Button) findViewById(R.id.btn_modify_mobile);
 		mBtnModify.setOnClickListener(this);
-		mTxtMessage=(TextView) findViewById(R.id.txt_message);
 		initRequset();
 	}
 	/**
@@ -101,26 +95,13 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 					if(!result.isSuccess()){
 						codeTimer.onFinish();
 					}
-					showMsg(PersonalModifyMobileActivity.this, result.getMessage());
+					showMsg(PersonalVerifyOldMobileActivity.this, result.getMessage());
 					break;
 				case STEP2:
 					if(result.isSuccess()){
-						step=STEP3;
-						access.modifyMobile(mBaseApp.getUserssid(), mobile);
+						startActivityForResult(new Intent(PersonalVerifyOldMobileActivity.this, PersonalModifyMobileActivity.class), 1000);
 					}else{
-						showMsg(PersonalModifyMobileActivity.this, result.getMessage());
-					}
-					break;
-				case STEP3:
-					if(result.isSuccess()){
-						mBaseApp.getUser().setMobile(mobile);
-						mTxtMessage.setText("您新的手机号"+mobile+"\n已绑定成功!");
-						mLayoutModify.setVisibility(View.GONE);
-						mLayoutSuccess.setVisibility(View.VISIBLE);
-						mLayoutSuccess.setOnClickListener(PersonalModifyMobileActivity.this);
-						isModifySuccess=true;
-					}else{
-						showMsg(PersonalModifyMobileActivity.this, result.getMessage());
+						showMsg(PersonalVerifyOldMobileActivity.this, result.getMessage());
 					}
 					break;
 				default:
@@ -163,32 +144,15 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.txt_get_code://获取验证码
-			mobile=mEditMobile.getText().toString();
-			if(mobile.equals("")){
-				showMsg(this, "手机号码不能为空");
-				return;
-			}
 			getCode();
 			break;
-		case R.id.btn_modify_mobile://修改并绑定
-			if(mobile.equals("")){
-				showMsg(this, "手机号码不能为空");
-				return;
-			}
+		case R.id.btn_modify_mobile://修改手机号
 			if(mEditCode.getText().toString().equals("")){
 				showMsg(this, "验证码不能为空");
 				return;
 			}
 			step=STEP2;
-			access.checkGeneralMobileMode(mBaseApp.getUserssid(),mobile, mEditCode.getText().toString());
-			break;
-		case R.id.layout_modify_success:
-			mBaseApp.setUser(null);
-			mBaseApp.setUserssid("");
-			Intent intent=new Intent(this, HomeActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
-			showMsg(this, "手机号码修改成功，请重新登录");
+			access.checkOldMobileMode(mBaseApp.getUserssid(), mEditCode.getText().toString());
 			break;
 		default:
 			break;
@@ -202,19 +166,17 @@ public class PersonalModifyMobileActivity extends HBaseActivity implements OnCli
 	public void getCode(){
 		step=STEP1;
 		codeTimer.start();
-		access.getGeneralMobileMode(mBaseApp.getUserssid(), mobile);
+		access.getOldMobileMode(mBaseApp.getUserssid());
 	}
+	
 	
 	@Override
-	public void onBackPressed() {
-		if(isModifySuccess&&mLayoutSuccess.getVisibility()==View.VISIBLE){
-			/*Intent data=new Intent();
-			data.putExtra("mobile", mobile);
-			setResult(RESULT_OK, data);*/
-			mLayoutSuccess.performClick();
-		}else{
-			finish();
+	protected void onActivityResult(int requestCode , int resultCode , Intent data) {
+		if(requestCode==1000){
+			if(resultCode==RESULT_OK){
+				setResult(resultCode, data);
+				finish();
+			}
 		}
 	}
-	
 }

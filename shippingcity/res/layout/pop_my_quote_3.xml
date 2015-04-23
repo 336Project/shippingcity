@@ -38,8 +38,9 @@
 
             <ImageView
                 android:id="@+id/iv_close_myquote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
+                android:scaleType="center"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="7dp"
                 android:src="@drawable/my_quotes_shut_down_icon" />
