@@ -72,10 +72,11 @@ public class PalletOfferResultActivity extends HBaseActivity {
 		}
 	}
 	
+	/**
+	 * 报价成功后  ， 刷新列表
+	 */
    private void refreshData(){
 	   Intent mIntent = new Intent(ConstantUtil.REFRESH_HUOPAN);  
-       mIntent.putExtra("yaner", "发送广播，相当于在这里传送数据");  
-         
        //发送广播  
        sendBroadcast(mIntent); 
    }

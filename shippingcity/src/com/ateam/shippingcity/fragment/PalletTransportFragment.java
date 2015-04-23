@@ -126,6 +126,9 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
 		}
 	}
 	
+	/**
+	 * 广播接受者
+	 */
 	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver(){  
         @Override  
         public void onReceive(Context context, Intent intent) {  
@@ -135,6 +138,10 @@ public class PalletTransportFragment extends HBaseXListViewFragment<PalletTransp
             }  
         }  
     }; 
+    
+    /**
+     * 注册广播
+     */
     public void registerBoradcastReceiver(){  
         IntentFilter myIntentFilter = new IntentFilter();  
         myIntentFilter.addAction(ConstantUtil.REFRESH_HUOPAN);  
