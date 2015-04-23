@@ -38,9 +38,10 @@
                 android:id="@+id/iv_close_myquote"
                 android:layout_width="40dp"
                 android:layout_height="fill_parent"
-                android:scaleType="center"
+                android:scaleType="matrix"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="7dp"
+                android:paddingTop="7dp"
+                android:paddingLeft="20dp"
                 android:src="@drawable/my_quotes_shut_down_icon" />
         </LinearLayout>
 
