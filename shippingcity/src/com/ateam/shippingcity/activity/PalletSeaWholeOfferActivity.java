@@ -8,6 +8,7 @@ import com.ateam.shippingcity.R;
 
 import com.ateam.shippingcity.access.PalletTransportAccess;
 import com.ateam.shippingcity.access.I.HRequestCallback;
+import com.ateam.shippingcity.adapter.AutoCompleteAdapter;
 import com.ateam.shippingcity.model.PalletTransport;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.JSONParse;
@@ -175,8 +176,9 @@ public class PalletSeaWholeOfferActivity extends HBaseActivity {
      * @param auto 要操作的AutoCompleteTextView 
      */  
     private void initAutoComplete(HAutoCompleteTextView auto,ArrayList<String> dataList) {  
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,  
-                R.layout.item_selectedcoolcompany, dataList);  
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,  
+//                R.layout.item_selectedcoolcompany, dataList);  
+    	AutoCompleteAdapter adapter=new AutoCompleteAdapter(PalletSeaWholeOfferActivity.this, dataList, 5);
         //只保留最近的50条的记录  
         auto.setAdapter(adapter);  
 //        auto.setDropDownHeight(800); 

@@ -38,11 +38,10 @@
                     android:layout_weight="1"
                     android:background="@color/white"
                     android:completionThreshold="1"
-                    android:dropDownHorizontalOffset="20dp"
+                    android:dropDownVerticalOffset="2dp"
                     android:popupBackground="@drawable/autobg2"
                     android:padding="0dp"
                     android:textSize="16sp"
-                    
                     android:hint="@string/input_ship_company_name" />
             </LinearLayout>
 
