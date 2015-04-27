@@ -21,6 +21,7 @@ import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.model.Respond;
 import com.ateam.shippingcity.utils.FileUtil;
 import com.ateam.shippingcity.utils.JSONParse;
+import com.ateam.shippingcity.widget.HAutoCompleteTextView;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -34,7 +35,6 @@ import android.support.v4.content.CursorLoader;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
 /**
  * 
  * @author 李晓伟
@@ -44,7 +44,7 @@ import android.widget.EditText;
 public class PersonalInviteFriendActivity extends HBaseActivity implements OnClickListener{
 	public static final int SUCCESS=0;
 	public static final int CANCEL=1;
-	private EditText mEditPhoneNumber;
+	private HAutoCompleteTextView mEditPhoneNumber;
 	private Handler handler;
 	private PersonalAccess<String> access;
 	@Override
@@ -58,7 +58,7 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 	private void init() {
 		findViewById(R.id.iv_pick_phone_number).setOnClickListener(this);
 		findViewById(R.id.btn_invite).setOnClickListener(this);
-		mEditPhoneNumber=(EditText) findViewById(R.id.et_phone_number);
+		mEditPhoneNumber=(HAutoCompleteTextView) findViewById(R.id.et_phone_number);
 		findViewById(R.id.share_sinaweibo).setOnClickListener(this);
 		findViewById(R.id.share_wechat).setOnClickListener(this);
 		findViewById(R.id.share_wechat_moments).setOnClickListener(this);
@@ -292,7 +292,16 @@ public class PersonalInviteFriendActivity extends HBaseActivity implements OnCli
 							number=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 						}
 						phones.close();
-						mEditPhoneNumber.setText(number);
+						StringBuffer sb=new StringBuffer();
+						if(!mEditPhoneNumber.getText().toString().contains(number)){
+							if(!mEditPhoneNumber.getText().toString().equals("")){
+								sb.append(mEditPhoneNumber.getText().toString()).append(",");
+							}
+							sb.append(number);
+						}else{
+							sb.append(mEditPhoneNumber.getText().toString());
+						}
+						mEditPhoneNumber.setText(sb.toString());
 					}
 					cursor.close();
 				}

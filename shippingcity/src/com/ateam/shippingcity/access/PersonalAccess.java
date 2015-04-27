@@ -432,7 +432,7 @@ public class PersonalAccess<T> extends HBaseAccess<Respond<T>> {
 	 * 
 	 * 2015-4-16 上午11:18:39
 	 * @param userssid
-	 * @param mobile
+	 * @param mobile 多个号码的用逗号分隔
 	 * @TODO 好友邀请
 	 */
 	public void invite(String userssid,String mobile){

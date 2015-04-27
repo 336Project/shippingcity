@@ -27,7 +27,7 @@
 	    android:padding="5dp"
 	    android:layout_marginTop="30dp"
 	    >
-	<EditText 
+	<com.ateam.shippingcity.widget.HAutoCompleteTextView 
 	    android:id="@+id/et_phone_number"
 	    android:layout_width="0dp"
 	    android:layout_height="wrap_content"
@@ -44,6 +44,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:background="@drawable/personal_cente_contacts_icon"
+	    android:layout_marginLeft="10dp"
 	    />
 	</LinearLayout>
 	<Button 
