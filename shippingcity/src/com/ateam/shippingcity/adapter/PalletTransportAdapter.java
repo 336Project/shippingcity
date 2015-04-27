@@ -63,17 +63,21 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 				mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_san_groceries_great_icon));
 			}
 			StringBuffer Describe=new StringBuffer();
-			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+";"+"体积:"+bean.volume+";");
+			if(bean.shipping_type.equals("1")){
+				Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+"TON;"+"体积:"+bean.volume+"CBM;");
+			}else{
+				Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+"kg;"+"体积:"+bean.volume+"CBM;");
+			}
 			if(bean.size.size()==3){
-				Describe.append("单件尺寸:"+bean.size.get(0)+"*"+bean.size.get(1)+"*"+bean.size.get(2)+";");
+				Describe.append("单件尺寸:"+bean.size.get(0)+"CM*"+bean.size.get(1)+"CM*"+bean.size.get(2)+"CM;");
 			}
 			((TextView)holder.getView(R.id.tv_palletDescribe)).setText(Describe);
 		}else{
 			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_of_pinxiang_great_icon));
 			StringBuffer Describe=new StringBuffer();
-			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+";"+"体积:"+bean.volume+";");
+			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+"kg;"+"体积:"+bean.volume+"CBM;");
 			if(bean.size.size()==3){
-				Describe.append("单件尺寸:"+bean.size.get(0)+"*"+bean.size.get(1)+"*"+bean.size.get(2)+";");
+				Describe.append("单件尺寸:"+bean.size.get(0)+"CM*"+bean.size.get(1)+"CM*"+bean.size.get(2)+"CM;");
 			}
 			((TextView)holder.getView(R.id.tv_palletDescribe)).setText(Describe);
 		}
@@ -86,9 +90,9 @@ public class PalletTransportAdapter extends HBaseAdapter<PalletTransport>{
 			((TextView)holder.getView(R.id.tv_transportType)).setText("空运");
 			mTvBoxType.setBackgroundDrawable(c.getResources().getDrawable(R.drawable.list_air_transport_great_icon));
 			StringBuffer Describe=new StringBuffer();
-			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+";"+"体积:"+bean.volume+";");
+			Describe.append("件数:"+bean.packages+";"+"毛重:"+bean.weight+"kg;"+"体积:"+bean.volume+"CBM;");
 			if(bean.size.size()==3){
-				Describe.append("单件尺寸:"+bean.size.get(0)+"*"+bean.size.get(1)+"*"+bean.size.get(2)+";");
+				Describe.append("单件尺寸:"+bean.size.get(0)+"CM*"+bean.size.get(1)+"CM*"+bean.size.get(2)+"CM;");
 			}
 			((TextView)holder.getView(R.id.tv_palletDescribe)).setText(Describe);
 		}else{

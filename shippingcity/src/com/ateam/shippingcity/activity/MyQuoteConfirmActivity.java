@@ -192,7 +192,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 						} else {
 							content_List.add(formatDate(createtime));
 						}
-						content_List.add("¥/KGS");
+						content_List.add("¥/TONS");
 
 						PopupWindowUtil.initPopup(MyQuoteConfirmActivity.this,
 								R.layout.pop_my_quote_2, tvId_List,
@@ -267,12 +267,16 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 						String size = datas.getSize();
 						String[] size_split = size.split("\\|");
 						description.append("件数:"+datas.getPackages()+";");
-						description.append("毛重:"+datas.getWeight()+"kg;");
-						description.append("体积:"+datas.getVolume()+"立方;");
+						if(shipping_type.equals("1")&&shipment_type.equals("2")){
+							description.append("毛重："+datas.getWeight()+"TON;");
+						}else{
+							description.append("毛重："+datas.getWeight()+"kg;");
+						}
+						description.append("体积:"+datas.getVolume()+"CBM;");
 						if(!size.equals("")){
 							description.append("单件尺寸:");
 							for (int i = 0; i < size_split.length; i++) {
-								description.append(size_split[i]);
+								description.append(size_split[i]+"CM");
 								if(i<size_split.length-1){
 									description.append("x");
 								}

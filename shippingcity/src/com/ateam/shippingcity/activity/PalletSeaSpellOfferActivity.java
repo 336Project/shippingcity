@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * 海运拼箱报价
@@ -38,6 +39,7 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 	private PalletTransportAccess<List<PalletTransport>> access;
 	private PalletTransport mPallet;
 	private int type;
+	private TextView mTvDanWei;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 		mBtnHeavyCargo=(Button)findViewById(R.id.btn_heavyCargo);
 		mBtnLightCargo=(Button)findViewById(R.id.btn_lightCargo);
 		mBtnCommit=(Button)findViewById(R.id.btn_commit);
+		mTvDanWei=(TextView)findViewById(R.id.tv_danwei);
 	}
 	
 	/**
@@ -77,12 +80,14 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 		case R.id.btn_heavyCargo:
 			mBtnHeavyCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_select_weight_icon));
 			mBtnLightCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_unselected_weight_icon));
+			mTvDanWei.setText("$/RT");
 			isHeavy=true;
 			isLight=false;
 			break;
 		case R.id.btn_lightCargo:
 			mBtnLightCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_select_weight_icon));
 			mBtnHeavyCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_unselected_weight_icon));
+			mTvDanWei.setText("$/CMB");
 			isHeavy=false;
 			isLight=true;
 			break;

@@ -237,10 +237,14 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 						}
 					}else{
 						description.append("件数："+datas.packages+";");
-						description.append("毛重："+datas.weight+"kg;");
-						description.append("体积："+datas.volume+"立方;");
+						if(shipping_type.equals("1")&&shipment_type.equals("2")){
+							description.append("毛重："+datas.weight+"TON;");
+						}else{
+							description.append("毛重："+datas.weight+"kg;");
+						}
+						description.append("体积："+datas.volume+"CBM;");
 						if(datas.size.size()==3){
-							description.append("单件尺寸:"+datas.size.get(0)+"*"+datas.size.get(1)+"*"+datas.size.get(2)+";");
+							description.append("单件尺寸:"+datas.size.get(0)+"CM*"+datas.size.get(1)+"CM*"+datas.size.get(2)+"CM;");
 						}
 					}
 					mTvBoxType.setText(description);
@@ -250,10 +254,14 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 						mTvTransportType.setText("空运");
 						description=new StringBuffer();
 						description.append("件数："+datas.packages+";");
-						description.append("毛重："+datas.weight+"kg;");
-						description.append("体积："+datas.volume+"立方;");
+						if(shipping_type.equals("1")&&shipment_type.equals("2")){
+							description.append("毛重："+datas.weight+"TON;");
+						}else{
+							description.append("毛重："+datas.weight+"kg;");
+						}
+						description.append("体积："+datas.volume+"CBM;");
 						if(datas.size.size()==3){
-							description.append("单件尺寸:"+datas.size.get(0)+"*"+datas.size.get(1)+"*"+datas.size.get(2)+";");
+							description.append("单件尺寸:"+datas.size.get(0)+"CM*"+datas.size.get(1)+"CM*"+datas.size.get(2)+"CM;");
 						}
 						mTvBoxType.setText(description);
 					}else{
