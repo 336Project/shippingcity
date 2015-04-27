@@ -121,7 +121,7 @@
     <string name="input_price">请输入价格</string>
     <string name="S_RT">$/RT</string>
     <string name="input_offer_context">请输入报价内容</string>
-    <string name="money_kgs">$/KGS</string>
+    <string name="money_kgs">￥/KGS</string>
     <string name="c_money">￥</string>
     <string name="offer_company_Lord">报价单位: ￥</string>
     <string name="fail_one">网络不给力,您的报价提交失败,</string>
