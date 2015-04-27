@@ -87,7 +87,7 @@ public class PalletSeaSpellOfferActivity extends HBaseActivity implements OnClic
 		case R.id.btn_lightCargo:
 			mBtnLightCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_select_weight_icon));
 			mBtnHeavyCargo.setBackgroundDrawable(getResources().getDrawable(R.drawable.quotes_unselected_weight_icon));
-			mTvDanWei.setText("$/CMB");
+			mTvDanWei.setText("$/CBM");
 			isHeavy=false;
 			isLight=true;
 			break;

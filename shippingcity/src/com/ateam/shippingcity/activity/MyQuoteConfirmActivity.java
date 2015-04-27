@@ -270,7 +270,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 						if(shipping_type.equals("1")&&shipment_type.equals("2")){
 							description.append("毛重："+datas.getWeight()+"TON;");
 						}else{
-							description.append("毛重："+datas.getWeight()+"kg;");
+							description.append("毛重："+datas.getWeight()+"KG;");
 						}
 						description.append("体积:"+datas.getVolume()+"CBM;");
 						if(!size.equals("")){

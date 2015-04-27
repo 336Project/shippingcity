@@ -240,7 +240,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 						if(shipping_type.equals("1")&&shipment_type.equals("2")){
 							description.append("毛重："+datas.weight+"TON;");
 						}else{
-							description.append("毛重："+datas.weight+"kg;");
+							description.append("毛重："+datas.weight+"KG;");
 						}
 						description.append("体积："+datas.volume+"CBM;");
 						if(datas.size.size()==3){
@@ -257,7 +257,7 @@ public class PalletDetailActivity extends HBaseActivity implements OnClickListen
 						if(shipping_type.equals("1")&&shipment_type.equals("2")){
 							description.append("毛重："+datas.weight+"TON;");
 						}else{
-							description.append("毛重："+datas.weight+"kg;");
+							description.append("毛重："+datas.weight+"KG;");
 						}
 						description.append("体积："+datas.volume+"CBM;");
 						if(datas.size.size()==3){
