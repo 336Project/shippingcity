@@ -217,7 +217,7 @@ public class MyQuoteHistoryActivity extends HBaseActivity implements OnClickList
 						else{
 							content_List.add(formatDate(createtime));
 						}
-						content_List.add("¥/KGS");
+						content_List.add("$/KGS");
 						
 						PopupWindowUtil.initPopup(MyQuoteHistoryActivity.this, R.layout.pop_my_quote_2,tvId_List,content_List);
 					}

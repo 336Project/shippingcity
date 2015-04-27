@@ -192,7 +192,7 @@ public class MyQuoteConfirmActivity extends HBaseActivity implements
 						} else {
 							content_List.add(formatDate(createtime));
 						}
-						content_List.add("¥/KGS");
+						content_List.add("$/KGS");
 
 						PopupWindowUtil.initPopup(MyQuoteConfirmActivity.this,
 								R.layout.pop_my_quote_2, tvId_List,
