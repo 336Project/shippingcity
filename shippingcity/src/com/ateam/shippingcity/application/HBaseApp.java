@@ -2,6 +2,7 @@ package com.ateam.shippingcity.application;
 
 import java.io.File;
 
+import com.ateam.shippingcity.R;
 import com.ateam.shippingcity.constant.ConstantUtil;
 import com.ateam.shippingcity.model.User;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
@@ -31,9 +32,9 @@ public class HBaseApp extends Application {
 
 	private void initImageLoader() {
 		DisplayImageOptions options = new DisplayImageOptions.Builder()
-//		.showImageOnFail(R.drawable.ic_launcher) // 加载图片出现问题，会显示该图片
-//		.showImageForEmptyUri(R.drawable.ic_launcher)//url为空的时候显示的图片
-//		.showImageOnLoading(R.drawable.ic_launcher)//图片加载过程中显示的图片
+		.showImageOnFail(R.drawable.default_image) // 加载图片出现问题，会显示该图片
+		.showImageForEmptyUri(R.drawable.default_image)//url为空的时候显示的图片
+		.showImageOnLoading(R.drawable.default_image)//图片加载过程中显示的图片
 		.bitmapConfig(Config.RGB_565)
 		.cacheOnDisk(true)//开启硬盘缓存
 		.cacheInMemory(true)//内存缓存

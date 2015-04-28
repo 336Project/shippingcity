@@ -2,6 +2,4 @@
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/album_image"
     android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:scaleType="centerCrop"
-    android:src="@drawable/empty_photo" />
+    android:layout_height="40dp" />
