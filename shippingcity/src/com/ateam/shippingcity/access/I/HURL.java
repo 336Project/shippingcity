@@ -7,7 +7,8 @@ package com.ateam.shippingcity.access.I;
  * @TODO 接口访问url
  */
 public interface HURL {
-	public static final String IP="118.193.146.184";
+//	public static final String IP="118.193.146.184";
+	public static final String IP="www.shippingcity.com";
 	/**
 	 * 检测更新
 	 */
